@@ -1848,8 +1848,8 @@
                 <div id="main-nav" class="collapse navbar-collapse justify-content-end">
                     <ul id="menu-primary-menu" class="navbar-nav">
                         <li id="menu-item-2107"
-                            class="nav-item menu-item menu-item-type-custom menu-item-object-custom current-menu-item current_page_item menu-item-home menu-item-2107 active">
-                            <a title="Home" href="https://mcanp.org/en/" class="nav-link">Home</a>
+                            class="nav-item menu-item menu-item-type-custom menu-item-object-custom current-menu-item current_page_item menu-item-home menu-item-2107 {{ setNavbarActive(['home']) }} active">
+                            <a title="Home" href="{{ route('home') }}" class="nav-link">Home</a>
                         </li>
                         <li id="menu-item-2120"
                             class="nav-item menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-2120 dropdown">
@@ -1877,40 +1877,19 @@
                             </ul>
                         </li>
                         <li id="menu-item-2142"
-                            class="nav-item menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-2142 dropdown">
+                            class="nav-item menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-2142 dropdown {{ setNavbarActive(['project-category']) }}">
                             <a title="Projects" href="#" data-toggle="dropdown"
                                 class="dropdown-toggle nav-link" aria-haspopup="true">Projects <span
                                     class="caret"></span></a>
                             <ul role="menu" class=" dropdown-menu">
-                                <li id="menu-item-2144"
-                                    class="nav-item menu-item menu-item-type-post_type menu-item-object-page menu-item-2144">
-                                    <a title="Electricity Transmission Project"
-                                        href="https://mcanp.org/en/projects/electricity-transmission-project/"
-                                        class="dropdown-item">Electricity Transmission Project</a>
-                                </li>
-                                <li id="menu-item-2145"
-                                    class="nav-item menu-item menu-item-type-post_type menu-item-object-page menu-item-2145">
-                                    <a title="Road Maintenance Project"
-                                        href="https://mcanp.org/en/projects/road-maintenance-project-2/"
-                                        class="dropdown-item">Road Maintenance Project</a>
-                                </li>
-                                <li id="menu-item-2143"
-                                    class="nav-item menu-item menu-item-type-post_type menu-item-object-page menu-item-2143">
-                                    <a title="Cross-Cutting Activities"
-                                        href="https://mcanp.org/en/projects/cross-cutting-activities/"
-                                        class="dropdown-item">Cross-Cutting Activities</a>
-                                </li>
-                                <li id="menu-item-2141"
-                                    class="nav-item menu-item menu-item-type-post_type menu-item-object-page menu-item-2141">
-                                    <a title="Project Areas" href="https://mcanp.org/en/projects/project-areas/"
-                                        class="dropdown-item">Project Areas</a>
-                                </li>
-                                <li id="menu-item-2250"
-                                    class="nav-item menu-item menu-item-type-post_type menu-item-object-page menu-item-2250">
-                                    <a title="Latest Project Updates"
-                                        href="https://mcanp.org/en/latest-project-updates/"
-                                        class="dropdown-item">Latest Project Updates</a>
-                                </li>
+                                @foreach ($projectCategories as $projectCategory)
+                                    <li id="menu-item-{{ $loop->iteration }}"
+                                        class="nav-item menu-item menu-item-type-post_type menu-item-object-page menu-item-{{ $loop->iteration }} ">
+                                        <a title="{{ $projectCategory->name }}"
+                                            href="{{ route('project-category', ['locale' => config('app.locale'), 'slugCategory' => $projectCategory->slug]) }}"
+                                            class="dropdown-item">{{ $projectCategory->name }}</a>
+                                    </li>
+                                @endforeach
                             </ul>
                         </li>
                         <li id="menu-item-2110"

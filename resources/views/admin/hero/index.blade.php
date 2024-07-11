@@ -18,7 +18,7 @@
                             <h4>Data Banner</h4>
                             <div class="card-header-action">
                                 <a href="{{ route('admin.hero.create') }}" class="btn btn-success">
-                                    Tambah Data
+                                    Add Data
                                     <i class="fas fa-plus"></i>
                                 </a>
                             </div>

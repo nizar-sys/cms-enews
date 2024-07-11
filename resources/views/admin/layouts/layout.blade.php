@@ -41,6 +41,9 @@
 
     <link rel="stylesheet" href="//cdn.datatables.net/2.0.8/css/dataTables.dataTables.min.css">
     <script src="//cdn.datatables.net/2.0.8/js/dataTables.min.js"></script>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 
 <body>
@@ -64,7 +67,7 @@
     </script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.nicescroll/3.7.6/jquery.nicescroll.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
-    <script src="assets/js/stisla.js"></script>
+    {{-- <script src="assets/js/stisla.js"></script> --}}
 
     <!-- JS Libraies -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.20/summernote-bs4.min.css"
@@ -91,7 +94,7 @@
     <!-- Page Specific JS File -->
     <script src="{{ asset('assets/js/page/forms-advanced-forms.js') }}"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    {{-- <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script> --}}
 
     <!-- Show Dynamic Validation Errors-->
 
@@ -165,7 +168,14 @@
         })
     </script>
 
-
+    <script src="https://dowear.dimas.co.id/assets/plugins/datatables-buttons/js/dataTables.buttons.min.js"></script>
+    <script src="https://dowear.dimas.co.id/assets/plugins/datatables-buttons/js/buttons.bootstrap4.min.js"></script>
+    <script src="https://dowear.dimas.co.id/assets/plugins/jszip/jszip.min.js"></script>
+    <script src="https://dowear.dimas.co.id/assets/plugins/pdfmake/pdfmake.min.js"></script>
+    <script src="https://dowear.dimas.co.id/assets/plugins/pdfmake/vfs_fonts.js"></script>
+    <script src="https://dowear.dimas.co.id/assets/plugins/datatables-buttons/js/buttons.html5.min.js"></script>
+    <script src="https://dowear.dimas.co.id/assets/plugins/datatables-buttons/js/buttons.print.min.js"></script>
+    <script src="https://dowear.dimas.co.id/assets/plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
     @stack('scripts')
 </body>
 
