@@ -1,0 +1,8 @@
+[07-Nov-2023 23:27:03 Asia/Jakarta] PHP Warning:  require(/home/friq1533/public_html/vendor/composer/../../App/Helper/helpers.php): Failed to open stream: No such file or directory in /home/friq1533/public_html/vendor/composer/autoload_real.php on line 41
+[07-Nov-2023 23:27:03 Asia/Jakarta] PHP Fatal error:  Uncaught Error: Failed opening required '/home/friq1533/public_html/vendor/composer/../../App/Helper/helpers.php' (include_path='.:/opt/alt/php81/usr/share/pear:/opt/alt/php81/usr/share/php:/usr/share/pear:/usr/share/php') in /home/friq1533/public_html/vendor/composer/autoload_real.php:41
+Stack trace:
+#0 /home/friq1533/public_html/vendor/composer/autoload_real.php(45): {closure}()
+#1 /home/friq1533/public_html/vendor/autoload.php(25): ComposerAutoloaderInit0dd062a93b17f455a56feb78cba12c80::getLoader()
+#2 /home/friq1533/public_html/public/index.php(34): require('/home/friq1533/...')
+#3 {main}
+  thrown in /home/friq1533/public_html/vendor/composer/autoload_real.php on line 41
