@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
+use App\Models\Project;
 use App\Models\ProjectCategory;
 
 class HomeController extends Controller
@@ -21,5 +22,19 @@ class HomeController extends Controller
         $projectCategory = ProjectCategory::where('slug', $slug)->firstOrFail();
 
         return view('frontends.project_category', compact('projectCategory', 'projectCategories'));
+    }
+
+    public function projectDetail($locale, $slugCategory, $slugProject)
+    {
+        $projectCategories = ProjectCategory::select('name', 'slug')->get();
+
+        $project = Project::where('name', str($slugProject)->replace('-', ' '))->firstOrFail();
+
+        $projects = Project::where('category_id', $project->category_id)->get();
+
+        $prevProject = $projects->where('id', '<', $project->id)->sortByDesc('id')->first();
+        $nextProject = $projects->where('id', '>', $project->id)->sortBy('id')->first();
+
+        return view('frontends.project_detail', compact('project', 'projectCategories', 'prevProject', 'nextProject'));
     }
 }

@@ -1,7 +1,6 @@
 @php
     $seoSetting = \App\Models\SeoSetting::first();
     $generalSetting = \App\Models\GeneralSetting::first();
-    $footerInfo = \App\Models\FooterInfo::first();
 @endphp
 <!DOCTYPE html>
 <html lang="en">
@@ -79,9 +78,6 @@
                             </div>
                         </div>
                         
-                        <div class="simple-footer">
-                            Copyright &copy; {{ $footerInfo?->copy_right }}
-                        </div>
                     </div>
                 </div>
             </div>

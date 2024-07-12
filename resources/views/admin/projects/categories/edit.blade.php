@@ -33,7 +33,7 @@
                                             value="{{ old('name', $projectCategory->name) }}">
 
                                         @error('name')
-                                            <div class="invalid-feedback d-block ml-3">
+                                            <div class="invalid-feedback d-block">
                                                 {{ $message }}
                                             </div>
                                         @enderror

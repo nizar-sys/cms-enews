@@ -1,12 +1,12 @@
 <div class="d-flex justify-content-between">
-    <a href="{{ route('admin.project-categories.edit', $id) }}" class="btn btn-sm btn-warning mr-1">
+    <a href="{{ route('admin.projects.edit', $id) }}" class="btn btn-sm btn-warning mr-1">
         <i class="fas fa-pencil-alt" data-tooltip="Edit"></i>
     </a>
     <button class="btn btn-sm btn-danger" onclick="confirmDelete({{ $id }})">
         <i class="fas fa-trash" data-tooltip="Delete"></i>
     </button>
 
-    <form id="form-delete-{{ $id }}" action="{{ route('admin.project-categories.destroy', $id) }}"
+    <form id="form-delete-{{ $id }}" action="{{ route('admin.projects.destroy', $id) }}"
         method="post" style="display: none;">
         @csrf
         @method('DELETE')
