@@ -91,7 +91,7 @@
             </li>
 
             <li class="menu-header">Projects</li>
-            <li class="nav-item dropdown {{ setSidebarActive(['admin.project-categories.*']) }}">
+            <li class="nav-item dropdown {{ setSidebarActive(['admin.project-categories.*', 'admin.projects.*']) }}">
                 <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-columns"></i>
                     <span>Projects</span>
                 </a>
@@ -100,7 +100,7 @@
                         <a class="nav-link" href="{{ route('admin.project-categories.index') }}">Project Categories</a>
                     </li>
                     <li class="{{ setSidebarActive([]) }}">
-                        <a class="nav-link" href="#">Projects</a>
+                        <a class="nav-link" href="{{ route('admin.projects.index') }}">Projects</a>
                     </li>
                 </ul>
             </li>

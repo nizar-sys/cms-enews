@@ -17,62 +17,41 @@
 
                             </article>
                         @else
-                            <h1 class="entry-title">Cross-Cutting Activities</h1>
+                            <h1 class="entry-title">{{ $projectCategory->name }}</h1>
                             <div class="row">
-                                <div class="project_single col-md-4">
-                                    <div class="project-thumbnail">
-                                        <a href="https://mcanp.org/en/cca/monitoring-and-evaluation/"><img
-                                                src="https://mcanp.org/en/wp-content/uploads/sites/2/2018/11/monitoring-and-evaluation.jpeg"></a>
+                                @foreach ($projectCategory->projects as $project)
+                                    <div class="project_single col-md-4">
+                                        <div class="project-thumbnail">
+                                            <a
+                                                href="{{ route('project-detail', [
+                                                    'locale' => 'en',
+                                                    'slugCategory' => Str::of($projectCategory->slug)->explode('-')->map(function ($segment) {
+                                                            return Str::substr($segment, 0, 1);
+                                                        })->implode(''),
+                                                    'slugProject' => str($project->name)->slug(),
+                                                ]) }}"><img
+                                                    src="{{ asset($project->image) }}"></a>
+                                        </div>
+                                        <h3><a
+                                                href="{{ route('project-detail', [
+                                                    'locale' => 'en',
+                                                    'slugCategory' => Str::of($projectCategory->slug)->explode('-')->map(function ($segment) {
+                                                            return Str::substr($segment, 0, 1);
+                                                        })->implode(''),
+                                                    'slugProject' => str($project->name)->slug(),
+                                                ]) }}">{{ $project->name }}</a>
+                                        </h3>
+                                        <p class="dates"><i
+                                                class="far fa-calendar-alt"></i>{{ $project->created_at->format('Y-m-d') }}
+                                        </p>
+                                        <p></p>
+                                        <p>
+                                            {!! str($project->description)->limit(50) !!}
+                                        </p>
+                                        <p></p>
+                                        <!-- <p></p> -->
                                     </div>
-                                    <h3><a href="https://mcanp.org/en/cca/monitoring-and-evaluation/">Monitoring and
-                                            Evaluation</a></h3>
-                                    <p class="dates"><i class="far fa-calendar-alt"></i>2018-11-29</p>
-                                    <p></p>
-                                    <p>Compacts financed by the Millennium Challenge Corporation (MCC) are subject to
-                                        comprehensive monitoring and evaluation to ensure successful implementation of
-                                        projects,
-                                        and to define the quality and level of desirable outcomes. The Nepal Compact
-                                        Monitoring
-                                        and Evaluation (M&amp;E) Plan is currently under development as per […]</p>
-                                    <p></p>
-                                    <!-- <p></p> -->
-                                </div>
-                                <div class="project_single col-md-4">
-                                    <div class="project-thumbnail">
-                                        <a href="https://mcanp.org/en/cca/monitoring-and-evaluation/"><img
-                                                src="https://mcanp.org/en/wp-content/uploads/sites/2/2018/11/monitoring-and-evaluation.jpeg"></a>
-                                    </div>
-                                    <h3><a href="https://mcanp.org/en/cca/monitoring-and-evaluation/">Monitoring and
-                                            Evaluation</a></h3>
-                                    <p class="dates"><i class="far fa-calendar-alt"></i>2018-11-29</p>
-                                    <p></p>
-                                    <p>Compacts financed by the Millennium Challenge Corporation (MCC) are subject to
-                                        comprehensive monitoring and evaluation to ensure successful implementation of
-                                        projects,
-                                        and to define the quality and level of desirable outcomes. The Nepal Compact
-                                        Monitoring
-                                        and Evaluation (M&amp;E) Plan is currently under development as per […]</p>
-                                    <p></p>
-                                    <!-- <p></p> -->
-                                </div>
-                                <div class="project_single col-md-4">
-                                    <div class="project-thumbnail">
-                                        <a href="https://mcanp.org/en/cca/monitoring-and-evaluation/"><img
-                                                src="https://mcanp.org/en/wp-content/uploads/sites/2/2018/11/monitoring-and-evaluation.jpeg"></a>
-                                    </div>
-                                    <h3><a href="https://mcanp.org/en/cca/monitoring-and-evaluation/">Monitoring and
-                                            Evaluation</a></h3>
-                                    <p class="dates"><i class="far fa-calendar-alt"></i>2018-11-29</p>
-                                    <p></p>
-                                    <p>Compacts financed by the Millennium Challenge Corporation (MCC) are subject to
-                                        comprehensive monitoring and evaluation to ensure successful implementation of
-                                        projects,
-                                        and to define the quality and level of desirable outcomes. The Nepal Compact
-                                        Monitoring
-                                        and Evaluation (M&amp;E) Plan is currently under development as per […]</p>
-                                    <p></p>
-                                    <!-- <p></p> -->
-                                </div>
+                                @endforeach
                             </div>
                         @endif
 
