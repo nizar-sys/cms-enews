@@ -48,16 +48,21 @@
             </li>
 
             <li class="menu-header">MCA-NEPAL</li>
-            <li class="nav-item dropdown {{ setSidebarActive([]) }}">
+            <li
+                class="nav-item dropdown {{ setSidebarActive(['admin.bod.director-section-setting', 'admin.bod.designation', 'admin.bod.director']) }}">
                 <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-user-tie"></i>
                     <span>Board Of Directors</span>
                 </a>
                 <ul class="dropdown-menu" style="display: none;">
-                    <li class="{{ setSidebarActive([]) }}">
-                        <a class="nav-link" href="#">Section Settings</a>
+                    <li class="{{ setSidebarActive(['admin.bod.director-section-setting']) }}">
+                        <a class="nav-link" href="{{ route('admin.bod.director-section-setting') }}">Section
+                            Settings</a>
                     </li>
-                    <li class="{{ setSidebarActive([]) }}">
-                        <a class="nav-link" href="#">List Of Directors</a>
+                    <li class="{{ setSidebarActive(['admin.bod.designation']) }}">
+                        <a class="nav-link" href="{{ route('admin.bod.designation') }}">Designation</a>
+                    </li>
+                    <li class="{{ setSidebarActive(['admin.bod.director']) }}">
+                        <a class="nav-link" href="{{ route('admin.bod.director') }}">List Of Directors</a>
                     </li>
                 </ul>
             </li>
@@ -67,11 +72,12 @@
                     <span>Executive Teams</span>
                 </a>
                 <ul class="dropdown-menu" style="display: none;">
-                    <li class="{{ setSidebarActive([]) }}">
-                        <a class="nav-link" href="#">Section Settings</a>
+                    <li class="{{ setSidebarActive(['admin.bod.executive-section-setting.index']) }}">
+                        <a class="nav-link" href="{{ route('admin.bod.executive-section-setting.index') }}">Section
+                            Settings</a>
                     </li>
-                    <li class="{{ setSidebarActive([]) }}">
-                        <a class="nav-link" href="#">Executive Teams</a>
+                    <li class="{{ setSidebarActive(['admin.bod.executive-teams.index']) }}">
+                        <a class="nav-link" href="{{ route('admin.bod.executive-teams.index') }}">Executive Teams</a>
                     </li>
                 </ul>
             </li>
@@ -81,11 +87,9 @@
                     <span>Organizational Chart</span>
                 </a>
                 <ul class="dropdown-menu" style="display: none;">
-                    <li class="{{ setSidebarActive([]) }}">
-                        <a class="nav-link" href="#">Section Settings</a>
-                    </li>
-                    <li class="{{ setSidebarActive([]) }}">
-                        <a class="nav-link" href="#">Organizational Chart</a>
+                    <li class="{{ setSidebarActive(['admin.bod.organizational-chart-settings.index']) }}">
+                        <a class="nav-link" href="{{ route('admin.bod.organizational-chart-settings.index') }}">Section
+                            Settings</a>
                     </li>
                 </ul>
             </li>
