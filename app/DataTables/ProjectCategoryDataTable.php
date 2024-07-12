@@ -107,10 +107,10 @@ class ProjectCategoryDataTable extends DataTable
             Column::make('DT_RowIndex')
                 ->title('#')
                 ->orderable(false)
-                ->searchable(false),
+                ->searchable(false)
+                ->addClass('text-center'),
 
             Column::make('name'),
-
             Column::make('slug'),
             Column::make('description'),
             Column::computed('action')

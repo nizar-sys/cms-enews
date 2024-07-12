@@ -29,7 +29,7 @@
                                     <div class="col-sm-12 col-md-7">
                                         <div id="image-preview" class="image-preview">
                                             <label for="image-upload" id="image-label">Choose File</label>
-                                            <input type="file" name="image" id="image-upload" />
+                                            <input type="file" name="image" id="image-upload"/>
                                         </div>
 
                                         @error('image')
@@ -46,7 +46,7 @@
                                     </label>
                                     <div class="col-sm-12 col-md-7">
                                         <input type="text" name="name" class="form-control"
-                                            value="{{ old('name', $project->name) }}">
+                                            value="{{ old('name', $project->name) }}" required>
 
                                         @error('name')
                                             <div class="invalid-feedback d-block">
@@ -59,7 +59,7 @@
                                 <div class="form-group row mb-4">
                                     <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Category</label>
                                     <div class="col-sm-12 col-md-7">
-                                        <select class="form-control selectric" name="category_id">
+                                        <select class="form-control selectric" name="category_id" required>
                                             <option>Select</option>
                                             @foreach ($categories as $category)
                                                 <option value="{{ $category->id }}"
@@ -81,7 +81,7 @@
                                         Content/Description
                                     </label>
                                     <div class="col-sm-12 col-md-7">
-                                        <textarea name="description" id="" class="summernote" style="height: 100px">{{ old('description', $project->description) }}</textarea>
+                                        <textarea required name="description" id="" class="summernote" style="height: 100px">{{ old('description', $project->description) }}</textarea>
 
                                         @error('description')
                                             <div class="invalid-feedback d-block">

@@ -28,7 +28,7 @@
                                                     'slugCategory' => Str::of($projectCategory->slug)->explode('-')->map(function ($segment) {
                                                             return Str::substr($segment, 0, 1);
                                                         })->implode(''),
-                                                    'slugProject' => str($project->name)->slug(),
+                                                    'slugProject' => $project->slug,
                                                 ]) }}"><img
                                                     src="{{ asset($project->image) }}"></a>
                                         </div>
@@ -38,7 +38,7 @@
                                                     'slugCategory' => Str::of($projectCategory->slug)->explode('-')->map(function ($segment) {
                                                             return Str::substr($segment, 0, 1);
                                                         })->implode(''),
-                                                    'slugProject' => str($project->name)->slug(),
+                                                    'slugProject' => $project->slug,
                                                 ]) }}">{{ $project->name }}</a>
                                         </h3>
                                         <p class="dates"><i

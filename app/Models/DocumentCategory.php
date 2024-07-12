@@ -5,20 +5,22 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Project extends Model
+class DocumentCategory extends Model
 {
     use HasFactory;
+
+    protected $fillable = ['name', 'slug'];
 
     protected static function boot()
     {
         parent::boot();
 
-        static::creating(function ($project) {
-            $project->slug = self::generateSlug($project->name);
+        static::creating(function ($documentCategory) {
+            $documentCategory->slug = self::generateSlug($documentCategory->name);
         });
 
-        static::updating(function ($project) {
-            $project->slug = self::generateSlug($project->name);
+        static::updating(function ($documentCategory) {
+            $documentCategory->slug = self::generateSlug($documentCategory->name);
         });
     }
 
@@ -34,16 +36,8 @@ class Project extends Model
         return str($name)->slug(dictionary: $dictionary);
     }
 
-    protected $fillable = [
-        'category_id',
-        'name',
-        'slug',
-        'description',
-        'image',
-    ];
-
-    public function category()
+    public function documentFiles()
     {
-        return $this->belongsTo(ProjectCategory::class, 'category_id', 'id');
+        return $this->hasMany(DocumentFile::class);
     }
 }

@@ -4,9 +4,10 @@
     <section class="section">
         <div class="section-header">
             <div class="section-header-back">
-                <a href="{{ route('admin.project-categories.index') }}" class="btn btn-icon"><i class="fas fa-arrow-left"></i></a>
+                <a href="{{ route('admin.documents-reports-categories.index') }}" class="btn btn-icon"><i
+                        class="fas fa-arrow-left"></i></a>
             </div>
-            <h1>Project Categories</h1>
+            <h1>Documents & Reports Categories</h1>
 
         </div>
 
@@ -16,10 +17,10 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="card-header">
-                            <h4>Add Project Categories</h4>
+                            <h4>Add Documents & Reports Categories</h4>
                         </div>
                         <div class="card-body">
-                            <form action="{{ route('admin.project-categories.store') }}" method="POST"
+                            <form action="{{ route('admin.documents-reports-categories.store') }}" method="POST"
                                 enctype="multipart/form-data">
                                 @csrf
 
@@ -28,23 +29,15 @@
                                         Name
                                     </label>
                                     <div class="col-sm-12 col-md-7">
-                                        <input type="text" name="name" class="form-control @error('name') is-invalid @enderror"
-                                            value="{{ old('name') }}" required>
+                                        <input type="text" name="name"
+                                            class="form-control @error('name') is-invalid @enderror"
+                                            value="{{ old('name') }}">
 
                                         @error('name')
                                             <div class="invalid-feedback d-block">
                                                 {{ $message }}
                                             </div>
                                         @enderror
-                                    </div>
-                                </div>
-
-                                <div class="form-group row mb-4">
-                                    <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">
-                                        Description
-                                    </label>
-                                    <div class="col-sm-12 col-md-7">
-                                        <textarea name="description" id="" class="summernote" style="height: 100px">{{ old('description') }}</textarea>
                                     </div>
                                 </div>
 

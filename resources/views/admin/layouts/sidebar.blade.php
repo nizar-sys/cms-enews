@@ -8,7 +8,8 @@
     <ul class="navbar-nav navbar-right">
         <li class="dropdown"><a href="#" data-toggle="dropdown"
                 class="nav-link dropdown-toggle nav-link-lg nav-link-user">
-                <img alt="image" src="{{ asset('/') }}/assets/img/avatar/avatar-1.png" class="rounded-circle mr-1">
+                <img alt="image" src="{{ asset('/') }}/assets/img/avatar/avatar-1.png"
+                    class="rounded-circle mr-1">
                 <div class="d-sm-none d-lg-inline-block">Hi, {{ Auth::user()->name }}</div>
             </a>
             <div class="dropdown-menu dropdown-menu-right">
@@ -103,23 +104,24 @@
                     <li class="{{ setSidebarActive(['admin.project-categories.*']) }}">
                         <a class="nav-link" href="{{ route('admin.project-categories.index') }}">Project Categories</a>
                     </li>
-                    <li class="{{ setSidebarActive([]) }}">
+                    <li class="{{ setSidebarActive(['admin.projects.*']) }}">
                         <a class="nav-link" href="{{ route('admin.projects.index') }}">Projects</a>
                     </li>
                 </ul>
             </li>
 
             <li class="menu-header">Documents & Reports</li>
-            <li class="nav-item dropdown {{ setSidebarActive([]) }}">
+            <li class="nav-item dropdown {{ setSidebarActive(['admin.documents-reports-categories.*', 'admin.documents-reports-files.*']) }}">
                 <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-columns"></i>
                     <span>Documents & Reports</span>
                 </a>
                 <ul class="dropdown-menu" style="display: none;">
-                    <li class="{{ setSidebarActive([]) }}">
-                        <a class="nav-link" href="#">Categories</a>
+                    <li class="{{ setSidebarActive(['admin.documents-reports-categories.*']) }}">
+                        <a class="nav-link"
+                            href="{{ route('admin.documents-reports-categories.index') }}">Categories</a>
                     </li>
-                    <li class="{{ setSidebarActive([]) }}">
-                        <a class="nav-link" href="#">Documents & Reports</a>
+                    <li class="{{ setSidebarActive(['admin.documents-reports-files.*']) }}">
+                        <a class="nav-link" href="{{ route('admin.documents-reports-files.index') }}">Files</a>
                     </li>
                 </ul>
             </li>
