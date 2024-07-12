@@ -1902,9 +1902,7 @@
                                     <li id="menu-item-{{ $loop->iteration }}"
                                         class="nav-item menu-item menu-item-type-post_type menu-item-object-page menu-item-2112">
                                         <a title="{{ $documentReportCategory->name }}"
-                                            href="{{ route('document-category', ['locale' => config('app.locale'), 'slugCategory' => str($documentReportCategory->name)->replace(' ', '-')  // Replace spaces with hyphens
-                                            ->replace('&', 'and') // Replace '&' with 'and' or any other transformation you prefer
-                                            ->slug()]) }}"
+                                            href="{{ route('document-category', ['locale' => config('app.locale'), 'slugCategory' => $documentReportCategory->slug]) }}"
                                             class="dropdown-item">{{ $documentReportCategory->name }}</a>
                                     </li>
                                 @endforeach

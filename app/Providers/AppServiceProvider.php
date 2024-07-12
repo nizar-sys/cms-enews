@@ -29,7 +29,7 @@ class AppServiceProvider extends ServiceProvider
         Paginator::useBootstrapFour();
 
         View::composer('*', function ($view) {
-            $view->with('documentsReportsCategories', DocumentCategory::select('name')->get());
+            $view->with('documentsReportsCategories', DocumentCategory::select(['name', 'slug'])->get());
         });
     }
 }

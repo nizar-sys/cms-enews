@@ -14,10 +14,9 @@
                                 <img width="960" height="540" src="{{ asset($project->image) }}"
                                     class="attachment-post-thumbnail size-post-thumbnail wp-post-image" alt=""
                                     decoding="async" fetchpriority="high"
-                                    srcset="{{ asset($project->image) }} 960w, https://mcanp.org/en/wp-content/uploads/sites/2/2018/11/monitoring-and-evaluation-300x169.jpeg 300w, https://mcanp.org/en/wp-content/uploads/sites/2/2018/11/monitoring-and-evaluation-768x432.jpeg 768w"
                                     sizes="(max-width: 960px) 100vw, 960px">
                             </div>
-                            <header class="entry-header">
+                            <header class="entry-header mt-2">
                                 <h1 class="entry-title">{{ $project->name }}</h1>
                             </header><!-- .entry-header -->
                             <div class="entry-content">

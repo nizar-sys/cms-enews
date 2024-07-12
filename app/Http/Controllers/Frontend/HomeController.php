@@ -16,11 +16,11 @@ class HomeController extends Controller
         return view('frontends.home', compact('projectCategories'));
     }
 
-    public function projectCategory($locale, $slug)
+    public function projectCategory($locale, $slugCategory)
     {
         $projectCategories = ProjectCategory::select('name', 'slug')->get();
 
-        $projectCategory = ProjectCategory::where('slug', $slug)->firstOrFail();
+        $projectCategory = ProjectCategory::where('slug', $slugCategory)->firstOrFail();
 
         return view('frontends.project_category', compact('projectCategory', 'projectCategories'));
     }
@@ -29,7 +29,7 @@ class HomeController extends Controller
     {
         $projectCategories = ProjectCategory::select('name', 'slug')->get();
 
-        $project = Project::where('name', str($slugProject)->replace('-', ' ')->value)->firstOrFail();
+        $project = Project::where('slug', $slugProject)->firstOrFail();
 
         $projects = Project::where('category_id', $project->category_id)->get();
 
@@ -42,8 +42,8 @@ class HomeController extends Controller
     public function documentCategory($locale, $slugCategoryDocumentReport)
     {
         $projectCategories = ProjectCategory::select('name', 'slug')->get();
-        
-        $documentsReportsCategory = DocumentCategory::where('name', 'LIKE', '%'.str($slugCategoryDocumentReport)->replace('-', ' ')->replace('and', '&')->value.'%')->firstOrFail();
+
+        $documentsReportsCategory = DocumentCategory::with('documentFiles')->where('slug', $slugCategoryDocumentReport)->firstOrFail();
 
         return view('frontends.document_category', compact('documentsReportsCategory', 'projectCategories'));
     }

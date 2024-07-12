@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use App\Models\DocumentCategory;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Str;
 
 class DocumentCategorySeeder extends Seeder
 {
@@ -28,12 +29,13 @@ class DocumentCategorySeeder extends Seeder
         foreach ($documentCategories as $documentCategory) {
             $payloadDocumentCategories[] = [
                 'name' => $documentCategory,
+                'slug' => Str::slug($documentCategory),
                 'created_at' => now(),
                 'updated_at' => now(),
             ];
         }
 
         DocumentCategory::insert($payloadDocumentCategories);
-        
+
     }
 }

@@ -2,7 +2,7 @@
 
 namespace App\DataTables;
 
-use App\Models\Project;
+use App\Models\Documentfile;
 use Illuminate\Database\Eloquent\Builder as QueryBuilder;
 use Yajra\DataTables\EloquentDataTable;
 use Yajra\DataTables\Html\Builder as HtmlBuilder;
@@ -11,9 +11,8 @@ use Yajra\DataTables\Html\Column;
 use Yajra\DataTables\Html\Editor\Editor;
 use Yajra\DataTables\Html\Editor\Fields;
 use Yajra\DataTables\Services\DataTable;
-use Illuminate\Support\Str;
 
-class ProjectDataTable extends DataTable
+class DocumentfileDataTable extends DataTable
 {
     /**
      * Build the DataTable class.
@@ -24,22 +23,20 @@ class ProjectDataTable extends DataTable
     {
         return (new EloquentDataTable($query))
             ->addIndexColumn()
-            ->editColumn('description', function (Project $project) {
-                return Str::limit($project->description, 50);
+            // ->editColumn('updated_at', fn ($documentCategory) => $documentCategory->updated_at->diffForHumans())
+            ->addColumn('action', 'admin.documents_reports.actions')
+            ->editColumn('file_path', function ($documentfile) {
+                return '<a href="' . $documentfile->file_path . '" target="_blank" class="btn btn-sm btn-danger">View</a>';
             })
-            ->addColumn('action', 'admin.projects.actions')
-            ->editColumn('image', function (Project $project) {
-                return '<img src="' . asset($project->image) . '" class="img-thumbnail" width="100" />';
-            })
-            ->rawColumns(['description', 'image', 'action']);
+            ->rawColumns(['action', 'file_path']);
     }
 
     /**
      * Get the query source of dataTable.
      */
-    public function query(Project $model): QueryBuilder
+    public function query(Documentfile $model): QueryBuilder
     {
-        return $model->newQuery()->with('category');
+        return $model->newQuery()->with('documentCategory');
     }
 
     /**
@@ -48,11 +45,11 @@ class ProjectDataTable extends DataTable
     public function html(): HtmlBuilder
     {
         return $this->builder()
-            ->setTableId('project-table')
+            ->setTableId('documentfile-table')
             ->columns($this->getColumns())
             ->minifiedAjax()
             //->dom('Bfrtip')
-            ->orderBy(1)
+            ->orderBy(0)
             ->selectStyleSingle()
             ->parameters([
                 'dom' => '<"row"<"col-md-6"B><"col-md-6"f>>' .
@@ -66,7 +63,7 @@ class ProjectDataTable extends DataTable
                         'className' => 'btn btn-sm ml-1 btn-success',
                         'filename' => $this->filename(),
                         'exportOptions' => [
-                            'columns' => [0, 1, 2, 3],
+                            'columns' => [0, 1, 2],
                         ],
                         'sheetName' => $this->filename(),
                     ],
@@ -76,7 +73,7 @@ class ProjectDataTable extends DataTable
                         'text' => '<i class="fas fa-file-pdf"></i>',
                         'className' => 'btn btn-sm ml-1 btn-danger',
                         'exportOptions' => [
-                            'columns' => [0, 1, 2, 3],
+                            'columns' => [0, 1, 2],
                         ],
                         'filename' => $this->filename(),
                     ],
@@ -85,7 +82,7 @@ class ProjectDataTable extends DataTable
                         'text' => '<i class="fas fa-sync"></i>',
                         'className' => 'btn btn-sm ml-1 btn-info',
                         'action' => 'function(){
-                            var table = window.LaravelDataTables["project-table"];
+                            var table = window.LaravelDataTables["documentfile-table"];
                             table.ajax.reload();
                             table.search("").columns().search("").draw();
                         }',
@@ -107,15 +104,16 @@ class ProjectDataTable extends DataTable
     public function getColumns(): array
     {
         return [
-            Column::make('DT_RowIndex')->title('#')->orderable(false)->searchable(false),
-            Column::make('image')->title('Thumbnail')
-                ->addClass('text-center')
+            Column::make('DT_RowIndex')
+                ->title('#')
                 ->orderable(false)
-                ->searchable(false),
-            Column::make('name'),
-            Column::make('slug'),
-            Column::make('description'),
-            Column::make('category.name')->title('Category'),
+                ->searchable(false)
+                ->addClass('text-center'),
+            Column::make('document_category.name')
+                ->title('Category Name')
+                ->orderable(false),
+            Column::make('filename'),
+            Column::make('file_path'),
             Column::computed('action')
                 ->exportable(false)
                 ->printable(false)
@@ -132,6 +130,6 @@ class ProjectDataTable extends DataTable
      */
     protected function filename(): string
     {
-        return 'Project_' . date('YmdHis');
+        return 'Documentfile_' . date('YmdHis');
     }
 }

@@ -107,6 +107,7 @@ class DocumentCategoryDataTable extends DataTable
                 ->searchable(false)
                 ->addClass('text-center'),
             Column::make('name')->title('Category Name'),
+            Column::make('slug'),
             Column::make('updated_at'),
             Column::computed('action')
                 ->title('Action')

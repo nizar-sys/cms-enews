@@ -100,14 +100,14 @@
                     <li class="{{ setSidebarActive(['admin.project-categories.*']) }}">
                         <a class="nav-link" href="{{ route('admin.project-categories.index') }}">Project Categories</a>
                     </li>
-                    <li class="{{ setSidebarActive([]) }}">
+                    <li class="{{ setSidebarActive(['admin.projects.*']) }}">
                         <a class="nav-link" href="{{ route('admin.projects.index') }}">Projects</a>
                     </li>
                 </ul>
             </li>
 
             <li class="menu-header">Documents & Reports</li>
-            <li class="nav-item dropdown {{ setSidebarActive(['admin.documents-reports-categories.*']) }}">
+            <li class="nav-item dropdown {{ setSidebarActive(['admin.documents-reports-categories.*', 'admin.documents-reports-files.*']) }}">
                 <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-columns"></i>
                     <span>Documents & Reports</span>
                 </a>
@@ -116,8 +116,8 @@
                         <a class="nav-link"
                             href="{{ route('admin.documents-reports-categories.index') }}">Categories</a>
                     </li>
-                    <li class="{{ setSidebarActive([]) }}">
-                        <a class="nav-link" href="#">Documents & Reports Files</a>
+                    <li class="{{ setSidebarActive(['admin.documents-reports-files.*']) }}">
+                        <a class="nav-link" href="{{ route('admin.documents-reports-files.index') }}">Files</a>
                     </li>
                 </ul>
             </li>

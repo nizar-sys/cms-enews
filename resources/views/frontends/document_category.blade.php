@@ -18,12 +18,12 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            @forelse ([] as $file)
+                                            @forelse ($documentsReportsCategory->documentFiles as $file)
                                                 <tr>
-                                                    <td width="80%">कम्प्याक्ट सम्झौता – नेपाली</td>
+                                                    <td width="80%">{{$file->filename}}</td>
                                                     <td class="text-center">
                                                         <a class="btn btn-danger"
-                                                            href="https://mcanp.org/en/wp-content/uploads/2020/01/MCA-Nepal-Compact-Agreement-Nepali.pdf"
+                                                            href="{{ asset($file->file_path) }}"
                                                             target="_blank"><i class="far fa-file-pdf"></i> View
                                                             PDF</a>
                                                     </td>
