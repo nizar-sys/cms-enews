@@ -30,7 +30,7 @@
                                     </label>
                                     <div class="col-sm-12 col-md-7">
                                         <input type="text" name="name" class="form-control @error('name') is-invalid @enderror"
-                                            value="{{ old('name', $projectCategory->name) }}">
+                                            value="{{ old('name', $projectCategory->name) }}" required>
 
                                         @error('name')
                                             <div class="invalid-feedback d-block">

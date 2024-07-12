@@ -2,7 +2,7 @@
 
 namespace App\DataTables;
 
-use App\Models\ProjectCategory;
+use App\Models\DocumentCategory;
 use Illuminate\Database\Eloquent\Builder as QueryBuilder;
 use Yajra\DataTables\EloquentDataTable;
 use Yajra\DataTables\Html\Builder as HtmlBuilder;
@@ -11,9 +11,8 @@ use Yajra\DataTables\Html\Column;
 use Yajra\DataTables\Html\Editor\Editor;
 use Yajra\DataTables\Html\Editor\Fields;
 use Yajra\DataTables\Services\DataTable;
-use Illuminate\Support\Str;
 
-class ProjectCategoryDataTable extends DataTable
+class DocumentCategoryDataTable extends DataTable
 {
     /**
      * Build the DataTable class.
@@ -24,17 +23,15 @@ class ProjectCategoryDataTable extends DataTable
     {
         return (new EloquentDataTable($query))
             ->addIndexColumn()
-            ->editColumn('description', function (ProjectCategory $projectCategory) {
-                return Str::limit($projectCategory->description, 50);
-            })
-            ->addColumn('action', 'admin.projects.categories.actions')
-            ->rawColumns(['description', 'action']);
+            ->editColumn('updated_at', fn ($documentCategory) => $documentCategory->updated_at->diffForHumans())
+            ->addColumn('action', 'admin.documents_reports.categories.actions')
+            ->rawColumns(['action']);
     }
 
     /**
      * Get the query source of dataTable.
      */
-    public function query(ProjectCategory $model): QueryBuilder
+    public function query(DocumentCategory $model): QueryBuilder
     {
         return $model->newQuery();
     }
@@ -45,7 +42,7 @@ class ProjectCategoryDataTable extends DataTable
     public function html(): HtmlBuilder
     {
         return $this->builder()
-            ->setTableId('projectcategory-table')
+            ->setTableId('documentcategory-table')
             ->columns($this->getColumns())
             ->minifiedAjax()
             //->dom('Bfrtip')
@@ -63,7 +60,7 @@ class ProjectCategoryDataTable extends DataTable
                         'className' => 'btn btn-sm ml-1 btn-success',
                         'filename' => $this->filename(),
                         'exportOptions' => [
-                            'columns' => [0, 1, 2, 3],
+                            'columns' => [0, 1],
                         ],
                         'sheetName' => $this->filename(),
                     ],
@@ -73,7 +70,7 @@ class ProjectCategoryDataTable extends DataTable
                         'text' => '<i class="fas fa-file-pdf"></i>',
                         'className' => 'btn btn-sm ml-1 btn-danger',
                         'exportOptions' => [
-                            'columns' => [0, 1, 2, 3],
+                            'columns' => [0, 1],
                         ],
                         'filename' => $this->filename(),
                     ],
@@ -82,7 +79,7 @@ class ProjectCategoryDataTable extends DataTable
                         'text' => '<i class="fas fa-sync"></i>',
                         'className' => 'btn btn-sm ml-1 btn-info',
                         'action' => 'function(){
-                            var table = window.LaravelDataTables["projectcategory-table"];
+                            var table = window.LaravelDataTables["documentcategory-table"];
                             table.ajax.reload();
                             table.search("").columns().search("").draw();
                         }',
@@ -109,10 +106,8 @@ class ProjectCategoryDataTable extends DataTable
                 ->orderable(false)
                 ->searchable(false)
                 ->addClass('text-center'),
-
-            Column::make('name'),
-            Column::make('slug'),
-            Column::make('description'),
+            Column::make('name')->title('Category Name'),
+            Column::make('updated_at'),
             Column::computed('action')
                 ->title('Action')
                 ->exportable(false)
@@ -127,6 +122,6 @@ class ProjectCategoryDataTable extends DataTable
      */
     protected function filename(): string
     {
-        return 'ProjectCategory_' . date('YmdHis');
+        return 'DocumentCategory_' . date('YmdHis');
     }
 }

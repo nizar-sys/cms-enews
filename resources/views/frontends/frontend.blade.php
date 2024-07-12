@@ -1893,52 +1893,21 @@
                             </ul>
                         </li>
                         <li id="menu-item-2110"
-                            class="nav-item menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-2110 dropdown">
+                            class="nav-item menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-2110 dropdown {{ setNavbarActive(['document-category']) }}">
                             <a title="Documents &amp; Reports" href="#" data-toggle="dropdown"
                                 class="dropdown-toggle nav-link" aria-haspopup="true">Documents &amp; Reports <span
                                     class="caret"></span></a>
                             <ul role="menu" class=" dropdown-menu">
-                                <li id="menu-item-2112"
-                                    class="nav-item menu-item menu-item-type-post_type menu-item-object-page menu-item-2112">
-                                    <a title="Main Agreements"
-                                        href="https://mcanp.org/en/documents-reports/main-agreements/"
-                                        class="dropdown-item">Main Agreements</a>
-                                </li>
-                                <li id="menu-item-2147"
-                                    class="nav-item menu-item menu-item-type-post_type menu-item-object-page menu-item-2147">
-                                    <a title="Publications &amp; Resources"
-                                        href="https://mcanp.org/en/publications-resources/"
-                                        class="dropdown-item">Publications &amp; Resources</a>
-                                </li>
-                                <li id="menu-item-2196"
-                                    class="nav-item menu-item menu-item-type-post_type menu-item-object-page menu-item-2196">
-                                    <a title="Feasibility Studies Reports"
-                                        href="https://mcanp.org/en/publications-resources/feasibility-studies-reports/"
-                                        class="dropdown-item">Feasibility Studies Reports</a>
-                                </li>
-                                <li id="menu-item-2108"
-                                    class="nav-item menu-item menu-item-type-post_type menu-item-object-page menu-item-2108">
-                                    <a title="Board Meeting Minutes"
-                                        href="https://mcanp.org/en/board-meeting-minutes/" class="dropdown-item">Board
-                                        Meeting Minutes</a>
-                                </li>
-                                <li id="menu-item-2193"
-                                    class="nav-item menu-item menu-item-type-post_type menu-item-object-page menu-item-2193">
-                                    <a title="Annual Reports"
-                                        href="https://mcanp.org/en/publications-resources/annual-reports/"
-                                        class="dropdown-item">Annual Reports</a>
-                                </li>
-                                <li id="menu-item-2192"
-                                    class="nav-item menu-item menu-item-type-post_type menu-item-object-page menu-item-2192">
-                                    <a title="EIA Report"
-                                        href="https://mcanp.org/en/publications-resources/eia-report/"
-                                        class="dropdown-item">EIA Report</a>
-                                </li>
-                                <li id="menu-item-2352"
-                                    class="nav-item menu-item menu-item-type-post_type menu-item-object-page menu-item-2352">
-                                    <a title="Newsletter" href="https://mcanp.org/en/documents-reports/newsletter/"
-                                        class="dropdown-item">Newsletter</a>
-                                </li>
+                                @foreach ($documentsReportsCategories as $documentReportCategory)
+                                    <li id="menu-item-{{ $loop->iteration }}"
+                                        class="nav-item menu-item menu-item-type-post_type menu-item-object-page menu-item-2112">
+                                        <a title="{{ $documentReportCategory->name }}"
+                                            href="{{ route('document-category', ['locale' => config('app.locale'), 'slugCategory' => str($documentReportCategory->name)->replace(' ', '-')  // Replace spaces with hyphens
+                                            ->replace('&', 'and') // Replace '&' with 'and' or any other transformation you prefer
+                                            ->slug()]) }}"
+                                            class="dropdown-item">{{ $documentReportCategory->name }}</a>
+                                    </li>
+                                @endforeach
                             </ul>
                         </li>
                         <li id="menu-item-2127"
