@@ -27,6 +27,7 @@ use App\Http\Controllers\Admin\KrfImageController;
 use App\Http\Controllers\Admin\GalleryAlbumController;
 use App\Http\Controllers\Admin\GalleryController;
 use App\Http\Controllers\Admin\GallerySectionSettingController;
+use App\Http\Controllers\Admin\NewsController;
 use App\Http\Controllers\Admin\OrganizationalChartSectionSettingController;
 use App\Http\Controllers\Admin\PortfolioItemController;
 use App\Http\Controllers\Admin\PortfolioSectionSettingController;
@@ -107,6 +108,16 @@ Route::group(['middleware' => ['auth'], 'prefix' => 'admin', 'as' => 'admin.'], 
     /**Documents & Reports Route**/
     Route::resource('documents-reports-categories', DocumentCategoryController::class);
     Route::resource('documents-reports-files', DocumentFileController::class);
+
+    /** Media / Notices Route */
+    Route::prefix('news')->group(function () {
+        Route::get('/', [NewsController::class, 'index'])->name('news.index');
+        Route::get('/create', [NewsController::class, 'create'])->name('news.create');
+        Route::post('/store', [NewsController::class, 'store'])->name('news.store');
+        Route::get('/edit/{id}', [NewsController::class, 'edit'])->name('news.edit');
+        Route::put('/update/{id}', [NewsController::class, 'update'])->name('news.update');
+        Route::delete('/{id}', [NewsController::class, 'destroy'])->name('news.destroy');
+    });
 });
 
 Route::prefix('{locale}')->group(function () {
