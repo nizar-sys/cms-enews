@@ -10,6 +10,7 @@ use App\Http\Controllers\Admin\ProjectCategoryController;
 use App\Http\Controllers\Admin\ProjectController;
 use App\Http\Controllers\Admin\TyperTitleController;
 use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\Admin\CommunityVoiceController;
 use App\Http\Controllers\Admin\DesignationController;
 use App\Http\Controllers\Admin\DirectorController;
 use App\Http\Controllers\Admin\DirectorSectionSettingController;
@@ -110,6 +111,7 @@ Route::group(['middleware' => ['auth'], 'prefix' => 'admin', 'as' => 'admin.'], 
     Route::resource('documents-reports-files', DocumentFileController::class);
 
     /** Media / Notices Route */
+    // News Route
     Route::prefix('news')->group(function () {
         Route::get('/', [NewsController::class, 'index'])->name('news.index');
         Route::get('/create', [NewsController::class, 'create'])->name('news.create');
@@ -117,6 +119,16 @@ Route::group(['middleware' => ['auth'], 'prefix' => 'admin', 'as' => 'admin.'], 
         Route::get('/edit/{id}', [NewsController::class, 'edit'])->name('news.edit');
         Route::put('/update/{id}', [NewsController::class, 'update'])->name('news.update');
         Route::delete('/{id}', [NewsController::class, 'destroy'])->name('news.destroy');
+    });
+
+    // CommunityVoice Route
+    Route::prefix('community-voice')->group(function () {
+        Route::get('/', [CommunityVoiceController::class, 'index'])->name('community-voice.index');
+        Route::get('/create', [CommunityVoiceController::class, 'create'])->name('community-voice.create');
+        Route::post('/store', [CommunityVoiceController::class, 'store'])->name('community-voice.store');
+        Route::get('/edit/{id}', [CommunityVoiceController::class, 'edit'])->name('community-voice.edit');
+        Route::put('/update/{id}', [CommunityVoiceController::class, 'update'])->name('community-voice.update');
+        Route::delete('/{id}', [CommunityVoiceController::class, 'destroy'])->name('community-voice.destroy');
     });
 });
 

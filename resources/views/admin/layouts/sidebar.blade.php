@@ -131,7 +131,7 @@
                 <a href="{{ route('admin.news.index') }}" class="nav-link"><i class="fas fa-columns"></i><span>News</span></a>
             </li>
             <li class="nav-item {{ setSidebarActive([]) }}">
-                <a href="#" class="nav-link"><i class="fas fa-columns"></i><span>Community Voice</span></a>
+                <a href="{{ route('admin.community-voice.index') }}" class="nav-link"><i class="fas fa-columns"></i><span>Community Voice</span></a>
             </li>
             <li class="nav-item dropdown {{ setSidebarActive([]) }}">
                 <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i
