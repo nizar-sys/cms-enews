@@ -36,6 +36,7 @@ use App\Http\Controllers\Admin\PortfolioSectionSettingController;
 use App\Http\Controllers\Admin\QualificationController;
 use App\Http\Controllers\Admin\SeoSettingController;
 use App\Http\Controllers\Admin\ArticleController;
+use App\Http\Controllers\Admin\NoticeController;
 use App\Http\Controllers\Frontend\HomeController;
 use Illuminate\Support\Facades\Artisan;
 
@@ -148,7 +149,16 @@ Route::group(['middleware' => ['auth'], 'prefix' => 'admin', 'as' => 'admin.'], 
         Route::get('/edit/{id}', [ArticleController::class, 'edit'])->name('article.edit');
         Route::put('/update/{id}', [ArticleController::class, 'update'])->name('article.update');
         Route::delete('/{id}', [ArticleController::class, 'destroy'])->name('article.destroy');
-        
+    });
+
+    // Notice Route
+    Route::prefix('notice')->group(function () {
+        Route::get('/', [NoticeController::class, 'index'])->name('notice.index');
+        Route::get('/create', [NoticeController::class, 'create'])->name('notice.create');
+        Route::post('/store', [NoticeController::class, 'store'])->name('notice.store');
+        Route::get('/edit/{id}', [NoticeController::class, 'edit'])->name('notice.edit');
+        Route::put('/update/{id}', [NoticeController::class, 'update'])->name('notice.update');
+        Route::delete('/{id}', [NoticeController::class, 'destroy'])->name('notice.destroy');
     });
 });
 
