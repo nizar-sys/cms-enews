@@ -31,23 +31,12 @@
                                     </div>
                                 </div>
 
-                                <div class="form-group
-                                    row mb-4">
+                                <div class="form-group row mb-4">
                                     <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">
                                         Description
                                     </label>
                                     <div class="col-sm-12 col-md-7">
-                                        <textarea name="description" class="form-control">{{ $news->description }}</textarea>
-                                    </div>
-                                </div>
-
-                                <div class="form-group
-                                    row mb-4">
-                                    <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">
-                                        Images
-                                    </label>
-                                    <div class="col-sm-12 col-md-7">
-                                        <input type="file" name="images[]" class="form-control" multiple>
+                                        <textarea name="description" class="summernote" style="height: 100px">{{ $news->description }}</textarea>
                                     </div>
                                 </div>
 

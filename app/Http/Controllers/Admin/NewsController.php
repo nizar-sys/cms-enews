@@ -25,21 +25,9 @@ class NewsController extends Controller
         $request->validate([
             'title' => ['required', 'max:200'],
             'description' => ['required'],
-            'image' => ['image', 'mimes:jpeg,png,jpg,gif,svg', 'max:2048'],
         ]);
 
-
-        if ($request->hasFile('images')) {
-                
-                $news = News::create($request->all());
-                foreach ($request->file('images') as $image) {
-                    $imagePath = $image->store('news_images', 'public');
-                    NewsImages::create([
-                        'news_id' => $news->id,
-                        'image_path' => $imagePath
-                    ]);
-                }
-        }
+        News::create($request->only('title', 'description'));
 
         toastr()->success('News Created Successfully', 'Congrats');
         return redirect()->route('admin.news.index');
@@ -56,21 +44,10 @@ class NewsController extends Controller
         $request->validate([
             'title' => ['required', 'max:200'],
             'description' => ['required'],
-            'image' => ['image', 'mimes:jpeg,png,jpg,gif,svg', 'max:2048'],
         ]);
 
         $news = News::findOrFail($id);
         $news->update($request->only('title', 'description'));
-
-        if ($request->hasFile('image')) {
-            foreach ($request->file('image') as $image) {
-                $imagePath = $image->store('news_images', 'public');
-                NewsImages::create([
-                    'news_id' => $news->id,
-                    'image_path' => $imagePath
-                ]);
-            }
-        }
 
         toastr()->success('News Updated Successfully', 'Congrats');
         return redirect()->route('admin.news.index');

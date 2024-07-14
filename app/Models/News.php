@@ -10,14 +10,6 @@ class News extends Model
 {
     use HasFactory;
     
-    protected $fillable = ['title', 'description', 'images'];
+    protected $fillable = ['title', 'description'];
 
-    protected $casts = [
-        'images' => 'array'
-    ];
-
-    public function images()
-    {
-        return $this->hasMany(NewsImages::class);
-    }
 }

@@ -18,13 +18,6 @@ return new class extends Migration
             $table->text('description');
             $table->json('images')->nullable();
         });
-
-        Schema::create('news_images', function (Blueprint $table) {
-            $table->id();
-            $table->timestamps();
-            $table->foreignId('news_id')->constrained()->onDelete('cascade');
-            $table->string('image_path');
-        });
     }
 
     /**

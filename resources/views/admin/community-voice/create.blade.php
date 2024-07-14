@@ -39,7 +39,7 @@
                                     Description
                                 </label>
                                 <div class="col-sm-12 col-md-7">
-                                    <textarea name="description" class="form-control"></textarea>
+                                    <textarea name="description" class="summernote h-[100px]"></textarea>
                                 </div>
                             </div>
 
