@@ -4,10 +4,10 @@
     <section class="section">
         <div class="section-header">
             <div class="section-header-back">
-                <a href="{{ route('admin.documents-reports-files.index') }}" class="btn btn-icon"><i
+                <a href="{{ route('admin.spesific-procurements-notices.index') }}" class="btn btn-icon"><i
                         class="fas fa-arrow-left"></i></a>
             </div>
-            <h1>Documents & Reports Files</h1>
+            <h1>Spesific Procurements</h1>
 
         </div>
 
@@ -17,27 +17,21 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="card-header">
-                            <h4>Update Documents & Reports Files</h4>
+                            <h4>Add Spesific Procurements</h4>
                         </div>
                         <div class="card-body">
-                            <form action="{{ route('admin.documents-reports-files.update', $documentsReportsFile->id) }}" method="POST"
+                            <form action="{{ route('admin.spesific-procurements-notices.store') }}" method="POST"
                                 enctype="multipart/form-data">
                                 @csrf
-                                @method('PUT')
 
-                                <div class="form-group row mb-4">
-                                    <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Category</label>
+                                <div class="form-group row mb-3">
+                                    <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">
+                                        Title & ID
+                                    </label>
                                     <div class="col-sm-12 col-md-7">
-                                        <select class="form-control selectric" name="document_category_id" required>
-                                            <option value="">Select</option>
-                                            @foreach ($documentCategories as $category)
-                                                <option value="{{ $category->id }}"
-                                                    @if (old('document_category_id', $documentsReportsFile->document_category_id) == $category->id) selected @endif>{{ $category->name }}
-                                                </option>
-                                            @endforeach
-                                        </select>
+                                        <textarea required name="title" id="" class="summernote" style="height: 100px">{{ old('title') }}</textarea>
 
-                                        @error('document_category_id')
+                                        @error('title')
                                             <div class="invalid-feedback d-block">
                                                 {{ $message }}
                                             </div>
@@ -45,12 +39,15 @@
                                     </div>
                                 </div>
 
-                                <div class="form-group row mb-4">
-                                    <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">File</label>
+                                <div class="form-group row mb-3">
+                                    <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">
+                                        First Date of Publication
+                                    </label>
                                     <div class="col-sm-12 col-md-7">
-                                        <input type="file" name="file" class="form-control" />
+                                        <input type="date" name="date_of_publication" class="form-control"
+                                            value="{{ old('date_of_publication') }}" required>
 
-                                        @error('file')
+                                        @error('date_of_publication')
                                             <div class="invalid-feedback d-block">
                                                 {{ $message }}
                                             </div>
