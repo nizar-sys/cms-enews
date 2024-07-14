@@ -37,6 +37,7 @@ use App\Http\Controllers\Admin\QualificationController;
 use App\Http\Controllers\Admin\SeoSettingController;
 use App\Http\Controllers\Admin\ArticleController;
 use App\Http\Controllers\Admin\NoticeController;
+use App\Http\Controllers\Admin\PressReleaseController;
 use App\Http\Controllers\Frontend\HomeController;
 use Illuminate\Support\Facades\Artisan;
 
@@ -159,6 +160,15 @@ Route::group(['middleware' => ['auth'], 'prefix' => 'admin', 'as' => 'admin.'], 
         Route::get('/edit/{id}', [NoticeController::class, 'edit'])->name('notice.edit');
         Route::put('/update/{id}', [NoticeController::class, 'update'])->name('notice.update');
         Route::delete('/{id}', [NoticeController::class, 'destroy'])->name('notice.destroy');
+    });
+
+    Route::prefix('press-release')->group(function () {
+        Route::get('/', [PressReleaseController::class, 'index'])->name('press-release.index');
+        Route::get('/create', [PressReleaseController::class, 'create'])->name('press-release.create');
+        Route::post('/store', [PressReleaseController::class, 'store'])->name('press-release.store');
+        Route::get('/edit/{id}', [PressReleaseController::class, 'edit'])->name('press-release.edit');
+        Route::put('/update/{id}', [PressReleaseController::class, 'update'])->name('press-release.update');
+        Route::delete('/{id}', [PressReleaseController::class, 'destroy'])->name('press-release.destroy');
     });
 });
 

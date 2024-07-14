@@ -48,7 +48,7 @@ class NoticeController extends Controller
     public function update(RequestNotice $request, $id)
     {
         $request->validate([
-            'file' => 'mimes:pdf|max:2048',
+            'file' => 'mimes:pdf,doc,docx,xls,xlsx,ppt,pptx,txt|max:2048',
         ]);
 
         $notice = Notice::findOrFail($id);
@@ -72,7 +72,5 @@ class NoticeController extends Controller
         $notice = Notice::findOrFail($id);
         deleteFileIfExist($notice->file_path);
         $notice->delete();
-        toastr()->success('Notice deleted successfully', 'Success');
-        return redirect()->route('admin.notice.index');
     }
 }   

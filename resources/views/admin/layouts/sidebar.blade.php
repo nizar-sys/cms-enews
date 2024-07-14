@@ -150,8 +150,8 @@
             <li class="nav-item {{ setSidebarActive(['admin.notice.*']) }}">
                 <a href="{{route('admin.notice.index')}}" class="nav-link"><i class="fas fa-columns"></i><span>Notice</span></a>
             </li>
-            <li class="nav-item {{ setSidebarActive([]) }}">
-                <a href="#" class="nav-link"><i class="fas fa-columns"></i><span>Press Releases</span></a>
+            <li class="nav-item {{ setSidebarActive(['admin.press-release.*']) }}">
+                <a href="{{route('admin.press-release.index')}}" class="nav-link"><i class="fas fa-columns"></i><span>Press Releases</span></a>
             </li>
             <li class="nav-item dropdown {{ setSidebarActive([]) }}">
                 <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i
