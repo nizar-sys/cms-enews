@@ -111,7 +111,8 @@
             </li>
 
             <li class="menu-header">Documents & Reports</li>
-            <li class="nav-item dropdown {{ setSidebarActive(['admin.documents-reports-categories.*', 'admin.documents-reports-files.*']) }}">
+            <li
+                class="nav-item dropdown {{ setSidebarActive(['admin.documents-reports-categories.*', 'admin.documents-reports-files.*']) }}">
                 <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-columns"></i>
                     <span>Documents & Reports</span>
                 </a>
@@ -172,17 +173,20 @@
             </li>
 
             <li class="menu-header">Procurement</li>
-            <li class="nav-item dropdown {{ setSidebarActive([]) }}">
+            <li class="nav-item dropdown {{ setSidebarActive(['admin.spesific-procurements-notices.*', 'admin.general-procurements-notices.*']) }}">
                 <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i
                         class="fas fa-columns"></i>
                     <span>Notices</span>
                 </a>
                 <ul class="dropdown-menu" style="display: none;">
-                    <li class="{{ setSidebarActive([]) }}">
-                        <a class="nav-link" href="#">Categories</a>
+                    <li
+                        class="{{ setSidebarActive(['admin.spesific-procurements-notices.*']) }}">
+                        <a class="nav-link" href="{{ route('admin.spesific-procurements-notices.index') }}">Spesific
+                            Procurement</a>
                     </li>
-                    <li class="{{ setSidebarActive([]) }}">
-                        <a class="nav-link" href="#">Notices</a>
+                    <li class="{{ setSidebarActive(['admin.general-procurements-notices.*']) }}">
+                        <a class="nav-link" href="{{ route('admin.general-procurements-notices.index') }}">General
+                            Procurement</a>
                     </li>
                 </ul>
             </li>
