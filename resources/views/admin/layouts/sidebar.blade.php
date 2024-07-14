@@ -127,23 +127,23 @@
             </li>
 
             <li class="menu-header">Media/Notices</li>
-            <li class="nav-item {{ setSidebarActive([]) }}">
+            <li class="nav-item {{ setSidebarActive(['admin.news.*']) }}">
                 <a href="{{ route('admin.news.index') }}" class="nav-link"><i class="fas fa-columns"></i><span>News</span></a>
             </li>
-            <li class="nav-item {{ setSidebarActive([]) }}">
+            <li class="nav-item {{ setSidebarActive(['admin.community-voice.*']) }}">
                 <a href="{{ route('admin.community-voice.index') }}" class="nav-link"><i class="fas fa-columns"></i><span>Community Voice</span></a>
             </li>
-            <li class="nav-item dropdown {{ setSidebarActive([]) }}">
+            <li class="nav-item dropdown {{ setSidebarActive(['admin.article.category.*', 'admin.article.*']) }}">
                 <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i
                         class="fas fa-columns"></i>
                     <span>Articles / Interviews</span>
                 </a>
                 <ul class="dropdown-menu" style="display: none;">
-                    <li class="{{ setSidebarActive([]) }}">
-                        <a class="nav-link" href="#">Categories</a>
+                    <li class="{{ setSidebarActive(['admin.article.category.*']) }}">
+                        <a class="nav-link" href="{{ route('admin.article.category.index') }}">Categories</a>
                     </li>
-                    <li class="{{ setSidebarActive([]) }}">
-                        <a class="nav-link" href="#">Articles / Interviews</a>
+                    <li class="{{ setSidebarActive(['admin.article.*']) }}">
+                        <a class="nav-link" href="{{ route('admin.article.index') }}">Articles / Interviews</a>
                     </li>
                 </ul>
             </li>

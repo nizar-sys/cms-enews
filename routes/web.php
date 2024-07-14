@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\ArticleCategoryController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\DocumentCategoryController;
 use App\Http\Controllers\Admin\DocumentFileController;
@@ -34,6 +35,7 @@ use App\Http\Controllers\Admin\PortfolioItemController;
 use App\Http\Controllers\Admin\PortfolioSectionSettingController;
 use App\Http\Controllers\Admin\QualificationController;
 use App\Http\Controllers\Admin\SeoSettingController;
+use App\Http\Controllers\Admin\ArticleController;
 use App\Http\Controllers\Frontend\HomeController;
 use Illuminate\Support\Facades\Artisan;
 
@@ -129,6 +131,24 @@ Route::group(['middleware' => ['auth'], 'prefix' => 'admin', 'as' => 'admin.'], 
         Route::get('/edit/{id}', [CommunityVoiceController::class, 'edit'])->name('community-voice.edit');
         Route::put('/update/{id}', [CommunityVoiceController::class, 'update'])->name('community-voice.update');
         Route::delete('/{id}', [CommunityVoiceController::class, 'destroy'])->name('community-voice.destroy');
+    });
+
+    // Articles Route
+    Route::prefix('articles')->group(function () {
+        Route::get('/category', [ArticleCategoryController::class, 'index'])->name('article.category.index');
+        Route::get('/category/create', [ArticleCategoryController::class, 'create'])->name('article.category.create');
+        Route::post('/category/store', [ArticleCategoryController::class, 'store'])->name('article.category.store');
+        Route::get('/category/edit/{id}', [ArticleCategoryController::class, 'edit'])->name('article.category.edit');
+        Route::put('/category/update/{id}', [ArticleCategoryController::class, 'update'])->name('article.category.update');
+        Route::delete('/category/{id}', [ArticleCategoryController::class, 'destroy'])->name('article.category.destroy');
+
+        Route::get('/', [ArticleController::class, 'index'])->name('article.index');
+        Route::get('/create', [ArticleController::class, 'create'])->name('article.create');
+        Route::post('/store', [ArticleController::class, 'store'])->name('article.store');
+        Route::get('/edit/{id}', [ArticleController::class, 'edit'])->name('article.edit');
+        Route::put('/update/{id}', [ArticleController::class, 'update'])->name('article.update');
+        Route::delete('/{id}', [ArticleController::class, 'destroy'])->name('article.destroy');
+        
     });
 });
 

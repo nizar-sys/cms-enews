@@ -34,7 +34,7 @@ class NewsDataTable extends DataTable {
                      <a href="' . route('admin.news.destroy', $query->id) . '" class="btn btn-danger delete-item"><i class="fas fa-trash"></i></a>';
          })
          ->setRowId('id')
-         ->rawColumns(['action']);;
+         ->rawColumns(['action', 'description']);;
      }
 
      /**
@@ -54,16 +54,61 @@ class NewsDataTable extends DataTable {
          * @return \Yajra\DataTables\Html\Builder
          */
 
-        public function html(): HtmlBuilder
-        {
-            return $this->builder()
-            ->setTableId('news-table')
-            ->columns($this->getColumns())
-            ->minifiedAjax()
-            ->orderBy(0)
-            ->selectStyleSingle()
-            ->buttons([]);
-        }
+         public function html(): HtmlBuilder
+         {
+             return $this->builder()
+                 ->setTableId('news-table')
+                 ->columns($this->getColumns())
+                 ->minifiedAjax()
+                 //->dom('Bfrtip')
+                 ->orderBy(1)
+                 ->selectStyleSingle()
+                 ->parameters([
+                     'dom' => '<"row"<"col-md-6"B><"col-md-6"f>>' .
+                         '<"row"<"col-md-6"l><"col-md-6">>' .
+                         'rt' .
+                         '<"row"<"col-md-5"i><"col-md-7"p>>',
+                     'buttons' => [
+                         [
+                             'extend' => 'excelHtml5',
+                             'text' => '<i class="fas fa-file-excel"></i>',
+                             'className' => 'btn btn-sm ml-1 btn-success',
+                             'filename' => $this->filename(),
+                             'exportOptions' => [
+                                 'columns' => [0, 1, 2, 3],
+                             ],
+                             'sheetName' => $this->filename(),
+                         ],
+     
+                         [
+                             'extend' => 'pdf',
+                             'text' => '<i class="fas fa-file-pdf"></i>',
+                             'className' => 'btn btn-sm ml-1 btn-danger',
+                             'exportOptions' => [
+                                 'columns' => [0, 1, 2, 3],
+                             ],
+                             'filename' => $this->filename(),
+                         ],
+     
+                         [
+                             'text' => '<i class="fas fa-sync"></i>',
+                             'className' => 'btn btn-sm ml-1 btn-info',
+                             'action' => 'function(){
+                                 var table = window.LaravelDataTables["project-table"];
+                                 table.ajax.reload();
+                                 table.search("").columns().search("").draw();
+                             }',
+                         ],
+     
+                     ],
+                     'language' => [
+                         'paginate' => [
+                             'previous' => '&laquo;',
+                             'next'     => '&raquo;',
+                         ],
+                     ]
+                 ]);
+         }
 
         /**
          * Get columns.
