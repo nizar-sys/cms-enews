@@ -1,4 +1,4 @@
-{{-- @php
+@php
     $seoSetting = \App\Models\SeoSetting::first();
     $generalSetting = \App\Models\GeneralSetting::first();
 @endphp
@@ -85,14 +85,7 @@
 
                             </div>
                         </div>
-<<<<<<< HEAD
-                        
-=======
 
-                        <div class="simple-footer">
-                            {{-- Copyright &copy; {{ $footerInfo?->copy_right }} --}}
-                        </div>
->>>>>>> 6ce512229ea85b4e259abfdfa2517cfeb6854cd9
                     </div>
                 </div>
             </div>
