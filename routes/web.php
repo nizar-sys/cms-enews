@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\ArticleCategoryController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\DocumentCategoryController;
 use App\Http\Controllers\Admin\DocumentFileController;
@@ -10,6 +11,7 @@ use App\Http\Controllers\Admin\ProjectCategoryController;
 use App\Http\Controllers\Admin\ProjectController;
 use App\Http\Controllers\Admin\TyperTitleController;
 use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\Admin\CommunityVoiceController;
 use App\Http\Controllers\Admin\DesignationController;
 use App\Http\Controllers\Admin\DirectorController;
 use App\Http\Controllers\Admin\DirectorSectionSettingController;
@@ -27,12 +29,14 @@ use App\Http\Controllers\Admin\KrfImageController;
 use App\Http\Controllers\Admin\GalleryAlbumController;
 use App\Http\Controllers\Admin\GalleryController;
 use App\Http\Controllers\Admin\GallerySectionSettingController;
+use App\Http\Controllers\Admin\NewsController;
 use App\Http\Controllers\Admin\GeneralProcurementController;
 use App\Http\Controllers\Admin\OrganizationalChartSectionSettingController;
 use App\Http\Controllers\Admin\PortfolioItemController;
 use App\Http\Controllers\Admin\PortfolioSectionSettingController;
 use App\Http\Controllers\Admin\QualificationController;
 use App\Http\Controllers\Admin\SeoSettingController;
+use App\Http\Controllers\Admin\ArticleController;
 use App\Http\Controllers\Admin\SpesificProcurementController;
 use App\Http\Controllers\Admin\SpesificProcurementFileController;
 use App\Http\Controllers\Frontend\HomeController;
@@ -112,6 +116,46 @@ Route::group(['middleware' => ['auth'], 'prefix' => 'admin', 'as' => 'admin.'], 
     Route::resource('documents-reports-categories', DocumentCategoryController::class);
     Route::resource('documents-reports-files', DocumentFileController::class);
 
+
+    /** Media / Notices Route */
+    // News Route
+    Route::prefix('news')->group(function () {
+        Route::get('/', [NewsController::class, 'index'])->name('news.index');
+        Route::get('/create', [NewsController::class, 'create'])->name('news.create');
+        Route::post('/store', [NewsController::class, 'store'])->name('news.store');
+        Route::get('/edit/{id}', [NewsController::class, 'edit'])->name('news.edit');
+        Route::put('/update/{id}', [NewsController::class, 'update'])->name('news.update');
+        Route::delete('/{id}', [NewsController::class, 'destroy'])->name('news.destroy');
+    });
+
+    // CommunityVoice Route
+    Route::prefix('community-voice')->group(function () {
+        Route::get('/', [CommunityVoiceController::class, 'index'])->name('community-voice.index');
+        Route::get('/create', [CommunityVoiceController::class, 'create'])->name('community-voice.create');
+        Route::post('/store', [CommunityVoiceController::class, 'store'])->name('community-voice.store');
+        Route::get('/edit/{id}', [CommunityVoiceController::class, 'edit'])->name('community-voice.edit');
+        Route::put('/update/{id}', [CommunityVoiceController::class, 'update'])->name('community-voice.update');
+        Route::delete('/{id}', [CommunityVoiceController::class, 'destroy'])->name('community-voice.destroy');
+    });
+
+    // Articles Route
+    Route::prefix('articles')->group(function () {
+        Route::get('/category', [ArticleCategoryController::class, 'index'])->name('article.category.index');
+        Route::get('/category/create', [ArticleCategoryController::class, 'create'])->name('article.category.create');
+        Route::post('/category/store', [ArticleCategoryController::class, 'store'])->name('article.category.store');
+        Route::get('/category/edit/{id}', [ArticleCategoryController::class, 'edit'])->name('article.category.edit');
+        Route::put('/category/update/{id}', [ArticleCategoryController::class, 'update'])->name('article.category.update');
+        Route::delete('/category/{id}', [ArticleCategoryController::class, 'destroy'])->name('article.category.destroy');
+
+        Route::get('/', [ArticleController::class, 'index'])->name('article.index');
+        Route::get('/create', [ArticleController::class, 'create'])->name('article.create');
+        Route::post('/store', [ArticleController::class, 'store'])->name('article.store');
+        Route::get('/edit/{id}', [ArticleController::class, 'edit'])->name('article.edit');
+        Route::put('/update/{id}', [ArticleController::class, 'update'])->name('article.update');
+        Route::delete('/{id}', [ArticleController::class, 'destroy'])->name('article.destroy');
+        
+    });
+
     /**Spesific Procurements Route**/
     Route::prefix('spesific-procurements-notices/{spesificProcurementsNotice}')->name('spesific-procurements-notices.')->group(function () {
         Route::resource('files', SpesificProcurementFileController::class)->except('index');
@@ -123,6 +167,7 @@ Route::group(['middleware' => ['auth'], 'prefix' => 'admin', 'as' => 'admin.'], 
         Route::resource('files', GeneralProcurementFileController::class)->except('index');
     });
     Route::resource('general-procurements-notices', GeneralProcurementController::class);
+
 });
 
 Route::prefix('{locale}')->group(function () {
