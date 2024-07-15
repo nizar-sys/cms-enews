@@ -233,4 +233,7 @@ Route::prefix('{locale}')->group(function () {
     Route::get('/procurements/procurement-notice', [HomeController::class, 'procurementNotice'])->name('procurement-notice');
     Route::get('/photo-gallery', [HomeController::class, 'photoGallery'])->name('photo-gallery');
     Route::get('/video-gallery', [HomeController::class, 'videoGallery'])->name('video-gallery');
+    Route::get('/notices', [HomeController::class, 'notices'])->name('notices');
+    Route::get('/press-releases', [HomeController::class, 'pressReleases'])->name('press-releases');
+    Route::get('/articles-interviews', [HomeController::class, 'articlesInterviews'])->name('articles-interviews');
 });

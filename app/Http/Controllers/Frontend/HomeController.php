@@ -3,9 +3,12 @@
 namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
+use App\Models\Article;
 use App\Models\DocumentCategory;
 use App\Models\GeneralProcurement;
+use App\Models\Notice;
 use App\Models\PhotoGallery;
+use App\Models\PressRelease;
 use App\Models\Project;
 use App\Models\ProjectCategory;
 use App\Models\SpesificProcurement;
@@ -86,5 +89,29 @@ class HomeController extends Controller
         $videoGalleries = VideoGallery::get();
 
         return view('frontends.video_gallery', compact('projectCategories', 'videoGalleries'));
+    }
+
+    public function notices($locale)
+    {
+        $projectCategories = ProjectCategory::select('name', 'slug')->get();
+        $noticeFiles = Notice::get();
+
+        return view('frontends.notices', compact('projectCategories', 'noticeFiles'));
+    }
+
+    public function pressReleases($locale)
+    {
+        $projectCategories = ProjectCategory::select('name', 'slug')->get();
+        $pressReleases = PressRelease::get();
+
+        return view('frontends.press_releases', compact('projectCategories', 'pressReleases'));
+    }
+
+    public function articlesInterviews($locale)
+    {
+        $projectCategories = ProjectCategory::select('name', 'slug')->get();
+        $articlesInterviews = Article::with('category')->get()->groupBy('category_id');
+
+        return view('frontends.articles_interviews', compact('projectCategories', 'articlesInterviews'));
     }
 }
