@@ -4,8 +4,10 @@ namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
 use App\Models\DocumentCategory;
+use App\Models\GeneralProcurement;
 use App\Models\Project;
 use App\Models\ProjectCategory;
+use App\Models\SpesificProcurement;
 
 class HomeController extends Controller
 {
@@ -46,5 +48,24 @@ class HomeController extends Controller
         $documentsReportsCategory = DocumentCategory::with('documentFiles')->where('slug', $slugCategoryDocumentReport)->firstOrFail();
 
         return view('frontends.document_category', compact('documentsReportsCategory', 'projectCategories'));
+    }
+
+    public function procurementNotice($locale)
+    {
+        $projectCategories = ProjectCategory::select('name', 'slug')->get();
+
+        $spesificProcurements = SpesificProcurement::with('files')->get();
+        $generalProcurements = GeneralProcurement::get();
+
+        return view('frontends.procurement_notice', compact('projectCategories', 'spesificProcurements', 'generalProcurements'));
+    }
+
+    public function procurementNoticeFile($locale, $spesificProcurementId)
+    {
+        $projectCategories = ProjectCategory::select('name', 'slug')->get();
+
+        $spesificProcurement = SpesificProcurement::with('files')->where('id', $spesificProcurementId)->firstOrFail();
+
+        return view('frontends.procurement_notice_file', compact('spesificProcurement', 'projectCategories'));
     }
 }

@@ -28,7 +28,7 @@
                                     <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Category</label>
                                     <div class="col-sm-12 col-md-7">
                                         <select class="form-control selectric" name="document_category_id" required>
-                                            <option>Select</option>
+                                            <option value="">Select</option>
                                             @foreach ($documentCategories as $category)
                                                 <option value="{{ $category->id }}"
                                                     @if (old('document_category_id') == $category->id) selected @endif>{{ $category->name }}

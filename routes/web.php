@@ -30,15 +30,22 @@ use App\Http\Controllers\Admin\GalleryAlbumController;
 use App\Http\Controllers\Admin\GalleryController;
 use App\Http\Controllers\Admin\GallerySectionSettingController;
 use App\Http\Controllers\Admin\NewsController;
+use App\Http\Controllers\Admin\GeneralProcurementController;
 use App\Http\Controllers\Admin\OrganizationalChartSectionSettingController;
 use App\Http\Controllers\Admin\PortfolioItemController;
 use App\Http\Controllers\Admin\PortfolioSectionSettingController;
 use App\Http\Controllers\Admin\QualificationController;
 use App\Http\Controllers\Admin\SeoSettingController;
 use App\Http\Controllers\Admin\ArticleController;
+
 use App\Http\Controllers\Admin\NoticeController;
+
+use App\Http\Controllers\Admin\SpesificProcurementController;
+use App\Http\Controllers\Admin\SpesificProcurementFileController;
+
 use App\Http\Controllers\Admin\PressReleaseController;
 use App\Http\Controllers\Frontend\HomeController;
+use App\Models\SpesificProcurement;
 use App\Http\Controllers\Admin\PhotoGalleryAlbumController;
 use App\Http\Controllers\Admin\PhotoGalleryController;
 use Illuminate\Support\Facades\Artisan;
@@ -116,6 +123,7 @@ Route::group(['middleware' => ['auth'], 'prefix' => 'admin', 'as' => 'admin.'], 
     Route::resource('documents-reports-categories', DocumentCategoryController::class);
     Route::resource('documents-reports-files', DocumentFileController::class);
 
+
     /** Media / Notices Route */
     // News Route
     Route::prefix('news')->group(function () {
@@ -191,10 +199,25 @@ Route::group(['middleware' => ['auth'], 'prefix' => 'admin', 'as' => 'admin.'], 
 
         // Route::resource('gallery-section-setting', GallerySectionSettingController::class);
     });
+
+    /**Spesific Procurements Route**/
+    Route::prefix('spesific-procurements-notices/{spesificProcurementsNotice}')->name('spesific-procurements-notices.')->group(function () {
+        Route::resource('files', SpesificProcurementFileController::class)->except('index');
+    });
+    Route::resource('spesific-procurements-notices', SpesificProcurementController::class);
+
+    /**General Procurements Route**/
+    Route::prefix('general-procurements-notices/{spesificProcurementsNotice}')->name('general-procurements-notices.')->group(function () {
+        Route::resource('files', GeneralProcurementFileController::class)->except('index');
+    });
+    Route::resource('general-procurements-notices', GeneralProcurementController::class);
+
 });
 
 Route::prefix('{locale}')->group(function () {
     Route::get('/projects/{slugCategory}/{slugProject}', [HomeController::class, 'projectDetail'])->name('project-detail');
     Route::get('/projects/{slugCategory}', [HomeController::class, 'projectCategory'])->name('project-category');
     Route::get('/documents-reports/{slugCategory}', [HomeController::class, 'documentCategory'])->name('document-category');
+    Route::get('/procurements/procurement-notice/{spesificProcurementId}/files', [HomeController::class, 'procurementNoticeFile'])->name('procurement-notice-files');
+    Route::get('/procurements/procurement-notice', [HomeController::class, 'procurementNotice'])->name('procurement-notice');
 });
