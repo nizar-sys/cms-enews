@@ -4,9 +4,9 @@
     <section class="section">
         <div class="section-header">
             <div class="section-header-back">
-                <a href="{{ url('/dashboard') }}" class="btn btn-icon"><i class="fas fa-arrow-left"></i></a>
+                <a href="{{ route('admin.job-lists.index') }}" class="btn btn-icon"><i class="fas fa-arrow-left"></i></a>
             </div>
-            <h1>Executive Teams</h1>
+            <h1>Job List</h1>
 
         </div>
 
@@ -16,16 +16,15 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="card-header">
-                            <h4>Executive Teams</h4>
+                            <h4>Job List</h4>
                             <div class="card-header-action">
-                                @if ($executiveCount < 3)
-                                    <a href="{{ route('admin.bod.executive-teams.create') }}" class="btn btn-success">
-                                        Create Executive
-                                        <i class="fas fa-plus"></i>
-                                    </a>
-                                @endif
+                                <a href="{{ route('admin.job-lists.create') }}" class="btn btn-success">
+                                    Create Job
+                                    <i class="fas fa-plus"></i>
+                                </a>
                             </div>
                         </div>
+
                         <div class="card-body">
                             <div class="table-responsive">
                                 <table class="table">

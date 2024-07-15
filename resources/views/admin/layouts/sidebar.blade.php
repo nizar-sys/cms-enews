@@ -50,7 +50,7 @@
 
             <li class="menu-header">MCA-NEPAL</li>
             <li
-                class="nav-item dropdown {{ setSidebarActive(['admin.bod.director-section-setting', 'admin.bod.designation', 'admin.bod.director']) }}">
+                class="nav-item dropdown {{ setSidebarActive(['admin.bod.director-section-setting', 'admin.bod.designation*', 'admin.bod.director*']) }}">
                 <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-user-tie"></i>
                     <span>Board Of Directors</span>
                 </a>
@@ -59,36 +59,38 @@
                         <a class="nav-link" href="{{ route('admin.bod.director-section-setting') }}">Section
                             Settings</a>
                     </li>
-                    <li class="{{ setSidebarActive(['admin.bod.designation']) }}">
+                    <li class="{{ setSidebarActive(['admin.bod.designation*']) }}">
                         <a class="nav-link" href="{{ route('admin.bod.designation') }}">Designation</a>
                     </li>
-                    <li class="{{ setSidebarActive(['admin.bod.director']) }}">
+                    <li class="{{ setSidebarActive(['admin.bod.director*']) }}">
                         <a class="nav-link" href="{{ route('admin.bod.director') }}">List Of Directors</a>
                     </li>
                 </ul>
             </li>
 
-            <li class="nav-item dropdown {{ setSidebarActive([]) }}">
+
+            <li
+                class="nav-item dropdown {{ setSidebarActive(['admin.bod.executive-section-setting.*', 'admin.bod.executive-teams.*']) }}">
                 <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-user-tie"></i>
                     <span>Executive Teams</span>
                 </a>
                 <ul class="dropdown-menu" style="display: none;">
-                    <li class="{{ setSidebarActive(['admin.bod.executive-section-setting.index']) }}">
+                    <li class="{{ setSidebarActive(['admin.bod.executive-section-setting.*']) }}">
                         <a class="nav-link" href="{{ route('admin.bod.executive-section-setting.index') }}">Section
                             Settings</a>
                     </li>
-                    <li class="{{ setSidebarActive(['admin.bod.executive-teams.index']) }}">
+                    <li class="{{ setSidebarActive(['admin.bod.executive-teams.*']) }}">
                         <a class="nav-link" href="{{ route('admin.bod.executive-teams.index') }}">Executive Teams</a>
                     </li>
                 </ul>
             </li>
 
-            <li class="nav-item dropdown {{ setSidebarActive([]) }}">
+            <li class="nav-item dropdown {{ setSidebarActive(['admin.bod.organizational-chart-settings.*']) }}">
                 <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-sitemap"></i>
                     <span>Organizational Chart</span>
                 </a>
                 <ul class="dropdown-menu" style="display: none;">
-                    <li class="{{ setSidebarActive(['admin.bod.organizational-chart-settings.index']) }}">
+                    <li class="{{ setSidebarActive(['admin.bod.organizational-chart-settings.*']) }}">
                         <a class="nav-link" href="{{ route('admin.bod.organizational-chart-settings.index') }}">Section
                             Settings</a>
                     </li>
@@ -203,30 +205,35 @@
             </li>
 
             <li class="menu-header">Jobs</li>
-            <li class="nav-item dropdown {{ setSidebarActive([]) }}">
+            <li
+                class="nav-item dropdown {{ setSidebarActive(['admin.job-section-setting.index', 'admin.job-lists*']) }}">
                 <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i
                         class="fas fa-columns"></i>
                     <span>Jobs</span>
                 </a>
                 <ul class="dropdown-menu" style="display: none;">
-                    <li class="{{ setSidebarActive([]) }}">
-                        <a class="nav-link" href="#">Section Settings</a>
+                    <li class="{{ setSidebarActive(['admin.job-section-setting.index']) }}">
+                        <a class="nav-link"
+                            href="{{ route('admin.job-section-setting.index', ['locale' => config('app.locale')]) }}">Section
+                            Settings</a>
                     </li>
-                    <li class="{{ setSidebarActive([]) }}">
-                        <a class="nav-link" href="#">Jobs</a>
+                    <li class="{{ setSidebarActive(['admin.job-lists*']) }}">
+                        <a class="nav-link" href="{{ route('admin.job-lists.index') }}">Jobs</a>
                     </li>
                 </ul>
             </li>
 
             <li class="menu-header">Faqs</li>
-            <li class="nav-item {{ setSidebarActive([]) }}">
-                <a href="#" class="nav-link"><i class="fas fa-columns"></i><span>Faqs</span></a>
+            <li class="nav-item {{ setSidebarActive(['admin.faqs.index']) }}">
+                <a href="{{ route('admin.faqs.index') }}" class="nav-link"><i
+                        class="fas fa-columns"></i><span>Faqs</span></a>
             </li>
 
 
             <li class="menu-header">Contact</li>
-            <li class="nav-item {{ setSidebarActive([]) }}">
-                <a href="#" class="nav-link"><i class="fas fa-columns"></i><span>Contact</span></a>
+            <li class="nav-item {{ setSidebarActive(['admin.contacts.index']) }}">
+                <a href="{{ route('admin.contacts.index') }}" class="nav-link"><i
+                        class="fas fa-columns"></i><span>Contact</span></a>
             </li>
 
             <li class="menu-header">Settings</li>
