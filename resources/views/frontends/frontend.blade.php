@@ -1939,9 +1939,9 @@
                                         class="dropdown-item">Notice</a>
                                 </li>
                                 <li id="menu-item-2130"
-                                    class="nav-item menu-item menu-item-type-post_type menu-item-object-page menu-item-2130">
+                                    class="nav-item menu-item menu-item-type-post_type menu-item-object-page menu-item-2130" {{ setNavbarActive(['press-releases']) }}>
                                     <a title="Press Releases"
-                                        href="https://mcanp.org/en/media-notices/press-releases/"
+                                        href="{{ route('press-releases', ['locale' => config('app.locale')]) }}"
                                         class="dropdown-item">Press Releases</a>
                                 </li>
                                 <li id="menu-item-2129"

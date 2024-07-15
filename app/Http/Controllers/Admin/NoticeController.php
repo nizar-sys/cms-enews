@@ -53,6 +53,7 @@ class NoticeController extends Controller
         ]);
 
         $notice = Notice::findOrFail($id);
+        deleteFileIfExist($notice->file_path);
 
         $file = $request->file('file');
         $fileName = pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME);

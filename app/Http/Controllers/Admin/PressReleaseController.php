@@ -48,6 +48,8 @@ class PressReleaseController extends Controller
         ]);
 
         $pressRelease = PressRelease::findOrFail($id);
+        deleteFileIfExist($pressRelease->file_path);
+
         $file = $request->file('file');
         $fileName = pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME);
         $filePath = handleUpload('file');

@@ -7,6 +7,7 @@ use App\Models\DocumentCategory;
 use App\Models\GeneralProcurement;
 use App\Models\Notice;
 use App\Models\PhotoGallery;
+use App\Models\PressRelease;
 use App\Models\Project;
 use App\Models\ProjectCategory;
 use App\Models\SpesificProcurement;
@@ -95,5 +96,13 @@ class HomeController extends Controller
         $noticeFiles = Notice::get();
 
         return view('frontends.notices', compact('projectCategories', 'noticeFiles'));
+    }
+
+    public function pressReleases($locale)
+    {
+        $projectCategories = ProjectCategory::select('name', 'slug')->get();
+        $pressReleases = PressRelease::get();
+
+        return view('frontends.press_releases', compact('projectCategories', 'pressReleases'));
     }
 }
