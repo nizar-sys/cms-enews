@@ -1932,9 +1932,9 @@
                                         class="dropdown-item">News</a>
                                 </li>
                                 <li id="menu-item-2344"
-                                    class="nav-item menu-item menu-item-type-post_type menu-item-object-page menu-item-2344">
+                                    class="nav-item menu-item menu-item-type-post_type menu-item-object-page menu-item-2344 {{ setNavbarActive(['community-voices']) }}">
                                     <a title="Community Voice"
-                                        href="https://mcanp.org/en/media-notices/community-voice/"
+                                        href="{{ route('community-voices', ['locale' => config('app.locale')]) }}"
                                         class="dropdown-item">Community Voice</a>
                                 </li>
                                 <li id="menu-item-2302"

@@ -3,8 +3,13 @@
 namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
+
+use App\Models\Article;
+use App\Models\CommunityVoice;
+
 use App\Models\BidChallengeSystem;
 use App\Models\ContractAwardNotice;
+
 use App\Models\DocumentCategory;
 use App\Models\GeneralProcurement;
 use App\Models\GuidelineProcurement;
@@ -142,5 +147,21 @@ class HomeController extends Controller
         $articlesInterviews = Article::with('category')->get()->groupBy('category_id');
 
         return view('frontends.articles_interviews', compact('projectCategories', 'articlesInterviews'));
+    }
+
+    public function communityVoices($locale)
+    {
+        $projectCategories = ProjectCategory::select('name', 'slug')->get();
+        $communityVoices = CommunityVoice::get();
+
+        return view('frontends.community_voices', compact('projectCategories', 'communityVoices'));
+    }
+
+    public function communityVoiceDetail($locale, $slugCommunityVoice)
+    {
+        $projectCategories = ProjectCategory::select('name', 'slug')->get();
+        $communityVoice = CommunityVoice::where('slug', $slugCommunityVoice)->firstOrFail();
+
+        return view('frontends.community_voice_detail', compact('projectCategories', 'communityVoice'));
     }
 }
