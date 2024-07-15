@@ -18,13 +18,14 @@
                         <div class="card-header">
                             <h4>Executive Teams</h4>
                             <div class="card-header-action">
-                                <a href="{{ route('admin.bod.executive-teams.create') }}" class="btn btn-success">
-                                    Create Executive
-                                    <i class="fas fa-plus"></i>
-                                </a>
+                                @if ($executiveCount < 3)
+                                    <a href="{{ route('admin.bod.executive-teams.create') }}" class="btn btn-success">
+                                        Create Executive
+                                        <i class="fas fa-plus"></i>
+                                    </a>
+                                @endif
                             </div>
                         </div>
-
                         <div class="card-body">
                             <div class="table-responsive">
                                 <table class="table">

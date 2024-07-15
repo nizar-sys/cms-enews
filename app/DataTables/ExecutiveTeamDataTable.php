@@ -81,7 +81,6 @@ class ExecutiveTeamDataTable extends DataTable
             Column::make('image')->width(20)->title('Picture'),
             Column::make('name')->width(20)->title('Name'),
             Column::make('designation')->width(20)->title('Designation'),
-            Column::make('description')->width(20)->title('Description'),
             Column::computed('action')->width(5)
                 ->exportable(false)
                 ->printable(false)

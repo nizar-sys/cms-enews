@@ -149,6 +149,15 @@
             background: none !important;
             padding: 0 !important;
         }
+
+        #description {
+            width: 100%;
+            /* atau nilai lebar yang Anda inginkan */
+            word-wrap: break-word;
+            /* Memastikan teks tidak melampaui lebar elemen */
+            white-space: pre-wrap;
+            /* Menjaga spasi dan baris baru dari input teks */
+        }
     </style>
     <link rel="stylesheet" id="wp-block-library-css"
         href="https://mcanp.org/en/wp-includes/css/dist/block-library/style.min.css?ver=6.5.5" type="text/css"
@@ -1862,18 +1871,19 @@
                                 <li id="menu-item-2123"
                                     class="nav-item menu-item menu-item-type-post_type menu-item-object-page menu-item-2123">
                                     <a title="Board of Directors"
-                                        href="https://mcanp.org/en/mca-nepal/board-of-directors/"
+                                        href="{{ route('mca-nepal.board-of-director', ['locale' => config('app.locale')]) }}"
                                         class="dropdown-item">Board of Directors</a>
                                 </li>
                                 <li id="menu-item-2121"
                                     class="nav-item menu-item menu-item-type-post_type menu-item-object-page menu-item-2121">
-                                    <a title="Executive team" href="https://mcanp.org/en/mca-nepal/executive-team/"
+                                    <a title="Executive team"
+                                        href="{{ route('mca-nepal.executive-team', ['locale' => config('app.locale')]) }}"
                                         class="dropdown-item">Executive team</a>
                                 </li>
                                 <li id="menu-item-2124"
                                     class="nav-item menu-item menu-item-type-post_type menu-item-object-page menu-item-2124">
                                     <a title="Organizational Chart"
-                                        href="https://mcanp.org/en/mca-nepal/organizational-chart/"
+                                        href="{{ route('mca-nepal.organizational-chart', ['locale' => config('app.locale')]) }}"
                                         class="dropdown-item">Organizational Chart</a>
                                 </li>
                             </ul>
@@ -1956,7 +1966,7 @@
                             </ul>
                         </li>
                         <li id="menu-item-2135"
-                            class="nav-item menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-2135 dropdown {{ setNavbarActive(['procurement-notice']) }}">
+                            class="nav-item menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-2135 dropdown {{ setNavbarActive(['procurement-notice', 'guidelines', 'procurement-bid-challenge-systems', 'procurement-contract-award-notices']) }}">
                             <a title="Procurement" href="#" data-toggle="dropdown"
                                 class="dropdown-toggle nav-link" aria-haspopup="true">Procurement <span
                                     class="caret"></span></a>
@@ -1970,26 +1980,27 @@
                                 <li id="menu-item-2238"
                                     class="nav-item menu-item menu-item-type-post_type menu-item-object-page menu-item-2238">
                                     <a title="Procurement Guidelines"
-                                        href="https://mcanp.org/en/procurement/procurement-guidelines-2/"
+                                        href="{{ route('guidelines', ['locale' => config('app.locale')]) }}"
                                         class="dropdown-item">Procurement Guidelines</a>
                                 </li>
                                 <li id="menu-item-2136"
                                     class="nav-item menu-item menu-item-type-post_type menu-item-object-page menu-item-2136">
                                     <a title="Bid Challenge System"
-                                        href="https://mcanp.org/en/procurement/bid-challenge-system/"
+                                        href="{{ route('procurement-bid-challenge-systems', ['locale' => config('app.locale')]) }}"
                                         class="dropdown-item">Bid Challenge System</a>
                                 </li>
                                 <li id="menu-item-2137"
                                     class="nav-item menu-item menu-item-type-post_type menu-item-object-page menu-item-2137">
                                     <a title="Contract Award Notice"
-                                        href="https://mcanp.org/en/procurement/contract-award-notice/"
+                                        href="{{ route('procurement-contract-award-notices', ['locale' => config('app.locale')]) }}"
                                         class="dropdown-item">Contract Award Notice</a>
                                 </li>
                             </ul>
                         </li>
                         <li id="menu-item-2118"
                             class="nav-item menu-item menu-item-type-post_type menu-item-object-page menu-item-2118"><a
-                                title="Jobs" href="https://mcanp.org/en/jobs-2/" class="nav-link">Jobs</a></li>
+                                title="Jobs" href="{{ route('jobs.index', ['locale' => config('app.locale')]) }}"
+                                class="nav-link">Jobs</a></li>
                         <li id="menu-item-2116"
                             class="nav-item menu-item menu-item-type-post_type menu-item-object-page menu-item-2116"><a
                                 title="FAQs" href="https://mcanp.org/en/faqs/" class="nav-link">FAQs</a></li>
