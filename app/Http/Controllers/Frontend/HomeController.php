@@ -3,9 +3,12 @@
 namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
-use App\Models\Article;
+use App\Models\BidChallengeSystem;
+use App\Models\ContractAwardNotice;
 use App\Models\DocumentCategory;
 use App\Models\GeneralProcurement;
+use App\Models\GuidelineProcurement;
+use App\Models\Article;
 use App\Models\Notice;
 use App\Models\PhotoGallery;
 use App\Models\PressRelease;
@@ -72,6 +75,32 @@ class HomeController extends Controller
         $spesificProcurement = SpesificProcurement::with('files')->where('id', $spesificProcurementId)->firstOrFail();
 
         return view('frontends.procurement_notice_file', compact('spesificProcurement', 'projectCategories'));
+    }
+
+    public function procurementGuideline($locale)
+    {
+        $projectCategories = ProjectCategory::select('name', 'slug')->get();
+        $guidelinesProcurement = GuidelineProcurement::get();
+
+        return view('frontends.procurement_guideline', compact('projectCategories', 'guidelinesProcurement'));
+    }
+
+    public function bidChallengeSystem($locale)
+    {
+        $projectCategories = ProjectCategory::select('name', 'slug')->get();
+
+        $bidChallengeSystem = BidChallengeSystem::get();
+
+        return view('frontends.bid_challenge_system', compact('projectCategories', 'bidChallengeSystem'));
+    }
+
+    public function contractAwardNotice($locale)
+    {
+        $projectCategories = ProjectCategory::select('name', 'slug')->get();
+
+        $contractAwardNotice = ContractAwardNotice::get();
+
+        return view('frontends.contract_award_notice', compact('projectCategories', 'contractAwardNotice'));
     }
 
     public function photoGallery($locale)

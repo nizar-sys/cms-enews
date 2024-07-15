@@ -40,7 +40,9 @@ use App\Http\Controllers\Admin\PortfolioSectionSettingController;
 use App\Http\Controllers\Admin\QualificationController;
 use App\Http\Controllers\Admin\SeoSettingController;
 use App\Http\Controllers\Admin\ArticleController;
-
+use App\Http\Controllers\Admin\BidChallengeSystemController;
+use App\Http\Controllers\Admin\ContractAwardNoticeController;
+use App\Http\Controllers\Admin\GuidelineProcurementController;
 use App\Http\Controllers\Admin\NoticeController;
 
 use App\Http\Controllers\Admin\SpesificProcurementController;
@@ -227,11 +229,14 @@ Route::group(['middleware' => ['auth'], 'prefix' => 'admin', 'as' => 'admin.'], 
     Route::resource('spesific-procurements-notices', SpesificProcurementController::class);
 
     /**General Procurements Route**/
-    Route::prefix('general-procurements-notices/{spesificProcurementsNotice}')->name('general-procurements-notices.')->group(function () {
-        Route::resource('files', GeneralProcurementFileController::class)->except('index');
-    });
     Route::resource('general-procurements-notices', GeneralProcurementController::class);
 
+    /**Guideline Procurements Route**/
+    Route::resource('procurements-guidelines', GuidelineProcurementController::class);
+
+    /**Bid Challenge System Procurements Route**/
+    Route::resource('procurements-bid-challenge-systems', BidChallengeSystemController::class)->parameter('procurements-bid-challenge-systems', 'bidChallengeSystem');
+    Route::resource('procurements-contract-award-notices', ContractAwardNoticeController::class)->parameter('procurements-contract-award-notices', 'contractAwardNotice');
     // Job Section Setting
     Route::resource('job-section-setting', JobSectionSettingController::class)->only(['index', 'update']);
 
@@ -264,6 +269,9 @@ Route::prefix('{locale}')->group(function () {
     Route::get('/documents-reports/{slugCategory}', [HomeController::class, 'documentCategory'])->name('document-category');
     Route::get('/procurements/procurement-notice/{spesificProcurementId}/files', [HomeController::class, 'procurementNoticeFile'])->name('procurement-notice-files');
     Route::get('/procurements/procurement-notice', [HomeController::class, 'procurementNotice'])->name('procurement-notice');
+    Route::get('/procurements/guidelines', [HomeController::class, 'procurementGuideline'])->name('guidelines');
+    Route::get('/procurements/bid-challenge-systems', [HomeController::class, 'bidChallengeSystem'])->name('procurement-bid-challenge-systems');
+    Route::get('/procurements/contract-award-notices', [HomeController::class, 'contractAwardNotice'])->name('procurement-contract-award-notices');
     Route::get('/photo-gallery', [HomeController::class, 'photoGallery'])->name('photo-gallery');
     Route::get('/video-gallery', [HomeController::class, 'videoGallery'])->name('video-gallery');
     Route::get('/notices', [HomeController::class, 'notices'])->name('notices');

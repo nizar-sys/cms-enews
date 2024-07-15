@@ -1966,7 +1966,7 @@
                             </ul>
                         </li>
                         <li id="menu-item-2135"
-                            class="nav-item menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-2135 dropdown {{ setNavbarActive(['procurement-notice']) }}">
+                            class="nav-item menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-2135 dropdown {{ setNavbarActive(['procurement-notice', 'guidelines', 'procurement-bid-challenge-systems', 'procurement-contract-award-notices']) }}">
                             <a title="Procurement" href="#" data-toggle="dropdown"
                                 class="dropdown-toggle nav-link" aria-haspopup="true">Procurement <span
                                     class="caret"></span></a>
@@ -1980,19 +1980,19 @@
                                 <li id="menu-item-2238"
                                     class="nav-item menu-item menu-item-type-post_type menu-item-object-page menu-item-2238">
                                     <a title="Procurement Guidelines"
-                                        href="https://mcanp.org/en/procurement/procurement-guidelines-2/"
+                                        href="{{ route('guidelines', ['locale' => config('app.locale')]) }}"
                                         class="dropdown-item">Procurement Guidelines</a>
                                 </li>
                                 <li id="menu-item-2136"
                                     class="nav-item menu-item menu-item-type-post_type menu-item-object-page menu-item-2136">
                                     <a title="Bid Challenge System"
-                                        href="https://mcanp.org/en/procurement/bid-challenge-system/"
+                                        href="{{ route('procurement-bid-challenge-systems', ['locale' => config('app.locale')]) }}"
                                         class="dropdown-item">Bid Challenge System</a>
                                 </li>
                                 <li id="menu-item-2137"
                                     class="nav-item menu-item menu-item-type-post_type menu-item-object-page menu-item-2137">
                                     <a title="Contract Award Notice"
-                                        href="https://mcanp.org/en/procurement/contract-award-notice/"
+                                        href="{{ route('procurement-contract-award-notices', ['locale' => config('app.locale')]) }}"
                                         class="dropdown-item">Contract Award Notice</a>
                                 </li>
                             </ul>
