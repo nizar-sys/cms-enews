@@ -1934,8 +1934,8 @@
                                         class="dropdown-item">Articles/Interviews</a>
                                 </li>
                                 <li id="menu-item-2235"
-                                    class="nav-item menu-item menu-item-type-post_type menu-item-object-page menu-item-2235">
-                                    <a title="Notice" href="https://mcanp.org/en/media-notices/notice/"
+                                    class="nav-item menu-item menu-item-type-post_type menu-item-object-page menu-item-2235 {{ setNavbarActive(['notices']) }}">
+                                    <a title="Notice" href="{{ route('notices', ['locale' => config('app.locale')]) }}"
                                         class="dropdown-item">Notice</a>
                                 </li>
                                 <li id="menu-item-2130"

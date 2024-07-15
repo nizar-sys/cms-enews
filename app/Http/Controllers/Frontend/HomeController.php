@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Frontend;
 use App\Http\Controllers\Controller;
 use App\Models\DocumentCategory;
 use App\Models\GeneralProcurement;
+use App\Models\Notice;
 use App\Models\PhotoGallery;
 use App\Models\Project;
 use App\Models\ProjectCategory;
@@ -86,5 +87,13 @@ class HomeController extends Controller
         $videoGalleries = VideoGallery::get();
 
         return view('frontends.video_gallery', compact('projectCategories', 'videoGalleries'));
+    }
+
+    public function notices($locale)
+    {
+        $projectCategories = ProjectCategory::select('name', 'slug')->get();
+        $noticeFiles = Notice::get();
+
+        return view('frontends.notices', compact('projectCategories', 'noticeFiles'));
     }
 }
