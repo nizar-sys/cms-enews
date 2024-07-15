@@ -18,7 +18,7 @@ class OrganizationalChartSectionSettingController extends Controller
     {
         $request->validate([
             'title' => ['required', 'max:200'],
-            'sub_title' => ['required', 'max:500000'],
+            'sub_title' => ['required', 'max:200'],
             'image' => ['image', 'max:5000'],
         ]);
 

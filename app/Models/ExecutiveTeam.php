@@ -20,4 +20,9 @@ class ExecutiveTeam extends Model
     {
         return $this->belongsTo(Designation::class, 'designation_id');
     }
+
+    public function getDesignationAttributes()
+    {
+        return $this->designation->designation;
+    }
 }

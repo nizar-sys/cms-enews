@@ -16,6 +16,8 @@
         href="https://mcanp.org/en/feed/">
     <link rel="alternate" type="application/rss+xml" title="Millenium Challenge Account Nepal » Comments Feed"
         href="https://mcanp.org/en/comments/feed/">
+        
+    {{-- @vite(['resources/css/app.css','resources/js/app.js'])  --}}
     <script type="text/javascript">
         /* <![CDATA[ */
         window._wpemojiSettings = {
@@ -146,6 +148,15 @@
             vertical-align: -0.1em !important;
             background: none !important;
             padding: 0 !important;
+        }
+
+        #description {
+            width: 100%;
+            /* atau nilai lebar yang Anda inginkan */
+            word-wrap: break-word;
+            /* Memastikan teks tidak melampaui lebar elemen */
+            white-space: pre-wrap;
+            /* Menjaga spasi dan baris baru dari input teks */
         }
     </style>
     <link rel="stylesheet" id="wp-block-library-css"
@@ -1860,18 +1871,19 @@
                                 <li id="menu-item-2123"
                                     class="nav-item menu-item menu-item-type-post_type menu-item-object-page menu-item-2123">
                                     <a title="Board of Directors"
-                                        href="https://mcanp.org/en/mca-nepal/board-of-directors/"
+                                        href="{{ route('mca-nepal.board-of-director', ['locale' => config('app.locale')]) }}"
                                         class="dropdown-item">Board of Directors</a>
                                 </li>
                                 <li id="menu-item-2121"
                                     class="nav-item menu-item menu-item-type-post_type menu-item-object-page menu-item-2121">
-                                    <a title="Executive team" href="https://mcanp.org/en/mca-nepal/executive-team/"
+                                    <a title="Executive team"
+                                        href="{{ route('mca-nepal.executive-team', ['locale' => config('app.locale')]) }}"
                                         class="dropdown-item">Executive team</a>
                                 </li>
                                 <li id="menu-item-2124"
                                     class="nav-item menu-item menu-item-type-post_type menu-item-object-page menu-item-2124">
                                     <a title="Organizational Chart"
-                                        href="https://mcanp.org/en/mca-nepal/organizational-chart/"
+                                        href="{{ route('mca-nepal.organizational-chart', ['locale' => config('app.locale')]) }}"
                                         class="dropdown-item">Organizational Chart</a>
                                 </li>
                             </ul>
@@ -1926,30 +1938,29 @@
                                         class="dropdown-item">Community Voice</a>
                                 </li>
                                 <li id="menu-item-2302"
-                                    class="nav-item menu-item menu-item-type-post_type menu-item-object-page menu-item-2302">
+                                    class="nav-item menu-item menu-item-type-post_type menu-item-object-page menu-item-2302 {{ setNavbarActive(['articles-interviews']) }}">
                                     <a title="Articles/Interviews"
-                                        href="https://mcanp.org/en/media-notices/articles-interviews/"
+                                        href="{{ route('articles-interviews', ['locale' => config('app.locale')]) }}"
                                         class="dropdown-item">Articles/Interviews</a>
                                 </li>
                                 <li id="menu-item-2235"
-                                    class="nav-item menu-item menu-item-type-post_type menu-item-object-page menu-item-2235">
-                                    <a title="Notice" href="https://mcanp.org/en/media-notices/notice/"
+                                    class="nav-item menu-item menu-item-type-post_type menu-item-object-page menu-item-2235 {{ setNavbarActive(['notices']) }}">
+                                    <a title="Notice" href="{{ route('notices', ['locale' => config('app.locale')]) }}"
                                         class="dropdown-item">Notice</a>
                                 </li>
                                 <li id="menu-item-2130"
-                                    class="nav-item menu-item menu-item-type-post_type menu-item-object-page menu-item-2130">
+                                    class="nav-item menu-item menu-item-type-post_type menu-item-object-page menu-item-2130" {{ setNavbarActive(['press-releases']) }}>
                                     <a title="Press Releases"
-                                        href="https://mcanp.org/en/media-notices/press-releases/"
+                                        href="{{ route('press-releases', ['locale' => config('app.locale')]) }}"
                                         class="dropdown-item">Press Releases</a>
                                 </li>
                                 <li id="menu-item-2129"
-                                    class="nav-item menu-item menu-item-type-post_type menu-item-object-page menu-item-2129">
-                                    <a title="Photo Gallery" href="https://mcanp.org/en/media-notices/gallery/"
-                                        class="dropdown-item">Photo Gallery</a>
+                                    class="nav-item menu-item menu-item-type-post_type menu-item-object-page menu-item-2129 {{ setNavbarActive(['photo-gallery']) }}">
+                                    <a title="Photo Gallery" href="{{ route('photo-gallery', ['locale' => config('app.locale')]) }}" class="dropdown-item">Photo Gallery</a>
                                 </li>
                                 <li id="menu-item-2211"
-                                    class="nav-item menu-item menu-item-type-post_type menu-item-object-page menu-item-2211">
-                                    <a title="Video Gallery" href="https://mcanp.org/en/media-notices/video-gallery/"
+                                    class="nav-item menu-item menu-item-type-post_type menu-item-object-page menu-item-2211 {{ setNavbarActive(['video-gallery']) }}">
+                                    <a title="Video Gallery" href="{{ route('video-gallery', ['locale' => config('app.locale')]) }}"
                                         class="dropdown-item">Video Gallery</a>
                                 </li>
                             </ul>
@@ -1988,7 +1999,8 @@
                         </li>
                         <li id="menu-item-2118"
                             class="nav-item menu-item menu-item-type-post_type menu-item-object-page menu-item-2118"><a
-                                title="Jobs" href="https://mcanp.org/en/jobs-2/" class="nav-link">Jobs</a></li>
+                                title="Jobs" href="{{ route('jobs.index', ['locale' => config('app.locale')]) }}"
+                                class="nav-link">Jobs</a></li>
                         <li id="menu-item-2116"
                             class="nav-item menu-item menu-item-type-post_type menu-item-object-page menu-item-2116"><a
                                 title="FAQs" href="https://mcanp.org/en/faqs/" class="nav-link">FAQs</a></li>
