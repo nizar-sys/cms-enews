@@ -6,7 +6,7 @@
             <div class="section-header-back">
                 <a href="{{ url('/dashboard', []) }}" class="btn btn-icon"><i class="fas fa-arrow-left"></i></a>
             </div>
-            <h1>Section Settings</h1>
+            <h1>Contacts</h1>
 
         </div>
 
@@ -16,43 +16,54 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="card-header">
-                            <h4>Change Section Settings </h4>
+                            <h4>Contacts</h4>
                         </div>
                         <div class="card-body">
-                            <form action="{{ route('admin.bod.organizational-chart-settings.update', 1) }}" method="POST"
+                            <form action="{{ route('admin.contacts.update', 1) }}" method="POST"
                                 enctype="multipart/form-data">
                                 @csrf
                                 @method('PUT')
+                                <div class="form-group row mb-4">
+                                    <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">
+                                        Address
+                                    </label>
+                                    <div class="col-sm-12 col-md-7">
+                                        <input type="text" name="address" class="form-control"
+                                            value="{{ $sectionSetting?->address }}">
+                                    </div>
+                                </div>
 
                                 <div class="form-group row mb-4">
                                     <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">
-                                        Title
+                                        Email
                                     </label>
                                     <div class="col-sm-12 col-md-7">
-                                        <input type="text" name="title" class="form-control"
-                                            value="{{ old('title', $sectionSetting->title ?? '') }}">
+                                        <input type="email" name="email" class="form-control"
+                                            value="{{ $sectionSetting?->email }}">
                                     </div>
                                 </div>
 
                                 <div class="form-group row mb-4">
                                     <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">
-                                        Description
+                                        Phone
                                     </label>
                                     <div class="col-sm-12 col-md-7">
-                                        <textarea name="sub_title" id="" class="summernote" style="height: 100px">{{ old('sub_title', $sectionSetting->sub_title ?? '') }}</textarea>
+                                        <input type="text" name="phone" class="form-control"
+                                            value="{{ $sectionSetting?->phone }}">
                                     </div>
                                 </div>
 
+
                                 <div class="form-group row mb-4">
-                                    <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Organizational
-                                        Chart</label>
+                                    <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">
+                                        Maps
+                                    </label>
                                     <div class="col-sm-12 col-md-7">
-                                        <div id="image-preview" class="image-preview">
-                                            <label for="image-upload" id="image-label">Choose File</label>
-                                            <input type="file" name="image" id="image-upload" />
-                                        </div>
+                                        <input type="text" name="maps" class="form-control"
+                                            value="{{ $sectionSetting?->maps }}">
                                     </div>
                                 </div>
+
 
                                 <div class="form-group row mb-4">
                                     <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3"></label>
@@ -62,22 +73,9 @@
                                 </div>
                             </form>
                         </div>
-
                     </div>
                 </div>
             </div>
         </div>
     </section>
 @endsection
-
-@push('scripts')
-    <script>
-        $(document).ready(function() {
-            $('#image-preview').css({
-                'background-image': 'url("{{ asset($sectionSetting?->image) }}")',
-                'background-size': 'cover',
-                'background-position': 'center center'
-            })
-        });
-    </script>
-@endpush

@@ -26,7 +26,7 @@ class DirectorController extends Controller
     {
         $request->validate([
             'name' => ['required', 'max:200'],
-            'description' => ['required'],
+            'description' => ['required', 'max:200'],
             'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:50048',
             'designation_id' => 'required',
         ]);
@@ -55,7 +55,7 @@ class DirectorController extends Controller
     {
         $request->validate([
             'name' => ['required', 'max:200'],
-            'description' => ['required'],
+            'description' => ['required', 'max:200'],
             'image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:50048',
         ]);
 
