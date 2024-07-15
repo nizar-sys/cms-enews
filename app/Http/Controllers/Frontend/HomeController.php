@@ -5,9 +5,11 @@ namespace App\Http\Controllers\Frontend;
 use App\Http\Controllers\Controller;
 use App\Models\DocumentCategory;
 use App\Models\GeneralProcurement;
+use App\Models\PhotoGallery;
 use App\Models\Project;
 use App\Models\ProjectCategory;
 use App\Models\SpesificProcurement;
+use App\Models\VideoGallery;
 
 class HomeController extends Controller
 {
@@ -67,5 +69,22 @@ class HomeController extends Controller
         $spesificProcurement = SpesificProcurement::with('files')->where('id', $spesificProcurementId)->firstOrFail();
 
         return view('frontends.procurement_notice_file', compact('spesificProcurement', 'projectCategories'));
+    }
+
+    public function photoGallery($locale)
+    {
+        $projectCategories = ProjectCategory::select('name', 'slug')->get();
+        $photoGalleries = PhotoGallery::with('photoGalleryAlbum')->get()->groupBy('album_id');
+
+
+        return view('frontends.photo_gallery', compact('projectCategories', 'photoGalleries'));
+    }
+
+    public function videoGallery($locale)
+    {
+        $projectCategories = ProjectCategory::select('name', 'slug')->get();
+        $videoGalleries = VideoGallery::get();
+
+        return view('frontends.video_gallery', compact('projectCategories', 'videoGalleries'));
     }
 }

@@ -231,4 +231,6 @@ Route::prefix('{locale}')->group(function () {
     Route::get('/documents-reports/{slugCategory}', [HomeController::class, 'documentCategory'])->name('document-category');
     Route::get('/procurements/procurement-notice/{spesificProcurementId}/files', [HomeController::class, 'procurementNoticeFile'])->name('procurement-notice-files');
     Route::get('/procurements/procurement-notice', [HomeController::class, 'procurementNotice'])->name('procurement-notice');
+    Route::get('/photo-gallery', [HomeController::class, 'photoGallery'])->name('photo-gallery');
+    Route::get('/video-gallery', [HomeController::class, 'videoGallery'])->name('video-gallery');
 });

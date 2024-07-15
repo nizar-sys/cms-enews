@@ -16,6 +16,8 @@
         href="https://mcanp.org/en/feed/">
     <link rel="alternate" type="application/rss+xml" title="Millenium Challenge Account Nepal » Comments Feed"
         href="https://mcanp.org/en/comments/feed/">
+        
+    {{-- @vite(['resources/css/app.css','resources/js/app.js'])  --}}
     <script type="text/javascript">
         /* <![CDATA[ */
         window._wpemojiSettings = {
@@ -1943,13 +1945,12 @@
                                         class="dropdown-item">Press Releases</a>
                                 </li>
                                 <li id="menu-item-2129"
-                                    class="nav-item menu-item menu-item-type-post_type menu-item-object-page menu-item-2129">
-                                    <a title="Photo Gallery" href="https://mcanp.org/en/media-notices/gallery/"
-                                        class="dropdown-item">Photo Gallery</a>
+                                    class="nav-item menu-item menu-item-type-post_type menu-item-object-page menu-item-2129 {{ setNavbarActive(['photo-gallery']) }}">
+                                    <a title="Photo Gallery" href="{{ route('photo-gallery', ['locale' => config('app.locale')]) }}" class="dropdown-item">Photo Gallery</a>
                                 </li>
                                 <li id="menu-item-2211"
-                                    class="nav-item menu-item menu-item-type-post_type menu-item-object-page menu-item-2211">
-                                    <a title="Video Gallery" href="https://mcanp.org/en/media-notices/video-gallery/"
+                                    class="nav-item menu-item menu-item-type-post_type menu-item-object-page menu-item-2211 {{ setNavbarActive(['video-gallery']) }}">
+                                    <a title="Video Gallery" href="{{ route('video-gallery', ['locale' => config('app.locale')]) }}"
                                         class="dropdown-item">Video Gallery</a>
                                 </li>
                             </ul>
