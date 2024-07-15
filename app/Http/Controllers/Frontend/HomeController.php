@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
+use App\Models\Article;
 use App\Models\DocumentCategory;
 use App\Models\GeneralProcurement;
 use App\Models\Notice;
@@ -104,5 +105,13 @@ class HomeController extends Controller
         $pressReleases = PressRelease::get();
 
         return view('frontends.press_releases', compact('projectCategories', 'pressReleases'));
+    }
+
+    public function articlesInterviews($locale)
+    {
+        $projectCategories = ProjectCategory::select('name', 'slug')->get();
+        $articlesInterviews = Article::with('category')->get()->groupBy('category_id');
+
+        return view('frontends.articles_interviews', compact('projectCategories', 'articlesInterviews'));
     }
 }

@@ -24,6 +24,7 @@ class DatabaseSeeder extends Seeder
         $this->call([
             ProjectCategorySeeder::class,
             DocumentCategorySeeder::class,
+            ArticleCategorySeeder::class,
         ]);
     }
 }
