@@ -1955,7 +1955,7 @@
                             </ul>
                         </li>
                         <li id="menu-item-2135"
-                            class="nav-item menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-2135 dropdown {{ setNavbarActive(['procurement-notice']) }}">
+                            class="nav-item menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-2135 dropdown {{ setNavbarActive(['procurement-notice', 'guidelines']) }}">
                             <a title="Procurement" href="#" data-toggle="dropdown"
                                 class="dropdown-toggle nav-link" aria-haspopup="true">Procurement <span
                                     class="caret"></span></a>
@@ -1969,7 +1969,7 @@
                                 <li id="menu-item-2238"
                                     class="nav-item menu-item menu-item-type-post_type menu-item-object-page menu-item-2238">
                                     <a title="Procurement Guidelines"
-                                        href="https://mcanp.org/en/procurement/procurement-guidelines-2/"
+                                        href="{{ route('guidelines', ['locale' => config('app.locale')]) }}"
                                         class="dropdown-item">Procurement Guidelines</a>
                                 </li>
                                 <li id="menu-item-2136"

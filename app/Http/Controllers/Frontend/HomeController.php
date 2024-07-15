@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Frontend;
 use App\Http\Controllers\Controller;
 use App\Models\DocumentCategory;
 use App\Models\GeneralProcurement;
+use App\Models\GuidelineProcurement;
 use App\Models\Project;
 use App\Models\ProjectCategory;
 use App\Models\SpesificProcurement;
@@ -67,5 +68,13 @@ class HomeController extends Controller
         $spesificProcurement = SpesificProcurement::with('files')->where('id', $spesificProcurementId)->firstOrFail();
 
         return view('frontends.procurement_notice_file', compact('spesificProcurement', 'projectCategories'));
+    }
+
+    public function procurementGuideline($locale)
+    {
+        $projectCategories = ProjectCategory::select('name', 'slug')->get();
+        $guidelinesProcurement = GuidelineProcurement::get();
+
+        return view('frontends.procurement_guideline', compact('projectCategories', 'guidelinesProcurement'));
     }
 }

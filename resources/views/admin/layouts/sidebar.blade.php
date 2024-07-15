@@ -173,7 +173,7 @@
             </li>
 
             <li class="menu-header">Procurement</li>
-            <li class="nav-item dropdown {{ setSidebarActive(['admin.spesific-procurements-notices.*', 'admin.general-procurements-notices.*']) }}">
+            <li class="nav-item dropdown {{ setSidebarActive(['admin.spesific-procurements-notices.*', 'admin.general-procurements-notices.*', 'admin.procurements-guidelines.*', 'admin.procurements-bid-challenge-systems.*']) }}">
                 <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i
                         class="fas fa-columns"></i>
                     <span>Notices</span>
@@ -190,11 +190,11 @@
                     </li>
                 </ul>
             </li>
-            <li class="nav-item {{ setSidebarActive([]) }}">
-                <a href="#" class="nav-link"><i class="fas fa-columns"></i><span>Guidelines</span></a>
+            <li class="nav-item {{ setSidebarActive(['admin.procurements-guidelines.*']) }}">
+                <a href="{{ route('admin.procurements-guidelines.index') }}" class="nav-link"><i class="fas fa-columns"></i><span>Guidelines</span></a>
             </li>
-            <li class="nav-item {{ setSidebarActive([]) }}">
-                <a href="#" class="nav-link"><i class="fas fa-columns"></i><span>Bid Challenge
+            <li class="nav-item {{ setSidebarActive(['admin.procurements-bid-challenge-systems.*']) }}">
+                <a href="{{ route('admin.procurements-bid-challenge-systems.index') }}" class="nav-link"><i class="fas fa-columns"></i><span>Bid Challenge
                         System</span></a>
             </li>
             <li class="nav-item {{ setSidebarActive([]) }}">
