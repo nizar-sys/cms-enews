@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\DataTables\PhotoGalleryAlbumDataTable;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\PhotoGallery;
 use App\Models\PhotoGalleryAlbum;
 
 class PhotoGalleryAlbumController extends Controller
@@ -49,7 +50,13 @@ class PhotoGalleryAlbumController extends Controller
     }
 
     public function destroy($id) {
+        $photos = PhotoGallery::where('album_id', $id)->get();
+        foreach ($photos as $photo) {
+            deleteFileIfExist($photo->photo_path);
+        }
+
         $album = PhotoGalleryAlbum::findOrfail($id);
+
         $album->delete();
     }
 }
