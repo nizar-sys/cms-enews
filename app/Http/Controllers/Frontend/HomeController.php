@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
+use App\Models\BidChallengeSystem;
+use App\Models\ContractAwardNotice;
 use App\Models\DocumentCategory;
 use App\Models\GeneralProcurement;
 use App\Models\GuidelineProcurement;
@@ -76,5 +78,23 @@ class HomeController extends Controller
         $guidelinesProcurement = GuidelineProcurement::get();
 
         return view('frontends.procurement_guideline', compact('projectCategories', 'guidelinesProcurement'));
+    }
+
+    public function bidChallengeSystem($locale)
+    {
+        $projectCategories = ProjectCategory::select('name', 'slug')->get();
+
+        $bidChallengeSystem = BidChallengeSystem::get();
+
+        return view('frontends.bid_challenge_system', compact('projectCategories', 'bidChallengeSystem'));
+    }
+
+    public function contractAwardNotice($locale)
+    {
+        $projectCategories = ProjectCategory::select('name', 'slug')->get();
+
+        $contractAwardNotice = ContractAwardNotice::get();
+
+        return view('frontends.contract_award_notice', compact('projectCategories', 'contractAwardNotice'));
     }
 }

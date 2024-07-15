@@ -129,10 +129,12 @@
 
             <li class="menu-header">Media/Notices</li>
             <li class="nav-item {{ setSidebarActive(['admin.news.*']) }}">
-                <a href="{{ route('admin.news.index') }}" class="nav-link"><i class="fas fa-columns"></i><span>News</span></a>
+                <a href="{{ route('admin.news.index') }}" class="nav-link"><i
+                        class="fas fa-columns"></i><span>News</span></a>
             </li>
             <li class="nav-item {{ setSidebarActive(['admin.community-voice.*']) }}">
-                <a href="{{ route('admin.community-voice.index') }}" class="nav-link"><i class="fas fa-columns"></i><span>Community Voice</span></a>
+                <a href="{{ route('admin.community-voice.index') }}" class="nav-link"><i
+                        class="fas fa-columns"></i><span>Community Voice</span></a>
             </li>
             <li class="nav-item dropdown {{ setSidebarActive(['admin.article.category.*', 'admin.article.*']) }}">
                 <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i
@@ -149,38 +151,42 @@
                 </ul>
             </li>
             <li class="nav-item {{ setSidebarActive(['admin.notice.*']) }}">
-                <a href="{{route('admin.notice.index')}}" class="nav-link"><i class="fas fa-columns"></i><span>Notice</span></a>
+                <a href="{{ route('admin.notice.index') }}" class="nav-link"><i
+                        class="fas fa-columns"></i><span>Notice</span></a>
             </li>
             <li class="nav-item {{ setSidebarActive(['admin.press-release.*']) }}">
-                <a href="{{route('admin.press-release.index')}}" class="nav-link"><i class="fas fa-columns"></i><span>Press Releases</span></a>
+                <a href="{{ route('admin.press-release.index') }}" class="nav-link"><i
+                        class="fas fa-columns"></i><span>Press Releases</span></a>
             </li>
-            <li class="nav-item dropdown {{ setSidebarActive(['admin.photo-gallery.album.*', 'admin.photo-gallery.*']) }}">
+            <li
+                class="nav-item dropdown {{ setSidebarActive(['admin.photo-gallery.album.*', 'admin.photo-gallery.*']) }}">
                 <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i
                         class="fas fa-columns"></i>
                     <span>Photo Gallery</span>
                 </a>
                 <ul class="dropdown-menu" style="display: none;">
                     <li class="{{ setSidebarActive(['admin.photo-gallery.album.*']) }}">
-                        <a class="nav-link" href="{{route('admin.photo-gallery.album.index')}}">Album</a>
+                        <a class="nav-link" href="{{ route('admin.photo-gallery.album.index') }}">Album</a>
                     </li>
                     <li class="{{ setSidebarActive(['admin.photo-gallery.*']) }}">
-                        <a class="nav-link" href="{{route('admin.photo-gallery.index')}}">Photo Gallery</a>
+                        <a class="nav-link" href="{{ route('admin.photo-gallery.index') }}">Photo Gallery</a>
                     </li>
                 </ul>
             </li>
             <li class="nav-item {{ setSidebarActive(['admin.video-gallery.*']) }}">
-                <a href="{{route('admin.video-gallery.index')}}" class="nav-link"><i class="fas fa-columns"></i><span>Video Gallery</span></a>
+                <a href="{{ route('admin.video-gallery.index') }}" class="nav-link"><i
+                        class="fas fa-columns"></i><span>Video Gallery</span></a>
             </li>
 
             <li class="menu-header">Procurement</li>
-            <li class="nav-item dropdown {{ setSidebarActive(['admin.spesific-procurements-notices.*', 'admin.general-procurements-notices.*', 'admin.procurements-guidelines.*', 'admin.procurements-bid-challenge-systems.*']) }}">
+            <li
+                class="nav-item dropdown {{ setSidebarActive(['admin.spesific-procurements-notices.*', 'admin.general-procurements-notices.*']) }}">
                 <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i
                         class="fas fa-columns"></i>
                     <span>Notices</span>
                 </a>
                 <ul class="dropdown-menu" style="display: none;">
-                    <li
-                        class="{{ setSidebarActive(['admin.spesific-procurements-notices.*']) }}">
+                    <li class="{{ setSidebarActive(['admin.spesific-procurements-notices.*']) }}">
                         <a class="nav-link" href="{{ route('admin.spesific-procurements-notices.index') }}">Spesific
                             Procurement</a>
                     </li>
@@ -191,14 +197,17 @@
                 </ul>
             </li>
             <li class="nav-item {{ setSidebarActive(['admin.procurements-guidelines.*']) }}">
-                <a href="{{ route('admin.procurements-guidelines.index') }}" class="nav-link"><i class="fas fa-columns"></i><span>Guidelines</span></a>
+                <a href="{{ route('admin.procurements-guidelines.index') }}" class="nav-link"><i
+                        class="fas fa-columns"></i><span>Guidelines</span></a>
             </li>
             <li class="nav-item {{ setSidebarActive(['admin.procurements-bid-challenge-systems.*']) }}">
-                <a href="{{ route('admin.procurements-bid-challenge-systems.index') }}" class="nav-link"><i class="fas fa-columns"></i><span>Bid Challenge
+                <a href="{{ route('admin.procurements-bid-challenge-systems.index') }}" class="nav-link"><i
+                        class="fas fa-columns"></i><span>Bid Challenge
                         System</span></a>
             </li>
-            <li class="nav-item {{ setSidebarActive([]) }}">
-                <a href="#" class="nav-link"><i class="fas fa-columns"></i><span>Contract Award
+            <li class="nav-item {{ setSidebarActive(['admin.procurements-contract-award-notices.*']) }}">
+                <a href="{{ route('admin.procurements-contract-award-notices.index', []) }}" class="nav-link"><i
+                        class="fas fa-columns"></i><span>Contract Award
                         Notice</span></a>
             </li>
 

@@ -38,6 +38,7 @@ use App\Http\Controllers\Admin\QualificationController;
 use App\Http\Controllers\Admin\SeoSettingController;
 use App\Http\Controllers\Admin\ArticleController;
 use App\Http\Controllers\Admin\BidChallengeSystemController;
+use App\Http\Controllers\Admin\ContractAwardNoticeController;
 use App\Http\Controllers\Admin\GuidelineProcurementController;
 use App\Http\Controllers\Admin\NoticeController;
 
@@ -226,7 +227,7 @@ Route::group(['middleware' => ['auth'], 'prefix' => 'admin', 'as' => 'admin.'], 
 
     /**Bid Challenge System Procurements Route**/
     Route::resource('procurements-bid-challenge-systems', BidChallengeSystemController::class)->parameter('procurements-bid-challenge-systems', 'bidChallengeSystem');
-
+    Route::resource('procurements-contract-award-notices', ContractAwardNoticeController::class)->parameter('procurements-contract-award-notices', 'contractAwardNotice');
 });
 
 Route::prefix('{locale}')->group(function () {
@@ -236,4 +237,6 @@ Route::prefix('{locale}')->group(function () {
     Route::get('/procurements/procurement-notice/{spesificProcurementId}/files', [HomeController::class, 'procurementNoticeFile'])->name('procurement-notice-files');
     Route::get('/procurements/procurement-notice', [HomeController::class, 'procurementNotice'])->name('procurement-notice');
     Route::get('/procurements/guidelines', [HomeController::class, 'procurementGuideline'])->name('guidelines');
+    Route::get('/procurements/bid-challenge-systems', [HomeController::class, 'bidChallengeSystem'])->name('procurement-bid-challenge-systems');
+    Route::get('/procurements/contract-award-notices', [HomeController::class, 'contractAwardNotice'])->name('procurement-contract-award-notices');
 });
