@@ -1945,12 +1945,12 @@
                                         class="dropdown-item">Press Releases</a>
                                 </li>
                                 <li id="menu-item-2129"
-                                    class="nav-item menu-item menu-item-type-post_type menu-item-object-page menu-item-2129">
+                                    class="nav-item menu-item menu-item-type-post_type menu-item-object-page menu-item-2129 {{ setNavbarActive(['photo-gallery']) }}">
                                     <a title="Photo Gallery" href="{{ route('photo-gallery', ['locale' => config('app.locale')]) }}" class="dropdown-item">Photo Gallery</a>
                                 </li>
                                 <li id="menu-item-2211"
-                                    class="nav-item menu-item menu-item-type-post_type menu-item-object-page menu-item-2211">
-                                    <a title="Video Gallery" href="https://mcanp.org/en/media-notices/video-gallery/"
+                                    class="nav-item menu-item menu-item-type-post_type menu-item-object-page menu-item-2211 {{ setNavbarActive(['video-gallery']) }}">
+                                    <a title="Video Gallery" href="{{ route('video-gallery', ['locale' => config('app.locale')]) }}"
                                         class="dropdown-item">Video Gallery</a>
                                 </li>
                             </ul>

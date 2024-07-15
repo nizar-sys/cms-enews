@@ -9,6 +9,7 @@ use App\Models\PhotoGallery;
 use App\Models\Project;
 use App\Models\ProjectCategory;
 use App\Models\SpesificProcurement;
+use App\Models\VideoGallery;
 
 class HomeController extends Controller
 {
@@ -77,5 +78,13 @@ class HomeController extends Controller
 
 
         return view('frontends.photo_gallery', compact('projectCategories', 'photoGalleries'));
+    }
+
+    public function videoGallery($locale)
+    {
+        $projectCategories = ProjectCategory::select('name', 'slug')->get();
+        $videoGalleries = VideoGallery::get();
+
+        return view('frontends.video_gallery', compact('projectCategories', 'videoGalleries'));
     }
 }
