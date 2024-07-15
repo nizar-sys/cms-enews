@@ -26,13 +26,14 @@ class NoticeController extends Controller
             'file' => 'required|mimes:pdf|max:2048',
         ]);
 
+
         $file = $request->file('file');
-        $file_name = time() . '_' . $file->getClientOriginalName();
-        $file_path = $file->storeAs('public/notices', $file_name);
+        $fileName = pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME);
+        $filePath = handleUpload('file');
 
         Notice::create([
-            'file_name' => $file_name,
-            'file_path' => $file_path,
+            'file_name' => $fileName,
+            'file_path' => $filePath,
         ]);
 
         toastr()->success('Notice created successfully', 'Success');
@@ -45,7 +46,7 @@ class NoticeController extends Controller
         return view('admin.notice.edit', compact('notice'));
     }
 
-    public function update(RequestNotice $request, $id)
+    public function update(Request $request, $id)
     {
         $request->validate([
             'file' => 'mimes:pdf,doc,docx,xls,xlsx,ppt,pptx,txt|max:2048',
@@ -53,13 +54,14 @@ class NoticeController extends Controller
 
         $notice = Notice::findOrFail($id);
 
-        if ($request->hasFile('file')) {
-            $file = $request->file('file');
-            $file_name = time() . '_' . $file->getClientOriginalName();
-            $file_path = $file->storeAs('public/notices', $file_name);
-            $notice->file_name = $file_name;
-            $notice->file_path = $file_path;
-        }
+        $file = $request->file('file');
+        $fileName = pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME);
+        $filePath = handleUpload('file');
+
+        $notice->update([
+            'file_name' => $fileName,
+            'file_path' => $filePath,
+        ]);
 
         $notice->save();
 
