@@ -11,12 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('news', function (Blueprint $table) {
+        Schema::create('photo_galleries', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
-            $table->string('title');
-            $table->longText('description');
-            $table->json('images')->nullable();
+            $table->string('photo');
+            $table->string('photo_path');
+            $table->foreignId('album_id')->constrained('photo_gallery_albums')->onDelete('cascade');
+            
         });
     }
 
@@ -25,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('news');
+        Schema::dropIfExists('photo_galleries');
     }
 };

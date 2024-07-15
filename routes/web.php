@@ -37,10 +37,18 @@ use App\Http\Controllers\Admin\PortfolioSectionSettingController;
 use App\Http\Controllers\Admin\QualificationController;
 use App\Http\Controllers\Admin\SeoSettingController;
 use App\Http\Controllers\Admin\ArticleController;
+
+use App\Http\Controllers\Admin\NoticeController;
+
 use App\Http\Controllers\Admin\SpesificProcurementController;
 use App\Http\Controllers\Admin\SpesificProcurementFileController;
+
+use App\Http\Controllers\Admin\PressReleaseController;
 use App\Http\Controllers\Frontend\HomeController;
 use App\Models\SpesificProcurement;
+use App\Http\Controllers\Admin\PhotoGalleryAlbumController;
+use App\Http\Controllers\Admin\PhotoGalleryController;
+use App\Http\Controllers\Admin\VideoGalleryController;
 use Illuminate\Support\Facades\Artisan;
 
 use Illuminate\Support\Facades\Route;
@@ -153,7 +161,54 @@ Route::group(['middleware' => ['auth'], 'prefix' => 'admin', 'as' => 'admin.'], 
         Route::get('/edit/{id}', [ArticleController::class, 'edit'])->name('article.edit');
         Route::put('/update/{id}', [ArticleController::class, 'update'])->name('article.update');
         Route::delete('/{id}', [ArticleController::class, 'destroy'])->name('article.destroy');
-        
+    });
+
+    // Notice Route
+    Route::prefix('notice')->group(function () {
+        Route::get('/', [NoticeController::class, 'index'])->name('notice.index');
+        Route::get('/create', [NoticeController::class, 'create'])->name('notice.create');
+        Route::post('/store', [NoticeController::class, 'store'])->name('notice.store');
+        Route::get('/edit/{id}', [NoticeController::class, 'edit'])->name('notice.edit');
+        Route::put('/update/{id}', [NoticeController::class, 'update'])->name('notice.update');
+        Route::delete('/{id}', [NoticeController::class, 'destroy'])->name('notice.destroy');
+    });
+
+    Route::prefix('press-release')->group(function () {
+        Route::get('/', [PressReleaseController::class, 'index'])->name('press-release.index');
+        Route::get('/create', [PressReleaseController::class, 'create'])->name('press-release.create');
+        Route::post('/store', [PressReleaseController::class, 'store'])->name('press-release.store');
+        Route::get('/edit/{id}', [PressReleaseController::class, 'edit'])->name('press-release.edit');
+        Route::put('/update/{id}', [PressReleaseController::class, 'update'])->name('press-release.update');
+        Route::delete('/{id}', [PressReleaseController::class, 'destroy'])->name('press-release.destroy');
+    });
+
+    // Photo Gallery Route
+    Route::prefix('photo-gallery')->group(function () {
+        Route::get('/albums', [PhotoGalleryAlbumController::class, 'index'])->name('photo-gallery.album.index');
+        Route::get('/albums/create', [PhotoGalleryAlbumController::class, 'create'])->name('photo-gallery.album.create');
+        Route::post('/albums/store', [PhotoGalleryAlbumController::class, 'store'])->name('photo-gallery.album.store');
+        Route::get('/albums/edit/{id}', [PhotoGalleryAlbumController::class, 'edit'])->name('photo-gallery.album.edit');
+        Route::put('/albums/update/{id}', [PhotoGalleryAlbumController::class, 'update'])->name('photo-gallery.album.update');
+        Route::delete('/albums/{id}', [PhotoGalleryAlbumController::class, 'destroy'])->name('photo-gallery.album.destroy');
+
+        Route::get('/', [PhotoGalleryController::class, 'index'])->name('photo-gallery.index');
+        Route::get('/create', [PhotoGalleryController::class, 'create'])->name('photo-gallery.create');
+        Route::post('/store', [PhotoGalleryController::class, 'store'])->name('photo-gallery.store');
+        Route::get('/edit/{id}', [PhotoGalleryController::class, 'edit'])->name('photo-gallery.edit');
+        Route::put('/update/{id}', [PhotoGalleryController::class, 'update'])->name('photo-gallery.update');
+        Route::delete('/{id}', [PhotoGalleryController::class, 'destroy'])->name('photo-gallery.destroy');
+
+        // Route::resource('gallery-section-setting', GallerySectionSettingController::class);
+    });
+
+    // Video Gallery Route
+    Route::prefix('video-gallery')->group(function () {
+        Route::get('/', [VideoGalleryController::class, 'index'])->name('video-gallery.index');
+        Route::get('/create', [VideoGalleryController::class, 'create'])->name('video-gallery.create');
+        Route::post('/store', [VideoGalleryController::class, 'store'])->name('video-gallery.store');
+        Route::get('/edit/{id}', [VideoGalleryController::class, 'edit'])->name('video-gallery.edit');
+        Route::put('/update/{id}', [VideoGalleryController::class, 'update'])->name('video-gallery.update');
+        Route::delete('/{id}', [VideoGalleryController::class, 'destroy'])->name('video-gallery.destroy');
     });
 
     /**Spesific Procurements Route**/

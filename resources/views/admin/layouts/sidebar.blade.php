@@ -148,28 +148,28 @@
                     </li>
                 </ul>
             </li>
-            <li class="nav-item {{ setSidebarActive([]) }}">
-                <a href="#" class="nav-link"><i class="fas fa-columns"></i><span>Notice</span></a>
+            <li class="nav-item {{ setSidebarActive(['admin.notice.*']) }}">
+                <a href="{{route('admin.notice.index')}}" class="nav-link"><i class="fas fa-columns"></i><span>Notice</span></a>
             </li>
-            <li class="nav-item {{ setSidebarActive([]) }}">
-                <a href="#" class="nav-link"><i class="fas fa-columns"></i><span>Press Releases</span></a>
+            <li class="nav-item {{ setSidebarActive(['admin.press-release.*']) }}">
+                <a href="{{route('admin.press-release.index')}}" class="nav-link"><i class="fas fa-columns"></i><span>Press Releases</span></a>
             </li>
-            <li class="nav-item dropdown {{ setSidebarActive([]) }}">
+            <li class="nav-item dropdown {{ setSidebarActive(['admin.photo-gallery.album.*', 'admin.photo-gallery.*']) }}">
                 <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i
                         class="fas fa-columns"></i>
                     <span>Photo Gallery</span>
                 </a>
                 <ul class="dropdown-menu" style="display: none;">
-                    <li class="{{ setSidebarActive([]) }}">
-                        <a class="nav-link" href="#">Album</a>
+                    <li class="{{ setSidebarActive(['admin.photo-gallery.album.*']) }}">
+                        <a class="nav-link" href="{{route('admin.photo-gallery.album.index')}}">Album</a>
                     </li>
-                    <li class="{{ setSidebarActive([]) }}">
-                        <a class="nav-link" href="#">Photo Gallery</a>
+                    <li class="{{ setSidebarActive(['admin.photo-gallery.*']) }}">
+                        <a class="nav-link" href="{{route('admin.photo-gallery.index')}}">Photo Gallery</a>
                     </li>
                 </ul>
             </li>
-            <li class="nav-item {{ setSidebarActive([]) }}">
-                <a href="#" class="nav-link"><i class="fas fa-columns"></i><span>Video Gallery</span></a>
+            <li class="nav-item {{ setSidebarActive(['admin.video-gallery.*']) }}">
+                <a href="{{route('admin.video-gallery.index')}}" class="nav-link"><i class="fas fa-columns"></i><span>Video Gallery</span></a>
             </li>
 
             <li class="menu-header">Procurement</li>
