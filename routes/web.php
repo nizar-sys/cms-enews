@@ -31,6 +31,9 @@ use App\Http\Controllers\Admin\GalleryController;
 use App\Http\Controllers\Admin\GallerySectionSettingController;
 use App\Http\Controllers\Admin\NewsController;
 use App\Http\Controllers\Admin\GeneralProcurementController;
+use App\Http\Controllers\Admin\JobListController;
+use App\Http\Controllers\Admin\JobSectionSettingController;
+use App\Http\Controllers\Admin\JobsSectionController;
 use App\Http\Controllers\Admin\OrganizationalChartSectionSettingController;
 use App\Http\Controllers\Admin\PortfolioItemController;
 use App\Http\Controllers\Admin\PortfolioSectionSettingController;
@@ -49,6 +52,12 @@ use App\Models\SpesificProcurement;
 use App\Http\Controllers\Admin\PhotoGalleryAlbumController;
 use App\Http\Controllers\Admin\PhotoGalleryController;
 use App\Http\Controllers\Admin\VideoGalleryController;
+use App\Http\Controllers\ContactController;
+use App\Http\Controllers\FaqController;
+use App\Http\Controllers\JobsController;
+use App\Http\Controllers\McaNepal\BoardOfDirectorController;
+use App\Http\Controllers\McaNepal\ExecutiveTeamController;
+use App\Http\Controllers\McaNepal\OrganizationalChartController;
 use Illuminate\Support\Facades\Artisan;
 
 use Illuminate\Support\Facades\Route;
@@ -223,9 +232,33 @@ Route::group(['middleware' => ['auth'], 'prefix' => 'admin', 'as' => 'admin.'], 
     });
     Route::resource('general-procurements-notices', GeneralProcurementController::class);
 
+    // Job Section Setting
+    Route::resource('job-section-setting', JobSectionSettingController::class)->only(['index', 'update']);
+
+    // Job List
+    Route::resource('job-lists', JobListController::class);
+
+    // Faqs
+    Route::resource('faqs', FaqController::class);
+
+    // Contact
+    Route::resource('contacts', ContactController::class)->only(['index', 'update']);
 });
 
 Route::prefix('{locale}')->group(function () {
+
+    // MCA-NEPAL
+    Route::prefix('mca-nepal')->name('mca-nepal.')->group(function () {
+        // Board Of Directors
+        Route::get('board-of-directors', [BoardOfDirectorController::class, 'index'])->name('board-of-director');
+
+        // Executive Teams
+        Route::get('executive-teams', [ExecutiveTeamController::class, 'index'])->name('executive-team');
+
+        // Organizational Chart
+        Route::get('organizational-charts', [OrganizationalChartController::class, 'index'])->name('organizational-chart');
+    });
+
     Route::get('/projects/{slugCategory}/{slugProject}', [HomeController::class, 'projectDetail'])->name('project-detail');
     Route::get('/projects/{slugCategory}', [HomeController::class, 'projectCategory'])->name('project-category');
     Route::get('/documents-reports/{slugCategory}', [HomeController::class, 'documentCategory'])->name('document-category');
@@ -236,4 +269,7 @@ Route::prefix('{locale}')->group(function () {
     Route::get('/notices', [HomeController::class, 'notices'])->name('notices');
     Route::get('/press-releases', [HomeController::class, 'pressReleases'])->name('press-releases');
     Route::get('/articles-interviews', [HomeController::class, 'articlesInterviews'])->name('articles-interviews');
+
+    // JOBS
+    Route::get('/jobs', [JobsController::class, 'index'])->name('jobs.index');
 });

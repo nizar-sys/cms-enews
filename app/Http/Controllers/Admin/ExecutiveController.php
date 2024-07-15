@@ -12,20 +12,27 @@ class ExecutiveController extends Controller
 {
     public function index(ExecutiveTeamDataTable $dataTable)
     {
-        return $dataTable->render('admin.executive.index');
+        $executiveCount = ExecutiveTeam::count();
+        return $dataTable->render('admin.executive.index', compact('executiveCount'));
     }
 
     public function create()
     {
+        $executiveCount = ExecutiveTeam::count();
+
+        if ($executiveCount >= 3) {
+            abort(403, 'You cannot create more than 3 executives.');
+        }
+
         $designations = Designation::all();
         return view('admin.executive.create', compact('designations'));
     }
+
 
     public function store(Request $request)
     {
         $request->validate([
             'name' => ['required', 'max:200'],
-            'description' => ['required'],
             'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:50048',
             'designation_id' => 'required',
         ]);
@@ -34,7 +41,6 @@ class ExecutiveController extends Controller
 
         $executive = new ExecutiveTeam();
         $executive->name = $request->name;
-        $executive->description = $request->description;
         $executive->image = $imagePath;
         $executive->designation_id = $request->designation_id;
         $executive->save();
@@ -54,7 +60,6 @@ class ExecutiveController extends Controller
     {
         $request->validate([
             'name' => ['required', 'max:200'],
-            'description' => ['required'],
             'image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:50048',
         ]);
 
@@ -63,7 +68,6 @@ class ExecutiveController extends Controller
         $imagePath = handleUpload('image', $executive);
 
         $executive->name = $request->name;
-        $executive->description = $request->description;
         $executive->image = (!empty($imagePath) ? $imagePath : $executive->image);
         $executive->save();
         toastr()->success('Executive Updated Successfully', 'Congrats');

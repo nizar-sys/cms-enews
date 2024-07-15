@@ -19,7 +19,7 @@
                             <h4>Change Section Settings </h4>
                         </div>
                         <div class="card-body">
-                            <form action="{{ route('admin.bod.organizational-chart-settings.update', 1) }}" method="POST"
+                            <form action="{{ route('admin.job-section-setting.update', 1) }}" method="POST"
                                 enctype="multipart/form-data">
                                 @csrf
                                 @method('PUT')
@@ -39,18 +39,7 @@
                                         Description
                                     </label>
                                     <div class="col-sm-12 col-md-7">
-                                        <textarea name="sub_title" id="" class="summernote" style="height: 100px">{{ old('sub_title', $sectionSetting->sub_title ?? '') }}</textarea>
-                                    </div>
-                                </div>
-
-                                <div class="form-group row mb-4">
-                                    <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Organizational
-                                        Chart</label>
-                                    <div class="col-sm-12 col-md-7">
-                                        <div id="image-preview" class="image-preview">
-                                            <label for="image-upload" id="image-label">Choose File</label>
-                                            <input type="file" name="image" id="image-upload" />
-                                        </div>
+                                        <textarea name="description" id="" class="summernote" style="height: 100px">{{ old('description', $sectionSetting->description ?? '') }}</textarea>
                                     </div>
                                 </div>
 

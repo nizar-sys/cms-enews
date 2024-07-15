@@ -8,13 +8,11 @@
                 <section id="primary" class="content-area col-sm-12 col-lg-8">
                     <main id="main" class="site-main" role="main">
 
-
                         <article id="post-329" class="post-329 cca type-cca status-publish has-post-thumbnail hentry">
                             <div class="post-thumbnail">
                                 <img width="960" height="540" src="{{ asset($project->image) }}"
                                     class="attachment-post-thumbnail size-post-thumbnail wp-post-image" alt=""
-                                    decoding="async" fetchpriority="high"
-                                    sizes="(max-width: 960px) 100vw, 960px">
+                                    decoding="async" fetchpriority="high" sizes="(max-width: 960px) 100vw, 960px">
                             </div>
                             <header class="entry-header mt-2">
                                 <h1 class="entry-title">{{ $project->name }}</h1>
