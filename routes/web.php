@@ -236,4 +236,6 @@ Route::prefix('{locale}')->group(function () {
     Route::get('/notices', [HomeController::class, 'notices'])->name('notices');
     Route::get('/press-releases', [HomeController::class, 'pressReleases'])->name('press-releases');
     Route::get('/articles-interviews', [HomeController::class, 'articlesInterviews'])->name('articles-interviews');
+    Route::get('/community-voices', [HomeController::class, 'communityVoices'])->name('community-voices');
+    Route::get('/community-voices/{slug}', [HomeController::class, 'communityVoiceDetail'])->name('community-voice-detail');
 });
