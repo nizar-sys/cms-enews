@@ -48,6 +48,7 @@ use App\Http\Controllers\Frontend\HomeController;
 use App\Models\SpesificProcurement;
 use App\Http\Controllers\Admin\PhotoGalleryAlbumController;
 use App\Http\Controllers\Admin\PhotoGalleryController;
+use App\Http\Controllers\Admin\VideoGalleryController;
 use Illuminate\Support\Facades\Artisan;
 
 use Illuminate\Support\Facades\Route;
@@ -198,6 +199,16 @@ Route::group(['middleware' => ['auth'], 'prefix' => 'admin', 'as' => 'admin.'], 
         Route::delete('/{id}', [PhotoGalleryController::class, 'destroy'])->name('photo-gallery.destroy');
 
         // Route::resource('gallery-section-setting', GallerySectionSettingController::class);
+    });
+
+    // Video Gallery Route
+    Route::prefix('video-gallery')->group(function () {
+        Route::get('/', [VideoGalleryController::class, 'index'])->name('video-gallery.index');
+        Route::get('/create', [VideoGalleryController::class, 'create'])->name('video-gallery.create');
+        Route::post('/store', [VideoGalleryController::class, 'store'])->name('video-gallery.store');
+        Route::get('/edit/{id}', [VideoGalleryController::class, 'edit'])->name('video-gallery.edit');
+        Route::put('/update/{id}', [VideoGalleryController::class, 'update'])->name('video-gallery.update');
+        Route::delete('/{id}', [VideoGalleryController::class, 'destroy'])->name('video-gallery.destroy');
     });
 
     /**Spesific Procurements Route**/

@@ -168,8 +168,8 @@
                     </li>
                 </ul>
             </li>
-            <li class="nav-item {{ setSidebarActive([]) }}">
-                <a href="#" class="nav-link"><i class="fas fa-columns"></i><span>Video Gallery</span></a>
+            <li class="nav-item {{ setSidebarActive(['admin.video-gallery.*']) }}">
+                <a href="{{route('admin.video-gallery.index')}}" class="nav-link"><i class="fas fa-columns"></i><span>Video Gallery</span></a>
             </li>
 
             <li class="menu-header">Procurement</li>
