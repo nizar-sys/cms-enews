@@ -34,7 +34,7 @@ class CommunityVoiceDataTable extends DataTable {
                      <a href="' . route('admin.community-voice.destroy', $query->id) . '" class="btn btn-danger delete-item"><i class="fas fa-trash"></i></a>';
          })
          ->setRowId('id')
-         ->rawColumns(['action']);;
+         ->rawColumns(['action', 'description']);;
      }
 
      /**
@@ -82,8 +82,7 @@ class CommunityVoiceDataTable extends DataTable {
                 Column::make('id'),
                 Column::make('title'),
                 Column::make('description'),
-                Column::make('created_at'),
-                Column::make('updated_at'),
+                Column::make('slug'),
                 Column::computed('action')
                 ->exportable(false)
                 ->printable(false)

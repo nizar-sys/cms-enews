@@ -11,12 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('community_voices', function (Blueprint $table) {
+        Schema::create('footer_settings', function (Blueprint $table) {
             $table->id();
+            $table->string('information_officer_name')->nullable();
+            $table->string('media_query_name')->nullable();
+            $table->text('information_officer_picture')->nullable();
+            $table->text('media_query_picture')->nullable();
             $table->timestamps();
-            $table->string('title');
-            $table->longText('description');
-            $table->string('slug')->unique();
         });
     }
 
@@ -25,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('community_voices');
+        Schema::dropIfExists('footer_settings');
     }
 };
