@@ -44,6 +44,8 @@ use App\Http\Controllers\Admin\BidChallengeSystemController;
 use App\Http\Controllers\Admin\ContractAwardNoticeController;
 use App\Http\Controllers\Admin\GuidelineProcurementController;
 use App\Http\Controllers\Admin\FooterSettingController;
+use App\Http\Controllers\Admin\FooterSocialLinkController;
+use App\Http\Controllers\Admin\HeroController;
 use App\Http\Controllers\Admin\NoticeController;
 
 use App\Http\Controllers\Admin\SpesificProcurementController;
@@ -255,6 +257,10 @@ Route::group(['middleware' => ['auth'], 'prefix' => 'admin', 'as' => 'admin.'], 
 
     // Contact
     Route::resource('contacts', ContactController::class)->only(['index', 'update']);
+
+    Route::resource('footer-social', FooterSocialLinkController::class);
+
+    Route::resource('hero', HeroController::class);
 });
 
 Route::prefix('{locale}')->group(function () {
@@ -291,5 +297,4 @@ Route::prefix('{locale}')->group(function () {
 
     // JOBS
     Route::get('/jobs', [JobsController::class, 'index'])->name('jobs.index');
-
 });

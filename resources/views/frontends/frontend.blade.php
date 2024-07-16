@@ -1743,6 +1743,7 @@
             src: url(chrome-extension://jcpgbnbdnakoblgfkbgggankeidkfcdl/assets/fonts/noto-sans-semibold.ttf);
         }
     </style>
+    @stack('style')
 </head>
 
 <body class="home page-template-default page page-id-13 modula-best-grid-gallery wp-bootstrap-starter-child-english">
@@ -1830,18 +1831,18 @@
 
                 <div class="col-md-4 col-lg-4 col-sm-4 col-nav text-left">
                     <a href="#" class="logo-text logo-mca">
-                        <img width="90" src="{{ $generalSetting->left_icon }}"
+                        <img width="90" src="{{ $generalSetting?->left_icon }}"
                             alt="Millenium Challenge Account Nepal">
                     </a>
                 </div>
                 <div class="col-md-4 col-lg-4 col-sm-4 col-nav text-center">
                     <a href="#" class="logo-text logo-mcc" target="_blank">
-                        <img src="{{ $generalSetting->center_icon }}" alt="MCC-USA" width="120px">
+                        <img src="{{ $generalSetting?->center_icon }}" alt="MCC-USA" width="120px">
                     </a>
                 </div>
                 <div class="col-md-4 col-lg-4 col-sm-4 col-nav text-right">
                     <a href="#" class="logo-text logo-gon" target="_blank">
-                        <img src="{{ $generalSetting->right_icon }}" alt="Nepal Government" width="90px">
+                        <img src="{{ $generalSetting?->right_icon }}" alt="Nepal Government" width="90px">
                     </a>
                 </div>
 
@@ -2027,19 +2028,19 @@
                                 <ul id="menu-footer-menu" class="menu nav flex-column">
                                     <li id="menu-item-2160"
                                         class="menu-item menu-item-type-post_type menu-item-object-page menu-item-home current-menu-item page_item page-item-13 current_page_item menu-item-2160 nav-item">
-                                        <a href="https://mcanp.org/en/" aria-current="page" class="nav-link">Home</a>
+                                        <a href="{{ url('/') }}" aria-current="page" class="nav-link">Home</a>
                                     </li>
                                     <li id="menu-item-2162"
                                         class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2162 nav-item">
-                                        <a href="https://mcanp.org/en/mca-nepal/board-of-directors/"
+                                        <a href="{{ route('mca-nepal.board-of-director', ['locale' => config('app.locale')]) }}"
                                             class="nav-link">Board of Directors</a>
                                     </li>
                                     <li id="menu-item-2161"
                                         class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2161 nav-item">
-                                        <a href="https://mcanp.org/en/documents-reports/main-agreements/"
+                                        <a href="{{ route('document-category', ['locale' => config('app.locale'), 'slugCategory' => 'main-agreements']) }}"
                                             class="nav-link">Main Agreements</a>
                                     </li>
-                                    <li id="menu-item-2163"
+                                    {{-- <li id="menu-item-2163"
                                         class="menu-item menu-item-type-custom menu-item-object-custom menu-item-2163 nav-item">
                                         <a href="https://www.mcc.gov/" class="nav-link">MCC Website</a>
                                     </li>
@@ -2047,7 +2048,7 @@
                                         class="menu-item menu-item-type-custom menu-item-object-custom menu-item-2164 nav-item">
                                         <a href="https://oig.usaid.gov/report-fraud" class="nav-link">Report
                                             Fraud</a>
-                                    </li>
+                                    </li> --}}
                                 </ul>
                             </div>
                         </section>
@@ -2057,45 +2058,38 @@
                         <section id="block-7" class="widget widget_block">
                             <h2>Contact Us</h2>
                             <p><b>Millennium Challenge Account Nepal (MCA-Nepal)</b><br>
-                                2nd &amp; 3rd Floor, East Wing,<br>
-                                Lal Durbar Convention Centre,<br>
-                                Yak &amp; Yeti Complex, Durbar Marg,<br>
-                                Kathmandu, Nepal<br>
-                                <i class="fa fa-phone"></i> +977 1-4540951 / 4540952<br>
-                                <i class="fa fa-envelope"></i> <a href="mailto:info@mcanp.org">info@mcanp.org</a>
+                                {{ $contactSetting?->address }}<br>
+                                <i class="fa fa-phone"></i> {{ $contactSetting?->phone }}<br>
+                                <i class="fa fa-envelope"></i> <a
+                                    href="mailto:{{ $contactSetting?->email }}">{{ $contactSetting?->email }}</a>
                             </p>
-                            <p><b>Stay Connected</b><br><a style="font-size:20px"
-                                    href="https://www.facebook.com/MCANPL" target="_blank"><i
-                                        class="fab fa-facebook-square"></i></a>&nbsp; &nbsp; &nbsp; <a
-                                    style="font-size:20px" href=" https://twitter.com/MCA_Nepal" target="_blank"><i
-                                        class="fab fa-twitter-square"></i></a>&nbsp; &nbsp; &nbsp; <a
-                                    style="font-size:20px"
-                                    href=" https://www.youtube.com/channel/UCihiNFBCNLOw8hgp07-7eeA"
-                                    target="_blank"><i class="fab fa-youtube-square"></i></a>&nbsp; &nbsp; &nbsp; <a
-                                    style="font-size:20px"
-                                    href="https://www.linkedin.com/company/millennium-challenge-account-nepal-development-board"
-                                    target="_blank"><i class="fab fa-linkedin-square"></i></a></p>
+                            <p><b>Stay Connected</b> <br>
+                                @foreach ($footerSocialLink as $link)
+                                    <a style="font-size:20px" href="{{ $link->url }}"
+                                        target="_blank"><i class="{{ $link->icon }}"></i></a> &nbsp;
+                                @endforeach
+                            </p>
                         </section>
                     </div>
                     <div class="col-12 col-md-3">
                         <section id="block-8" class="widget widget_block">
                             <h2>Information Officer</h2>
-                            <p><b>{{ $footerSetting->information_officer_name }}</b></p>
+                            <p><b>{{ $footerSetting?->information_officer_name }}</b></p>
                             <div class="wp-block-image">
                                 <figure><img decoding="async" style="border:7px solid #ccc"
-                                        src="{{ $footerSetting->information_officer_picture }}"
-                                        alt="{{ $footerSetting->media_query_name }}" width="127"></figure>
+                                        src="{{ $footerSetting?->information_officer_picture }}"
+                                        alt="{{ $footerSetting?->media_query_name }}" width="127"></figure>
                             </div>
 
                         </section>
                     </div>
                     <div class="widget">
                         <h2>For Media Queries</h2>
-                        <p><b>{{ $footerSetting->media_query_name }}</b></p>
+                        <p><b>{{ $footerSetting?->media_query_name }}</b></p>
                         <div class="wp-block-image">
                             <figure><img decoding="async" style="border:7px solid #ccc"
-                                    src="{{ $footerSetting->media_query_picture }}"
-                                    alt="{{ $footerSetting->media_query_name }}" width="127"></figure>
+                                    src="{{ $footerSetting?->media_query_picture }}"
+                                    alt="{{ $footerSetting?->media_query_name }}" width="127"></figure>
                         </div>
                     </div>
                 </div>
@@ -2499,6 +2493,7 @@
         /*placeholder for subscription*/
         jQuery('.tnp-email').attr('placeholder', 'Email Address');
     </script>
+    @stack('script')
 
 </body>
 
