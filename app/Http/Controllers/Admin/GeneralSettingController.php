@@ -72,20 +72,30 @@ class GeneralSettingController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-            'logo' => [  'max:5000', 'image'],
-            'footer_logo' => [  'max:5000', 'image'],
-            'favicon' => [  'max:5000', 'image'],
+            'logo' => ['max:5000', 'image'],
+            'footer_logo' => ['max:5000', 'image'],
+            'left_icon' => ['max:5000', 'image'],
+            'center_icon' => ['max:5000', 'image'],
+            'right_icon' => ['max:5000', 'image'],
+            'favicon' => ['max:5000', 'image'],
         ]);
 
         $setting = GeneralSetting::first();
         $favicon = handleUpload('favicon', $setting);
+        $left_icon = handleUpload('left_icon', $setting);
+        $center_icon = handleUpload('center_icon', $setting);
+        $right_icon = handleUpload('right_icon', $setting);
+
 
         // create or update general setting 
         GeneralSetting::updateOrCreate(
-            ['id'=> $id],
+            ['id' => $id],
             [
-                'logo' => 'logo',
-                'footer_logo' => 'footer_logo',
+                'logo' => 'Logo',
+                'footer_logo' => 'Footer Logo',
+                'left_icon' => $left_icon,
+                'center_icon' => $center_icon,
+                'right_icon' => $right_icon,
                 'favicon' => $favicon,
             ]
         );

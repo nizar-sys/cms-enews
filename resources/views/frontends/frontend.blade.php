@@ -16,7 +16,7 @@
         href="https://mcanp.org/en/feed/">
     <link rel="alternate" type="application/rss+xml" title="Millenium Challenge Account Nepal » Comments Feed"
         href="https://mcanp.org/en/comments/feed/">
-        
+
     {{-- @vite(['resources/css/app.css','resources/js/app.js'])  --}}
     <script type="text/javascript">
         /* <![CDATA[ */
@@ -1829,23 +1829,19 @@
             <nav class="navbar top-navigation">
 
                 <div class="col-md-4 col-lg-4 col-sm-4 col-nav text-left">
-                    <a href="https://mcanp.org/en/" class="logo-text logo-mca">
-                        <img width="90"
-                            src="https://mcanp.org/en/wp-content/uploads/sites/2/2021/08/mca-nepal-logo@2x-e1630344272397.png"
+                    <a href="#" class="logo-text logo-mca">
+                        <img width="90" src="{{ $generalSetting->left_icon }}"
                             alt="Millenium Challenge Account Nepal">
-                        <span class="gov-text">Millennium Challenge Account Nepal</span>
                     </a>
                 </div>
                 <div class="col-md-4 col-lg-4 col-sm-4 col-nav text-center">
-                    <a href="https://www.mcc.gov/" class="logo-text logo-mcc" target="_blank">
-                        <img src="http://mcanp.org/wp-content/uploads/2020/04/image-mcc-signature-vertical-usa-wh.png"
-                            alt="MCC-USA" width="120px">
+                    <a href="#" class="logo-text logo-mcc" target="_blank">
+                        <img src="{{ $generalSetting->center_icon }}" alt="MCC-USA" width="120px">
                     </a>
                 </div>
                 <div class="col-md-4 col-lg-4 col-sm-4 col-nav text-right">
-                    <a href="https://www.nepal.gov.np/" class="logo-text logo-gon" target="_blank">
-                        <img src="http://mcanp.org/wp-content/uploads/2020/06/Nepal-Government-logo.png"
-                            alt="Nepal Government" width="90px">
+                    <a href="#" class="logo-text logo-gon" target="_blank">
+                        <img src="{{ $generalSetting->right_icon }}" alt="Nepal Government" width="90px">
                     </a>
                 </div>
 
@@ -1945,22 +1941,27 @@
                                 </li>
                                 <li id="menu-item-2235"
                                     class="nav-item menu-item menu-item-type-post_type menu-item-object-page menu-item-2235 {{ setNavbarActive(['notices']) }}">
-                                    <a title="Notice" href="{{ route('notices', ['locale' => config('app.locale')]) }}"
+                                    <a title="Notice"
+                                        href="{{ route('notices', ['locale' => config('app.locale')]) }}"
                                         class="dropdown-item">Notice</a>
                                 </li>
                                 <li id="menu-item-2130"
-                                    class="nav-item menu-item menu-item-type-post_type menu-item-object-page menu-item-2130" {{ setNavbarActive(['press-releases']) }}>
+                                    class="nav-item menu-item menu-item-type-post_type menu-item-object-page menu-item-2130"
+                                    {{ setNavbarActive(['press-releases']) }}>
                                     <a title="Press Releases"
                                         href="{{ route('press-releases', ['locale' => config('app.locale')]) }}"
                                         class="dropdown-item">Press Releases</a>
                                 </li>
                                 <li id="menu-item-2129"
                                     class="nav-item menu-item menu-item-type-post_type menu-item-object-page menu-item-2129 {{ setNavbarActive(['photo-gallery']) }}">
-                                    <a title="Photo Gallery" href="{{ route('photo-gallery', ['locale' => config('app.locale')]) }}" class="dropdown-item">Photo Gallery</a>
+                                    <a title="Photo Gallery"
+                                        href="{{ route('photo-gallery', ['locale' => config('app.locale')]) }}"
+                                        class="dropdown-item">Photo Gallery</a>
                                 </li>
                                 <li id="menu-item-2211"
                                     class="nav-item menu-item menu-item-type-post_type menu-item-object-page menu-item-2211 {{ setNavbarActive(['video-gallery']) }}">
-                                    <a title="Video Gallery" href="{{ route('video-gallery', ['locale' => config('app.locale')]) }}"
+                                    <a title="Video Gallery"
+                                        href="{{ route('video-gallery', ['locale' => config('app.locale')]) }}"
                                         class="dropdown-item">Video Gallery</a>
                                 </li>
                             </ul>
@@ -2079,60 +2080,49 @@
                     <div class="col-12 col-md-3">
                         <section id="block-8" class="widget widget_block">
                             <h2>Information Officer</h2>
-                            <p><b>Mr. Rajib Dahal</b></p>
+                            <p><b>{{ $footerSetting->information_officer_name }}</b></p>
                             <div class="wp-block-image">
                                 <figure><img decoding="async" style="border:7px solid #ccc"
-                                        src="https://www.mcanp.org/wp-content/uploads/2021/08/rajib-dahal.jpg"
-                                        alt="Rajib Dahal" width="127"></figure>
+                                        src="{{ $footerSetting->information_officer_picture }}"
+                                        alt="{{ $footerSetting->media_query_name }}" width="127"></figure>
                             </div>
-                            <p>
-                                <i class="fa fa-phone"></i> +977-1-4540951 (Ext. 322)<br>
-                                <i class="fa fa-mobile"></i> +977- 9749326793<br>
-                                <i class="fa fa-envelope"></i> <a
-                                    href="mailto:rajib.dahal@mcanp.org">rajib.dahal@mcanp.org</a>
-                            </p>
+
                         </section>
                     </div>
-                    <div class="col-12 col-md-3">
-                        <div class="widget">
-                            <h2>For Media Queries</h2>
-                            <p><b>Mr. Pushkar Mathema</b></p>
-                            <div class="wp-block-image">
-                                <figure><img decoding="async" style="border:7px solid #ccc"
-                                        src="https://mcanp.org/wp-content/uploads/2023/06/Pushkar-Mathema.jpg"
-                                        alt="Pushkar Mathema" width="127"></figure>
-                            </div>
-                            <p>
-                                <i class="fa fa-phone"></i> +977-1-4540951 (Ext. 306)<br>
-                                <i class="fa fa-envelope"></i> <a
-                                    href="mailto:pushkar.mathema@mcanp.org">pushkar.mathema@mcanp.org</a>
-                            </p>
+                    <div class="widget">
+                        <h2>For Media Queries</h2>
+                        <p><b>{{ $footerSetting->media_query_name }}</b></p>
+                        <div class="wp-block-image">
+                            <figure><img decoding="async" style="border:7px solid #ccc"
+                                    src="{{ $footerSetting->media_query_picture }}"
+                                    alt="{{ $footerSetting->media_query_name }}" width="127"></figure>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+    </div>
 
-        <footer id="colophon" class="site-footer navbar-light" role="contentinfo">
-            <div class="container pt-3 pb-3">
-                <div class="row">
-                    <div class="col-md-12 text-center">
-                        <div class="site-info">
-                            <p> This website was made possible through a grant given by the people of the United States
-                                to Nepal through the Millennium Challenge Corporation<br>
-                                under the terms of a compact signed between the two countries. The information provided
-                                on this website is not official U.S. Government<br>
-                                information and does not represent the views or positions of the U.S. Government or the
-                                Millennium Challenge Corporation.</p>
-                            <strong>Fostering economic growth with better access to electricity and roads.</strong><br>
-                            © Copyright 2024 Millenium Challenge Account Nepal.
-                            <!--<br/> Millennium Challenge Account Nepal Development Board  -->
-                        </div><!-- close .site-info -->
-                    </div>
-
+    <footer id="colophon" class="site-footer navbar-light" role="contentinfo">
+        <div class="container pt-3 pb-3">
+            <div class="row">
+                <div class="col-md-12 text-center">
+                    <div class="site-info">
+                        <p> This website was made possible through a grant given by the people of the United States
+                            to Nepal through the Millennium Challenge Corporation<br>
+                            under the terms of a compact signed between the two countries. The information provided
+                            on this website is not official U.S. Government<br>
+                            information and does not represent the views or positions of the U.S. Government or the
+                            Millennium Challenge Corporation.</p>
+                        <strong>Fostering economic growth with better access to electricity and roads.</strong><br>
+                        © Copyright 2024 Millenium Challenge Account Nepal.
+                        <!--<br/> Millennium Challenge Account Nepal Development Board  -->
+                    </div><!-- close .site-info -->
                 </div>
+
             </div>
-        </footer><!-- #colophon -->
+        </div>
+    </footer><!-- #colophon -->
     </div><!-- #page -->
     <a href="#" class="scrollToTop">
         <i class="fa fa-angle-up"></i>
