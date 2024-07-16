@@ -2004,10 +2004,13 @@
                         </li>
                         <li id="menu-item-2116"
                             class="nav-item menu-item menu-item-type-post_type menu-item-object-page menu-item-2116"><a
-                                title="FAQs" href="https://mcanp.org/en/faqs/" class="nav-link">FAQs</a></li>
+                                title="FAQs" href="{{ route('faq.index', ['locale' => config('app.locale')]) }}"
+                                class="nav-link">FAQs</a></li>
                         <li id="menu-item-2109"
                             class="nav-item menu-item menu-item-type-post_type menu-item-object-page menu-item-2109"><a
-                                title="Contact" href="https://mcanp.org/en/contact/" class="nav-link">Contact</a>
+                                title="Contact"
+                                href="{{ route('contact.index', ['locale' => config('app.locale')]) }}"
+                                class="nav-link">Contact</a>
                         </li>
                     </ul>
                 </div>

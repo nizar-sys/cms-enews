@@ -57,6 +57,8 @@ use App\Http\Controllers\Admin\PhotoGalleryController;
 use App\Http\Controllers\Admin\VideoGalleryController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\FaqController;
+use App\Http\Controllers\Frontend\ContactController as FrontendContactController;
+use App\Http\Controllers\frontend\FaqController as FrontendFaqController;
 use App\Http\Controllers\JobsController;
 use App\Http\Controllers\McaNepal\BoardOfDirectorController;
 use App\Http\Controllers\McaNepal\ExecutiveTeamController;
@@ -292,4 +294,6 @@ Route::prefix('{locale}')->group(function () {
     // JOBS
     Route::get('/jobs', [JobsController::class, 'index'])->name('jobs.index');
 
+    Route::get('/faqs', [FrontendFaqController::class, 'index'])->name('faq.index');
+    Route::get('/contacts', [FrontendContactController::class, 'index'])->name('contact.index');
 });
