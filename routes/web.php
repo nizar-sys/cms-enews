@@ -65,6 +65,7 @@ use App\Http\Controllers\JobsController;
 use App\Http\Controllers\McaNepal\BoardOfDirectorController;
 use App\Http\Controllers\McaNepal\ExecutiveTeamController;
 use App\Http\Controllers\McaNepal\OrganizationalChartController;
+use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Artisan;
 
 use Illuminate\Support\Facades\Route;
@@ -265,6 +266,14 @@ Route::group(['middleware' => ['auth'], 'prefix' => 'admin', 'as' => 'admin.'], 
     Route::resource('hero', HeroController::class);
 });
 
+Route::get('/{locale}', function ($locale) {
+    if (!in_array($locale, ['en', 'pt'])) {
+        abort(404);
+    }
+    session(['locale' => $locale]);
+    App::setLocale($locale);
+    return redirect()->route('home');
+});
 Route::prefix('{locale}')->group(function () {
 
     // MCA-NEPAL

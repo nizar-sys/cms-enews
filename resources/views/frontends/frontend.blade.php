@@ -8,13 +8,13 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <link rel="profile" href="http://gmpg.org/xfn/11">
     <link rel="pingback" href="https://mcanp.org/en/xmlrpc.php">
-    <title>Millenium Challenge Account Nepal - Millenium Challenge Account Nepal</title>
+    <title>{{ __('header.app_name') }} - {{ __('header.app_name') }}</title>
     <meta name="robots" content="max-image-preview:large">
     <link rel="dns-prefetch" href="//fonts.googleapis.com">
     <link rel="dns-prefetch" href="//use.fontawesome.com">
-    <link rel="alternate" type="application/rss+xml" title="Millenium Challenge Account Nepal » Feed"
+    <link rel="alternate" type="application/rss+xml" title="{{ __('header.app_name') }} » Feed"
         href="https://mcanp.org/en/feed/">
-    <link rel="alternate" type="application/rss+xml" title="Millenium Challenge Account Nepal » Comments Feed"
+    <link rel="alternate" type="application/rss+xml" title="{{ __('header.app_name') }} » Comments Feed"
         href="https://mcanp.org/en/comments/feed/">
 
     {{-- @vite(['resources/css/app.css','resources/js/app.js'])  --}}
@@ -1758,7 +1758,7 @@
 
 
                                 <span class="year" id="year">4</span>
-                                <div class="smalltext">Year</div>
+                                <div class="smalltext">{{ __('header.year') }}</div>
 
 
                             </div>
@@ -1766,7 +1766,7 @@
 
 
                                 <span class="days" id="month">1</span>
-                                <div class="smalltext">Month</div>
+                                <div class="smalltext">{{ __('header.month') }}</div>
 
 
                             </div>
@@ -1774,7 +1774,7 @@
 
 
                                 <span class="days" id="days">18</span>
-                                <div class="smalltext">Days</div>
+                                <div class="smalltext">{{ __('header.days') }}</div>
 
 
                             </div>
@@ -1782,7 +1782,7 @@
 
 
                                 <span class="hours" id="hour">7</span>
-                                <div class="smalltext">Hours</div>
+                                <div class="smalltext">{{ __('header.hours') }}</div>
 
 
                             </div>
@@ -1790,7 +1790,7 @@
 
 
                                 <span class="minutes" id="minute">58</span>
-                                <div class="smalltext">Minutes</div>
+                                <div class="smalltext">{{ __('header.minutes') }}</div>
 
 
                             </div>
@@ -1799,7 +1799,7 @@
 
 
                                 <span class="seconds" id="second">46</span>
-                                <div class="smalltext">Seconds</div>
+                                <div class="smalltext">{{ __('header.seconds') }}</div>
 
                             </div>
 
@@ -1813,17 +1813,19 @@
                             <div id="wrap">
                                 <form method="get" role="search" action="">
                                     <input id="search" name="s" type="text"
-                                        placeholder="What are you looking for ?" value="" autocomplete="off">
+                                        placeholder="{{ __('header.what_are_you_looking_for') }}" value=""
+                                        autocomplete="off">
                                     <input id="search_submit" value="submit" type="submit">
                                 </form>
                             </div>
                         </li>
                         <li><a class="btn btn-danger report-fraud" href="https://oig.usaid.gov/report-fraud"
-                                target="_blank">Report Fraud</a></li>
-                        <li><a href="https://www.mcanp.org/"> NP</a></li>
-
-
-
+                                target="_blank">{{ __('header.report_fraud') }}</a></li>
+                        <li>
+                            <a href="{{ url(app()->getLocale() === 'pt' ? '/en' : '/pt') }}">
+                                {{ app()->getLocale() === 'pt' ? 'EN' : 'PT' }}
+                            </a>
+                        </li>
                     </ul>
                 </div>
             </nav>
@@ -1832,7 +1834,7 @@
                 <div class="col-md-4 col-lg-4 col-sm-4 col-nav text-left">
                     <a href="#" class="logo-text logo-mca">
                         <img width="90" src="{{ $generalSetting?->left_icon }}"
-                            alt="Millenium Challenge Account Nepal">
+                            alt="{{ __('header.app_name') }}">
                     </a>
                 </div>
                 <div class="col-md-4 col-lg-4 col-sm-4 col-nav text-center">
@@ -1857,162 +1859,166 @@
                     <ul id="menu-primary-menu" class="navbar-nav">
                         <li id="menu-item-2107"
                             class="nav-item menu-item menu-item-type-custom menu-item-object-custom current-menu-item current_page_item menu-item-home menu-item-2107 {{ setNavbarActive(['home']) }} active">
-                            <a title="Home" href="{{ route('home') }}" class="nav-link">Home</a>
+                            <a title="Home" href="{{ route('home') }}"
+                                class="nav-link">{{ __('header.home') }}</a>
                         </li>
                         <li id="menu-item-2120"
                             class="nav-item menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-2120 dropdown {{ setNavbarActive(['mca-nepal.board-of-director', 'mca-nepal.executive-team', 'mca-nepal.organizational-chart']) }}">
-                            <a title="MCA-Nepal" href="#" data-toggle="dropdown"
-                                class="dropdown-toggle nav-link" aria-haspopup="true">MCA-Nepal <span
-                                    class="caret"></span></a>
+                            <a title="{{ __('header.mca_nepal') }}" href="#" data-toggle="dropdown"
+                                class="dropdown-toggle nav-link" aria-haspopup="true">{{ __('header.mca_nepal') }}
+                                <span class="caret"></span></a>
                             <ul role="menu" class=" dropdown-menu">
                                 <li id="menu-item-2123"
                                     class="nav-item menu-item menu-item-type-post_type menu-item-object-page menu-item-2123 {{ setSubNavbarActive(['mca-nepal.board-of-director']) }}">
-                                    <a title="Board of Directors"
+                                    <a title="{{ __('header.board_of_directors') }}"
                                         href="{{ route('mca-nepal.board-of-director', ['locale' => config('app.locale')]) }}"
-                                        class="dropdown-item">Board of Directors</a>
+                                        class="dropdown-item">{{ __('header.board_of_directors') }}</a>
                                 </li>
                                 <li id="menu-item-2121"
                                     class="nav-item menu-item menu-item-type-post_type menu-item-object-page menu-item-2121 {{ setSubNavbarActive(['mca-nepal.executive-team']) }}">
-                                    <a title="Executive team"
+                                    <a title="{{ __('header.executive_team') }}"
                                         href="{{ route('mca-nepal.executive-team', ['locale' => config('app.locale')]) }}"
-                                        class="dropdown-item">Executive team</a>
+                                        class="dropdown-item">{{ __('header.executive_team') }}</a>
                                 </li>
                                 <li id="menu-item-2124"
                                     class="nav-item menu-item menu-item-type-post_type menu-item-object-page menu-item-2124 {{ setSubNavbarActive(['mca-nepal.organizational-chart']) }}">
-                                    <a title="Organizational Chart"
+                                    <a title="{{ __('header.organizational_chart') }}"
                                         href="{{ route('mca-nepal.organizational-chart', ['locale' => config('app.locale')]) }}"
-                                        class="dropdown-item">Organizational Chart</a>
+                                        class="dropdown-item">{{ __('header.organizational_chart') }}</a>
                                 </li>
                             </ul>
                         </li>
                         <li id="menu-item-2142"
                             class="nav-item menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-2142 dropdown {{ setNavbarActive(['project-category']) }}">
-                            <a title="Projects" href="#" data-toggle="dropdown"
-                                class="dropdown-toggle nav-link" aria-haspopup="true">Projects <span
-                                    class="caret"></span></a>
+                            <a title="{{ __('header.projects') }}" href="#" data-toggle="dropdown"
+                                class="dropdown-toggle nav-link" aria-haspopup="true">{{ __('header.projects') }}
+                                <span class="caret"></span></a>
                             <ul role="menu" class=" dropdown-menu">
                                 @foreach ($projectCategories as $projectCategory)
                                     <li id="menu-item-{{ $loop->iteration }}"
                                         class="nav-item menu-item menu-item-type-post_type menu-item-object-page menu-item-{{ $loop->iteration }} {{ setSubSlugNavbarActive(['project-category'], $projectCategory->slug) }}">
-                                        <a title="{{ $projectCategory->name }}"
+                                        <a title="{{ __('app.' . $projectCategory->name) }}"
                                             href="{{ route('project-category', ['locale' => config('app.locale'), 'slugCategory' => $projectCategory->slug]) }}"
-                                            class="dropdown-item">{{ $projectCategory->name }}</a>
+                                            class="dropdown-item">{{ __('app.' . $projectCategory->name) }}</a>
                                     </li>
                                 @endforeach
                             </ul>
                         </li>
                         <li id="menu-item-2110"
                             class="nav-item menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-2110 dropdown {{ setNavbarActive(['document-category']) }}">
-                            <a title="Documents &amp; Reports" href="#" data-toggle="dropdown"
-                                class="dropdown-toggle nav-link" aria-haspopup="true">Documents &amp; Reports <span
+                            <a title="{{ __('header.documents_reports') }}" href="#" data-toggle="dropdown"
+                                class="dropdown-toggle nav-link"
+                                aria-haspopup="true">{{ __('header.documents_reports') }} <span
                                     class="caret"></span></a>
                             <ul role="menu" class=" dropdown-menu">
                                 @foreach ($documentsReportsCategories as $documentReportCategory)
                                     <li id="menu-item-{{ $loop->iteration }}"
                                         class="nav-item menu-item menu-item-type-post_type menu-item-object-page menu-item-2112 {{ setSubSlugNavbarActive(['document-category'], $documentReportCategory->slug) }}">
-                                        <a title="{{ $documentReportCategory->name }}"
+                                        <a title="{{ __('app.' . $documentReportCategory->name) }}"
                                             href="{{ route('document-category', ['locale' => config('app.locale'), 'slugCategory' => $documentReportCategory->slug]) }}"
-                                            class="dropdown-item">{{ $documentReportCategory->name }}</a>
+                                            class="dropdown-item">{{ __('app.' . $documentReportCategory->name) }}</a>
                                     </li>
                                 @endforeach
                             </ul>
                         </li>
                         <li id="menu-item-2127"
                             class="nav-item menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-2127 dropdown {{ setNavbarActive(['articles-interviews', 'notices', 'press-releases', 'photo-gallery', 'video-gallery']) }}">
-                            <a title="Media/Notices" href="#" data-toggle="dropdown"
-                                class="dropdown-toggle nav-link" aria-haspopup="true">Media/Notices <span
+                            <a title="{{ __('header.media_notices') }}" href="#" data-toggle="dropdown"
+                                class="dropdown-toggle nav-link"
+                                aria-haspopup="true">{{ __('header.media_notices') }} <span
                                     class="caret"></span></a>
                             <ul role="menu" class=" dropdown-menu">
                                 <li id="menu-item-2128"
                                     class="nav-item menu-item menu-item-type-post_type menu-item-object-page menu-item-2128">
-                                    <a title="News" href="https://mcanp.org/en/media-notices/news/"
-                                        class="dropdown-item">News</a>
+                                    <a title="{{ __('app.News') }}" href="https://mcanp.org/en/media-notices/news/"
+                                        class="dropdown-item">{{ __('app.News') }}</a>
                                 </li>
                                 <li id="menu-item-2344"
                                     class="nav-item menu-item menu-item-type-post_type menu-item-object-page menu-item-2344 {{ setNavbarActive(['community-voices']) }}">
-                                    <a title="Community Voice"
+                                    <a title="{{ __('app.Community Voice') }}"
                                         href="{{ route('community-voices', ['locale' => config('app.locale')]) }}"
-                                        class="dropdown-item">Community Voice</a>
+                                        class="dropdown-item">{{ __('app.Community Voice') }}</a>
                                 </li>
                                 <li id="menu-item-2302"
                                     class="nav-item menu-item menu-item-type-post_type menu-item-object-page menu-item-2302 {{ setSubNavbarActive(['articles-interviews']) }}">
-                                    <a title="Articles/Interviews"
+                                    <a title="{{ __('app.Articles/Interviews') }}"
                                         href="{{ route('articles-interviews', ['locale' => config('app.locale')]) }}"
-                                        class="dropdown-item">Articles/Interviews</a>
+                                        class="dropdown-item">{{ __('app.Articles/Interviews') }}</a>
                                 </li>
                                 <li id="menu-item-2235"
                                     class="nav-item menu-item menu-item-type-post_type menu-item-object-page menu-item-2235 {{ setSubNavbarActive(['notices']) }}">
-                                    <a title="Notice"
+                                    <a title="{{ __('app.Notice') }}"
                                         href="{{ route('notices', ['locale' => config('app.locale')]) }}"
-                                        class="dropdown-item">Notice</a>
+                                        class="dropdown-item">{{ __('app.Notice') }}</a>
                                 </li>
                                 <li id="menu-item-2130"
                                     class="nav-item menu-item menu-item-type-post_type menu-item-object-page menu-item-2130 {{ setSubNavbarActive(['press-releases']) }}">
-                                    <a title="Press Releases"
+                                    <a title="{{ __('app.Press Releases') }}"
                                         href="{{ route('press-releases', ['locale' => config('app.locale')]) }}"
-                                        class="dropdown-item">Press Releases</a>
+                                        class="dropdown-item">{{ __('app.Press Releases') }}</a>
                                 </li>
                                 <li id="menu-item-2129"
                                     class="nav-item menu-item menu-item-type-post_type menu-item-object-page menu-item-2129 {{ setSubNavbarActive(['photo-gallery']) }}">
-                                    <a title="Photo Gallery"
+                                    <a title="{{ __('app.Photo Gallery') }}"
                                         href="{{ route('photo-gallery', ['locale' => config('app.locale')]) }}"
-                                        class="dropdown-item">Photo Gallery</a>
+                                        class="dropdown-item">{{ __('app.Photo Gallery') }}</a>
                                 </li>
                                 <li id="menu-item-2211"
                                     class="nav-item menu-item menu-item-type-post_type menu-item-object-page menu-item-2211 {{ setSubNavbarActive(['video-gallery']) }}">
-                                    <a title="Video Gallery"
+                                    <a title="{{ __('app.Video Gallery') }}"
                                         href="{{ route('video-gallery', ['locale' => config('app.locale')]) }}"
-                                        class="dropdown-item">Video Gallery</a>
+                                        class="dropdown-item">{{ __('app.Video Gallery') }}</a>
                                 </li>
                             </ul>
                         </li>
                         <li id="menu-item-2135"
                             class="nav-item menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-2135 dropdown {{ setNavbarActive(['procurement-notice', 'guidelines', 'procurement-bid-challenge-systems', 'procurement-contract-award-notices']) }}">
-                            <a title="Procurement" href="#" data-toggle="dropdown"
-                                class="dropdown-toggle nav-link" aria-haspopup="true">Procurement <span
-                                    class="caret"></span></a>
+                            <a title="{{ __('header.procurement') }}" href="#" data-toggle="dropdown"
+                                class="dropdown-toggle nav-link" aria-haspopup="true">{{ __('header.procurement') }}
+                                <span class="caret"></span></a>
                             <ul role="menu" class=" dropdown-menu">
                                 <li id="menu-item-2140"
                                     class="nav-item menu-item menu-item-type-post_type menu-item-object-page menu-item-2140 {{ setSubNavbarActive(['procurement-notice']) }}">
-                                    <a title="Procurement Notices"
+                                    <a title="{{ __('header.procurement_notices') }}"
                                         href="{{ route('procurement-notice', ['locale' => config('app.locale')]) }}"
-                                        class="dropdown-item">Procurement Notices</a>
+                                        class="dropdown-item">{{ __('header.procurement_notices') }}</a>
                                 </li>
                                 <li id="menu-item-2238"
                                     class="nav-item menu-item menu-item-type-post_type menu-item-object-page menu-item-2238 {{ setSubNavbarActive(['guidelines']) }}">
-                                    <a title="Procurement Guidelines"
+                                    <a title="{{ __('header.procurement_guidelines') }}"
                                         href="{{ route('guidelines', ['locale' => config('app.locale')]) }}"
-                                        class="dropdown-item">Procurement Guidelines</a>
+                                        class="dropdown-item">{{ __('header.procurement_guidelines') }}</a>
                                 </li>
                                 <li id="menu-item-2136"
                                     class="nav-item menu-item menu-item-type-post_type menu-item-object-page menu-item-2136 {{ setSubNavbarActive(['procurement-bid-challenge-systems']) }}">
-                                    <a title="Bid Challenge System"
+                                    <a title="{{ __('header.bid_challenge_system') }}"
                                         href="{{ route('procurement-bid-challenge-systems', ['locale' => config('app.locale')]) }}"
-                                        class="dropdown-item">Bid Challenge System</a>
+                                        class="dropdown-item">{{ __('header.bid_challenge_system') }}</a>
                                 </li>
                                 <li id="menu-item-2137"
                                     class="nav-item menu-item menu-item-type-post_type menu-item-object-page menu-item-2137 {{ setSubNavbarActive(['procurement-contract-award-notices']) }}">
-                                    <a title="Contract Award Notice"
+                                    <a title="{{ __('header.contract_award_notice') }}"
                                         href="{{ route('procurement-contract-award-notices', ['locale' => config('app.locale')]) }}"
-                                        class="dropdown-item">Contract Award Notice</a>
+                                        class="dropdown-item">{{ __('header.contract_award_notice') }}</a>
                                 </li>
                             </ul>
                         </li>
                         <li id="menu-item-2118"
                             class="nav-item menu-item menu-item-type-post_type menu-item-object-page menu-item-2118 {{ setNavbarActive(['jobs.*']) }}">
-                            <a title="Jobs" href="{{ route('jobs.index', ['locale' => config('app.locale')]) }}"
-                                class="nav-link">Jobs</a>
+                            <a title="{{ __('header.jobs') }}"
+                                href="{{ route('jobs.index', ['locale' => config('app.locale')]) }}"
+                                class="nav-link">{{ __('header.jobs') }}</a>
                         </li>
                         <li id="menu-item-2116"
                             class="nav-item menu-item menu-item-type-post_type menu-item-object-page menu-item-2118"
-                            {{ setNavbarActive(['faq*']) }}><a title="FAQs"
+                            {{ setNavbarActive(['faq*']) }}><a title="{{ __('header.faqs') }}"
                                 href="{{ route('faq.index', ['locale' => config('app.locale')]) }}"
-                                class="nav-link">FAQs</a></li>
+                                class="nav-link">{{ __('header.faqs') }}</a></li>
                         <li id="menu-item-2109"
                             class="nav-item menu-item menu-item-type-post_type menu-item-object-page menu-item-2118"
-                            {{ setNavbarActive(['contact.*']) }}><a title="Contact"
+                            {{ setNavbarActive(['contact.*']) }}><a title="{{ __('header.contact') }}"
                                 href="{{ route('contact.index', ['locale' => config('app.locale')]) }}"
-                                class="nav-link">Contact</a>
+                                class="nav-link">{{ __('header.contact') }}</a>
                         </li>
                     </ul>
                 </div>
@@ -2027,22 +2033,23 @@
                 <div class="row">
                     <div class="col-12 col-md-3">
                         <section id="nav_menu-2" class="widget widget_nav_menu">
-                            <h3 class="widget-title">Quick Menu</h3>
+                            <h3 class="widget-title">{{ __('header.quick_menu') }}</h3>
                             <div class="menu-footer-menu-container">
                                 <ul id="menu-footer-menu" class="menu nav flex-column">
                                     <li id="menu-item-2160"
                                         class="menu-item menu-item-type-post_type menu-item-object-page menu-item-home current-menu-item page_item page-item-13 current_page_item menu-item-2160 nav-item">
-                                        <a href="{{ url('/') }}" aria-current="page" class="nav-link">Home</a>
+                                        <a href="{{ url('/') }}" aria-current="page"
+                                            class="nav-link">{{ __('header.home') }}</a>
                                     </li>
                                     <li id="menu-item-2162"
                                         class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2162 nav-item">
                                         <a href="{{ route('mca-nepal.board-of-director', ['locale' => config('app.locale')]) }}"
-                                            class="nav-link">Board of Directors</a>
+                                            class="nav-link">{{ __('header.board_of_directors') }}</a>
                                     </li>
                                     <li id="menu-item-2161"
                                         class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2161 nav-item">
                                         <a href="{{ route('document-category', ['locale' => config('app.locale'), 'slugCategory' => 'main-agreements']) }}"
-                                            class="nav-link">Main Agreements</a>
+                                            class="nav-link">{{ __('header.main_agreements') }}</a>
                                     </li>
                                     {{-- <li id="menu-item-2163"
                                         class="menu-item menu-item-type-custom menu-item-object-custom menu-item-2163 nav-item">
@@ -2060,22 +2067,22 @@
 
                     <div class="col-12 col-md-3">
                         <section id="block-7" class="widget widget_block">
-                            <h2>Contact Us</h2>
-                            <p><b>Millennium Challenge Account Nepal (MCA-Nepal)</b><br>
+                            <h2>{{ __('header.contact_us') }}</h2>
+                            <p><b>{{ __('header.app_name') }} </b><br>
                                 {{ $contactSetting?->address }}<br>
                                 <i class="fa fa-phone"></i> {{ $contactSetting?->phone }}<br>
                                 <i class="fa fa-envelope"></i> <a
                                     href="mailto:{{ $contactSetting?->email }}">{{ $contactSetting?->email }}</a>
                             </p>
-                            <p><b>Stay Connected</b> <br>
+                            <p><b>{{ __('header.stay_connected') }}</b> <br>
                                 @foreach ($footerSocialLink as $link)
-                                    <a style="font-size:20px" href="{{ $link->url }}"
-                                        target="_blank"><i class="{{ $link->icon }}"></i></a> &nbsp;
+                                    <a style="font-size:20px" href="{{ $link->url }}" target="_blank"><i
+                                            class="{{ $link->icon }}"></i></a> &nbsp;
                                 @endforeach
                             </p>
                         </section>
                     </div>
-                    @if ($footerSettings->count() == 1)
+                    @if ($footerSettings?->count() == 1)
                         @foreach ($footerSettings as $setting)
                             <div class="col-12 col-md-3">
                                 <section id="block-8" class="widget widget_block">
@@ -2095,7 +2102,7 @@
                                 </section>
                             </div>
                         @endforeach
-                    @elseif ($footerSettings->count() == 2)
+                    @elseif ($footerSettings?->count() == 2)
                         @foreach ($footerSettings as $index => $setting)
                             @if ($index == 0)
                                 <div class="col-12 col-md-3">
@@ -2135,7 +2142,7 @@
                         @endforeach
                     @endif
                     <div class="widget">
-                        <h2>For Media Queries</h2>
+                        <h2>{{ __('header.for_media_queries') }}</h2>
                         <p><b>{{ $footerSetting?->media_query_name }}</b></p>
                         <div class="wp-block-image">
                             <figure><img decoding="async" style="border:7px solid #ccc"
@@ -2153,15 +2160,10 @@
             <div class="row">
                 <div class="col-md-12 text-center">
                     <div class="site-info">
-                        <p> This website was made possible through a grant given by the people of the United States
-                            to Nepal through the Millennium Challenge Corporation<br>
-                            under the terms of a compact signed between the two countries. The information provided
-                            on this website is not official U.S. Government<br>
-                            information and does not represent the views or positions of the U.S. Government or the
-                            Millennium Challenge Corporation.</p>
-                        <strong>Fostering economic growth with better access to electricity and roads.</strong><br>
-                        © Copyright 2024 Millenium Challenge Account Nepal.
-                        <!--<br/> Millennium Challenge Account Nepal Development Board  -->
+                        <p> {{ __('header.footer_text') }}</p>
+                        <strong>{{ __('header.footer_slogan') }}.</strong><br>
+                        © Copyright {{ date('Y') }} {{ __('header.app_name') }}.
+                        <!--<br/> {{ __('header.app_name') }} Development Board  -->
                     </div><!-- close .site-info -->
                 </div>
 

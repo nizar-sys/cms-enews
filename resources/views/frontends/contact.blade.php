@@ -15,7 +15,7 @@
                             </header><!-- .entry-header -->
 
                             <div class="entry-content">
-                                <p>{{ $contact->address }}<br />
+                                <p>{{ $contact?->address }}<br />
                                     <i class="fa fa-phone"> </i> Call: {{ $contact?->phone }}<br />
                                     <i class="fa fa-envelope"></i> Email: {{ $contact?->email }}</a><br /><br />
                                 </p>
