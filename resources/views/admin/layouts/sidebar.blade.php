@@ -223,7 +223,7 @@
                 <ul class="dropdown-menu" style="display: none;">
                     <li class="{{ setSidebarActive(['admin.job-section-setting.index']) }}">
                         <a class="nav-link"
-                            href="{{ route('admin.job-section-setting.index', ['locale' => config('app.locale')]) }}">Section
+                            href="{{ route('admin.job-section-setting.index', ['locale' => session('locale', 'en')]) }}">Section
                             Settings</a>
                     </li>
                     <li class="{{ setSidebarActive(['admin.job-lists*']) }}">

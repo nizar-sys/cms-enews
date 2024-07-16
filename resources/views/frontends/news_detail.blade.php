@@ -1,61 +1,48 @@
 @extends('frontends.frontend')
 
 @section('content')
-    <div id="content" class="site-content" style="margin-top: 15rem">
+    <div id="content" class="site-content" style="margin-top: 10rem">
         <div class="container">
             <div class="row">
 
                 <section id="primary" class="content-area col-sm-12 col-lg-8">
                     <main id="main" class="site-main" role="main">
 
-                        <article id="post-329" class="post-329 cca type-cca status-publish has-post-thumbnail hentry">
+
+                        <article id="post-2761" class="post-2761 news type-news status-publish hentry">
                             <div class="post-thumbnail">
-                                <img width="960" height="540" src="{{ asset($project->image) }}"
-                                    class="attachment-post-thumbnail size-post-thumbnail wp-post-image" alt=""
-                                    decoding="async" fetchpriority="high" sizes="(max-width: 960px) 100vw, 960px">
                             </div>
-                            <header class="entry-header mt-2">
-                                <h1 class="entry-title">{{ $project->name }}</h1>
+                            <header class="entry-header">
+                                <h1 class="entry-title">{{ $news->title }}</h1>
                             </header><!-- .entry-header -->
                             <div class="entry-content">
-                                {!! $project->description !!}
+                                {!! $news->description !!}
                             </div><!-- .entry-content -->
 
                             <footer class="entry-footer">
                             </footer><!-- .entry-footer -->
                         </article><!-- #post-## -->
 
-                        @if ($prevProject || $nextProject)
+                        @if ($nextNews || $prevNews)
                             <nav class="navigation post-navigation" aria-label="Posts">
                                 <h2 class="screen-reader-text">Post navigation</h2>
                                 <div class="nav-links">
-                                    @if ($prevProject)
+                                    @if ($prevNews)
                                         <div class="nav-previous"><a
-                                                href="{{ route('project-detail', [
-                                                    'locale' => 'en',
-                                                    'slugCategory' => Str::of($project->category->slug)->explode('-')->map(function ($segment) {
-                                                            return Str::substr($segment, 0, 1);
-                                                        })->implode(''),
-                                                    'slugProject' => str($prevProject->name)->slug(),
-                                                ]) }}"
-                                                rel="prev">{{ $prevProject->name }}</a></div>
+                                                href="{{ route('news-detail', ['locale' => session('locale', 'en'), 'new' => $prevNews->id]) }}"
+                                                rel="prev">{{ $prevNews->title }}</a></div>
                                     @endif
 
-                                    @if ($nextProject)
+                                    @if ($nextNews)
                                         <div class="nav-next"><a
-                                                href="{{ route('project-detail', [
-                                                    'locale' => 'en',
-                                                    'slugCategory' => Str::of($project->category->slug)->explode('-')->map(function ($segment) {
-                                                            return Str::substr($segment, 0, 1);
-                                                        })->implode(''),
-                                                    'slugProject' => str($nextProject->name)->slug(),
-                                                ]) }}"
-                                                rel="next">{{ $nextProject->name }}</a></div>
+                                                href="{{ route('news-detail', ['locale' => session('locale', 'en'), 'new' => $nextNews->id]) }}"
+                                                rel="next">{{ $nextNews->title }}</a></div>
                                     @endif
                                 </div>
                             </nav>
                         @endif
-                    </main>
+
+                    </main><!-- #main -->
                 </section><!-- #primary -->
 
 
@@ -75,6 +62,7 @@
                                         <a class="newspost-title"
                                             href="{{ route('news-detail', ['locale' => session('locale', 'en'), 'new' => $latestNew->id]) }}">{{ $latestNew->title }}</a>
                                     </li>
+                                    
                                 @endforeach
 
                             </ul>

@@ -1871,19 +1871,19 @@
                                 <li id="menu-item-2123"
                                     class="nav-item menu-item menu-item-type-post_type menu-item-object-page menu-item-2123 {{ setSubNavbarActive(['mca-nepal.board-of-director']) }}">
                                     <a title="{{ __('header.board_of_directors') }}"
-                                        href="{{ route('mca-nepal.board-of-director', ['locale' => config('app.locale')]) }}"
+                                        href="{{ route('mca-nepal.board-of-director', ['locale' => session('locale', 'en')]) }}"
                                         class="dropdown-item">{{ __('header.board_of_directors') }}</a>
                                 </li>
                                 <li id="menu-item-2121"
                                     class="nav-item menu-item menu-item-type-post_type menu-item-object-page menu-item-2121 {{ setSubNavbarActive(['mca-nepal.executive-team']) }}">
                                     <a title="{{ __('header.executive_team') }}"
-                                        href="{{ route('mca-nepal.executive-team', ['locale' => config('app.locale')]) }}"
+                                        href="{{ route('mca-nepal.executive-team', ['locale' => session('locale', 'en')]) }}"
                                         class="dropdown-item">{{ __('header.executive_team') }}</a>
                                 </li>
                                 <li id="menu-item-2124"
                                     class="nav-item menu-item menu-item-type-post_type menu-item-object-page menu-item-2124 {{ setSubNavbarActive(['mca-nepal.organizational-chart']) }}">
                                     <a title="{{ __('header.organizational_chart') }}"
-                                        href="{{ route('mca-nepal.organizational-chart', ['locale' => config('app.locale')]) }}"
+                                        href="{{ route('mca-nepal.organizational-chart', ['locale' => session('locale', 'en')]) }}"
                                         class="dropdown-item">{{ __('header.organizational_chart') }}</a>
                                 </li>
                             </ul>
@@ -1898,7 +1898,7 @@
                                     <li id="menu-item-{{ $loop->iteration }}"
                                         class="nav-item menu-item menu-item-type-post_type menu-item-object-page menu-item-{{ $loop->iteration }} {{ setSubSlugNavbarActive(['project-category'], $projectCategory->slug) }}">
                                         <a title="{{ __('app.' . $projectCategory->name) }}"
-                                            href="{{ route('project-category', ['locale' => config('app.locale'), 'slugCategory' => $projectCategory->slug]) }}"
+                                            href="{{ route('project-category', ['locale' => session('locale', 'en'), 'slugCategory' => $projectCategory->slug]) }}"
                                             class="dropdown-item">{{ __('app.' . $projectCategory->name) }}</a>
                                     </li>
                                 @endforeach
@@ -1915,7 +1915,7 @@
                                     <li id="menu-item-{{ $loop->iteration }}"
                                         class="nav-item menu-item menu-item-type-post_type menu-item-object-page menu-item-2112 {{ setSubSlugNavbarActive(['document-category'], $documentReportCategory->slug) }}">
                                         <a title="{{ __('app.' . $documentReportCategory->name) }}"
-                                            href="{{ route('document-category', ['locale' => config('app.locale'), 'slugCategory' => $documentReportCategory->slug]) }}"
+                                            href="{{ route('document-category', ['locale' => session('locale', 'en'), 'slugCategory' => $documentReportCategory->slug]) }}"
                                             class="dropdown-item">{{ __('app.' . $documentReportCategory->name) }}</a>
                                     </li>
                                 @endforeach
@@ -1930,43 +1930,43 @@
                             <ul role="menu" class=" dropdown-menu">
                                 <li id="menu-item-2128"
                                     class="nav-item menu-item menu-item-type-post_type menu-item-object-page menu-item-2128">
-                                    <a title="{{ __('app.News') }}" href="https://mcanp.org/en/media-notices/news/"
+                                    <a title="{{ __('app.News') }}" href="{{ route('news', ['locale' => session('locale', 'en')]) }}"
                                         class="dropdown-item">{{ __('app.News') }}</a>
                                 </li>
                                 <li id="menu-item-2344"
                                     class="nav-item menu-item menu-item-type-post_type menu-item-object-page menu-item-2344 {{ setNavbarActive(['community-voices']) }}">
                                     <a title="{{ __('app.Community Voice') }}"
-                                        href="{{ route('community-voices', ['locale' => config('app.locale')]) }}"
+                                        href="{{ route('community-voices', ['locale' => session('locale', 'en')]) }}"
                                         class="dropdown-item">{{ __('app.Community Voice') }}</a>
                                 </li>
                                 <li id="menu-item-2302"
                                     class="nav-item menu-item menu-item-type-post_type menu-item-object-page menu-item-2302 {{ setSubNavbarActive(['articles-interviews']) }}">
                                     <a title="{{ __('app.Articles/Interviews') }}"
-                                        href="{{ route('articles-interviews', ['locale' => config('app.locale')]) }}"
+                                        href="{{ route('articles-interviews', ['locale' => session('locale', 'en')]) }}"
                                         class="dropdown-item">{{ __('app.Articles/Interviews') }}</a>
                                 </li>
                                 <li id="menu-item-2235"
                                     class="nav-item menu-item menu-item-type-post_type menu-item-object-page menu-item-2235 {{ setSubNavbarActive(['notices']) }}">
                                     <a title="{{ __('app.Notice') }}"
-                                        href="{{ route('notices', ['locale' => config('app.locale')]) }}"
+                                        href="{{ route('notices', ['locale' => session('locale', 'en')]) }}"
                                         class="dropdown-item">{{ __('app.Notice') }}</a>
                                 </li>
                                 <li id="menu-item-2130"
                                     class="nav-item menu-item menu-item-type-post_type menu-item-object-page menu-item-2130 {{ setSubNavbarActive(['press-releases']) }}">
                                     <a title="{{ __('app.Press Releases') }}"
-                                        href="{{ route('press-releases', ['locale' => config('app.locale')]) }}"
+                                        href="{{ route('press-releases', ['locale' => session('locale', 'en')]) }}"
                                         class="dropdown-item">{{ __('app.Press Releases') }}</a>
                                 </li>
                                 <li id="menu-item-2129"
                                     class="nav-item menu-item menu-item-type-post_type menu-item-object-page menu-item-2129 {{ setSubNavbarActive(['photo-gallery']) }}">
                                     <a title="{{ __('app.Photo Gallery') }}"
-                                        href="{{ route('photo-gallery', ['locale' => config('app.locale')]) }}"
+                                        href="{{ route('photo-gallery', ['locale' => session('locale', 'en')]) }}"
                                         class="dropdown-item">{{ __('app.Photo Gallery') }}</a>
                                 </li>
                                 <li id="menu-item-2211"
                                     class="nav-item menu-item menu-item-type-post_type menu-item-object-page menu-item-2211 {{ setSubNavbarActive(['video-gallery']) }}">
                                     <a title="{{ __('app.Video Gallery') }}"
-                                        href="{{ route('video-gallery', ['locale' => config('app.locale')]) }}"
+                                        href="{{ route('video-gallery', ['locale' => session('locale', 'en')]) }}"
                                         class="dropdown-item">{{ __('app.Video Gallery') }}</a>
                                 </li>
                             </ul>
@@ -1980,25 +1980,25 @@
                                 <li id="menu-item-2140"
                                     class="nav-item menu-item menu-item-type-post_type menu-item-object-page menu-item-2140 {{ setSubNavbarActive(['procurement-notice']) }}">
                                     <a title="{{ __('header.procurement_notices') }}"
-                                        href="{{ route('procurement-notice', ['locale' => config('app.locale')]) }}"
+                                        href="{{ route('procurement-notice', ['locale' => session('locale', 'en')]) }}"
                                         class="dropdown-item">{{ __('header.procurement_notices') }}</a>
                                 </li>
                                 <li id="menu-item-2238"
                                     class="nav-item menu-item menu-item-type-post_type menu-item-object-page menu-item-2238 {{ setSubNavbarActive(['guidelines']) }}">
                                     <a title="{{ __('header.procurement_guidelines') }}"
-                                        href="{{ route('guidelines', ['locale' => config('app.locale')]) }}"
+                                        href="{{ route('guidelines', ['locale' => session('locale', 'en')]) }}"
                                         class="dropdown-item">{{ __('header.procurement_guidelines') }}</a>
                                 </li>
                                 <li id="menu-item-2136"
                                     class="nav-item menu-item menu-item-type-post_type menu-item-object-page menu-item-2136 {{ setSubNavbarActive(['procurement-bid-challenge-systems']) }}">
                                     <a title="{{ __('header.bid_challenge_system') }}"
-                                        href="{{ route('procurement-bid-challenge-systems', ['locale' => config('app.locale')]) }}"
+                                        href="{{ route('procurement-bid-challenge-systems', ['locale' => session('locale', 'en')]) }}"
                                         class="dropdown-item">{{ __('header.bid_challenge_system') }}</a>
                                 </li>
                                 <li id="menu-item-2137"
                                     class="nav-item menu-item menu-item-type-post_type menu-item-object-page menu-item-2137 {{ setSubNavbarActive(['procurement-contract-award-notices']) }}">
                                     <a title="{{ __('header.contract_award_notice') }}"
-                                        href="{{ route('procurement-contract-award-notices', ['locale' => config('app.locale')]) }}"
+                                        href="{{ route('procurement-contract-award-notices', ['locale' => session('locale', 'en')]) }}"
                                         class="dropdown-item">{{ __('header.contract_award_notice') }}</a>
                                 </li>
                             </ul>
@@ -2006,18 +2006,18 @@
                         <li id="menu-item-2118"
                             class="nav-item menu-item menu-item-type-post_type menu-item-object-page menu-item-2118 {{ setNavbarActive(['jobs.*']) }}">
                             <a title="{{ __('header.jobs') }}"
-                                href="{{ route('jobs.index', ['locale' => config('app.locale')]) }}"
+                                href="{{ route('jobs.index', ['locale' => session('locale', 'en')]) }}"
                                 class="nav-link">{{ __('header.jobs') }}</a>
                         </li>
                         <li id="menu-item-2116"
                             class="nav-item menu-item menu-item-type-post_type menu-item-object-page menu-item-2118"
                             {{ setNavbarActive(['faq*']) }}><a title="{{ __('header.faqs') }}"
-                                href="{{ route('faq.index', ['locale' => config('app.locale')]) }}"
+                                href="{{ route('faq.index', ['locale' => session('locale', 'en')]) }}"
                                 class="nav-link">{{ __('header.faqs') }}</a></li>
                         <li id="menu-item-2109"
                             class="nav-item menu-item menu-item-type-post_type menu-item-object-page menu-item-2118"
                             {{ setNavbarActive(['contact.*']) }}><a title="{{ __('header.contact') }}"
-                                href="{{ route('contact.index', ['locale' => config('app.locale')]) }}"
+                                href="{{ route('contact.index', ['locale' => session('locale', 'en')]) }}"
                                 class="nav-link">{{ __('header.contact') }}</a>
                         </li>
                     </ul>
@@ -2043,12 +2043,12 @@
                                     </li>
                                     <li id="menu-item-2162"
                                         class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2162 nav-item">
-                                        <a href="{{ route('mca-nepal.board-of-director', ['locale' => config('app.locale')]) }}"
+                                        <a href="{{ route('mca-nepal.board-of-director', ['locale' => session('locale', 'en')]) }}"
                                             class="nav-link">{{ __('header.board_of_directors') }}</a>
                                     </li>
                                     <li id="menu-item-2161"
                                         class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2161 nav-item">
-                                        <a href="{{ route('document-category', ['locale' => config('app.locale'), 'slugCategory' => 'main-agreements']) }}"
+                                        <a href="{{ route('document-category', ['locale' => session('locale', 'en'), 'slugCategory' => 'main-agreements']) }}"
                                             class="nav-link">{{ __('header.main_agreements') }}</a>
                                     </li>
                                     {{-- <li id="menu-item-2163"
