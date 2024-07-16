@@ -2,8 +2,10 @@
 
 namespace App\Providers;
 
+use App\Models\Contact;
 use App\Models\DocumentCategory;
 use App\Models\FooterSetting;
+use App\Models\FooterSocialLink;
 use App\Models\GeneralSetting;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Facades\View;
@@ -32,14 +34,10 @@ class AppServiceProvider extends ServiceProvider
 
         View::composer('*', function ($view) {
             $view->with('documentsReportsCategories', DocumentCategory::select(['name', 'slug'])->get());
-        });
-
-        View::composer('*', function ($view) {
             $view->with('generalSetting', GeneralSetting::first());
-        });
-
-        View::composer('*', function ($view) {
-            $view->with('footerSettings', FooterSetting::all());
+            $view->with('footerSetting', FooterSetting::first());
+            $view->with('contactSetting', Contact::first());
+            $view->with('footerSocialLink', FooterSocialLink::get());
         });
     }
 }

@@ -4,9 +4,9 @@
     <section class="section">
         <div class="section-header">
             <div class="section-header-back">
-                <a href="{{ route('admin.hero.index') }}" class="btn btn-icon"><i class="fas fa-arrow-left"></i></a>
+                <a href="{{ route('admin.footer-setting.index') }}" class="btn btn-icon"><i class="fas fa-arrow-left"></i></a>
             </div>
-            <h1>Slider</h1>
+            <h1>Footer Social Link</h1>
 
         </div>
 
@@ -16,46 +16,39 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="card-header">
-                            <h4>Update Slider</h4>
+                            <h4>Create Footer Social Link </h4>
                         </div>
                         <div class="card-body">
-                            <form action="{{ route('admin.hero.update', $hero->id) }}" method="POST"
+                            <form action="{{ route('admin.footer-social.store') }}" method="POST"
                                 enctype="multipart/form-data">
                                 @csrf
-                                @method('PUT')
+
+
 
                                 <div class="form-group row mb-4">
-                                    <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Slider</label>
+                                    <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">
+                                        Icon
+                                    </label>
                                     <div class="col-sm-12 col-md-7">
-                                        <div id="image-preview" class="image-preview">
-                                            <label for="image-upload" id="image-label">Choose File</label>
-                                            <input type="file" name="image" id="image-upload" />
-                                        </div>
+                                        <button name="icon" class="btn btn-warning" role="iconpicker"></button>
                                     </div>
                                 </div>
 
                                 <div class="form-group row mb-4">
                                     <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">
-                                        Title
+                                        Url
                                     </label>
                                     <div class="col-sm-12 col-md-7">
-                                        <input type="text" name="title" class="form-control" value="{{ old('title', $hero->title) }}">
+                                        <input type="text" name="url" class="form-control" value="">
                                     </div>
                                 </div>
 
-                                <div class="form-group row mb-4">
-                                    <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">
-                                        Description
-                                    </label>
-                                    <div class="col-sm-12 col-md-7">
-                                        <textarea name="description" id="" class="summernote" style="height: 100px">{{ $hero->description }}</textarea>
-                                    </div>
-                                </div>
+
 
                                 <div class="form-group row mb-4">
                                     <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3"></label>
                                     <div class="col-sm-12 col-md-7">
-                                        <button class="btn btn-primary">Save</button>
+                                        <button class="btn btn-primary">Create</button>
                                     </div>
                                 </div>
                             </form>
@@ -66,15 +59,3 @@
         </div>
     </section>
 @endsection
-
-@push('scripts')
-    <script>
-        $(document).ready(function() {
-            $('#image-preview').css({
-                'background-image': 'url("{{ asset($hero->image) }}")',
-                'background-size': 'cover',
-                'background-position': 'center center'
-            })
-        });
-    </script>
-@endpush

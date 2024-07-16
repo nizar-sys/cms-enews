@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\DataTables\FaqDataTable;
-use App\Models\faq;
+use App\Models\Faq;
 use Illuminate\Http\Request;
 
 class FaqController extends Controller

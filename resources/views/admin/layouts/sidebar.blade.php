@@ -246,6 +246,23 @@
             </li>
 
             <li class="menu-header">Settings</li>
+
+
+            <li class="nav-item {{ setSidebarActive(['admin.hero.*']) }}">
+                <a href="{{ route('admin.hero.index') }}" class="nav-link"><i
+                        class="fas fa-columns"></i><span>Sliders</span></a>
+            </li>
+
+            <li class="nav-item dropdown {{ setSidebarActive(['admin.footer-social.*']) }}">
+                <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i
+                        class="fas fa-columns"></i>
+                    <span>Footer</span>
+                </a>
+                <ul class="dropdown-menu" style="display: none;">
+                    <li class="{{ setSidebarActive(['admin.footer-social.*']) }}"><a class="nav-link"
+                            href="{{ route('admin.footer-social.index') }}">Social Links</a></li>
+                </ul>
+            </li>
             {{-- Setting --}}
             <li class="{{ setSidebarActive(['admin.setting.*']) }}">
                 <a class="nav-link" href="{{ route('admin.setting.index') }}"><i class="fas fa-cogs"></i>

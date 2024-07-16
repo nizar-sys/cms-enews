@@ -11,9 +11,12 @@ use App\Models\BidChallengeSystem;
 use App\Models\ContractAwardNotice;
 
 use App\Models\DocumentCategory;
+use App\Models\Faq;
 use App\Models\GeneralProcurement;
 use App\Models\GuidelineProcurement;
 use App\Models\GeneralSetting;
+use App\Models\Hero;
+use App\Models\News;
 use App\Models\Notice;
 use App\Models\PhotoGallery;
 use App\Models\PressRelease;
@@ -28,8 +31,14 @@ class HomeController extends Controller
     {
         $projectCategories = ProjectCategory::select('name', 'slug')->get();
         $generalSetting = GeneralSetting::first();
+        $faqs = Faq::select('question', 'answer')->get();
+        $news = News::select('title', 'created_at')->orderBy('created_at', 'desc')->take(2)->get();
+        $communityVoices = CommunityVoice::select('title', 'created_at')->orderBy('created_at', 'desc')->take(2)->get();
+        $procurementNotices = SpesificProcurement::with('files')->select('title', 'created_at', 'date_of_publication', 'updated_at')->orderBy('created_at', 'desc')->take(3)->get();
+        $boardMeetingMinutes = DocumentCategory::with('documentFiles')->where('slug', 'board-meeting-minutes')->first();
+        $heroes = Hero::get();
 
-        return view('frontends.home', compact('projectCategories'));
+        return view('frontends.home', compact('projectCategories', 'generalSetting', 'faqs', 'news', 'communityVoices', 'procurementNotices', 'boardMeetingMinutes', 'heroes'));
     }
 
     public function projectCategory($locale, $slugCategory)

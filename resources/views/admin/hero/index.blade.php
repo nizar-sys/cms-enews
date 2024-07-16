@@ -6,7 +6,7 @@
             <div class="section-header-back">
                 <a href="{{ url('/dashboard') }}" class="btn btn-icon"><i class="fas fa-arrow-left"></i></a>
             </div>
-            <h1>Banner</h1>
+            <h1>Sliders</h1>
 
         </div>
 
@@ -15,7 +15,7 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="card-header">
-                            <h4>Data Banner</h4>
+                            <h4>Sliders</h4>
                             <div class="card-header-action">
                                 <a href="{{ route('admin.hero.create') }}" class="btn btn-success">
                                     Add Data
@@ -29,10 +29,10 @@
                                 <table class="table">
                                     <tr>
                                         <th>No</th>
-                                        <th>Gambar</th>
-                                        <th>Judul</th>
-                                        <th>Deskripsi</th>
-                                        <th>Aksi</th>
+                                        <th>Slider</th>
+                                        <th>Title</th>
+                                        <th>Description</th>
+                                        <th>Actions</th>
                                     </tr>
                                     @foreach ($heroes as $hero)
                                         <tr>
