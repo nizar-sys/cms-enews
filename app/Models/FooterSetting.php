@@ -10,9 +10,11 @@ class FooterSetting extends Model
     use HasFactory;
 
     protected $fillable = [
-        'information_officer_name',
-        'media_query_name',
-        'information_officer_picture',
-        'media_query_picture',
+        'image',
+        'title',
+        'name',
+        'email',
+        'phone',
+        'call'
     ];
 }
