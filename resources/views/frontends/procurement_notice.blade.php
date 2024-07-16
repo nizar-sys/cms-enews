@@ -56,7 +56,7 @@
                                                             @endforeach
                                                         </ol>
 
-                                                        <a href="{{ route('procurement-notice-files', ['locale' => config('app.locale'), 'spesificProcurementId' => $spesificItem->id]) }}"
+                                                        <a href="{{ route('procurement-notice-files', ['locale' => session('locale', 'en'), 'spesificProcurementId' => $spesificItem->id]) }}"
                                                             class="badge badge-danger">Show Files</a>
                                                     </td>
 

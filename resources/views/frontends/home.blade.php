@@ -151,14 +151,14 @@
                                         </div>
                                     </div>
                                     <div class="col-md-4 col-lg-4">
-                                        <h2 class="widget-text">Video Gallery <a
-                                                href="{{ route('video-gallery', ['locale' => config('app.locale')]) }}"
-                                                class="btn btn-danger">View More</a></h2>
+                                        <h2 class="widget-text">{{ __('app.Video Gallery') }} <a
+                                                href="{{ route('video-gallery', ['locale' => session('locale', 'en')]) }}"
+                                                class="btn btn-danger">{{ __('app.View More') }}</a></h2>
                                     </div>
                                     <div class="col-md-4 col-lg-4">
-                                        <h2 class="widget-text">Latest Project Updates <a
-                                                href="{{ route('project-category', ['locale' => config('app.locale'), 'slugCategory' => 'latest-project-updates']) }}"
-                                                class="btn btn-danger">View More</a></h2>
+                                        <h2 class="widget-text">{{ __('app.Latest Project Updates') }} <a
+                                                href="{{ route('project-category', ['locale' => session('locale', 'en'), 'slugCategory' => 'latest-project-updates']) }}"
+                                                class="btn btn-danger">{{ __('app.View More') }}</a></h2>
 
                                     </div>
                                 </div>
@@ -170,8 +170,8 @@
                     <section class="mncap_notices">
                         <div class="row">
                             <div class="col-md-4 col-lg-4 mncap_news">
-                                <h2 class="widget-text">News/Notices <a href="https://mcanp.org/en/media-notices/news/"
-                                        class="btn btn-danger">View More</a></h2>
+                                <h2 class="widget-text">{{ __('app.News/Notices') }} <a href="https://mcanp.org/en/media-notices/news/"
+                                        class="btn btn-danger">{{ __('app.View More') }}</a></h2>
                                 <div class="frontPage-jobs">
                                     <div class="wpnawfree-plugin news-clearfix " id="wpnw-news-1">
 
@@ -200,9 +200,9 @@
 
                                 </div>
                                 <br>
-                                <h2 class="widget-text">Community Voice <a
+                                <h2 class="widget-text">{{ __('app.Community Voice') }} <a
                                         href="https://mcanp.org/en/media-notices/community-voice"
-                                        class="btn btn-danger">View More</a></h2>
+                                        class="btn btn-danger">{{ __('app.View More') }}</a></h2>
                                 <div class="frontPage-jobs">
                                     @foreach ($communityVoices as $voice)
                                         <h2 class="widget-title"><a
@@ -214,9 +214,9 @@
                             </div><!-- #news -->
 
                             <div class="col-md-4 col-lg-4 mncap_procurement">
-                                <h2 class="widget-text">Procurement Notices <a
-                                        href="{{ route('procurement-notice', ['locale' => config('app.locale')]) }}"
-                                        class="btn btn-danger">View More</a></h2>
+                                <h2 class="widget-text">{{ __('app.Procurement Notices') }} <a
+                                        href="{{ route('procurement-notice', ['locale' => session('locale', 'en')]) }}"
+                                        class="btn btn-danger">{{ __('app.View More') }}</a></h2>
                                 <div class="procurement">
                                     @foreach ($procurementNotices as $notice)
                                         <div class="procurement_single">
@@ -227,24 +227,24 @@
                                             <div class="procument_dates">
                                                 <ul>
                                                     <li class="dates posted">
-                                                        Publication Date: <strong>
+                                                        {{ __('app.Publication Date') }}: <strong>
                                                             {{ $notice->date_of_publication }} </strong>
                                                     </li>
                                                     <li class="dates expires">
-                                                        Last Submission Date/Time:
+                                                        {{ __('app.Last Submission Date/Time') }}:
                                                         <strong>{{ $notice->updated_at }}</strong>
                                                     </li>
                                                 </ul>
-                                                <strong>Status</strong>
+                                                <strong>{{ __('app.Status') }}</strong>
                                                 @if ($notice->status == 'open')
                                                     <span class="badge badge-success">
-                                                        Open </span>
+                                                        {{ __('app.Open') }} </span>
                                                 @elseif ($notice->status == 'close')
                                                     <span class="badge badge-danger">
-                                                        Close </span>
+                                                        {{ __('app.Close') }} </span>
                                                 @else
                                                     <span class="badge badge-warning">
-                                                        Draft </span>
+                                                        {{ __('app.Draft') }} </span>
                                                 @endif
 
                                             </div>
@@ -262,16 +262,15 @@
                             </div><!-- #procurement -->
 
                             <div class="col-md-4 col-lg-4 mcanp_minutes">
-                                <h2 class="widget-text">Board Meeting Minutes <a
-                                        href="{{ route('document-category', ['locale' => config('app.locale'), 'slugCategory' => $boardMeetingMinutes?->slug ?? 'board-meeting-minutes']) }}"
-                                        class="btn btn-danger">View
-                                        More</a></h2>
+                                <h2 class="widget-text">{{ __('app.Board Meeting Minutes') }} <a
+                                        href="{{ route('document-category', ['locale' => session('locale', 'en'), 'slugCategory' => $boardMeetingMinutes?->slug ?? 'board-meeting-minutes']) }}"
+                                        class="btn btn-danger">{{ __("app.View More") }}</a></h2>
                                 <div class="minutes_lists">
                                     @foreach ($boardMeetingMinutes->documentFiles as $file)
                                         <div class="minutes_single">
                                             <p class="widget-title">{{ $file->filename }}</p>
                                             <p><a href="{{ asset($file->file_path) }}" title="" target="_blank"
-                                                    class="btn btn-danger"><i class="far fa-file-pdf"></i> View PDF</a>
+                                                    class="btn btn-danger"><i class="far fa-file-pdf"></i> {{ __("app.View PDF") }}</a>
                                             </p>
                                         </div>
                                     @endforeach

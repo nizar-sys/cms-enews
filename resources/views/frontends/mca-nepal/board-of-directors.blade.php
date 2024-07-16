@@ -62,7 +62,7 @@
                                 </ul>
                                 <div class="text-center">
                                     <a class="btn btn-danger"
-                                        href="{{ route('document-category', ['locale' => config('app.locale'), 'slugCategory' => $documentCategory->slug]) }}">View
+                                        href="{{ route('document-category', ['locale' => session('locale', 'en'), 'slugCategory' => $documentCategory->slug]) }}">View
                                         More</a>
                                 </div>
                             </div>

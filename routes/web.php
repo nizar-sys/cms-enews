@@ -266,15 +266,21 @@ Route::group(['middleware' => ['auth'], 'prefix' => 'admin', 'as' => 'admin.'], 
     Route::resource('hero', HeroController::class);
 });
 
-Route::get('/{locale}', function ($locale) {
-    if (!in_array($locale, ['en', 'pt'])) {
-        abort(404);
-    }
-    session(['locale' => $locale]);
-    App::setLocale($locale);
-    return redirect()->route('home');
-});
 Route::prefix('{locale}')->group(function () {
+
+    Route::get('/', function ($locale) {
+        if (!in_array($locale, ['en', 'pt'])) {
+            abort(404);
+        }
+        session(['locale' => $locale]);
+        App::setLocale($locale);
+
+        // history url
+        $url = url()->previous();
+        // regex change segment 1 en or pt to $locale
+        $url = preg_replace('/\/(en|pt)\//', '/' . $locale . '/', $url, 1);
+        return redirect($url);
+    });
 
     // MCA-NEPAL
     Route::prefix('mca-nepal')->name('mca-nepal.')->group(function () {
@@ -304,6 +310,8 @@ Route::prefix('{locale}')->group(function () {
 
     Route::get('/community-voices', [HomeController::class, 'communityVoices'])->name('community-voices');
     Route::get('/community-voices/{slug}', [HomeController::class, 'communityVoiceDetail'])->name('community-voice-detail');
+    Route::get('/news', [HomeController::class, 'newsList'])->name('news');
+    Route::get('/news/{new}', [HomeController::class, 'newsDetail'])->name('news-detail');
 
 
     // JOBS

@@ -61,7 +61,9 @@ class HomeController extends Controller
         $prevProject = $projects->where('id', '<', $project->id)->sortByDesc('id')->first();
         $nextProject = $projects->where('id', '>', $project->id)->sortBy('id')->first();
 
-        return view('frontends.project_detail', compact('project', 'projectCategories', 'prevProject', 'nextProject'));
+        $latestNews = News::select('title', 'created_at', 'id')->orderBy('created_at', 'desc')->take(5)->get();
+
+        return view('frontends.project_detail', compact('project', 'projectCategories', 'prevProject', 'nextProject', 'latestNews'));
     }
 
     public function documentCategory($locale, $slugCategoryDocumentReport)
@@ -173,5 +175,26 @@ class HomeController extends Controller
         $communityVoice = CommunityVoice::where('slug', $slugCommunityVoice)->firstOrFail();
 
         return view('frontends.community_voice_detail', compact('projectCategories', 'communityVoice'));
+    }
+
+    public function newsList($locale)
+    {
+        $projectCategories = ProjectCategory::select('name', 'slug')->get();
+        $news = News::query()->orderBy('created_at', 'desc')->paginate(10);
+
+        return view('frontends.news', compact('projectCategories', 'news'));
+    }
+
+    public function newsDetail($locale, $newsId)
+    {
+        $projectCategories = ProjectCategory::select('name', 'slug')->get();
+        $news = News::where('id', $newsId)->firstOrFail();
+
+        $nextNews = News::where('id', '>', $news->id)->orderBy('id', 'asc')->first();
+        $prevNews = News::where('id', '<', $news->id)->orderBy('id', 'desc')->first();
+
+        $latestNews = News::select('title', 'created_at', 'id')->orderBy('created_at', 'desc')->take(5)->get();
+
+        return view('frontends.news_detail', compact('projectCategories', 'news', 'nextNews', 'prevNews', 'latestNews'));
     }
 }
