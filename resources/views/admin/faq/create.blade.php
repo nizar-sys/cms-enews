@@ -36,7 +36,7 @@
                                         Answer
                                     </label>
                                     <div class="col-sm-12 col-md-7">
-                                        <input type="text" name="answer" class="form-control">
+                                        <textarea name="answer" class="summernote" style="height: 100px"></textarea>
                                     </div>
                                 </div>
 
