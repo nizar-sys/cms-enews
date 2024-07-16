@@ -2003,12 +2003,13 @@
                                 class="nav-link">Jobs</a>
                         </li>
                         <li id="menu-item-2116"
-                            class="nav-item menu-item menu-item-type-post_type menu-item-object-page menu-item-2116"><a
-                                title="FAQs" href="{{ route('faq.index', ['locale' => config('app.locale')]) }}"
+                            class="nav-item menu-item menu-item-type-post_type menu-item-object-page menu-item-2118"
+                            {{ setNavbarActive(['faq*']) }}><a title="FAQs"
+                                href="{{ route('faq.index', ['locale' => config('app.locale')]) }}"
                                 class="nav-link">FAQs</a></li>
                         <li id="menu-item-2109"
-                            class="nav-item menu-item menu-item-type-post_type menu-item-object-page menu-item-2109"><a
-                                title="Contact"
+                            class="nav-item menu-item menu-item-type-post_type menu-item-object-page menu-item-2118"
+                            {{ setNavbarActive(['contact.*']) }}><a title="Contact"
                                 href="{{ route('contact.index', ['locale' => config('app.locale')]) }}"
                                 class="nav-link">Contact</a>
                         </li>
@@ -2080,27 +2081,66 @@
                                     target="_blank"><i class="fab fa-linkedin-square"></i></a></p>
                         </section>
                     </div>
-                    <div class="col-12 col-md-3">
-                        <section id="block-8" class="widget widget_block">
-                            <h2>Information Officer</h2>
-                            <p><b>{{ $footerSetting->information_officer_name }}</b></p>
-                            <div class="wp-block-image">
-                                <figure><img decoding="async" style="border:7px solid #ccc"
-                                        src="{{ $footerSetting->information_officer_picture }}"
-                                        alt="{{ $footerSetting->media_query_name }}" width="127"></figure>
+                    @if ($footerSettings->count() == 1)
+                        @foreach ($footerSettings as $setting)
+                            <div class="col-12 col-md-3">
+                                <section id="block-8" class="widget widget_block">
+                                    <h2>{{ $setting->title }}</h2>
+                                    <p><b>{{ $setting->name }}</b></p>
+                                    <div class="wp-block-image">
+                                        <figure>
+                                            <img decoding="async" style="border:7px solid #ccc"
+                                                src="{{ $setting->images }}" alt="{{ $setting->name }}"
+                                                width="127">
+                                        </figure>
+                                    </div>
+                                    <i class="fa fa-phone"></i>{{ $setting->call }}<br>
+                                    <i class="fa fa-mobile"></i>{{ $setting->phone }}<br>
+                                    <i class="fa fa-envelope"></i> <a
+                                        href="mailto:{{ $setting->email }}">{{ $setting->email }}</a>
+                                </section>
                             </div>
+                        @endforeach
+                    @elseif ($footerSettings->count() == 2)
+                        @foreach ($footerSettings as $index => $setting)
+                            @if ($index == 0)
+                                <div class="col-12 col-md-3">
+                                    <section id="block-8" class="widget widget_block">
+                                        <h2>{{ $setting->title }}</h2>
+                                        <p><b>{{ $setting->name }}</b></p>
+                                        <div class="wp-block-image">
+                                            <figure>
+                                                <img decoding="async" style="border:7px solid #ccc"
+                                                    src="{{ $setting->images }}" alt="{{ $setting->name }}"
+                                                    width="127">
+                                            </figure>
+                                        </div>
+                                        <i class="fa fa-phone"></i>{{ $setting->call }}<br>
+                                        <i class="fa fa-mobile"></i>{{ $setting->phone }}<br>
+                                        <i class="fa fa-envelope"></i> <a
+                                            href="mailto:{{ $setting->email }}">{{ $setting->email }}</a>
+                                    </section>
+                                </div>
+                            @elseif ($index == 1)
+                                <div class="widget">
+                                    <h2>{{ $setting->title }}</h2>
+                                    <p><b>{{ $setting->name }}</b></p>
+                                    <div class="wp-block-image">
+                                        <figure>
+                                            <img decoding="async" style="border:7px solid #ccc"
+                                                src="{{ $setting->images }}" alt="{{ $setting->name }}"
+                                                width="127">
+                                        </figure>
+                                    </div>
+                                    <i class="fa fa-phone"></i>{{ $setting->call }}<br>
+                                    <i class="fa fa-mobile"></i>{{ $setting->phone }}<br>
+                                    <i class="fa fa-envelope"></i> <a
+                                        href="mailto:{{ $setting->email }}">{{ $setting->email }}</a>
+                                </div>
+                            @endif
+                        @endforeach
+                    @endif
 
-                        </section>
-                    </div>
-                    <div class="widget">
-                        <h2>For Media Queries</h2>
-                        <p><b>{{ $footerSetting->media_query_name }}</b></p>
-                        <div class="wp-block-image">
-                            <figure><img decoding="async" style="border:7px solid #ccc"
-                                    src="{{ $footerSetting->media_query_picture }}"
-                                    alt="{{ $footerSetting->media_query_name }}" width="127"></figure>
-                        </div>
-                    </div>
                 </div>
             </div>
         </div>

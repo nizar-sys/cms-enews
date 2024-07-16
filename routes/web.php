@@ -131,7 +131,7 @@ Route::group(['middleware' => ['auth'], 'prefix' => 'admin', 'as' => 'admin.'], 
     Route::resource('seo-setting', SeoSettingController::class);
 
     // Footer Setting
-    Route::resource('footer-setting', FooterSettingController::class)->only(['index', 'update']);
+    Route::resource('footer-setting', FooterSettingController::class);
 
     /**Projects Route**/
     Route::resource('project-categories', ProjectCategoryController::class);

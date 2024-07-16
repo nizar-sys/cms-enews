@@ -13,10 +13,12 @@ return new class extends Migration
     {
         Schema::create('footer_settings', function (Blueprint $table) {
             $table->id();
-            $table->string('information_officer_name')->nullable();
-            $table->string('media_query_name')->nullable();
-            $table->text('information_officer_picture')->nullable();
-            $table->text('media_query_picture')->nullable();
+            $table->text('images')->nullable();
+            $table->string('title')->nullable();
+            $table->string('name')->nullable();
+            $table->string('email')->nullable();
+            $table->string('phone')->nullable();
+            $table->string('call')->nullable();
             $table->timestamps();
         });
     }
