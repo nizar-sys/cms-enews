@@ -30,7 +30,7 @@
                                     </label>
                                     <div class="col-sm-12 col-md-7">
                                         <input type="text" name="title" class="form-control"
-                                            value="{{ old('title', $sectionSetting->title ?? '') }}">
+                                            value="{{ old('title', $sectionSetting?->title ?? '') }}">
                                     </div>
                                 </div>
 
@@ -39,7 +39,7 @@
                                         Description
                                     </label>
                                     <div class="col-sm-12 col-md-7">
-                                        <textarea name="sub_title" id="" class="summernote" style="height: 100px">{{ old('sub_title', $sectionSetting->sub_title ?? '') }}</textarea>
+                                        <textarea name="sub_title" id="" class="summernote" style="height: 100px">{{ old('sub_title', $sectionSetting?->sub_title ?? '') }}</textarea>
                                     </div>
                                 </div>
 

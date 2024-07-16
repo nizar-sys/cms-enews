@@ -64,3 +64,24 @@ function setNavbarActive($route){
     }
   }
 }
+
+function setSubNavbarActive($route, ...$slug){
+  if(is_array($route)){
+    foreach($route as $r){
+      if(request()->routeIs($r)){
+        return 'current-menu-item active';
+      }
+    }
+  }
+}
+
+function setSubSlugNavbarActive($route, $slug){
+  $segment = request()->segment(3);
+  if(is_array($route)){
+    foreach($route as $r){
+      if(request()->routeIs($r) && $segment == $slug){
+        return 'current-menu-item active';
+      }
+    }
+  }
+}

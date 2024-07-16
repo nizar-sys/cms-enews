@@ -13,7 +13,7 @@
                                     <h2>Executive team</h2>
                                     <div class="row">
                                         <div class="col-lg-12 col-md-12">
-                                            <p>{!! $sectionSetting->sub_title !!}</p>
+                                            <p>{!! $sectionSetting?->sub_title !!}</p>
                                         </div>
                                     </div>
 

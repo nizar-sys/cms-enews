@@ -11,11 +11,11 @@
 
                         <article id="post-126" class="post-126 page type-page status-publish hentry">
                             <header class="entry-header">
-                                <h1 class="entry-title">{{ $sectionSetting->title }}</h1>
+                                <h1 class="entry-title">{{ $sectionSetting?->title }}</h1>
                             </header><!-- .entry-header -->
 
                             <div class="entry-content">
-                                {!! $sectionSetting->description !!}
+                                {!! $sectionSetting?->description !!}
                                 <p>&nbsp;</p>
                                 <table class="table table-bordered">
                                     <thead>
