@@ -40,7 +40,7 @@ use App\Http\Controllers\Admin\PortfolioSectionSettingController;
 use App\Http\Controllers\Admin\QualificationController;
 use App\Http\Controllers\Admin\SeoSettingController;
 use App\Http\Controllers\Admin\ArticleController;
-
+use App\Http\Controllers\Admin\FooterSettingController;
 use App\Http\Controllers\Admin\NoticeController;
 
 use App\Http\Controllers\Admin\SpesificProcurementController;
@@ -124,6 +124,9 @@ Route::group(['middleware' => ['auth'], 'prefix' => 'admin', 'as' => 'admin.'], 
 
     /**Seo Setting Route **/
     Route::resource('seo-setting', SeoSettingController::class);
+
+    // Footer Setting
+    Route::resource('footer-setting', FooterSettingController::class)->only(['index', 'update']);
 
     /**Projects Route**/
     Route::resource('project-categories', ProjectCategoryController::class);
@@ -228,7 +231,7 @@ Route::group(['middleware' => ['auth'], 'prefix' => 'admin', 'as' => 'admin.'], 
 
     /**General Procurements Route**/
     Route::prefix('general-procurements-notices/{spesificProcurementsNotice}')->name('general-procurements-notices.')->group(function () {
-        Route::resource('files', GeneralProcurementFileController::class)->except('index');
+        Route::resource('files', GeneralProcurementController::class)->except('index');
     });
     Route::resource('general-procurements-notices', GeneralProcurementController::class);
 

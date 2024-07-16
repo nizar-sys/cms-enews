@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Article;
 use App\Models\DocumentCategory;
 use App\Models\GeneralProcurement;
+use App\Models\GeneralSetting;
 use App\Models\Notice;
 use App\Models\PhotoGallery;
 use App\Models\PressRelease;
@@ -19,6 +20,7 @@ class HomeController extends Controller
     public function index()
     {
         $projectCategories = ProjectCategory::select('name', 'slug')->get();
+        $generalSetting = GeneralSetting::first();
 
         return view('frontends.home', compact('projectCategories'));
     }
