@@ -36,8 +36,7 @@ class AppServiceProvider extends ServiceProvider
         View::composer('*', function ($view) {
             $view->with('documentsReportsCategories', DocumentCategory::select(['name', 'slug'])->get());
             $view->with('generalSetting', GeneralSetting::first());
-            $view->with('footerSettings', FooterSetting::first());
-            $view->with('footerSetting', FooterSetting::first());
+            $view->with('footerSettings', FooterSetting::all());
             $view->with('contactSetting', Contact::first());
             $view->with('footerSocialLink', FooterSocialLink::get());
             $view->with('seoSetting', SeoSetting::first());
