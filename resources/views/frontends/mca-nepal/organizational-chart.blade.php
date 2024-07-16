@@ -11,11 +11,11 @@
 
                         <article id="post-245" class="post-245 page type-page status-publish hentry">
                             <header class="entry-header">
-                                <h1 class="entry-title">{{ $sectionSetting->title ?? 'Organizational Chart' }}</h1>
+                                <h1 class="entry-title">{{ $sectionSetting?->title ?? 'Organizational Chart' }}</h1>
                             </header><!-- .entry-header -->
 
                             <div class="entry-content">
-                                <p>{!! $sectionSetting->sub_title ?? 'No Data' !!}</p>
+                                <p>{!! $sectionSetting?->sub_title ?? 'No Data' !!}</p>
 
 
                                 <div>
