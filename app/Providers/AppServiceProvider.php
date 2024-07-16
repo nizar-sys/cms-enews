@@ -39,7 +39,7 @@ class AppServiceProvider extends ServiceProvider
         });
 
         View::composer('*', function ($view) {
-            $view->with('footerSetting', FooterSetting::first());
+            $view->with('footerSettings', FooterSetting::all());
         });
     }
 }

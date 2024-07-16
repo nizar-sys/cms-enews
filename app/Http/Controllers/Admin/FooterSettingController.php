@@ -2,47 +2,94 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\DataTables\FooterSettingDataTable;
 use App\Http\Controllers\Controller;
 use App\Models\FooterSetting;
 use Illuminate\Http\Request;
 
 class FooterSettingController extends Controller
 {
-    public function index()
+    public function index(FooterSettingDataTable $dataTable)
     {
-        $setting = FooterSetting::first();
-        return view('admin.setting.footer-setting.index', compact('setting'));
+        $footerSettingCount = FooterSetting::count();
+        return $dataTable->render('admin.setting.footer-setting.index', compact('footerSettingCount'));
+    }
+
+    public function create()
+    {
+        $footerSettingsCount = FooterSetting::count();
+
+        if ($footerSettingsCount >= 2) {
+            abort(403, 'You cannot create more than 2 footer settings.');
+        }
+
+        return view('admin.setting.footer-setting.create');
+    }
+
+    public function store(Request $request)
+    {
+        $request->validate([
+            'images' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:50048',
+            'title' => ['required', 'max:200'],
+            'name' => ['required', 'max:200'],
+            'email' => ['required', 'max:200', 'email'],
+            'phone' => 'required',
+            'call' => 'required',
+        ]);
+
+        $imagePath = handleUpload('images');
+
+        $setting = new FooterSetting();
+        $setting->images = $imagePath;
+        $setting->title = $request->title;
+        $setting->name = $request->name;
+        $setting->email = $request->email;
+        $setting->phone = $request->phone;
+        $setting->call = $request->call;
+        $setting->save();
+
+        toastr()->success('Setting Created Successfully', 'Congrats');
+        return redirect()->route('admin.footer-setting.index');
+    }
+
+    public function edit($id)
+    {
+        $footerSetting = FooterSetting::findOrFail($id);
+        return view('admin.setting.footer-setting.edit', compact('footerSetting'));
     }
 
     public function update(Request $request, $id)
     {
         $request->validate([
-            'information_officer_name' => ['required'],
-            'media_query_name' => ['required'],
-            'information_officer_picture' => ['max:5000', 'image'],
-            'media_query_picture' => ['max:5000', 'image'],
+            'images' => 'image|mimes:jpeg,png,jpg,gif,svg|max:50048',
+            'title' => ['required', 'max:200'],
+            'name' => ['required', 'max:200'],
+            'email' => ['required', 'max:200', 'email'],
+            'phone' => 'required',
+            'call' => 'required',
         ]);
 
-        // dd($request->all());
 
-        $setting = FooterSetting::first();
-        $informationOfficerPicture = handleUpload('information_officer_picture', $setting);
-        $mediaQueryPicture = handleUpload('media_query_picture', $setting);
+        $setting = FooterSetting::findOrFail($id);
 
+        $imagePath = handleUpload('images', $setting);
 
-        // create or update general setting 
-        FooterSetting::updateOrCreate(
-            ['id' => $id],
-            [
-                'information_officer_name' => $request->information_officer_name,
-                'media_query_name' => $request->media_query_name,
-                'information_officer_picture' => $informationOfficerPicture,
-                'media_query_picture' => $mediaQueryPicture,
-            ]
-        );
+        $setting->images = (!empty($imagePath) ? $imagePath : $setting->images);
+        $setting->title = $request->title;
+        $setting->name = $request->name;
+        $setting->email = $request->email;
+        $setting->phone = $request->phone;
+        $setting->call = $request->call;
+        $setting->save();
+        toastr()->success('Footer Info Updated Successfully', 'Congrats');
 
-        toastr('Footer Setting Updated Successfully', 'success');
+        return redirect()->route('admin.footer-setting.index');
+    }
 
-        return redirect()->back();
+    public function destroy($id)
+    {
+        $setting = FooterSetting::findOrFail($id);
+        deleteFileIfExist($setting->images);
+        $setting->delete();
     }
 }
