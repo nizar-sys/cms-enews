@@ -5,16 +5,14 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class GeneralSetting extends Model
+class FooterSetting extends Model
 {
     use HasFactory;
 
     protected $fillable = [
-        'logo',
-        'footer_logo',
-        'left_icon',
-        'center_icon',
-        'right_icon',
-        'favicon',
+        'information_officer_name',
+        'media_query_name',
+        'information_officer_picture',
+        'media_query_picture',
     ];
 }
