@@ -1930,7 +1930,8 @@
                             <ul role="menu" class=" dropdown-menu">
                                 <li id="menu-item-2128"
                                     class="nav-item menu-item menu-item-type-post_type menu-item-object-page menu-item-2128">
-                                    <a title="{{ __('app.News') }}" href="{{ route('news', ['locale' => session('locale', 'en')]) }}"
+                                    <a title="{{ __('app.News') }}"
+                                        href="{{ route('news', ['locale' => session('locale', 'en')]) }}"
                                         class="dropdown-item">{{ __('app.News') }}</a>
                                 </li>
                                 <li id="menu-item-2344"
@@ -2051,15 +2052,6 @@
                                         <a href="{{ route('document-category', ['locale' => session('locale', 'en'), 'slugCategory' => 'main-agreements']) }}"
                                             class="nav-link">{{ __('header.main_agreements') }}</a>
                                     </li>
-                                    {{-- <li id="menu-item-2163"
-                                        class="menu-item menu-item-type-custom menu-item-object-custom menu-item-2163 nav-item">
-                                        <a href="https://www.mcc.gov/" class="nav-link">MCC Website</a>
-                                    </li>
-                                    <li id="menu-item-2164"
-                                        class="menu-item menu-item-type-custom menu-item-object-custom menu-item-2164 nav-item">
-                                        <a href="https://oig.usaid.gov/report-fraud" class="nav-link">Report
-                                            Fraud</a>
-                                    </li> --}}
                                 </ul>
                             </div>
                         </section>
@@ -2141,15 +2133,6 @@
                             @endif
                         @endforeach
                     @endif
-                    <div class="widget">
-                        <h2>{{ __('header.for_media_queries') }}</h2>
-                        <p><b>{{ $footerSetting?->media_query_name }}</b></p>
-                        <div class="wp-block-image">
-                            <figure><img decoding="async" style="border:7px solid #ccc"
-                                    src="{{ $footerSetting?->media_query_picture }}"
-                                    alt="{{ $footerSetting?->media_query_name }}" width="127"></figure>
-                        </div>
-                    </div>
                 </div>
             </div>
         </div>
