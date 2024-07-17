@@ -104,7 +104,7 @@
         </div>
         <div class="n2_clear"></div>
     </div>
-    <div id="content" class="site-content" style="margin-top: 6rem">
+    <div id="content" class="site-content" style="margin-top: 1rem">
         <div class="container">
             <div class="row">
 
@@ -156,18 +156,15 @@
                                             <a href="{{ route('video-gallery', ['locale' => session('locale', 'en')]) }}"
                                                 class="btn btn-danger">{{ __('app.View More') }}</a>
                                         </h2>
-                                        @if ($videoGalleries->count() > 0)
-                                            @foreach ($videoGalleries as $video)
-                                                <div class="video-item">
-                                                    <video width="320" height="240" controls>
-                                                        <source src="{{ $video->url }}" type="video/mp4">
+                                        @if ($firstVideo)
+                                            <div class="paoc-image-popup">
+                                                <a class="paoc-popup-click paoc-popup-cust-2682 paoc-popup-image paoc-popup-image"
+                                                    href="javascript:void(0);"><video width="320" height="240" controls
+                                                        class="popupaoc-img">
+                                                        <source src="{{ $firstVideo->url }}" type="video/mp4">
                                                         Your browser does not support the video tag.
                                                     </video>
-                                                    <p>{{ $video->title }}</p>
-                                                </div>
-                                            @endforeach
-                                        @else
-                                            <p>{{ __('app.No Videos Available') }}</p>
+                                            </div>
                                         @endif
                                     </div>
 
@@ -176,6 +173,16 @@
                                         <h2 class="widget-text">{{ __('app.Latest Project Updates') }} <a
                                                 href="{{ route('project-category', ['locale' => session('locale', 'en'), 'slugCategory' => 'latest-project-updates']) }}"
                                                 class="btn btn-danger">{{ __('app.View More') }}</a></h2>
+
+                                        <ul style="list-style:none; padding-left:0;">
+                                            @foreach ($latestProjectsUpdate as $latest)
+                                                <li style="padding-bottom:15px;"><a
+                                                        href="{{ route('project-category', ['locale' => session('locale', 'en'), 'slugCategory' => $latest->slug]) }}"
+                                                        title="{{ $latest->name }}">{{ $latest->name }}</a>
+                                                </li>
+                                            @endforeach
+
+                                        </ul>
 
                                     </div>
                                 </div>
@@ -205,7 +212,7 @@
 
                                                         <div class="post-content-text">
                                                             <h3 class="news-title"><a
-                                                                    href="https://mcanp.org/en/news/mca-nepal-signs-second-400kv-substation-construction-contract/"
+                                                                    href="{{ route('news-detail', ['locale' => session('locale', 'en'), 'new' => $post->id]) }}"
                                                                     rel="bookmark">{{ $post->title }}</a></h3>
                                                         </div>
                                                     </div>
@@ -224,7 +231,7 @@
                                 <div class="frontPage-jobs">
                                     @foreach ($communityVoices as $voice)
                                         <h2 class="widget-title"><a
-                                                href="https://mcanp.org/en/community_voice/aspirations-become-a-reality-for-kamal/">{{ $voice->title }}</a>
+                                                href="{{ route('community-voice-detail', ['locale' => session('locale', 'en'), 'slug' => $voice->slug]) }}">{{ $voice->title }}</a>
                                         </h2>
                                     @endforeach
 
@@ -303,6 +310,38 @@
             </div><!-- .row -->
         </div><!-- .container -->
     </div>
+
+    @if ($firstVideo)
+        <div class="paoc-cb-popup-body paoc-wrap paoc-popup paoc-modal-popup paoc-popup-2682 paoc-popup-image paoc-popup-announcement paoc-popup-announcement-design-1 paoc-design-1 paoc-popup-js"
+            id="paoc-popup-2682-2"
+            data-popup-conf="{&quot;content&quot;:{&quot;target&quot;:&quot;#paoc-popup-2682-2&quot;,&quot;effect&quot;:&quot;fadein&quot;,&quot;positionX&quot;:&quot;center&quot;,&quot;positionY&quot;:&quot;center&quot;,&quot;fullscreen&quot;:false,&quot;speedIn&quot;:500,&quot;speedOut&quot;:250,&quot;close&quot;:false,&quot;animateFrom&quot;:&quot;top&quot;,&quot;animateTo&quot;:&quot;top&quot;},&quot;loader&quot;:{&quot;active&quot;:false,&quot;color&quot;:&quot;#000000&quot;,&quot;speed&quot;:1000},&quot;overlay&quot;:{&quot;active&quot;:true,&quot;color&quot;:&quot;rgba(0, 0, 0, 0.5)&quot;,&quot;close&quot;:false,&quot;opacity&quot;:1}}"
+            data-conf="{&quot;id&quot;:2682,&quot;popup_type&quot;:&quot;image&quot;,&quot;display_type&quot;:&quot;modal&quot;,&quot;disappear&quot;:0,&quot;disappear_mode&quot;:&quot;normal&quot;,&quot;open_delay&quot;:0.299999999999999988897769753748434595763683319091796875,&quot;cookie_prefix&quot;:&quot;paoc_popup&quot;,&quot;cookie_expire&quot;:&quot;&quot;,&quot;cookie_unit&quot;:&quot;day&quot;}"
+            data-id="paoc-popup-2682">
+            <div class="paoc-popup-inr-wrap">
+                <div class="paoc-padding-20 paoc-popup-con-bg">
+                    <div class="paoc-popup-inr">
+                        <div class="paoc-popup-margin paoc-popup-content">
+                            <p>
+                                <iframe loading="lazy" width="560" height="315"
+                                    src="{{ $firstVideo->url }}"
+                                    title="YouTube video player" frameborder="0"
+                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                    allowfullscreen=""></iframe>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <a href="javascript:void(0);" class="paoc-close-popup paoc-popup-close">
+                <svg viewBox="0 0 1792 1792">
+                    <path
+                        d="M1490 1322q0 40-28 68l-136 136q-28 28-68 28t-68-28l-294-294-294 294q-28 28-68 28t-68-28l-136-136q-28-28-28-68t28-68l294-294-294-294q-28-28-28-68t28-68l136-136q28-28 68-28t68 28l294 294 294-294q28-28 68-28t68 28l136 136q28 28 28 68t-28 68l-294 294 294 294q28 28 28 68z">
+                    </path>
+                </svg>
+            </a>
+        </div>
+    @endif
 @endsection
 
 @push('script')

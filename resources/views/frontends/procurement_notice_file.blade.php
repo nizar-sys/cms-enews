@@ -1,12 +1,12 @@
 @extends('frontends.frontend')
 
 @section('content')
-    <div id="content" class="site-content" style="margin-top: 15rem">
+    <div id="content" class="site-content" style="margin-top: 8rem">
         <div class="container">
             <div class="row">
                 <section id="primary" class="content-area col-sm-12 col-lg-12">
                     <header class="entry-header">
-                        <h1 class="entry-title">Procurement Files</h1>
+                        <h1 class="entry-title">{{ __('app.Procurement Files') }}</h1>
                     </header>
 
                     <main id="main" class="site-main" role="main">

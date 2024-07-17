@@ -1,12 +1,12 @@
 @extends('frontends.frontend')
 
 @section('content')
-    <div id="content" class="site-content" style="margin-top: 15rem">
+    <div id="content" class="site-content" style="margin-top: 8rem">
         <div class="container">
             <div class="row">
                 <section id="primary" class="content-area col-sm-12 col-lg-12">
                     <header class="entry-header">
-                        <h1 class="entry-title">Procurement Notices</h1>
+                        <h1 class="entry-title">{{ __('app.Procurement Notices') }}</h1>
                     </header>
 
                     <main id="main" class="site-main" role="main">
@@ -14,10 +14,11 @@
                         <nav>
                             <div class="nav nav-tabs" id="nav-tab" role="tablist">
                                 <a class="nav-link active" id="nav-specific-tab" data-toggle="tab" href="#nav-specific"
-                                    role="tab" aria-controls="nav-specific" aria-selected="false">Specific
-                                    Procurement</a>
+                                    role="tab" aria-controls="nav-specific"
+                                    aria-selected="false">{{ __('app.Spesific Procurement') }}</a>
                                 <a class="nav-link" id="nav-general-tab" data-toggle="tab" href="#nav-general"
-                                    role="tab" aria-controls="nav-general" aria-selected="true">General Procurement</a>
+                                    role="tab" aria-controls="nav-general"
+                                    aria-selected="true">{{ __('app.General Procurement') }}</a>
 
                             </div>
                         </nav>
@@ -32,10 +33,10 @@
                                         <thead>
                                             <tr>
                                                 <th>SN</th>
-                                                <th>Title &amp; ID</th>
-                                                <th>Issued Documents</th>
-                                                <th>Important Date</th>
-                                                <th>Status</th>
+                                                <th>{{ __('app.Title & ID') }}</th>
+                                                <th>{{ __('app.Issued Documents') }}</th>
+                                                <th>{{ __('app.Important Date') }}</th>
+                                                <th>{{ __('app.Status') }}</th>
 
                                             </tr>
                                         </thead>
@@ -61,10 +62,10 @@
                                                     </td>
 
                                                     <td width="25%">
-                                                        First Date of Publication: <br><strong>
+                                                        {{ __('app.First Date of Publication') }}: <br><strong>
 
                                                             {{ $spesificItem->date_of_publication }}</strong><br>
-                                                        Last Submission Date/Time:
+                                                        {{ __('app.Last Submission Date/Time') }}:
                                                         <br><strong>{{ $spesificItem->updated_at }}</strong>
                                                     </td>
                                                     <td width="10%">
@@ -82,7 +83,8 @@
                                                 </tr>
                                             @empty
                                                 <tr>
-                                                    <td colspan="5" style="text-align: center">No files found</td>
+                                                    <td colspan="5" style="text-align: center">
+                                                        {{ __('app.No files found') }}</td>
                                                 </tr>
                                             @endforelse
 
@@ -97,10 +99,10 @@
                                     <table class="table table-bordered table-striped">
                                         <thead>
                                             <tr>
-                                                <th>Title</th>
-                                                <th>Notice</th>
-                                                <th>Published Date</th>
-                                                <th>Duration</th>
+                                                <th>{{ __('app.Title') }}</th>
+                                                <th>{{ __('app.Notice') }}</th>
+                                                <th>{{ __('app.Published Date') }}</th>
+                                                <th>{{ __('app.Duration') }}</th>
 
                                             </tr>
                                         </thead>
@@ -111,7 +113,8 @@
                                                     <td width="20%">
                                                         <a class="btn btn-danger"
                                                             href="{{ asset($generalProcurement->file_path) }}"
-                                                            target="_blank"><i class="fa fa-file-pdf"></i> View PDF</a>
+                                                            target="_blank"><i
+                                                                class="fa fa-file-pdf"></i> {{ __('app.View PDF') }} </a>
                                                     </td>
                                                     <td width="20%">
                                                         {{ \Carbon\Carbon::parse($generalProcurement->published_date)->format('d/m/Y') }}
@@ -122,7 +125,7 @@
                                                 </tr>
                                             @empty
                                                 <tr>
-                                                    <td colspan="4" style="text-align: center">No files found</td>
+                                                    <td colspan="4" style="text-align: center">{{ __('app.No files found') }}</td>
                                                 </tr>
                                             @endforelse
                                         </tbody>

@@ -39,7 +39,7 @@
             <a href="{{ route('dashboard') }}">{{ @$seoSetting->title }}</a>
         </div>
         <div class="sidebar-brand sidebar-brand-sm">
-            <a href="{{ route('dashboard') }}">DW</a>
+            <a href="{{ route('dashboard') }}">{{ abbreviate(@$seoSetting->title) }}</a>
         </div>
         <ul class="sidebar-menu">
             <li class="menu-header">Dashboard</li>
