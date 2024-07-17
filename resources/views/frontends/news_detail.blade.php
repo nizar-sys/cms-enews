@@ -1,7 +1,7 @@
 @extends('frontends.frontend')
 
 @section('content')
-    <div id="content" class="site-content" style="margin-top: 10rem">
+    <div id="content" class="site-content" style="margin-top: 15rem">
         <div class="container">
             <div class="row">
 
@@ -62,7 +62,6 @@
                                         <a class="newspost-title"
                                             href="{{ route('news-detail', ['locale' => session('locale', 'en'), 'new' => $latestNew->id]) }}">{{ $latestNew->title }}</a>
                                     </li>
-                                    
                                 @endforeach
 
                             </ul>

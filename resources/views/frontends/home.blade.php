@@ -89,7 +89,7 @@
                                     </div>
                                     <div class="slide-description">
                                         <h2>{{ $hero->title }}</h2>
-                                        <p>{{ $hero->description }}</p>
+                                        {!! $hero->description !!}
                                     </div>
                                 </div>
                             </div>
@@ -151,10 +151,27 @@
                                         </div>
                                     </div>
                                     <div class="col-md-4 col-lg-4">
-                                        <h2 class="widget-text">{{ __('app.Video Gallery') }} <a
-                                                href="{{ route('video-gallery', ['locale' => session('locale', 'en')]) }}"
-                                                class="btn btn-danger">{{ __('app.View More') }}</a></h2>
+                                        <h2 class="widget-text">
+                                            {{ __('app.Video Gallery') }}
+                                            <a href="{{ route('video-gallery', ['locale' => session('locale', 'en')]) }}"
+                                                class="btn btn-danger">{{ __('app.View More') }}</a>
+                                        </h2>
+                                        @if ($videoGalleries->count() > 0)
+                                            @foreach ($videoGalleries as $video)
+                                                <div class="video-item">
+                                                    <video width="320" height="240" controls>
+                                                        <source src="{{ $video->url }}" type="video/mp4">
+                                                        Your browser does not support the video tag.
+                                                    </video>
+                                                    <p>{{ $video->title }}</p>
+                                                </div>
+                                            @endforeach
+                                        @else
+                                            <p>{{ __('app.No Videos Available') }}</p>
+                                        @endif
                                     </div>
+
+
                                     <div class="col-md-4 col-lg-4">
                                         <h2 class="widget-text">{{ __('app.Latest Project Updates') }} <a
                                                 href="{{ route('project-category', ['locale' => session('locale', 'en'), 'slugCategory' => 'latest-project-updates']) }}"
@@ -170,7 +187,8 @@
                     <section class="mncap_notices">
                         <div class="row">
                             <div class="col-md-4 col-lg-4 mncap_news">
-                                <h2 class="widget-text">{{ __('app.News/Notices') }} <a href="https://mcanp.org/en/media-notices/news/"
+                                <h2 class="widget-text">{{ __('app.News/Notices') }} <a
+                                        href="{{ route('news', ['locale' => session('locale', 'en')]) }}"
                                         class="btn btn-danger">{{ __('app.View More') }}</a></h2>
                                 <div class="frontPage-jobs">
                                     <div class="wpnawfree-plugin news-clearfix " id="wpnw-news-1">
@@ -201,7 +219,7 @@
                                 </div>
                                 <br>
                                 <h2 class="widget-text">{{ __('app.Community Voice') }} <a
-                                        href="https://mcanp.org/en/media-notices/community-voice"
+                                        href="{{ route('community-voices', ['locale' => session('locale', 'en')]) }}"
                                         class="btn btn-danger">{{ __('app.View More') }}</a></h2>
                                 <div class="frontPage-jobs">
                                     @foreach ($communityVoices as $voice)
@@ -264,13 +282,14 @@
                             <div class="col-md-4 col-lg-4 mcanp_minutes">
                                 <h2 class="widget-text">{{ __('app.Board Meeting Minutes') }} <a
                                         href="{{ route('document-category', ['locale' => session('locale', 'en'), 'slugCategory' => $boardMeetingMinutes?->slug ?? 'board-meeting-minutes']) }}"
-                                        class="btn btn-danger">{{ __("app.View More") }}</a></h2>
+                                        class="btn btn-danger">{{ __('app.View More') }}</a></h2>
                                 <div class="minutes_lists">
                                     @foreach ($boardMeetingMinutes->documentFiles as $file)
                                         <div class="minutes_single">
                                             <p class="widget-title">{{ $file->filename }}</p>
                                             <p><a href="{{ asset($file->file_path) }}" title="" target="_blank"
-                                                    class="btn btn-danger"><i class="far fa-file-pdf"></i> {{ __("app.View PDF") }}</a>
+                                                    class="btn btn-danger"><i class="far fa-file-pdf"></i>
+                                                    {{ __('app.View PDF') }}</a>
                                             </p>
                                         </div>
                                     @endforeach
