@@ -1,7 +1,7 @@
 @extends('frontends.frontend')
 
 @section('content')
-    <div id="content" class="site-content" style="margin-top: 15rem">
+    <div id="content" class="site-content" style="margin-top: 8rem">
         <div class="container">
             <div class="row">
 
@@ -11,7 +11,7 @@
 
                         <article id="post-303" class="post-303 page type-page status-publish hentry">
                             <header class="entry-header">
-                                <h1 class="entry-title">Bid Challenge System</h1>
+                                <h1 class="entry-title">{{ __('app.Bid Challenge System') }}</h1>
                             </header><!-- .entry-header -->
 
                             <div class="entry-content">

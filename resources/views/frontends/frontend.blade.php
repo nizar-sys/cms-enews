@@ -1809,7 +1809,7 @@
                 <div class="col-sm-6 top-nav ">
                     <ul class="text-right">
 
-                        <li>
+                        {{-- <li>
                             <div id="wrap">
                                 <form method="get" role="search" action="">
                                     <input id="search" name="s" type="text"
@@ -1818,9 +1818,9 @@
                                     <input id="search_submit" value="submit" type="submit">
                                 </form>
                             </div>
-                        </li>
-                        <li><a class="btn btn-danger report-fraud" href="https://oig.usaid.gov/report-fraud"
-                                target="_blank">{{ __('header.report_fraud') }}</a></li>
+                        </li> --}}
+                        {{-- <li><a class="btn btn-danger report-fraud" href="https://oig.usaid.gov/report-fraud"
+                                target="_blank">{{ __('header.report_fraud') }}</a></li> --}}
                         <li>
                             <a href="{{ url(app()->getLocale() === 'pt' ? '/en' : '/pt') }}">
                                 {{ app()->getLocale() === 'pt' ? 'EN' : 'PT' }}
@@ -1889,7 +1889,7 @@
                             </ul>
                         </li>
                         <li id="menu-item-2142"
-                            class="nav-item menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-2142 dropdown {{ setNavbarActive(['project-category']) }}">
+                            class="nav-item menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-2142 dropdown {{ setNavbarActive(['project-category', 'project-detail']) }}">
                             <a title="{{ __('header.projects') }}" href="#" data-toggle="dropdown"
                                 class="dropdown-toggle nav-link" aria-haspopup="true">{{ __('header.projects') }}
                                 <span class="caret"></span></a>
@@ -1922,20 +1922,20 @@
                             </ul>
                         </li>
                         <li id="menu-item-2127"
-                            class="nav-item menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-2127 dropdown {{ setNavbarActive(['articles-interviews', 'notices', 'press-releases', 'photo-gallery', 'video-gallery']) }}">
+                            class="nav-item menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-2127 dropdown {{ setNavbarActive(['news', 'articles-interviews', 'notices', 'press-releases', 'photo-gallery', 'video-gallery', 'community-voices']) }}">
                             <a title="{{ __('header.media_notices') }}" href="#" data-toggle="dropdown"
                                 class="dropdown-toggle nav-link"
                                 aria-haspopup="true">{{ __('header.media_notices') }} <span
                                     class="caret"></span></a>
                             <ul role="menu" class=" dropdown-menu">
                                 <li id="menu-item-2128"
-                                    class="nav-item menu-item menu-item-type-post_type menu-item-object-page menu-item-2128">
+                                    class="nav-item menu-item menu-item-type-post_type menu-item-object-page menu-item-2128 {{ setSubNavbarActive(['news']) }}">
                                     <a title="{{ __('app.News') }}"
                                         href="{{ route('news', ['locale' => session('locale', 'en')]) }}"
                                         class="dropdown-item">{{ __('app.News') }}</a>
                                 </li>
                                 <li id="menu-item-2344"
-                                    class="nav-item menu-item menu-item-type-post_type menu-item-object-page menu-item-2344 {{ setNavbarActive(['community-voices']) }}">
+                                    class="nav-item menu-item menu-item-type-post_type menu-item-object-page menu-item-2344 {{ setSubNavbarActive(['community-voices']) }}">
                                     <a title="{{ __('app.Community Voice') }}"
                                         href="{{ route('community-voices', ['locale' => session('locale', 'en')]) }}"
                                         class="dropdown-item">{{ __('app.Community Voice') }}</a>
@@ -2158,35 +2158,7 @@
         <i class="fa fa-angle-up"></i>
     </a>
     <style type="text/css"></style>
-    <div class="paoc-cb-popup-body paoc-wrap paoc-popup paoc-modal-popup paoc-popup-2682 paoc-popup-image paoc-popup-announcement paoc-popup-announcement-design-1 paoc-design-1 paoc-popup-js"
-        id="paoc-popup-2682-2"
-        data-popup-conf="{&quot;content&quot;:{&quot;target&quot;:&quot;#paoc-popup-2682-2&quot;,&quot;effect&quot;:&quot;fadein&quot;,&quot;positionX&quot;:&quot;center&quot;,&quot;positionY&quot;:&quot;center&quot;,&quot;fullscreen&quot;:false,&quot;speedIn&quot;:500,&quot;speedOut&quot;:250,&quot;close&quot;:false,&quot;animateFrom&quot;:&quot;top&quot;,&quot;animateTo&quot;:&quot;top&quot;},&quot;loader&quot;:{&quot;active&quot;:false,&quot;color&quot;:&quot;#000000&quot;,&quot;speed&quot;:1000},&quot;overlay&quot;:{&quot;active&quot;:true,&quot;color&quot;:&quot;rgba(0, 0, 0, 0.5)&quot;,&quot;close&quot;:false,&quot;opacity&quot;:1}}"
-        data-conf="{&quot;id&quot;:2682,&quot;popup_type&quot;:&quot;image&quot;,&quot;display_type&quot;:&quot;modal&quot;,&quot;disappear&quot;:0,&quot;disappear_mode&quot;:&quot;normal&quot;,&quot;open_delay&quot;:0.299999999999999988897769753748434595763683319091796875,&quot;cookie_prefix&quot;:&quot;paoc_popup&quot;,&quot;cookie_expire&quot;:&quot;&quot;,&quot;cookie_unit&quot;:&quot;day&quot;}"
-        data-id="paoc-popup-2682">
-        <div class="paoc-popup-inr-wrap">
-            <div class="paoc-padding-20 paoc-popup-con-bg">
-                <div class="paoc-popup-inr">
-                    <div class="paoc-popup-margin paoc-popup-content">
-                        <p>
-                        <div class="paoc-iframe-wrap"><iframe loading="lazy" width="560" height="315"
-                                src="https://www.youtube.com/embed/J5GEu7D0zio?si=YhIZuxHJ1nfowYqa"
-                                title="YouTube video player" frameborder="0"
-                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                                allowfullscreen=""></iframe></div>
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <a href="javascript:void(0);" class="paoc-close-popup paoc-popup-close">
-            <svg viewBox="0 0 1792 1792">
-                <path
-                    d="M1490 1322q0 40-28 68l-136 136q-28 28-68 28t-68-28l-294-294-294 294q-28 28-68 28t-68-28l-136-136q-28-28-28-68t28-68l294-294-294-294q-28-28-28-68t28-68l136-136q28-28 68-28t68 28l294 294 294-294q28-28 68-28t68 28l136 136q28 28 28 68t-28 68l-294 294 294 294q28 28 28 68z">
-                </path>
-            </svg>
-        </a>
-    </div>
+    
     <link rel="stylesheet" id="accordions-style-css"
         href="https://mcanp.org/en/wp-content/plugins/accordions/assets/frontend/css/style.css?ver=6.5.5"
         type="text/css" media="all">

@@ -62,8 +62,7 @@
                                 </ul>
                                 <div class="text-center">
                                     <a class="btn btn-danger"
-                                        href="{{ route('document-category', ['locale' => session('locale', 'en'), 'slugCategory' => $documentCategory->slug]) }}">View
-                                        More</a>
+                                        href="{{ route('document-category', ['locale' => session('locale', 'en'), 'slugCategory' => $documentCategory->slug]) }}">{{__('app.View More')}}</a>
                                 </div>
                             </div>
                         </div><!-- minutes_lists -->

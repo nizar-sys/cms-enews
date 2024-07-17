@@ -27,7 +27,7 @@
         overflow: hidden;
     }
 </style>
-    <div id="content" class="site-content" style="margin-top: 15rem">
+    <div id="content" class="site-content" style="margin-top: 8rem">
         <div class="container">
             <div class="row">
                 <section id="primary" class="w-full ">

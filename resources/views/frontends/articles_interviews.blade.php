@@ -1,14 +1,14 @@
 @extends('frontends.frontend')
 
 @section('content')
-    <div id="content" class="site-content" style="margin-top: 15rem">
+    <div id="content" class="site-content" style="margin-top: 8rem">
         <div class="container">
             <div class="row">
                 <section id="primary" class="content-area col-sm-12 col-lg-12">
                     <div class="row">
                         <div class="col-md-12">
                             <main id="main" class="site-main" role="main">
-                                <h1 class="entry-title">Articles & Interviews</h1>
+                                <h1 class="entry-title">{{ __('app.Articles & Interviews') }}</h1>
 
                                 <div class="row" style="display: flex; flex-wrap: wrap; justify-content: space-between;">
                                     @foreach($articlesInterviews as  $articles)
