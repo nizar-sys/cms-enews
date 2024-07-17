@@ -1,7 +1,7 @@
 @extends('frontends.frontend')
 
 @section('content')
-    <div id="content" class="site-content" style="margin-top: 8rem">
+    <div id="content" class="site-content" style="margin-top: 15rem">
         <div class="container">
             <div class="row">
                 <section id="primary" class="content-area col-sm-12 col-lg-12">
@@ -20,16 +20,17 @@
                                         <tbody>
                                             @forelse ($noticeFiles as $file)
                                                 <tr>
-                                                    <td width="80%">{{$file->file_name}}</td>
+                                                    <td width="80%">{{ $file->file_name }}</td>
                                                     <td class="text-center">
-                                                        <a class="btn btn-danger"
-                                                            href="{{ asset($file->file_path) }}"
-                                                            download><i class="far fa-file-pdf"></i> {{ __('app.Download PDF') }} </a>
+                                                        <a class="btn btn-danger" href="{{ asset($file->file_path) }}"
+                                                            download><i class="far fa-file-pdf"></i>
+                                                            {{ __('app.Download PDF') }} </a>
                                                     </td>
                                                 </tr>
                                             @empty
                                                 <tr>
-                                                    <td colspan="2" class="text-center">{{ __('app.No files found') }}</td>
+                                                    <td colspan="2" class="text-center">{{ __('app.No files found') }}
+                                                    </td>
                                                 </tr>
                                             @endforelse
                                         </tbody>
