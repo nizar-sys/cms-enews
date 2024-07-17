@@ -36,9 +36,10 @@ class HomeController extends Controller
         $communityVoices = CommunityVoice::select('title', 'created_at')->orderBy('created_at', 'desc')->take(2)->get();
         $procurementNotices = SpesificProcurement::with('files')->select('title', 'created_at', 'date_of_publication', 'updated_at')->orderBy('created_at', 'desc')->take(3)->get();
         $boardMeetingMinutes = DocumentCategory::with('documentFiles')->where('slug', 'board-meeting-minutes')->first();
+        $videoGalleries = VideoGallery::orderBy('created_at', 'desc')->take(1)->get();
         $heroes = Hero::get();
 
-        return view('frontends.home', compact('projectCategories', 'generalSetting', 'faqs', 'news', 'communityVoices', 'procurementNotices', 'boardMeetingMinutes', 'heroes'));
+        return view('frontends.home', compact('projectCategories', 'generalSetting', 'faqs', 'news', 'communityVoices', 'procurementNotices', 'boardMeetingMinutes', 'heroes', 'videoGalleries'));
     }
 
     public function projectCategory($locale, $slugCategory)
