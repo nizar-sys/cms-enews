@@ -1,7 +1,7 @@
 @extends('frontends.frontend')
 
 @section('content')
-    <div id="content" class="site-content" style="margin-top: 8rem">
+    <div id="content" class="site-content" style="margin-top: 15rem">
         <div class="container">
             <div class="row">
                 <section id="primary" class="content-area col-sm-12 col-lg-12">
@@ -113,8 +113,8 @@
                                                     <td width="20%">
                                                         <a class="btn btn-danger"
                                                             href="{{ asset($generalProcurement->file_path) }}"
-                                                            target="_blank"><i
-                                                                class="fa fa-file-pdf"></i> {{ __('app.View PDF') }} </a>
+                                                            target="_blank"><i class="fa fa-file-pdf"></i>
+                                                            {{ __('app.View PDF') }} </a>
                                                     </td>
                                                     <td width="20%">
                                                         {{ \Carbon\Carbon::parse($generalProcurement->published_date)->format('d/m/Y') }}
@@ -125,7 +125,8 @@
                                                 </tr>
                                             @empty
                                                 <tr>
-                                                    <td colspan="4" style="text-align: center">{{ __('app.No files found') }}</td>
+                                                    <td colspan="4" style="text-align: center">
+                                                        {{ __('app.No files found') }}</td>
                                                 </tr>
                                             @endforelse
                                         </tbody>
