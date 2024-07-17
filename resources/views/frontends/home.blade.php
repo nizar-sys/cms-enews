@@ -89,7 +89,7 @@
                                     </div>
                                     <div class="slide-description">
                                         <h2>{{ $hero->title }}</h2>
-                                        <p>{{ $hero->description }}</p>
+                                        {!! $hero->description !!}
                                     </div>
                                 </div>
                             </div>
