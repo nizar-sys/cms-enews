@@ -8,7 +8,7 @@
                     <div class="row">
                         <div class="col-md-12">
                             <main id="main" class="site-main" role="main">
-                                <h1 class="entry-title">{{ __('app.' . $documentsReportsCategory->name) }}</h1>
+                                <h1 class="entry-title">{{ $documentsReportsCategory->name }}</h1>
                                 <div class="table-responsive">
                                     <table class="table table-bordered table-striped">
                                         <thead>

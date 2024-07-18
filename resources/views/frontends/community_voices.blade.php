@@ -32,7 +32,7 @@
                                                     'slug' => $communityVoice->slug,
                                                 ]) }}"
                                                     style="text-decoration: none;">
-                                                    {{ __('app.' . $communityVoice->title) }}
+                                                    {{ $communityVoice->title }}
                                                 </a>
                                             </h4>
                                             <div class="description">

@@ -2,7 +2,7 @@
 
 namespace App\DataTables;
 
-use App\Models\Documentfile;
+use App\Models\DocumentFile;
 use Illuminate\Database\Eloquent\Builder as QueryBuilder;
 use Yajra\DataTables\EloquentDataTable;
 use Yajra\DataTables\Html\Builder as HtmlBuilder;

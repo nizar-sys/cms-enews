@@ -55,4 +55,9 @@ return [
     "Bid Challenge System" => "Sistema de Desafio de Licitação",
     "Contract Award Notice" => "Aviso de Adjudicação de Contrato",
     "Posted On" => "Postado em",
+    "No data" => "Sem dados",
+    "organizational_chart" => "Organograma Chart",
+    "No Photo Galleries Available" => "Nenhuma Galeria de Fotos Disponível",
+    "No Video Available" => "Nenhum Vídeo Disponível",
+    "Video Gallery" => "Galeria de Vídeos",
 ];

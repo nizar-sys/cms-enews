@@ -58,7 +58,7 @@
                                                         </ol>
 
                                                         <a href="{{ route('procurement-notice-files', ['locale' => session('locale', 'en'), 'spesificProcurementId' => $spesificItem->id]) }}"
-                                                            class="badge badge-danger">Show Files</a>
+                                                            class="badge badge-danger">{{ __('app.Show FIles') }}</a>
                                                     </td>
 
                                                     <td width="25%">

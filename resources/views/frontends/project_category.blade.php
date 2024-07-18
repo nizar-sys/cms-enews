@@ -11,7 +11,7 @@
                         @if ($latestProjectsUpdate)
                             <article id="post-2242" class="post-2242 page type-page status-publish hentry">
                                 <header class="entry-header">
-                                    <h1 class="entry-title">{{ __('app.Latest Project Updates') }}</h1>
+                                    <h1 class="entry-title">Latest Project Updates</h1>
                                 </header><!-- .entry-header -->
 
                                 <div class="entry-content">
@@ -20,8 +20,8 @@
                                             <tr>
                                                 @foreach ($latestProjectsUpdate as $latest)
                                                     <td style="text-align: {{ $loop->iteration == 1 ? 'left' : 'right' }};">
-                                                        <h5><a title="{{ __('app.' . $latest->name) }}"
-                                                                href="{{ route('project-category', ['locale' => session('locale', 'en'), 'slugCategory' => $latest->slug]) }}">{{ __('app.' . $latest->name) }}</a>
+                                                        <h5><a title="{{ $latest->name }}"
+                                                                href="{{ route('project-category', ['locale' => session('locale', 'en'), 'slugCategory' => $latest->slug]) }}">{{ $latest->name }}</a>
                                                         </h5>
                                                     </td>
                                                 @endforeach
@@ -34,6 +34,9 @@
                         @else
                             @if ($projectCategory->description)
                                 <article id="post-26" class="post-26 page type-page status-publish hentry">
+                                    <header class="entry-header">
+                                        <h1 class="entry-title">{{ $projectCategory->name }}</h1>
+                                    </header><!-- .entry-header -->
 
                                     <div class="entry-content">
                                         {!! $projectCategory->description !!}

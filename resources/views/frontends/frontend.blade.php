@@ -1897,9 +1897,9 @@
                                 @foreach ($projectCategories as $projectCategory)
                                     <li id="menu-item-{{ $loop->iteration }}"
                                         class="nav-item menu-item menu-item-type-post_type menu-item-object-page menu-item-{{ $loop->iteration }} {{ setSubSlugNavbarActive(['project-category'], $projectCategory->slug) }}">
-                                        <a title="{{ __('app.' . $projectCategory->name) }}"
+                                        <a title="{{ $projectCategory->name }}"
                                             href="{{ route('project-category', ['locale' => session('locale', 'en'), 'slugCategory' => $projectCategory->slug]) }}"
-                                            class="dropdown-item">{{ __('app.' . $projectCategory->name) }}</a>
+                                            class="dropdown-item">{{ $projectCategory->name }}</a>
                                     </li>
                                 @endforeach
                             </ul>
@@ -1914,9 +1914,9 @@
                                 @foreach ($documentsReportsCategories as $documentReportCategory)
                                     <li id="menu-item-{{ $loop->iteration }}"
                                         class="nav-item menu-item menu-item-type-post_type menu-item-object-page menu-item-2112 {{ setSubSlugNavbarActive(['document-category'], $documentReportCategory->slug) }}">
-                                        <a title="{{ __('app.' . $documentReportCategory->name) }}"
+                                        <a title="{{ $documentReportCategory->name }}"
                                             href="{{ route('document-category', ['locale' => session('locale', 'en'), 'slugCategory' => $documentReportCategory->slug]) }}"
-                                            class="dropdown-item">{{ __('app.' . $documentReportCategory->name) }}</a>
+                                            class="dropdown-item">{{ $documentReportCategory->name }}</a>
                                     </li>
                                 @endforeach
                             </ul>
