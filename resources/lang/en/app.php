@@ -55,4 +55,9 @@ return [
     "Bid Challenge System" => "Bid Challenge System",
     "Contract Award Notice" => "Contract Award Notice",
     "Posted On" => "Posted On",
+    "No data" => "No data",
+    "organizational_chart" => "Organizational Chart",
+    "No Photo Galleries Available" => "No Photo Galleries Available",
+    "No Video Available" => "No Video Available",
+    "Video Gallery" => "Video Gallery",
 ];

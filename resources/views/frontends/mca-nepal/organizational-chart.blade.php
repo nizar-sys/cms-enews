@@ -11,7 +11,7 @@
 
                         <article id="post-245" class="post-245 page type-page status-publish hentry">
                             <header class="entry-header">
-                                <h1 class="entry-title">{{ $sectionSetting?->title ?? 'Organizational Chart' }}</h1>
+                                <h1 class="entry-title">{{ $sectionSetting?->title ?? __('app.organizational_chart') }}</h1>
                             </header><!-- .entry-header -->
 
                             <div class="entry-content">

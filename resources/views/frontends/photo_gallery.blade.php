@@ -88,9 +88,7 @@
                         @if ($photoGalleries->isEmpty())
                             <div class="no-galleries">
                                 <div>
-                                    <h2>No Photo Galleries Available</h2>
-                                    <p>It seems there are currently no photo galleries to display. Please check back later.
-                                    </p>
+                                    <h2>{{ __('app.No Photo Galleries Available') }}</h2>
                                 </div>
                             </div>
                         @else

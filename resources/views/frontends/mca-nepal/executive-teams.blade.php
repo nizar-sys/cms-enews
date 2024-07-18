@@ -10,7 +10,7 @@
 
                             <article id="post-22" class="post-22 page type-page status-publish hentry">
                                 <div class="entry-content">
-                                    <h2>Executive team</h2>
+                                    <h2>{{ $sectionSetting?->title }}</h2>
                                     <div class="row">
                                         <div class="col-lg-12 col-md-12">
                                             <p>{!! $sectionSetting?->sub_title !!}</p>
@@ -22,7 +22,7 @@
                                     <div class="row">
                                         @if ($executives->isEmpty())
                                             <div class="col-12 text-center">
-                                                <h4>No data</h4>
+                                                <h4>{{ __('app.No data') }}</h4>
                                             </div>
                                         @else
                                             @foreach ($executives as $executive)

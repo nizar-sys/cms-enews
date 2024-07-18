@@ -22,7 +22,7 @@
                                 @if ($directors->isEmpty())
                                     <div class="row mb-4">
                                         <div class="col-12 text-center">
-                                            <h4>No data</h4>
+                                            <h4>{{ __('app.No data') }}</h4>
                                         </div>
                                     </div>
                                 @else

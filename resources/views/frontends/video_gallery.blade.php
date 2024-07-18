@@ -32,12 +32,11 @@
             <div class="row">
                 <section id="primary" class="w-full ">
                     <main id="main" class="site-main" role="main">
-                        <h2>Video Gallery</h2>
-                        @if ($videoGalleries->isEmpty())
+                        <h2>{{ __('app.Video Gallery') }}</h2>
+                        @if($videoGalleries->isEmpty())
                             <div class="no-galleries">
                                 <div>
-                                    <h2>No Video Available</h2>
-                                    <p>It seems there are currently no video to display. Please check back later.</p>
+                                    <h2>{{ __('app.No Video Available') }}</h2>
                                 </div>
                             </div>
                         @else
