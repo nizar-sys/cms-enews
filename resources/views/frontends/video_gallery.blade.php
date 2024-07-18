@@ -1,33 +1,33 @@
 @extends('frontends.frontend')
 
 @section('content')
-<style>
-    .video-gallery {
-        display: flex;
-        flex-wrap: wrap;
-    }
-
-    .video-item {
-        width: 100%;
-        margin-bottom: 0.4rem;
-        padding-right: 0.5rem;
-    }
-
-    @media (min-width: 640px) {
-        .video-item {
-            width: 50%;
+    <style>
+        .video-gallery {
+            display: flex;
+            flex-wrap: wrap;
         }
-    }
 
-    .video-embed {
-        width: 100%;
-        height: auto;
-        border-radius: 0.5rem;
-        box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
-        overflow: hidden;
-    }
-</style>
-    <div id="content" class="site-content" style="margin-top: 8rem">
+        .video-item {
+            width: 100%;
+            margin-bottom: 0.4rem;
+            padding-right: 0.5rem;
+        }
+
+        @media (min-width: 640px) {
+            .video-item {
+                width: 50%;
+            }
+        }
+
+        .video-embed {
+            width: 100%;
+            height: auto;
+            border-radius: 0.5rem;
+            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+    </style>
+    <div id="content" class="site-content" style="margin-top: 15rem">
         <div class="container">
             <div class="row">
                 <section id="primary" class="w-full ">
@@ -40,15 +40,16 @@
                                 </div>
                             </div>
                         @else
-                        <div class="video-gallery">
-                            @foreach($videoGalleries as $video)
-                                <div class="video-item">
-                                    <div class="video-embed">
-                                        <iframe width="560" height="315" src="{{ $video->url }}" frameborder="0" allowfullscreen></iframe>
+                            <div class="video-gallery">
+                                @foreach ($videoGalleries as $video)
+                                    <div class="video-item">
+                                        <div class="video-embed">
+                                            <iframe width="560" height="315" src="{{ $video->url }}" frameborder="0"
+                                                allowfullscreen></iframe>
+                                        </div>
                                     </div>
-                                </div>
-                            @endforeach
-                        </div>
+                                @endforeach
+                            </div>
                         @endif
                     </main>
                 </section>

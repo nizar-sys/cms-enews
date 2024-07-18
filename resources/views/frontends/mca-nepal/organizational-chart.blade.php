@@ -1,7 +1,7 @@
 @extends('frontends.frontend')
 
 @section('content')
-    <div id="content" class="site-content" style="margin-top: 8rem">
+    <div id="content" class="site-content" style="margin-top: 15rem">
         <div class="container">
             <div class="row">
 
@@ -22,7 +22,8 @@
                                     <figure class="aligncenter is-resized"><img decoding="async"
                                             src="{{ $sectionSetting?->image }}" alt="" class="wp-image-1114"
                                             width="100%" height="auto" />
-                                        <figcaption>{{__('app.update_program')}} : {{ $sectionSetting?->updated_at->format('Y-m-d H:i') ?? 'No Data' }}
+                                        <figcaption>{{ __('app.update_program') }} :
+                                            {{ $sectionSetting?->updated_at->format('Y-m-d H:i') ?? 'No Data' }}
                                         </figcaption>
 
                                     </figure>

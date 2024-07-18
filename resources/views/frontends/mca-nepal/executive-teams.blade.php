@@ -1,7 +1,7 @@
 @extends('frontends.frontend')
 
 @section('content')
-    <div id="content" class="site-content" style="margin-top: 8rem">
+    <div id="content" class="site-content" style="margin-top: 15rem">
         <div class="container">
             <div class="row">
                 <section id="primary" class="content-area">
