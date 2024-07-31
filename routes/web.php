@@ -56,11 +56,12 @@ use App\Http\Controllers\Frontend\HomeController;
 use App\Models\SpesificProcurement;
 use App\Http\Controllers\Admin\PhotoGalleryAlbumController;
 use App\Http\Controllers\Admin\PhotoGalleryController;
+use App\Http\Controllers\Admin\PostController;
 use App\Http\Controllers\Admin\VideoGalleryController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\FaqController;
 use App\Http\Controllers\Frontend\ContactController as FrontendContactController;
-use App\Http\Controllers\frontend\FaqController as FrontendFaqController;
+use App\Http\Controllers\Frontend\FaqController as FrontendFaqController;
 use App\Http\Controllers\JobsController;
 use App\Http\Controllers\McaNepal\BoardOfDirectorController;
 use App\Http\Controllers\McaNepal\ExecutiveTeamController;
@@ -90,7 +91,7 @@ require __DIR__ . '/auth.php';
 Route::get('dashboard', [DashboardController::class, 'index'])->middleware('auth')->name('dashboard');
 
 /** Admin Route**/
-Route::group(['middleware' => ['auth'], 'prefix' => 'admin', 'as' => 'admin.'], function () {
+Route::group(['middleware' => ['auth'], 'prefix' => 'console', 'as' => 'admin.'], function () {
 
 
     Route::prefix('board-of-directors')->name('bod.')->group(function () {
@@ -264,6 +265,9 @@ Route::group(['middleware' => ['auth'], 'prefix' => 'admin', 'as' => 'admin.'], 
     Route::resource('footer-social', FooterSocialLinkController::class);
 
     Route::resource('hero', HeroController::class);
+
+    Route::resource('categories', CategoryController::class);
+    Route::resource('posts', PostController::class);
 });
 
 Route::prefix('{locale}')->group(function () {

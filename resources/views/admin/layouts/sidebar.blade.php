@@ -213,6 +213,15 @@
                         Notice</span></a>
             </li>
 
+            <li class="menu-header">Posts</li>
+            <li class="nav-item {{ setSidebarActive(['admin.categories.*']) }}">
+                <a href="{{ route('admin.categories.index', []) }}" class="nav-link"><i class="fas fa-columns"></i><span>Categories</span></a>
+            </li>
+            <li class="nav-item {{ setSidebarActive(['admin.posts.*']) }}">
+                <a href="{{ route('admin.posts.index', []) }}" class="nav-link"><i class="fas fa-columns"></i><span>Posts</span></a>
+            </li>
+
+
             <li class="menu-header">Jobs</li>
             <li
                 class="nav-item dropdown {{ setSidebarActive(['admin.job-section-setting.index', 'admin.job-lists*']) }}">
