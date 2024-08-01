@@ -20,6 +20,17 @@
     <!-- Template CSS -->
     <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/components.css') }}">
+    <style>
+        html {
+            --tw-bg-opacity: 1;
+            background-color: rgb(17 24 39 / var(--tw-bg-opacity));
+        }
+
+        #app {
+            --tw-bg-opacity: 1;
+            background-color: rgb(17 24 39 / var(--tw-bg-opacity));
+        }
+    </style>
 </head>
 
 <body>
@@ -30,11 +41,11 @@
                     <div
                         class="col-12 col-sm-8 offset-sm-2 col-md-6 offset-md-3 col-lg-6 offset-lg-3 col-xl-4 offset-xl-4">
                         <div class="login-brand">
-                            <img src="{{ asset('assets/img/stisla-fill.svg') }}" alt="logo" width="100"
-                                class="shadow-light rounded-circle">
+                            <img src="{{ asset($generalSetting?->logo) }}" alt="logo" width="130"
+                                class=" rounded-circle">
                         </div>
 
-                        <div class="card card-primary" style="margin-top: 7rem">
+                        <div class="card card-dark bg-transparent" style="margin-top: 0rem">
                             <div class="card-header">
                                 <h4>Login</h4>
                             </div>
@@ -44,8 +55,8 @@
                                     novalidate="">
                                     @csrf
                                     <div class="form-group">
-                                        <label for="email">Email</label>
-                                        <input id="email" type="email" class="form-control" name="email"
+                                        <label for="email" style="color: white">Email</label>
+                                        <input id="email" type="email" class="form-control bg-dark" name="email"
                                             value="{{ old('email') }}" tabindex="1" required autofocus>
                                         @if ($errors->has('email'))
                                             <code>{{ $errors->first('email') }}</code>
@@ -54,14 +65,14 @@
 
                                     <div class="form-group">
                                         <div class="d-block">
-                                            <label for="password" class="control-label">Password</label>
-                                            {{-- <div class="float-right">
+                                            <label for="password" class="control-label text-white">Password</label>
+                                            <div class="float-right">
                                                 <a href="{{ route('password.request') }}" class="text-small">
                                                     Forgot Password?
                                                 </a>
-                                            </div> --}}
+                                            </div>
                                         </div>
-                                        <input id="password" type="password" class="form-control" name="password"
+                                        <input id="password" type="password" class="form-control bg-dark" name="password"
                                             tabindex="2" required>
                                         @if ($errors->has('password'))
                                             <code>{{ $errors->first('password') }}</code>
@@ -88,7 +99,7 @@
                         </div>
 
                         <div class="simple-footer">
-                            Copyright &copy;
+                            Copyright &copy; {{ date('Y') }}
                         </div>
                     </div>
                 </div>
