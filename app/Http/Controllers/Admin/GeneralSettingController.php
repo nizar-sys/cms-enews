@@ -75,26 +75,31 @@ class GeneralSettingController extends Controller
             'logo' => ['max:5000', 'image'],
             'footer_logo' => ['max:5000', 'image'],
             'left_icon' => ['max:5000', 'image'],
-            'center_icon' => ['max:5000', 'image'],
+            'app_logo' => ['max:5000', 'image'],
             'right_icon' => ['max:5000', 'image'],
             'favicon' => ['max:5000', 'image'],
         ]);
 
         $setting = GeneralSetting::first();
-        $favicon = handleUpload('favicon', $setting);
-        $left_icon = handleUpload('left_icon', $setting);
-        $center_icon = handleUpload('center_icon', $setting);
-        $right_icon = handleUpload('right_icon', $setting);
+
+        if (!$setting->favicon && !$request->hasFile('favicon')) {
+            return back()->withErrors(['favicon' => 'The favicon field is required.']);
+        }
+
+        $favicon = $request->file('favicon') ? handleUpload('favicon', $setting) : $setting->favicon;
+        $left_icon = $request->file('left_icon') ? handleUpload('left_icon', $setting) : $setting->left_icon;
+        $app_logo = $request->file('app_logo') ? handleUpload('app_logo', $setting) : $setting->center_icon;
+        $right_icon = $request->file('right_icon') ? handleUpload('right_icon', $setting) : $setting->right_icon;
 
 
         // create or update general setting 
         GeneralSetting::updateOrCreate(
             ['id' => $id],
             [
-                'logo' => 'Logo',
-                'footer_logo' => 'Footer Logo',
+                'logo' => $app_logo,
+                'footer_logo' => $app_logo,
                 'left_icon' => $left_icon,
-                'center_icon' => $center_icon,
+                'center_icon' => $app_logo,
                 'right_icon' => $right_icon,
                 'favicon' => $favicon,
             ]

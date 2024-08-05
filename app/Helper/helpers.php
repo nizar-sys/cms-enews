@@ -104,3 +104,28 @@ function abbreviate($string)
   }
   return strtoupper($abbreviation);
 }
+
+// app/Helpers/Helper.php
+
+if (!function_exists('setNavbarActiveNew')) {
+  function setNavbarActiveNew($routes)
+  {
+    if (is_array($routes)) {
+      foreach ($routes as $route) {
+        if (request()->routeIs($route)) {
+          return 'active';
+        }
+      }
+    } elseif (request()->routeIs($routes)) {
+      return 'active';
+    }
+    return '';
+  }
+}
+
+if (!function_exists('setSubNavbarActiveNew')) {
+  function setSubNavbarActiveNew($parentRoute, $subItemUrl)
+  {
+    return request()->is(parse_url($subItemUrl, PHP_URL_PATH)) && in_array($parentRoute, request()->route()->getName()) ? 'active' : '';
+  }
+}

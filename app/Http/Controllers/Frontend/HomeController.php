@@ -29,20 +29,22 @@ class HomeController extends Controller
 {
     public function index()
     {
-        $projectCategories = ProjectCategory::select('name', 'slug')->get();
-        $generalSetting = GeneralSetting::first();
-        $faqs = Faq::select('question', 'answer')->get();
-        $news = News::select('title', 'created_at', 'id')->orderBy('created_at', 'desc')->take(2)->get();
-        $communityVoices = CommunityVoice::select('title', 'created_at', 'slug')->orderBy('created_at', 'desc')->take(2)->get();
-        $procurementNotices = SpesificProcurement::with('files')->select('title', 'created_at', 'date_of_publication', 'updated_at')->orderBy('created_at', 'desc')->take(3)->get();
-        $boardMeetingMinutes = DocumentCategory::with('documentFiles')->where('slug', 'board-meeting-minutes')->first();
-        $videoGalleries = VideoGallery::orderBy('created_at', 'desc')->take(1)->get();
-        $heroes = Hero::get();
+        // $projectCategories = ProjectCategory::select('name', 'slug')->get();
+        // $generalSetting = GeneralSetting::first();
+        // $faqs = Faq::select('question', 'answer')->get();
+        // $news = News::select('title', 'created_at', 'id')->orderBy('created_at', 'desc')->take(2)->get();
+        // $communityVoices = CommunityVoice::select('title', 'created_at', 'slug')->orderBy('created_at', 'desc')->take(2)->get();
+        // $procurementNotices = SpesificProcurement::with('files')->select('title', 'created_at', 'date_of_publication', 'updated_at')->orderBy('created_at', 'desc')->take(3)->get();
+        // $boardMeetingMinutes = DocumentCategory::with('documentFiles')->where('slug', 'board-meeting-minutes')->first();
+        // $videoGalleries = VideoGallery::orderBy('created_at', 'desc')->take(1)->get();
+        // $heroes = Hero::get();
 
-        $latestProjectsUpdate = ProjectCategory::orderBy('updated_at', 'desc')->take(2)->get();
-        $firstVideo = VideoGallery::orderBy('created_at', 'desc')->first();
+        // $latestProjectsUpdate = ProjectCategory::orderBy('updated_at', 'desc')->take(2)->get();
+        // $firstVideo = VideoGallery::orderBy('created_at', 'desc')->first();
 
-        return view('frontends.home', compact('projectCategories', 'generalSetting', 'faqs', 'news', 'communityVoices', 'procurementNotices', 'boardMeetingMinutes', 'heroes', 'videoGalleries', 'latestProjectsUpdate', 'firstVideo'));
+        // return view('frontends.home', compact('projectCategories', 'generalSetting', 'faqs', 'news', 'communityVoices', 'procurementNotices', 'boardMeetingMinutes', 'heroes', 'videoGalleries', 'latestProjectsUpdate', 'firstVideo'));
+
+        return view('frontends.home');
     }
 
     public function projectCategory($locale, $slugCategory)
