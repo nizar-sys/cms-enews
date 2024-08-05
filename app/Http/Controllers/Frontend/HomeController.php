@@ -11,6 +11,8 @@ use App\Models\BidChallengeSystem;
 use App\Models\ContractAwardNotice;
 
 use App\Models\DocumentCategory;
+use App\Models\ExecutiveSectionSetting;
+use App\Models\ExecutiveTeam;
 use App\Models\Faq;
 use App\Models\GeneralProcurement;
 use App\Models\GuidelineProcurement;
@@ -19,6 +21,7 @@ use App\Models\Hero;
 use App\Models\News;
 use App\Models\Notice;
 use App\Models\PhotoGallery;
+use App\Models\Post;
 use App\Models\PressRelease;
 use App\Models\Project;
 use App\Models\ProjectCategory;
@@ -44,7 +47,12 @@ class HomeController extends Controller
 
         // return view('frontends.home', compact('projectCategories', 'generalSetting', 'faqs', 'news', 'communityVoices', 'procurementNotices', 'boardMeetingMinutes', 'heroes', 'videoGalleries', 'latestProjectsUpdate', 'firstVideo'));
 
-        return view('frontends.home');
+        $sliders = Hero::select('id', 'title', 'description', 'image')->get();
+        $teamSectionSetting = ExecutiveSectionSetting::first();
+        $teams = ExecutiveTeam::with('designation')->get();
+        $posts = Post::published()->with('author')->orderBy('created_at', 'desc')->get();
+
+        return view('frontends.home', compact('sliders', 'teamSectionSetting', 'teams', 'posts'));
     }
 
     public function projectCategory($locale, $slugCategory)

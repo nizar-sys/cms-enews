@@ -9,6 +9,7 @@ use App\Models\FooterSocialLink;
 use App\Models\GeneralSetting;
 use App\Models\SeoSetting;
 use Illuminate\Pagination\Paginator;
+use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
 
@@ -32,8 +33,6 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         Paginator::useBootstrapFour();
-
-
 
         View::composer('*', function ($view) {
             $menuItems = [
@@ -126,6 +125,10 @@ class AppServiceProvider extends ServiceProvider
             $view->with('footerSocialLink', FooterSocialLink::get());
             $view->with('seoSetting', SeoSetting::first());
             $view->with('menuItems', $menuItems);
+        });
+
+        Blade::directive('datetime', function ($expression) {
+            return "<?php echo ($expression)->format('F d, Y'); ?>";
         });
     }
 }

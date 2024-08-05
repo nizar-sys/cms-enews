@@ -171,7 +171,7 @@
 
     <footer id="footer" class="footer dark-background">
 
-        <div class="footer-top">
+        <div class="footer-top mb-2">
             <div class="container">
                 <div class="row gy-4">
                     <div class="col-lg-4 col-md-6 footer-about">
@@ -179,12 +179,19 @@
                             <span class="sitename">{{ __('app.app_name') }}</span>
                         </a>
                         <div class="footer-contact pt-3">
-                            <p>{{ $contactSetting?->address }}</p>
-                            <p class="mt-3"><strong>{{ __('app.phone') }}:</strong>
-                                <span>{{ $contactSetting?->phone }}</span>
-                            </p>
-                            <p><strong>{{ __('app.email') }}:</strong> <span>{{ $contactSetting?->email }}</span></p>
+                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur quasi ex excepturi vero
+                            dolorem molestias dolor est aut debitis obcaecati amet ratione facere illum, nesciunt
+                            explicabo neque aliquid modi? Necessitatibus.
                         </div>
+                    </div>
+
+                    <div class="col-lg-2 col-md-3 footer-links">
+                        <h4>{{ __('app.contact_us') }}</h4>
+                        <p>{{ $contactSetting?->address }}</p>
+                        <p class="mt-3"><strong>{{ __('app.phone') }}:</strong>
+                            <span>{{ $contactSetting?->phone }}</span>
+                        </p>
+                        <p><strong>{{ __('app.email') }}:</strong> <span>{{ $contactSetting?->email }}</span></p>
                     </div>
 
                     <div class="col-lg-2 col-md-3 footer-links">
@@ -194,16 +201,15 @@
                         </ul>
                     </div>
 
-                    {{-- <div class="col-lg-2 col-md-3 footer-links">
-                        <h4>Our Services</h4>
-                        <ul>
-                            <li><a href="#">Web Design</a></li>
-                            <li><a href="#">Web Development</a></li>
-                            <li><a href="#">Product Management</a></li>
-                            <li><a href="#">Marketing</a></li>
-                            <li><a href="#">Graphic Design</a></li>
-                        </ul>
-                    </div> --}}
+                    <div class="col-lg-2 col-md-3 footer-links">
+                        <h4>{{ __('app.Newsletter') }}</h4>
+                        <p>{{ __('app.Subscribe To Our Newsletter') }}</p>
+
+                        <form action="" method="post">
+                            <input type="email" class="form-control" name="email"> <br>
+                            <input type="submit" class="btn btn-secondary btn-sm" value="{{ __('app.Subscribe') }}">
+                        </form>
+                    </div>
 
                 </div>
             </div>
