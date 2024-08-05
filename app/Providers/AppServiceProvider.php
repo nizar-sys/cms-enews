@@ -7,6 +7,7 @@ use App\Models\DocumentCategory;
 use App\Models\FooterSetting;
 use App\Models\FooterSocialLink;
 use App\Models\GeneralSetting;
+use App\Models\ProjectCategory;
 use App\Models\SeoSetting;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Facades\Blade;
@@ -35,6 +36,13 @@ class AppServiceProvider extends ServiceProvider
         Paginator::useBootstrapFour();
 
         View::composer('*', function ($view) {
+            $subsItemProjectCategories = ProjectCategory::select('id', 'name', 'slug')->get()->map(function ($category) {
+                return [
+                    'label' => __('app.' . $category->name),
+                    'url' => route('project-category', ['locale' => session('locale'), 'slugCategory' => $category->slug]),
+                ];
+            })->toArray();
+
             $menuItems = [
                 [
                     'label' => __('app.home'),
@@ -46,22 +54,16 @@ class AppServiceProvider extends ServiceProvider
                     'url' => '#',
                     'route' => ['mca_nepal'],
                     'subItems' => [
-                        ['label' => __('app.board_of_directors'), 'url' => '#'],
-                        ['label' => __('app.executive_team'), 'url' => '#'],
-                        ['label' => __('app.organizational_chart'), 'url' => '#']
+                        ['label' => __('app.board_of_directors'), 'url' => route('mca-nepal.board-of-director', ['locale' => session('locale')])],
+                        ['label' => __('app.executive_team'), 'url' => route('mca-nepal.executive-team', ['locale' => session('locale')])],
+                        ['label' => __('app.organizational_chart'), 'url' => route('mca-nepal.organizational-chart', ['locale' => session('locale')])]
                     ]
                 ],
                 [
                     'label' => __('app.projects'),
                     'url' => '#',
                     'route' => ['projects'],
-                    'subItems' => [
-                        ['label' => __('app.Electricity Transmission Project'), 'url' => '#'],
-                        ['label' => __('app.Road Maintenance Project'), 'url' => '#'],
-                        ['label' => __('app.Cross-Cutting Activities'), 'url' => '#'],
-                        ['label' => __('app.Project Areas'), 'url' => '#'],
-                        ['label' => __('app.Latest Project Updates'), 'url' => '#']
-                    ]
+                    'subItems' => $subsItemProjectCategories
                 ],
                 [
                     'label' => __('app.documents_reports'),
