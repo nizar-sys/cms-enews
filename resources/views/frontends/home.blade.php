@@ -254,7 +254,7 @@
 
             <!-- Section Title -->
             <div class="container section-title" data-aos="fade-up">
-                <h2>{{ __('app.News') }}</h2>
+                <h2>{{ __('app.Latest Posts') }}</h2>
             </div><!-- End Section Title -->
 
             <div class="container">
