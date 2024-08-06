@@ -285,7 +285,7 @@
 
                                     <hr>
 
-                                    <a href="blog-details.html" class="readmore stretched-link"><span>Read More</span><i
+                                    <a href="{{ route('posts-detail', ['locale' => session('locale'), 'post' => $post->slug]) }}" class="readmore stretched-link"><span>Read More</span><i
                                             class="bi bi-arrow-right"></i></a>
 
                                 </div>

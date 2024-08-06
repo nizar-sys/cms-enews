@@ -1,6 +1,6 @@
 @extends('frontends.frontend')
 
-@section('title', __('app.' . $projectCategory->name))
+@section('title', $projectCategory->name)
 
 @section('content')
     <main class="main">
@@ -9,11 +9,11 @@
         <div class="page-title dark-background" data-aos="fade"
             style="background-image: url({{ asset('/ac') }}/assets/img/page-title-bg.webp);">
             <div class="container position-relative">
-                <h1>{{ __('app.' . $projectCategory->name) }}</h1>
+                <h1>{{ $projectCategory->name }}</h1>
                 <nav class="breadcrumbs">
                     <ol>
                         <li><a href="{{ url('/', []) }}" class="text-primary">{{ __('app.home') }}</a></li>
-                        <li class="current">{{ __('app.' . $projectCategory->name) }}</li>
+                        <li class="current">{{ $projectCategory->name }}</li>
                     </ol>
                 </nav>
             </div>
