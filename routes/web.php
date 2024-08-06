@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\AboutController;
 use App\Http\Controllers\Admin\ArticleCategoryController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\DocumentCategoryController;
@@ -9,7 +10,6 @@ use App\Http\Controllers\Admin\SettingController;
 use App\Http\Controllers\Admin\GeneralSettingController;
 use App\Http\Controllers\Admin\ProjectCategoryController;
 use App\Http\Controllers\Admin\ProjectController;
-use App\Http\Controllers\Admin\TyperTitleController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\CommunityVoiceController;
 use App\Http\Controllers\Admin\DesignationController;
@@ -17,27 +17,11 @@ use App\Http\Controllers\Admin\DirectorController;
 use App\Http\Controllers\Admin\DirectorSectionSettingController;
 use App\Http\Controllers\Admin\ExecutiveController;
 use App\Http\Controllers\Admin\ExecutiveSectionSettingController;
-use App\Http\Controllers\Admin\ExperienceController;
-use App\Http\Controllers\Admin\FeedbackController;
-use App\Http\Controllers\Admin\FeedbackSectionSettingController;
-use App\Http\Controllers\Admin\FooterContactInfoController;
-use App\Http\Controllers\Admin\FooterHelpLinkController;
-use App\Http\Controllers\Admin\FooterInfoController;
-use App\Http\Controllers\Admin\FooterUsefulLinkController;
-use App\Http\Controllers\Admin\KrfSectionController;
-use App\Http\Controllers\Admin\KrfImageController;
-use App\Http\Controllers\Admin\GalleryAlbumController;
-use App\Http\Controllers\Admin\GalleryController;
-use App\Http\Controllers\Admin\GallerySectionSettingController;
 use App\Http\Controllers\Admin\NewsController;
 use App\Http\Controllers\Admin\GeneralProcurementController;
 use App\Http\Controllers\Admin\JobListController;
 use App\Http\Controllers\Admin\JobSectionSettingController;
-use App\Http\Controllers\Admin\JobsSectionController;
 use App\Http\Controllers\Admin\OrganizationalChartSectionSettingController;
-use App\Http\Controllers\Admin\PortfolioItemController;
-use App\Http\Controllers\Admin\PortfolioSectionSettingController;
-use App\Http\Controllers\Admin\QualificationController;
 use App\Http\Controllers\Admin\SeoSettingController;
 use App\Http\Controllers\Admin\ArticleController;
 use App\Http\Controllers\Admin\BidChallengeSystemController;
@@ -53,10 +37,11 @@ use App\Http\Controllers\Admin\SpesificProcurementFileController;
 
 use App\Http\Controllers\Admin\PressReleaseController;
 use App\Http\Controllers\Frontend\HomeController;
-use App\Models\SpesificProcurement;
 use App\Http\Controllers\Admin\PhotoGalleryAlbumController;
 use App\Http\Controllers\Admin\PhotoGalleryController;
 use App\Http\Controllers\Admin\PostController;
+use App\Http\Controllers\Admin\ServiceController;
+use App\Http\Controllers\Admin\ServiceSectionSettingController;
 use App\Http\Controllers\Admin\VideoGalleryController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\FaqController;
@@ -76,7 +61,15 @@ Route::get('/optimize', function () {
     return 'Optimize Clear';
 });
 
-Route::get('/', [HomeController::class, 'index'])->name('home');
+Route::get('/', [HomeController::class, 'index'])->middleware('record.visitor')->name('home');
+
+Route::get('/download/{file}', function ($path) {
+    return redirect(asset($path));
+})->where('file', '.*')->middleware('auth.uploads')->name('download.uploads');
+
+Route::post('/download-files', [HomeController::class, 'downloadMultiple'])->middleware('auth.uploads')->name('download.multiple');
+
+Route::get('/api/search', [HomeController::class, 'search'])->name('api.search');
 
 /** Admin Routes */
 
@@ -88,11 +81,10 @@ Route::middleware('auth')->group(function () {
 
 require __DIR__ . '/auth.php';
 
-Route::get('dashboard', [DashboardController::class, 'index'])->middleware('auth')->name('dashboard');
+Route::get('dashboard', [DashboardController::class, 'index'])->middleware(['auth', 'admin'])->name('dashboard');
 
 /** Admin Route**/
-Route::group(['middleware' => ['auth'], 'prefix' => 'console', 'as' => 'admin.'], function () {
-
+Route::group(['middleware' => ['auth', 'admin'], 'prefix' => 'console', 'as' => 'admin.'], function () {
 
     Route::prefix('board-of-directors')->name('bod.')->group(function () {
         // Director Section Setting
@@ -122,7 +114,6 @@ Route::group(['middleware' => ['auth'], 'prefix' => 'console', 'as' => 'admin.']
         // Organizational Chart
         Route::resource('organizational-chart-settings', OrganizationalChartSectionSettingController::class);
     });
-
 
 
     /**Setting Route**/
@@ -268,6 +259,9 @@ Route::group(['middleware' => ['auth'], 'prefix' => 'console', 'as' => 'admin.']
 
     Route::resource('categories', CategoryController::class);
     Route::resource('posts', PostController::class);
+    Route::resource('about', AboutController::class);
+    Route::resource('service-section-setting', ServiceSectionSettingController::class);
+    Route::resource('service', ServiceController::class);
 });
 
 Route::prefix('{locale}')->group(function () {
@@ -327,5 +321,4 @@ Route::prefix('{locale}')->group(function () {
     Route::get('/contacts', [FrontendContactController::class, 'index'])->name('contact.index');
 
     Route::get('/posts/{post}', [HomeController::class, 'postDetail'])->name('posts-detail');
-
 });

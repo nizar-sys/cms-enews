@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
-    <title>{{ __('app.app_name') }} - @yield('title')</title>
+    <title>@yield('title') - {{ __('app.app_name') }}</title>
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"
         integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
     <meta content="{{ $seoSetting?->description }}" name="description">
@@ -95,22 +95,100 @@
                         @endforeach
                     </div>
                     <div id="wrap" class="d-inline-block me-3">
-                        <form method="get" role="search" action="" class="d-flex">
-                            <input id="search" name="s" type="text" class="form-control me-2"
-                                placeholder="{{ __('app.what_are_you_looking_for') }}" autocomplete="off">
-                            <button id="search_submit" class="btn btn-outline-secondary" type="submit">
-                                <i class="bi bi-search"></i>
-                            </button>
-                        </form>
+                        <button id="searchButton" class="btn btn-outline-secondary" data-bs-target="#searchModal"
+                            data-bs-toggle="modal">
+                            <i class="bi bi-search"></i>
+                        </button>
                     </div>
-                    <div class="locale-switcher d-inline-block">
+                    <div class="locale-switcher d-inline-block me-3">
                         <span>
                             <a href="{{ url(app()->getLocale() === 'pt' ? '/en' : '/pt') }}">
                                 {{ app()->getLocale() === 'pt' ? 'EN' : 'PT' }}
                             </a>
                         </span>
                     </div>
+                    <div class="user-profile d-inline-block">
+                        @guest
+                            <a href="{{ route('login') }}" class="btn text-light"
+                                style="background-color: #2c4666">{{ __('app.Login') }}</a>
+                        @else
+                            <div class="dropdown">
+                                <button class="btn btn-transparent dropdown-toggle" type="button" id="userDropdown"
+                                    data-bs-toggle="dropdown" aria-expanded="false">
+                                    {{ Auth::user()->name }}
+                                </button>
+                                <ul class="dropdown-menu" aria-labelledby="userDropdown">
+                                    <li><a class="dropdown-item" href="#" data-bs-toggle="modal"
+                                            data-bs-target="#logoutModal">{{ __('app.Logout') }}</a></li>
+                                </ul>
+                            </div>
+                        @endguest
+                    </div>
                 </div>
+
+                <!-- Logout Modal -->
+                <div class="modal fade" id="logoutModal" tabindex="-1" aria-labelledby="logoutModalLabel"
+                    aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="logoutModalLabel">{{ __('app.Logout') }}</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                {{ __('app.Are you sure you want to logout?') }}
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary"
+                                    data-bs-dismiss="modal">{{ __('app.Cancel') }}</button>
+                                <form method="POST" action="{{ route('logout') }}">
+                                    @csrf
+                                    <button type="submit" class="btn btn-danger">{{ __('app.Logout') }}</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="modal fade" id="searchModal" tabindex="-1" aria-labelledby="searchModalLabel"
+                    aria-hidden="true">
+                    <div class="modal-dialog modal-lg">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="searchModalLabel">{{ __('app.Search') }}</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <!-- Search Form -->
+                                <form method="get" action="#" class="mb-4">
+                                    <input type="text" name="search" id="searchInput" class="form-control"
+                                        placeholder="{{ __('app.Enter search term') }}"
+                                        style="border: 1px solid #2c4666;" autocomplete="off" autofocus>
+                                </form>
+
+                                <!-- Search Results -->
+                                <div id="searchResults" class="d-none">
+                                    <div class="row" id="resultsContainer">
+                                        <!-- Results will be inserted here via AJAX -->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <style>
+                    /* Ensures the modal body is scrollable */
+                    #searchResults {
+                        max-height: calc(100vh - 210px);
+                        /* Adjust based on your header and footer height */
+                        overflow-y: auto;
+                        overflow-x: hidden;
+                    }
+                </style>
+
             </div>
         </nav>
 
@@ -207,7 +285,8 @@
 
                         <form action="" method="post">
                             <input type="email" class="form-control" name="email"> <br>
-                            <input type="submit" class="btn btn-secondary btn-sm" value="{{ __('app.Subscribe') }}">
+                            <input type="submit" class="btn btn-secondary btn-sm"
+                                value="{{ __('app.Subscribe') }}">
                         </form>
                     </div>
 
@@ -259,7 +338,179 @@
     <script src="{{ asset('/ac') }}/assets/vendor/glightbox/js/glightbox.min.js"></script>
 
     <!-- Main JS File -->
-    <script src="{{ asset('/ac') }}/assets/js/main.js"></script>
+    <script>
+        /**
+         * Template Name: AgriCulture
+         * Template URL: https://bootstrapmade.com/agriculture-bootstrap-website-template/
+         * Updated: Jun 29 2024 with Bootstrap v5.3.3
+         * Author: BootstrapMade.com
+         * License: https://bootstrapmade.com/license/
+         */
+
+        (function() {
+            "use strict";
+
+            /**
+             * Apply .scrolled class to the body as the page is scrolled down
+             */
+            function toggleScrolled() {
+                const selectBody = document.querySelector('body');
+                const selectHeader = document.querySelector('#header');
+                if (!selectHeader.classList.contains('scroll-up-sticky') && !selectHeader.classList.contains(
+                        'sticky-top') && !selectHeader.classList.contains('fixed-top')) return;
+                window.scrollY > 100 ? selectBody.classList.add('scrolled') : selectBody.classList.remove('scrolled');
+            }
+
+            document.addEventListener('scroll', toggleScrolled);
+            window.addEventListener('load', toggleScrolled);
+
+            /**
+             * Scroll up sticky header to headers with .scroll-up-sticky class
+             */
+            let lastScrollTop = 0;
+            window.addEventListener('scroll', function() {
+                const selectHeader = document.querySelector('#header');
+                if (!selectHeader.classList.contains('scroll-up-sticky')) return;
+
+                let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+
+                if (scrollTop > lastScrollTop && scrollTop > selectHeader.offsetHeight) {
+                    selectHeader.style.setProperty('position', 'sticky', 'important');
+                    selectHeader.style.top = `-${header.offsetHeight + 50}px`;
+                } else if (scrollTop > selectHeader.offsetHeight) {
+                    selectHeader.style.setProperty('position', 'sticky', 'important');
+                    selectHeader.style.top = "0";
+                } else {
+                    selectHeader.style.removeProperty('top');
+                    selectHeader.style.removeProperty('position');
+                }
+                lastScrollTop = scrollTop;
+            });
+
+            /**
+             * Mobile nav toggle
+             */
+            const mobileNavToggleBtn = document.querySelector('.mobile-nav-toggle');
+
+            function mobileNavToogle() {
+                document.querySelector('body').classList.toggle('mobile-nav-active');
+                mobileNavToggleBtn.classList.toggle('bi-list');
+                mobileNavToggleBtn.classList.toggle('bi-x');
+            }
+            mobileNavToggleBtn.addEventListener('click', mobileNavToogle);
+
+            /**
+             * Hide mobile nav on same-page/hash links
+             */
+            document.querySelectorAll('#navmenu a').forEach(navmenu => {
+                navmenu.addEventListener('click', () => {
+                    if (document.querySelector('.mobile-nav-active')) {
+                        mobileNavToogle();
+                    }
+                });
+
+            });
+
+            /**
+             * Toggle mobile nav dropdowns
+             */
+            document.querySelectorAll('.navmenu .toggle-dropdown').forEach(navmenu => {
+                navmenu.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    this.parentNode.classList.toggle('active');
+                    this.parentNode.nextElementSibling.classList.toggle('dropdown-active');
+                    e.stopImmediatePropagation();
+                });
+            });
+
+            /**
+             * Preloader
+             */
+            const preloader = document.querySelector('#preloader');
+            if (preloader) {
+                window.addEventListener('load', () => {
+                    preloader.remove();
+                });
+            }
+
+            /**
+             * Scroll top button
+             */
+            let scrollTop = document.querySelector('.scroll-top');
+
+            function toggleScrollTop() {
+                if (scrollTop) {
+                    window.scrollY > 100 ? scrollTop.classList.add('active') : scrollTop.classList.remove('active');
+                }
+            }
+            scrollTop.addEventListener('click', (e) => {
+                e.preventDefault();
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            });
+
+            window.addEventListener('load', toggleScrollTop);
+            document.addEventListener('scroll', toggleScrollTop);
+
+            /**
+             * Animation on scroll function and init
+             */
+            function aosInit() {
+                AOS.init({
+                    duration: 600,
+                    easing: 'ease-in-out',
+                    once: true,
+                    mirror: false
+                });
+            }
+            window.addEventListener('load', aosInit);
+
+            /**
+             * Auto generate the carousel indicators
+             */
+            document.querySelectorAll('.carousel-indicators').forEach((carouselIndicator) => {
+                carouselIndicator.closest('.carousel').querySelectorAll('.carousel-item').forEach((carouselItem,
+                    index) => {
+                    if (index === 0) {
+                        carouselIndicator.innerHTML +=
+                            `<li data-bs-target="#${carouselIndicator.closest('.carousel').id}" data-bs-slide-to="${index}" class="active"></li>`;
+                    } else {
+                        carouselIndicator.innerHTML +=
+                            `<li data-bs-target="#${carouselIndicator.closest('.carousel').id}" data-bs-slide-to="${index}"></li>`;
+                    }
+                });
+            });
+
+            /**
+             * Init swiper sliders
+             */
+            function initSwiper() {
+                document.querySelectorAll(".init-swiper").forEach(function(swiperElement) {
+                    let config = JSON.parse(
+                        swiperElement.querySelector(".swiper-config").innerHTML.trim()
+                    );
+
+                    if (swiperElement.classList.contains("swiper-tab")) {
+                        initSwiperWithCustomPagination(swiperElement, config);
+                    } else {
+                        new Swiper(swiperElement, config);
+                    }
+                });
+            }
+
+            window.addEventListener("load", initSwiper);
+
+            /**
+             * Initiate glightbox
+             */
+            const glightbox = GLightbox({
+                selector: '.glightbox'
+            });
+
+        })();
+    </script>
 
     <script>
         $(document).ready(function() {
@@ -302,6 +553,44 @@
 
             // Initial call to display countdown immediately
             updateCountdown();
+        });
+    </script>
+    <script>
+        $(document).ready(function() {
+            $('#searchInput').on('keyup', function() {
+                let query = $(this).val();
+                if (query.length >= 3) {
+                    $.ajax({
+                        url: "{{ route('api.search') }}",
+                        type: 'GET',
+                        data: {
+                            search: query
+                        },
+                        success: function(response) {
+                            let resultsContainer = $('#resultsContainer');
+                            resultsContainer.empty();
+                            if (response.length > 0) {
+                                $('#searchResults').removeClass('d-none');
+                                response.forEach(item => {
+                                    let resultHtml = `<a class="col-md-12 mb-3" ${item.isFile ? 'target="_blank"' : ''} href="${item.detail}">
+                                            <div class="card">
+                                                <div class="card-body">
+                                                    <h5 class="card-title">${item.type}</h5>
+                                                    <p class="card-text">${item.title}</p>
+                                                </div>
+                                            </div>
+                                        </a>`;
+                                    resultsContainer.append(resultHtml);
+                                });
+                            } else {
+                                $('#searchResults').addClass('d-none');
+                            }
+                        }
+                    });
+                } else {
+                    $('#searchResults').addClass('d-none');
+                }
+            });
         });
     </script>
     @stack('script')

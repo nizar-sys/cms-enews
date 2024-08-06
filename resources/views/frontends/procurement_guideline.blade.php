@@ -5,8 +5,7 @@
 @section('content')
     <main class="main">
 
-        <div class="page-title dark-background" data-aos="fade"
-            style="background-image: url({{ asset('/ac') }}/assets/img/page-title-bg.webp);">
+        <div class="page-title dark-background" data-aos="fade" style="background-color: #2c4666">
             <div class="container position-relative">
                 <h1>{{ __('app.procurement_guidelines') }}</h1>
                 <nav class="breadcrumbs">
@@ -31,14 +30,43 @@
                             </header><!-- .entry-header -->
 
                             <div class="entry-content">
-                                <ol>
-                                    @foreach ($guidelinesProcurement as $guideline)
-                                        <li><a href="{{ asset($guideline->file_path) }}" target="_blank"
-                                                rel="noopener">{{ pathinfo(asset($guideline->file_path), PATHINFO_FILENAME) }}</a>
-                                        </li>
-                                        <p></p>
-                                    @endforeach
-                                </ol>
+                                <div class="table-responsive">
+                                    <form id="downloadGuidelinesForm" method="POST"
+                                        action="{{ route('download.multiple') }}">
+                                        @csrf
+                                        <table class="table table-bordered table-striped">
+                                            <thead>
+                                                <tr>
+                                                    <th><input type="checkbox" id="selectAllGuidelines"></th>
+                                                    <th>{{ __('app.Title') }}</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                @forelse ($guidelinesProcurement as $guideline)
+                                                    <tr>
+                                                        <td width="5%"><input type="checkbox" name="files[]"
+                                                                value="{{ $guideline->file_path }}"></td>
+                                                        <td>
+                                                            <a href="{{ route('download.uploads', ['file' => $guideline->file_path]) }}"
+                                                                target="_blank" rel="noopener">
+                                                                {{ pathinfo(asset($guideline->file_path), PATHINFO_FILENAME) }}
+                                                            </a>
+                                                        </td>
+                                                    </tr>
+                                                @empty
+                                                    <tr>
+                                                        <td colspan="2" class="text-center">
+                                                            {{ __('app.No files found') }}</td>
+                                                    </tr>
+                                                @endforelse
+                                            </tbody>
+                                        </table>
+                                        <button type="submit"
+                                            class="btn btn-danger btn-sm">{{ __('app.Download Selected') }}</button>
+                                    </form>
+                                </div>
+
+
                             </div><!-- .entry-content -->
 
                         </article><!-- #post-## -->
@@ -80,3 +108,25 @@
         </section>
     </main>
 @endsection
+
+@push('script')
+    <script>
+        $(document).ready(function() {
+            $('#selectAllGuidelines').click(function() {
+                $('input[name="files[]"]').prop('checked', this.checked);
+            });
+
+            $('input[name="files[]"]').change(function() {
+                $('#selectAllGuidelines').prop('checked', $('input[name="files[]"]').length === $(
+                    'input[name="files[]"]:checked').length);
+            });
+
+            $('#downloadGuidelinesForm').submit(function(e) {
+                if ($('input[name="files[]"]:checked').length === 0) {
+                    e.preventDefault();
+                    alert('{{ __('app.No files selected') }}');
+                }
+            });
+        });
+    </script>
+@endpush

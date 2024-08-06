@@ -1,20 +1,21 @@
 @extends('frontends.frontend')
 
 @section('content')
-<main class="main">
-    
-    <div class="page-title dark-background" data-aos="fade"
-    style="background-image: url({{ asset('/ac') }}/assets/img/page-title-bg.webp);">
-    <div class="container position-relative">
-        <nav class="breadcrumbs">
-            <ol>
-                <li><a href="{{ url('/', []) }}" class="text-primary">{{ __('app.home') }}</a></li>
-                <li class="current">{{ __('app.Community Voice') }}</li>
-            </ol>
-        </nav>
-    </div>
-</div>
-    
+    <main class="main">
+
+        <div class="page-title dark-background" data-aos="fade" style="background-color: #2c4666">
+            <div class="container position-relative">
+                <h1>{{ __('app.Community Voice') }}</h1>
+
+                <nav class="breadcrumbs">
+                    <ol>
+                        <li><a href="{{ url('/', []) }}" class="text-primary">{{ __('app.home') }}</a></li>
+                        <li class="current">{{ __('app.Community Voice') }}</li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+
         <div class="container">
             <div class="row">
                 <section id="primary" class="content-area col-sm-12 col-lg-12">
@@ -41,6 +42,6 @@
 
             </div><!-- .row -->
         </div>
-    
-</main>
+
+    </main>
 @endsection

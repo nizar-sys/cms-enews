@@ -4,8 +4,7 @@
 
 @section('content')
     <main class="main">
-        <div class="page-title dark-background" data-aos="fade"
-            style="background-image: url({{ asset('/ac') }}/assets/img/page-title-bg.webp);">
+        <div class="page-title dark-background" data-aos="fade" style="background-color: #2c4666">
             <div class="container position-relative">
                 <h1>{{ __('app.procurement_notices') }}</h1>
                 <nav class="breadcrumbs">
@@ -73,7 +72,7 @@
                                                         </ol>
 
                                                         <a href="{{ route('procurement-notice-files', ['locale' => session('locale', 'en'), 'spesificProcurementId' => $spesificItem->id]) }}"
-                                                            class="badge badge-danger">{{ __('app.Show FIles') }}</a>
+                                                            class="btn btn-danger btn-sm">{{ __('app.Show FIles') }}</a>
                                                     </td>
 
                                                     <td width="25%">
@@ -85,15 +84,15 @@
                                                     </td>
                                                     <td width="10%">
                                                         @php
-                                                            $status = $spesificProcurement->status ?? 'draft';
+                                                            $status = $spesificItem?->status ?? 'draft';
                                                             $badge = match ($status) {
-                                                                'open' => 'badge-success',
-                                                                'close' => 'badge-danger',
-                                                                default => 'badge-warning',
+                                                                'open' => 'btn-success',
+                                                                'close' => 'btn-danger',
+                                                                default => 'btn-warning',
                                                             };
                                                         @endphp
 
-                                                        <span class="badge {{ $badge }}">{{ $status }}</span>
+                                                        <span class="btn {{ $badge }}">{{ $status }}</span>
                                                     </td>
                                                 </tr>
                                             @empty
@@ -109,51 +108,59 @@
                             </div>
                             <div class="tab-pane fade" id="nav-general" role="tabpanel" aria-labelledby="nav-general-tab">
                                 <div class="table-responsive">
-                                    <div class="content-area col-sm-12 col-lg-12" style="margin:15px 0;">
-                                    </div>
-                                    <table class="table table-bordered table-striped">
-                                        <thead>
-                                            <tr>
-                                                <th>{{ __('app.Title') }}</th>
-                                                <th>{{ __('app.Notice') }}</th>
-                                                <th>{{ __('app.Published Date') }}</th>
-                                                <th>{{ __('app.Duration') }}</th>
-
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            @forelse ($generalProcurements as $generalProcurement)
+                                    <form id="downloadProcurementsForm" method="POST"
+                                        action="{{ route('download.multiple') }}">
+                                        @csrf
+                                        <div class="content-area col-sm-12 col-lg-12" style="margin:15px 0;">
+                                            <!-- Additional content can be added here if needed -->
+                                        </div>
+                                        <table class="table table-bordered table-striped">
+                                            <thead>
                                                 <tr>
-                                                    <td width="35%">{!! $generalProcurement->title !!}</td>
-                                                    <td width="20%">
-                                                        <a class="btn btn-danger"
-                                                            href="{{ asset($generalProcurement->file_path) }}"
-                                                            target="_blank"><i class="fa fa-file-pdf"></i>
-                                                            {{ __('app.View PDF') }} </a>
-                                                    </td>
-                                                    <td width="20%">
-                                                        {{ \Carbon\Carbon::parse($generalProcurement->published_date)->format('d/m/Y') }}
-                                                    </td>
-                                                    <td width="20%">
-                                                        {{ $generalProcurement->duration }}
-                                                    </td>
+                                                    <th><input type="checkbox" id="selectAllProcurements"></th>
+                                                    <th>{{ __('app.Title') }}</th>
+                                                    <th>{{ __('app.Notice') }}</th>
+                                                    <th>{{ __('app.Published Date') }}</th>
+                                                    <th>{{ __('app.Duration') }}</th>
                                                 </tr>
-                                            @empty
-                                                <tr>
-                                                    <td colspan="4" style="text-align: center">
-                                                        {{ __('app.No files found') }}</td>
-                                                </tr>
-                                            @endforelse
-                                        </tbody>
-                                    </table>
+                                            </thead>
+                                            <tbody>
+                                                @forelse ($generalProcurements as $generalProcurement)
+                                                    <tr>
+                                                        <td width="5%"><input type="checkbox" name="files[]"
+                                                                value="{{ $generalProcurement->file_path }}"></td>
+                                                        <td width="35%">{!! $generalProcurement->title !!}</td>
+                                                        <td width="20%">
+                                                            <a class="btn btn-danger btn-sm"
+                                                                href="{{ route('download.uploads', ['file' => $generalProcurement->file_path]) }}"
+                                                                target="_blank">
+                                                                <i class="fa fa-file-pdf"></i> {{ __('app.View PDF') }}
+                                                            </a>
+                                                        </td>
+                                                        <td width="20%">
+                                                            {{ \Carbon\Carbon::parse($generalProcurement->published_date)->format('d/m/Y') }}
+                                                        </td>
+                                                        <td width="20%">
+                                                            {{ $generalProcurement->duration }}
+                                                        </td>
+                                                    </tr>
+                                                @empty
+                                                    <tr>
+                                                        <td colspan="5" class="text-center">
+                                                            {{ __('app.No files found') }}</td>
+                                                    </tr>
+                                                @endforelse
+                                            </tbody>
+                                        </table>
+                                        <button type="submit"
+                                            class="btn btn-danger btn-sm">{{ __('app.Download Selected') }}</button>
+                                    </form>
                                     <br>
                                     <table class="table">
                                         <tbody>
                                             <tr>
-                                                <td width="50%" style="text-align:left">
-                                                </td>
-                                                <td width="50%" style="text-align:right">
-                                                </td>
+                                                <td width="50%" style="text-align:left"></td>
+                                                <td width="50%" style="text-align:right"></td>
                                             </tr>
                                         </tbody>
                                     </table>
@@ -181,7 +188,8 @@
                                 <div class="form-group d-flex align-items-stretch">
                                     <input type="email" name="email" class="form-control h-100"
                                         placeholder="Enter your e-mail">
-                                    <input type="submit" class="btn btn-secondary px-4" value="{{ __('app.Subscribe') }}">
+                                    <input type="submit" class="btn btn-secondary px-4"
+                                        value="{{ __('app.Subscribe') }}">
                                 </div>
                                 <div class="loading">{{ __('app.Loading') }}</div>
                                 <div class="error-message"></div>
@@ -196,3 +204,25 @@
         </section>
     </main>
 @endsection
+
+@push('script')
+    <script>
+        $(document).ready(function() {
+            $('#selectAllProcurements').click(function() {
+                $('input[name="files[]"]').prop('checked', this.checked);
+            });
+
+            $('input[name="files[]"]').change(function() {
+                $('#selectAllProcurements').prop('checked', $('input[name="files[]"]').length === $(
+                    'input[name="files[]"]:checked').length);
+            });
+
+            $('#downloadProcurementsForm').submit(function(e) {
+                if ($('input[name="files[]"]:checked').length === 0) {
+                    e.preventDefault();
+                    alert('{{ __('app.No files selected') }}');
+                }
+            });
+        });
+    </script>
+@endpush

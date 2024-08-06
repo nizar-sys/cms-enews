@@ -1,5 +1,7 @@
 @extends('frontends.frontend')
 
+@section('title', __('app.news'))
+
 @push('style')
     <style>
         .news_pagination.wpnw-numeric {
@@ -12,12 +14,13 @@
 @section('content')
 <main class="main">
     <div class="page-title dark-background" data-aos="fade"
-        style="background-image: url({{ asset('/ac') }}/assets/img/page-title-bg.webp);">
+        style="background-color: #2c4666">
         <div class="container position-relative">
+            <h1>{{ __('app.News') }}</h1>
             <nav class="breadcrumbs">
                 <ol>
                     <li><a href="{{ url('/', []) }}" class="text-primary">{{ __('app.home') }}</a></li>
-                    <li class="current">{{ __('app.News') }}</li>
+                    <li class="current">{{ __('app.News') }}ss</li>
                 </ol>
             </nav>
         </div>
@@ -46,7 +49,7 @@
                                     <!-- <p></p> -->
 
                                     <a href="{{ route('media-notices.news-detail', ['locale' => session('locale', 'en'), 'new' => $post->id]) }}"
-                                        class="news-more-link">{{ __('app.Read More') }}</a>
+                                        class="btn btn-sm text-white" style="background-color: #2c4666">{{ __('app.Read More') }}</a>
                                 </div>
                             @endforeach
                         </div>

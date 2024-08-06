@@ -53,26 +53,39 @@
             <div class="container">
                 <div class="row gy-4 justify-content-between align-items-center">
                     <div class="col-lg-6 position-relative" data-aos="zoom-out">
-                        <img src="{{ asset('/ac') }}/assets/img/img_sq_1.jpg" alt="Image" class="img-fluid">
-                        <a href="https://www.youtube.com/watch?v=LXb3EKWsInQ" class="glightbox pulsating-play-btn">
-                            <span class="play"><i class="bi bi-play-fill"></i></span>
-                        </a>
+                        <img src="{{ $about ? asset($about->image) : asset('/ac/assets/img/img_sq_1.jpg') }}" alt="Image"
+                            class="img-fluid">
+                        @if (!$about)
+                            <a href="https://www.youtube.com/watch?v=LXb3EKWsInQ" class="glightbox pulsating-play-btn">
+                                <span class="play"><i class="bi bi-play-fill"></i></span>
+                            </a>
+                        @endif
                     </div>
                     <div class="col-lg-5" data-aos="fade-up" data-aos-delay="100">
-                        <h2 class="content-title mb-4">{{ __('app.Who We Are') }}</h2>
-                        <p class="mb-4">
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim
-                            necessitatibus placeat, atque qui voluptatem velit explicabo vitae
-                            repellendus architecto provident nisi ullam minus asperiores commodi!
-                            Tenetur, repellat aliquam nihil illo.
+                        <h2 class="content-title mb-4">{{ $about->title ?? __('app.Who We Are') }}</h2>
+                        @if ($about)
+                            <div class="mb-4">
+                                {!! $about->description !!}
+                            </div>
+                        @else
+                            <p class="mb-4">
+                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim
+                                necessitatibus placeat, atque qui voluptatem velit explicabo vitae
+                                repellendus architecto provident nisi ullam minus asperiores commodi!
+                                Tenetur, repellat aliquam nihil illo.
+                            </p>
+                            <ul class="list-unstyled list-check">
+                                <li>Lorem ipsum dolor sit amet</li>
+                                <li>Velit explicabo vitae repellendu</li>
+                                <li>Repellat aliquam nihil illo</li>
+                            </ul>
+                        @endif
+                        <p>
+                            <a href="{{ $about ? asset($about->resume) : '#services' }}"
+                                {{ $about ? 'target="_blank"' : '' }} class="btn-cta">
+                                {{ __('app.What We Do') }}
+                            </a>
                         </p>
-                        <ul class="list-unstyled list-check">
-                            <li>Lorem ipsum dolor sit amet</li>
-                            <li>Velit explicabo vitae repellendu</li>
-                            <li>Repellat aliquam nihil illo</li>
-                        </ul>
-
-                        <p><a href="#services" class="btn-cta">{{ __('app.What We Do') }}</a></p>
                     </div>
                 </div>
             </div>
@@ -83,45 +96,29 @@
 
             <!-- Section Title -->
             <div class="container section-title" data-aos="fade-up">
-                <h2>{{ __('app.Our Services') }}</h2>
-                <p>We work with you to achieve your goals</p>
+                <h2>{{ $serviceSection ? $serviceSection->title : __('app.Our Services') }}</h2>
+                @if ($serviceSection)
+                    {!! $serviceSection->sub_title !!}
+                @else
+                    <p>We work with you to achieve your goals</p>
+                @endif
             </div><!-- End Section Title -->
-            <div class="content">
+            <div class="content" data-aos="fade-up">
                 <div class="container">
                     <div class="row g-0">
-                        <div class="col-lg-4 col-md-6">
-                            <div class="service-item">
-                                <div class="service-item-icon">
-                                    <i class="fas fa-paint-brush fa-3x"></i>
-                                </div>
-                                <div class="service-item-content">
-                                    <h3 class="service-heading">Web Design</h3>
-                                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime, rem!</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-4 col-md-6">
-                            <div class="service-item">
-                                <div class="service-item-icon">
-                                    <i class="fas fa-code fa-3x"></i>
-                                </div>
-                                <div class="service-item-content">
-                                    <h3 class="service-heading">Web Development</h3>
-                                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Similique, veniam.</p>
+                        @foreach ($services as $service)
+                            <div class="col-lg-4 col-md-6">
+                                <div class="service-item">
+                                    <div class="service-item-icon">
+                                        <img src="{{ asset($service->image) }}" alt="{{ $service->title }}">
+                                    </div>
+                                    <div class="service-item-content">
+                                        <h3 class="service-heading">{{ $service->title }}</h3>
+                                        <p>{{ $service->description }}</p>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="col-lg-4 col-md-6">
-                            <div class="service-item">
-                                <div class="service-item-icon">
-                                    <i class="fas fa-palette fa-3x"></i>
-                                </div>
-                                <div class="service-item-content">
-                                    <h3 class="service-heading">Graphic Design</h3>
-                                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ex, facilis.</p>
-                                </div>
-                            </div>
-                        </div>
+                        @endforeach
                     </div>
                 </div>
             </div>
@@ -134,44 +131,38 @@
                 <div class="container">
                     <div class="row">
                         <div class="col-lg-6 mb-4 mb-lg-0" data-aos="fade-up" data-aos-delay="100">
-                            <h2 class="content-title mb-4">{{ __('app.How We Do') }}</h2>
-                            <p class="mb-4">
-                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim
-                                necessitatibus placeat, atque qui voluptatem velit explicabo vitae
-                                repellendus architecto provident nisi ullam minus asperiores commodi!
-                                Tenetur, repellat aliquam nihil illo.
-                            </p>
-                            <ul class="list-unstyled list-check">
-                                <li>Lorem ipsum dolor sit amet</li>
-                                <li>Velit explicabo vitae repellendu</li>
-                                <li>Repellat aliquam nihil illo</li>
-                            </ul>
-
-                            <button class="btn-approach">Our Approach</button>
+                            <h2 class="content-title mb-4">{{ $about->title ?? __('app.Who We Are') }}</h2>
+                            @if ($about)
+                                <div class="mb-4">
+                                    {!! $about->description !!}
+                                </div>
+                            @else
+                                <p class="mb-4">
+                                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim
+                                    necessitatibus placeat, atque qui voluptatem velit explicabo vitae
+                                    repellendus architecto provident nisi ullam minus asperiores commodi!
+                                    Tenetur, repellat aliquam nihil illo.
+                                </p>
+                                <ul class="list-unstyled list-check">
+                                    <li>Lorem ipsum dolor sit amet</li>
+                                    <li>Velit explicabo vitae repellendu</li>
+                                    <li>Repellat aliquam nihil illo</li>
+                                </ul>
+                            @endif
                         </div>
                         <div class="col-lg-5 ml-auto" data-aos="fade-up" data-aos-delay="100">
                             <div class="row my-5">
-                                <div class="col-lg-12 d-flex align-items-start mb-4">
-                                    <i class="bi bi-bullseye me-4 display-6"></i>
-                                    <div>
-                                        <h4 class="m-0 h5 text-white">Goals</h4>
-                                        <p class="text-white opacity-50">Lorem ipsum dolor sit amet.</p>
+                                @foreach ($services as $serv)
+                                    <div class="col-lg-12 d-flex align-items-start mb-4">
+                                        <i class="bi bi-bullseye me-4 display-6"></i>
+                                        <div>
+                                            <h4 class="m-0 h5 text-white">{{ $serv->name }}</h4>
+                                            <div class="text-white opacity-50">
+                                                {{ $serv->description }}
+                                            </div>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="col-lg-12 d-flex align-items-start mb-4">
-                                    <i class="bi bi-list-task me-4 display-6"></i>
-                                    <div>
-                                        <h4 class="m-0 h5 text-white">Plans</h4>
-                                        <p class="text-white opacity-50">Lorem ipsum dolor sit amet.</p>
-                                    </div>
-                                </div>
-                                <div class="col-lg-12 d-flex align-items-start">
-                                    <i class="bi bi-arrow-clockwise me-4 display-6"></i>
-                                    <div>
-                                        <h4 class="m-0 h5 text-white">Action</h4>
-                                        <p class="text-white opacity-50">Lorem ipsum dolor sit amet.</p>
-                                    </div>
-                                </div>
+                                @endforeach
                             </div>
                         </div>
                     </div>
@@ -275,7 +266,8 @@
 
                                     <div class="meta d-flex align-items-center">
                                         <div class="d-flex align-items-center">
-                                            <i class="bi bi-person"></i> <span class="ps-2">{{ $post->author->name }}</span>
+                                            <i class="bi bi-person"></i> <span
+                                                class="ps-2">{{ $post->author->name }}</span>
                                         </div>
                                         <span class="px-3 text-black-50"></span>
                                         <div class="d-flex align-items-center">
@@ -285,7 +277,8 @@
 
                                     <hr>
 
-                                    <a href="{{ route('posts-detail', ['locale' => session('locale', 'en'), 'post' => $post->slug]) }}" class="readmore stretched-link"><span>Read More</span><i
+                                    <a href="{{ route('posts-detail', ['locale' => session('locale', 'en'), 'post' => $post->slug]) }}"
+                                        class="readmore stretched-link"><span>Read More</span><i
                                             class="bi bi-arrow-right"></i></a>
 
                                 </div>
@@ -305,7 +298,7 @@
                 <div class="container">
                     <div class="row align-items-center">
                         <div class="col-lg-6">
-                            <h3>{{ __("app.Subscribe To Our Newsletter") }}</h3>
+                            <h3>{{ __('app.Subscribe To Our Newsletter') }}</h3>
                             <p class="opacity-50">
                                 Lorem ipsum dolor sit amet consectetur adipisicing elit.
                                 Nesciunt, reprehenderit!
@@ -316,12 +309,13 @@
                                 <div class="form-group d-flex align-items-stretch">
                                     <input type="email" name="email" class="form-control h-100"
                                         placeholder="Enter your e-mail">
-                                    <input type="submit" class="btn btn-secondary px-4" value="{{ __('app.Subscribe') }}">
+                                    <input type="submit" class="btn btn-secondary px-4"
+                                        value="{{ __('app.Subscribe') }}">
                                 </div>
-                                <div class="loading">{{ __("app.Loading") }}</div>
+                                <div class="loading">{{ __('app.Loading') }}</div>
                                 <div class="error-message"></div>
                                 <div class="sent-message">
-                                    {{ __("app.Your subscription request has been sent. Thank you!") }}
+                                    {{ __('app.Your subscription request has been sent. Thank you!') }}
                                 </div>
                             </form>
                         </div>

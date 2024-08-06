@@ -1,5 +1,7 @@
 @extends('frontends.frontend')
 
+@section('title', __('app.Video Gallery'))
+
 @section('content')
     <style>
         .video-gallery {
@@ -27,24 +29,24 @@
             overflow: hidden;
         }
     </style>
-    <div class="page-title dark-background" data-aos="fade"
-    style="background-image: url({{ asset('/ac') }}/assets/img/page-title-bg.webp);">
-    <div class="container position-relative">
-        <nav class="breadcrumbs">
-            <ol>
-                <li><a href="{{ url('/', []) }}" class="text-primary">{{ __('app.home') }}</a></li>
-                <li class="current">{{ __('app.Video Gallery') }}</li>
-            </ol>
-        </nav>
+    <div class="page-title dark-background" data-aos="fade" style="background-color: #2c4666">
+        <div class="container position-relative">
+            <h1>{{ __('app.Video Gallery') }}</h1>
+            <nav class="breadcrumbs">
+                <ol>
+                    <li><a href="{{ url('/', []) }}" class="text-primary">{{ __('app.home') }}</a></li>
+                    <li class="current">{{ __('app.Video Gallery') }}</li>
+                </ol>
+            </nav>
+        </div>
     </div>
-</div>
-<main class="main">
+    <main class="main">
         <div class="container">
             <div class="row">
                 <section id="primary" class="w-full ">
                     <main id="main" class="site-main" role="main">
                         <h2 class="mb-5">{{ __('app.Video Gallery') }}</h2>
-                        @if($videoGalleries->isEmpty())
+                        @if ($videoGalleries->isEmpty())
                             <div class="no-galleries">
                                 <div>
                                     <h2>{{ __('app.No Video Available') }}</h2>
@@ -73,7 +75,7 @@
                 <div class="container">
                     <div class="row align-items-center">
                         <div class="col-lg-6">
-                            <h3>{{ __("app.Subscribe To Our Newsletter") }}</h3>
+                            <h3>{{ __('app.Subscribe To Our Newsletter') }}</h3>
                             <p class="opacity-50">
                                 Lorem ipsum dolor sit amet consectetur adipisicing elit.
                                 Nesciunt, reprehenderit!
@@ -86,10 +88,10 @@
                                         placeholder="Enter your e-mail">
                                     <input type="submit" class="btn btn-secondary px-4" value="{{ __('app.Subscribe') }}">
                                 </div>
-                                <div class="loading">{{ __("app.Loading") }}</div>
+                                <div class="loading">{{ __('app.Loading') }}</div>
                                 <div class="error-message"></div>
                                 <div class="sent-message">
-                                    {{ __("app.Your subscription request has been sent. Thank you!") }}
+                                    {{ __('app.Your subscription request has been sent. Thank you!') }}
                                 </div>
                             </form>
                         </div>

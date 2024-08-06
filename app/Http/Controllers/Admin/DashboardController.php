@@ -7,6 +7,7 @@ use App\Models\Article;
 use App\Models\News;
 use App\Models\Post;
 use App\Models\User;
+use App\Models\Visitor;
 use Illuminate\Http\Request;
 
 class DashboardController extends Controller
@@ -18,6 +19,7 @@ class DashboardController extends Controller
             'count_news' => News::count(),
             'count_article' => Article::count(),
             'count_user' => User::count(),
+            'count_visitor' => Visitor::count(),
         ];
 
         return view('admin.dashboard', compact('data'));

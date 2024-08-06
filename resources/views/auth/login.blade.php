@@ -92,6 +92,14 @@
                                             Login
                                         </button>
                                     </div>
+
+                                    <div class="form-group
+                                        text-center">
+                                        <a href="{{ route('register') }}" class="btn btn-outline-primary btn-lg btn-block"
+                                            tabindex="4">
+                                            Register
+                                        </a>
+                                    </div>
                                 </form>
 
 

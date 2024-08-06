@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
-
+use App\Models\About;
 use App\Models\Article;
 use App\Models\CommunityVoice;
 
@@ -11,6 +11,7 @@ use App\Models\BidChallengeSystem;
 use App\Models\ContractAwardNotice;
 
 use App\Models\DocumentCategory;
+use App\Models\DocumentFile;
 use App\Models\ExecutiveSectionSetting;
 use App\Models\ExecutiveTeam;
 use App\Models\Faq;
@@ -25,8 +26,15 @@ use App\Models\Post;
 use App\Models\PressRelease;
 use App\Models\Project;
 use App\Models\ProjectCategory;
+use App\Models\Service;
+use App\Models\ServiceSectionSetting;
 use App\Models\SpesificProcurement;
+use App\Models\SpesificProcurementFile;
 use App\Models\VideoGallery;
+use Illuminate\Http\Request;
+use ZipArchive;
+use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Log;
 
 class HomeController extends Controller
 {
@@ -36,8 +44,11 @@ class HomeController extends Controller
         $teamSectionSetting = ExecutiveSectionSetting::first();
         $teams = ExecutiveTeam::with('designation')->get();
         $posts = Post::published()->with('author')->orderBy('created_at', 'desc')->get();
+        $about = About::first();
+        $serviceSection = ServiceSectionSetting::first();
+        $services = Service::get();
 
-        return view('frontends.home', compact('sliders', 'teamSectionSetting', 'teams', 'posts'));
+        return view('frontends.home', compact('sliders', 'teamSectionSetting', 'teams', 'posts', 'about', 'serviceSection', 'services'));
     }
 
     public function projectCategory($locale, $slugCategory)
@@ -214,5 +225,153 @@ class HomeController extends Controller
         $latestPost = Post::select('title', 'created_at', 'id', 'slug')->orderBy('created_at', 'desc')->take(5)->get();
 
         return view('frontends.post_detail', compact('projectCategories', 'post', 'nextPost', 'prevPost', 'latestPost'));
+    }
+
+    public function downloadMultiple(Request $request)
+    {
+        $files = $request->input('files', []);
+
+        if (empty($files)) {
+            return back()->with('error', __('app.No files selected'));
+        }
+
+        $zip = new ZipArchive;
+        $zipFileName = 'downloads/' . 'files-' . time() . '.zip';
+        $zipFilePath = public_path($zipFileName);
+
+        try {
+            if (!File::exists(public_path('downloads'))) {
+                File::makeDirectory(public_path('downloads'), 0755, true);
+            }
+
+            if ($zip->open($zipFilePath, ZipArchive::CREATE | ZipArchive::OVERWRITE) === TRUE) {
+                foreach ($files as $file) {
+                    $filePath = public_path($file);
+                    if (file_exists($filePath)) {
+                        $zip->addFile($filePath, basename($filePath));
+                    }
+                }
+                $zip->close();
+            } else {
+                throw new \Exception(__('app.Failed to create zip file'));
+            }
+
+            return response()->download($zipFilePath)->deleteFileAfterSend(true);
+        } catch (\Exception $e) {
+            Log::error('Failed to create zip file: ' . $e->getMessage());
+            return back()->with('error', __('app.Failed to create zip file'));
+        }
+    }
+
+    public function search(Request $request)
+    {
+        $query = $request->input('search');
+
+        $results = collect();
+
+        if ($query) {
+            $results = $results->merge(
+                BidChallengeSystem::where('file_name', 'like', "%$query%")
+                    ->get()
+                    ->map(fn ($item) => [
+                        'title' => explode('/uploads/', $item->file_path)[1],
+                        'detail' => $item->file_path,
+                        'isFile' => true,
+                        'type' => 'Bid Challenge System'
+                    ])
+            );
+
+            $results = $results->merge(
+                ContractAwardNotice::where('file_name', 'like', "%$query%")
+                    ->get()
+                    ->map(fn ($item) => [
+                        'title' => explode('/uploads/', $item->file_path)[1],
+                        'detail' => $item->file_path,
+                        'isFile' => true,
+                        'type' => 'Contract Award Notice'
+                    ])
+            );
+
+            $results = $results->merge(
+                DocumentFile::where('filename', 'like', "%$query%")
+                    ->get()
+                    ->map(fn ($item) => [
+                        'title' => explode('/uploads/', $item->file_path)[1],
+                        'detail' => $item->file_path,
+                        'isFile' => true,
+                        'type' => 'Document File'
+                    ])
+            );
+
+            $results = $results->merge(
+                GuidelineProcurement::where('file_name', 'like', "%$query%")
+                    ->get()
+                    ->map(fn ($item) => [
+                        'title' => explode('/uploads/', $item->file_path)[1],
+                        'detail' => $item->file_path,
+                        'isFile' => true,
+                        'type' => 'Guideline Procurement'
+                    ])
+            );
+
+            $results = $results->merge(
+                News::where('title', 'like', "%$query%")
+                    ->get()
+                    ->map(fn ($item) => [
+                        'title' => $item->title,
+                        'detail' => route('media-notices.news-detail', ['locale' => session('locale', 'en'), 'new' => $item->id]),
+                        'isFile' => false,
+                        'type' => 'News'
+                    ])
+            );
+
+            $results = $results->merge(
+                Notice::where('file_name', 'like', "%$query%")
+                    ->get()
+                    ->map(fn ($item) => [
+                        'title' =>  explode('/uploads/', $item->file_path)[1],
+                        'detail' => $item->file_path,
+                        'isFile' => true,
+                        'type' => 'Notice'
+                    ])
+            );
+
+            $results = $results->merge(
+                Post::where('title', 'like', "%$query%")
+                    ->orWhere('slug', 'like', "%$query%")
+                    ->orWhere('content', 'like', "%$query%")
+                    ->get()
+                    ->map(fn ($item) => [
+                        'title' => $item->title,
+                        'detail' => route('posts-detail', ['locale' => session('locale', 'en'), 'post' => $item->slug]),
+                        'isFile' => false,
+                        'type' => 'Post'
+                    ])
+            );
+
+            $results = $results->merge(
+                PressRelease::where('file_name', 'like', "%$query%")
+                    ->get()
+                    ->map(fn ($item) => [
+                        'title' => explode('/uploads/', $item->file_path)[1],
+                        'detail' => $item->file_path,
+                        'isFile' => true,
+                        'type' => 'Press Release'
+                    ])
+            );
+
+            $results = $results->merge(
+                SpesificProcurementFile::where('file_name', 'like', "%$query%")
+                    ->get()
+                    ->map(fn ($item) => [
+                        'title' => explode('/uploads/', $item->file_path)[1],
+                        'detail' => $item->file_path,
+                        'isFile' => true,
+                        'type' => 'Spesific Procurement File'
+                    ])
+            );
+        }
+
+        return response()->json($results);
     }
 }

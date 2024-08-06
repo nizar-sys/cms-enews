@@ -51,6 +51,26 @@
                 <a href="{{ route('dashboard') }}" class="nav-link"><i
                         class="fas fa-fire"></i><span>Dashboard</span></a>
             </li>
+            <li class="menu-header">General</li>
+            <li class="nav-item {{ setSidebarActive(['admin.about.*']) }}">
+                <a href="{{ route('admin.about.index') }}" class="nav-link"><i class="fas fa-user-cog"></i><span>About
+                        Setting</span></a>
+            </li>
+            <li
+                class="nav-item dropdown {{ setSidebarActive(['admin.service.*', 'admin.service-section-setting.*']) }}">
+                <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-columns"></i>
+                    <span>Services</span>
+                </a>
+                <ul class="dropdown-menu" style="display: none;">
+                    <li class="{{ setSidebarActive(['admin.service-section-setting.*']) }}">
+                        <a class="nav-link" href="{{ route('admin.service-section-setting.index') }}">Section
+                            Setting</a>
+                    </li>
+                    <li class="{{ setSidebarActive(['admin.service.*']) }}">
+                        <a class="nav-link" href="{{ route('admin.service.index') }}">Services Item</a>
+                    </li>
+                </ul>
+            </li>
 
             <li class="menu-header">MCA-NEPAL</li>
             <li
@@ -95,7 +115,8 @@
                 </a>
                 <ul class="dropdown-menu" style="display: none;">
                     <li class="{{ setSidebarActive(['admin.bod.organizational-chart-settings.*']) }}">
-                        <a class="nav-link" href="{{ route('admin.bod.organizational-chart-settings.index') }}">Section
+                        <a class="nav-link"
+                            href="{{ route('admin.bod.organizational-chart-settings.index') }}">Section
                             Settings</a>
                     </li>
                 </ul>
@@ -103,12 +124,14 @@
 
             <li class="menu-header">Projects</li>
             <li class="nav-item dropdown {{ setSidebarActive(['admin.project-categories.*', 'admin.projects.*']) }}">
-                <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-columns"></i>
+                <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i
+                        class="fas fa-columns"></i>
                     <span>Projects</span>
                 </a>
                 <ul class="dropdown-menu" style="display: none;">
                     <li class="{{ setSidebarActive(['admin.project-categories.*']) }}">
-                        <a class="nav-link" href="{{ route('admin.project-categories.index') }}">Project Categories</a>
+                        <a class="nav-link" href="{{ route('admin.project-categories.index') }}">Project
+                            Categories</a>
                     </li>
                     <li class="{{ setSidebarActive(['admin.projects.*']) }}">
                         <a class="nav-link" href="{{ route('admin.projects.index') }}">Projects</a>
@@ -119,7 +142,8 @@
             <li class="menu-header">Documents & Reports</li>
             <li
                 class="nav-item dropdown {{ setSidebarActive(['admin.documents-reports-categories.*', 'admin.documents-reports-files.*']) }}">
-                <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-columns"></i>
+                <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i
+                        class="fas fa-columns"></i>
                     <span>Documents & Reports</span>
                 </a>
                 <ul class="dropdown-menu" style="display: none;">
@@ -219,10 +243,12 @@
 
             <li class="menu-header">Posts</li>
             <li class="nav-item {{ setSidebarActive(['admin.categories.*']) }}">
-                <a href="{{ route('admin.categories.index', []) }}" class="nav-link"><i class="fas fa-columns"></i><span>Categories</span></a>
+                <a href="{{ route('admin.categories.index', []) }}" class="nav-link"><i
+                        class="fas fa-columns"></i><span>Categories</span></a>
             </li>
             <li class="nav-item {{ setSidebarActive(['admin.posts.*']) }}">
-                <a href="{{ route('admin.posts.index', []) }}" class="nav-link"><i class="fas fa-columns"></i><span>Posts</span></a>
+                <a href="{{ route('admin.posts.index', []) }}" class="nav-link"><i
+                        class="fas fa-columns"></i><span>Posts</span></a>
             </li>
 
 

@@ -56,7 +56,7 @@
 
         <!-- Page Title -->
         <div class="page-title dark-background" data-aos="fade"
-            style="background-image: url({{ asset('/ac') }}/assets/img/page-title-bg.webp);">
+            style="background-color: #2c4666">
             <div class="container position-relative">
                 <h1>{{ $project->name }}</h1>
                 <nav class="breadcrumbs">
@@ -129,7 +129,7 @@
                                 @foreach ($latestNews as $latestNew)
                                     <li class="news_li">
                                         <a class="newspost-title"
-                                            href="{{ route('news-detail', ['locale' => session('locale', 'en'), 'new' => $latestNew->id]) }}">{{ $latestNew->title }}</a>
+                                            href="{{ route('media-notices.news-detail', ['locale' => session('locale', 'en'), 'new' => $latestNew->id]) }}">{{ $latestNew->title }}</a>
                                     </li>
                                 @endforeach
 

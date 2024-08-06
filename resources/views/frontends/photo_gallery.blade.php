@@ -1,5 +1,7 @@
 @extends('frontends.frontend')
 
+@section('title', __('app.photo_gallery'))
+
 @section('content')
     <style>
         .no-galleries {
@@ -81,8 +83,9 @@
     </style>
     
     <div class="page-title dark-background" data-aos="fade"
-    style="background-image: url({{ asset('/ac') }}/assets/img/page-title-bg.webp);">
+    style="background-color: #2c4666">
     <div class="container position-relative">
+        <h1>{{ __('app.Photo Gallery') }}</h1>
         <nav class="breadcrumbs">
             <ol>
                 <li><a href="{{ url('/', []) }}" class="text-primary">{{ __('app.home') }}</a></li>

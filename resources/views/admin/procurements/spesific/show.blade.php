@@ -44,7 +44,7 @@
                                                 <td>{!! str($file->spesificProcurement->title)->limit(50) !!}</td>
                                                 <td>{{ $file->file_name }}</td>
                                                 <td>
-                                                    <a href="{{ asset($file->file_path) }}" target="_blank"
+                                                    <a href="{{ route('download.uploads', ['file' => $file->file_path]) }}" target="_blank"
                                                         class="btn btn-danger btn-sm">View File</a>
                                                 </td>
                                                 <td>
@@ -88,7 +88,7 @@
                                             </tr>
                                         @empty
                                             <tr>
-                                                <td colspan="4">No files found</td>
+                                                <td colspan="4">{{ __('app.No files found') }}</td>
                                             </tr>
                                         @endforelse
                                     </tbody>
