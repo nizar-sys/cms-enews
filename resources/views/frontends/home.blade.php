@@ -254,7 +254,7 @@
 
             <!-- Section Title -->
             <div class="container section-title" data-aos="fade-up">
-                <h2>{{ __('app.News') }}</h2>
+                <h2>{{ __('app.Latest Posts') }}</h2>
             </div><!-- End Section Title -->
 
             <div class="container">
@@ -285,7 +285,7 @@
 
                                     <hr>
 
-                                    <a href="blog-details.html" class="readmore stretched-link"><span>Read More</span><i
+                                    <a href="{{ route('posts-detail', ['locale' => session('locale'), 'post' => $post->slug]) }}" class="readmore stretched-link"><span>Read More</span><i
                                             class="bi bi-arrow-right"></i></a>
 
                                 </div>

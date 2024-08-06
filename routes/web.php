@@ -323,4 +323,7 @@ Route::prefix('{locale}')->group(function () {
 
     Route::get('/faqs', [FrontendFaqController::class, 'index'])->name('faq.index');
     Route::get('/contacts', [FrontendContactController::class, 'index'])->name('contact.index');
+
+    Route::get('/posts/{post}', [HomeController::class, 'postDetail'])->name('posts-detail');
+
 });
