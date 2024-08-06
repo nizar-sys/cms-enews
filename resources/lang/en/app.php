@@ -116,4 +116,5 @@ return [
     "Subscribe" => "Subscribe",
     "Loading" => "Loading",
     "Your subscription request has been sent. Thank you!" => "Your subscription request has been sent. Thank you!",
+    "Latest Posts" => "Latest Posts",
 ];

@@ -43,19 +43,28 @@ class AppServiceProvider extends ServiceProvider
                     'url' => route('project-category', ['locale' => $locale, 'slugCategory' => $category->slug]),
                 ];
             })->toArray();
+
+            $subsItemDocumentCategories = DocumentCategory::select('id', 'name', 'slug')->get()->map(function ($category) {
+                return [
+                    'label' => __('app.' . $category->name),
+                    'url' => route('document-category', ['locale' => session('locale', 'en'), 'slugCategory' => $category->slug]),
+
+                ];
+            })->toArray();
             
 
             $menuItems = [
                 [
                     'label' => __('app.home'),
                     'url' => url('/'),
-                    'route' => 'home', // Define a route name or path
+                    'route' => 'home',
                 ],
                 [
                     'label' => __('app.mca_nepal'),
                     'url' => '#',
-                    'route' => ['mca_nepal'],
+                    'route' => ['mca_nepal', 'mca-nepal.board-of-director', 'mca-nepal.executive-team', 'mca-nepal.organizational-chart'],
                     'subItems' => [
+
                         ['label' => __('app.board_of_directors'), 'url' => route('mca-nepal.board-of-director', ['locale' => $locale])],
                         ['label' => __('app.executive_team'), 'url' => route('mca-nepal.executive-team', ['locale' => $locale])],
                         ['label' => __('app.organizational_chart'), 'url' => route('mca-nepal.organizational-chart', ['locale' => $locale])]
@@ -64,22 +73,14 @@ class AppServiceProvider extends ServiceProvider
                 [
                     'label' => __('app.projects'),
                     'url' => '#',
-                    'route' => ['projects'],
-                    'subItems' => $subsItemProjectCategories
+                    'route' => ['projects', 'project-category'],
+                    'subItems' => $subsItemProjectCategories,
                 ],
                 [
                     'label' => __('app.documents_reports'),
                     'url' => '#',
-                    'route' => ['documents_reports'],
-                    'subItems' => [
-                        ['label' => __('app.Main Agreements'), 'url' => '#'],
-                        ['label' => __('app.Publications & Resources'), 'url' => '#'],
-                        ['label' => __('app.Feasibility Studies Reports'), 'url' => '#'],
-                        ['label' => __('app.Board Meeting Minutes'), 'url' => '#'],
-                        ['label' => __('app.Annual Reports'), 'url' => '#'],
-                        ['label' => __('app.EIA Report'), 'url' => '#'],
-                        ['label' => __('app.Newsletter'), 'url' => '#']
-                    ]
+                    'route' => ['documents_reports', 'document-category'],
+                    'subItems' => $subsItemDocumentCategories,
                 ],
                 [
                     'label' => __('app.media_notices'),
@@ -98,28 +99,28 @@ class AppServiceProvider extends ServiceProvider
                 [
                     'label' => __('app.procurement'),
                     'url' => '#',
-                    'route' => ['procurement'],
+                    'route' => ['procurement', 'procurement-notice', 'guidelines', 'procurement-bid-challenge-systems', 'procurement-contract-award-notices'],
                     'subItems' => [
-                        ['label' => __('app.Procurement Notices'), 'url' => '#'],
-                        ['label' => __('app.Procurement Guidelines'), 'url' => '#'],
-                        ['label' => __('app.Bid Challenge System'), 'url' => '#'],
-                        ['label' => __('app.Contract Award Notice'), 'url' => '#']
+                        ['label' => __('app.Procurement Notices'), 'url' => route('procurement-notice', ['locale' => session('locale', 'en')])],
+                        ['label' => __('app.Procurement Guidelines'), 'url' => route('guidelines', ['locale' => session('locale', 'en')])],
+                        ['label' => __('app.Bid Challenge System'), 'url' => route('procurement-bid-challenge-systems', ['locale' => session('locale', 'en')])],
+                        ['label' => __('app.Contract Award Notice'), 'url' => route('procurement-contract-award-notices', ['locale' => session('locale', 'en')])]
                     ]
                 ],
                 [
                     'label' => __('app.jobs'),
-                    'url' => url('/jobs'),
-                    'route' => 'jobs'
+                    'url' => route('jobs.index', ['locale' => session('locale', 'en')]),
+                    'route' => 'jobs.index',
                 ],
                 [
                     'label' => __('app.faqs'),
-                    'url' => url('/faqs'),
-                    'route' => 'faqs'
+                    'url' => route('faq.index', ['locale' => session('locale', 'en')]),
+                    'route' => 'faq.index',
                 ],
                 [
                     'label' => __('app.contact'),
-                    'url' => url('/contact'),
-                    'route' => 'contact'
+                    'url' => route('contact.index', ['locale' => session('locale', 'en')]),
+                    'route' => 'contact.index',
                 ]
             ];
             // $view->with('documentsReportsCategories', DocumentCategory::select(['name', 'slug'])->get());

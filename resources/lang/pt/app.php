@@ -116,4 +116,5 @@ return [
     "Subscribe" => "Inscrever-se",
     "Loading" => "Carregando",
     "Your subscription request has been sent. Thank you!" => "Sua solicitação de inscrição foi enviada. Obrigado!",
+    "Latest Posts" => "Últimas Postagens",
 ];

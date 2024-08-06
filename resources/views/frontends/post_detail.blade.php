@@ -1,6 +1,6 @@
 @extends('frontends.frontend')
 
-@section('title', $project->name)
+@section('title', $post->title)
 
 @push('style')
     <style>
@@ -58,11 +58,11 @@
         <div class="page-title dark-background" data-aos="fade"
             style="background-image: url({{ asset('/ac') }}/assets/img/page-title-bg.webp);">
             <div class="container position-relative">
-                <h1>{{ $project->name }}</h1>
+                <h1>{{ $post->title }}</h1>
                 <nav class="breadcrumbs">
                     <ol>
                         <li><a href="{{ url('/', []) }}" class="text-primary">{{ __('app.home') }}</a></li>
-                        <li class="current">{{ $project->name }}</li>
+                        <li class="current">{{ $post->title }}</li>
                     </ol>
                 </nav>
             </div>
@@ -76,34 +76,34 @@
 
                         <article id="post-329" class="post-329 cca type-cca status-publish has-post-thumbnail hentry">
                             <div class="post-thumbnail">
-                                <img width="960" height="540" src="{{ asset($project->image) }}"
-                                    class="attachment-post-thumbnail size-post-thumbnail wp-post-image" alt=""
-                                    decoding="async" fetchpriority="high" sizes="(max-width: 960px) 100vw, 960px">
+                                <img src="{{ asset($post->thumbnail) }}"
+                                    class="attachment-post-thumbnail size-post-thumbnail wp-post-image img-fluid"
+                                    alt="" decoding="async" fetchpriority="high"
+                                    sizes="(max-width: 960px) 100vw, 960px">
                             </div>
                             <header class="entry-header mt-2">
-                                <h1 class="entry-title">{{ $project->name }}</h1>
+                                <h1 class="entry-title">{{ $post->title }}</h1>
                             </header><!-- .entry-header -->
                             <div class="entry-content">
-                                {!! $project->description !!}
+                                {!! $post->content !!}
                             </div><!-- .entry-content -->
 
                             <footer class="entry-footer">
                             </footer><!-- .entry-footer -->
                         </article><!-- #post-## -->
 
-                        @if ($prevProject || $nextProject)
+                        @if ($prevPost || $nextPost)
                             <nav class="navigation post-navigation" aria-label="Posts">
                                 <div class="nav-links">
-                                    @foreach (['next' => $nextProject, 'prev' => $prevProject] as $rel => $project)
-                                        @if ($project)
+                                    @foreach (['next' => $nextPost, 'prev' => $prevPost] as $rel => $post)
+                                        @if ($post)
                                             <div class="nav-{{ $rel }}">
-                                                <a href="{{ route('project-detail', [
+                                                <a href="{{ route('posts-detail', [
                                                     'locale' => session('locale', 'en'),
-                                                    'slugCategory' => Str::of($project->category->slug)->explode('-')->map(fn($segment) => Str::substr($segment, 0, 1))->implode(''),
-                                                    'slugProject' => str($project->name)->slug(),
+                                                    'post' => $post->slug,
                                                 ]) }}"
                                                     rel="{{ $rel }}">
-                                                    {{ $project->name }}
+                                                    {{ $post->title }}
                                                 </a>
                                             </div>
                                         @endif
@@ -122,14 +122,14 @@
                         </div>
                     </section>
                     <section id="sp_news_widget-3" class="widget SP_News_Widget">
-                        <h3 class="widget-title">{{ __('app.News') }}</h3>
+                        <h3 class="widget-title">{{ __('app.Latest Posts') }}</h3>
                         <div class="recent-news-items no_p">
                             <ul style="list-style: none">
 
-                                @foreach ($latestNews as $latestNew)
+                                @foreach ($latestPost as $p)
                                     <li class="news_li">
                                         <a class="newspost-title"
-                                            href="{{ route('news-detail', ['locale' => session('locale', 'en'), 'new' => $latestNew->id]) }}">{{ $latestNew->title }}</a>
+                                            href="{{ route('posts-detail', ['locale' => session('locale', 'en'), 'post' => $p->slug]) }}">{{ $p->title }}</a>
                                     </li>
                                 @endforeach
 
