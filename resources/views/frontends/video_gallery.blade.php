@@ -27,12 +27,23 @@
             overflow: hidden;
         }
     </style>
-    <div id="content" class="site-content" style="margin-top: 15rem">
+    <div class="page-title dark-background" data-aos="fade"
+    style="background-image: url({{ asset('/ac') }}/assets/img/page-title-bg.webp);">
+    <div class="container position-relative">
+        <nav class="breadcrumbs">
+            <ol>
+                <li><a href="{{ url('/', []) }}" class="text-primary">{{ __('app.home') }}</a></li>
+                <li class="current">{{ __('app.Video Gallery') }}</li>
+            </ol>
+        </nav>
+    </div>
+</div>
+<main class="main">
         <div class="container">
             <div class="row">
                 <section id="primary" class="w-full ">
                     <main id="main" class="site-main" role="main">
-                        <h2>{{ __('app.Video Gallery') }}</h2>
+                        <h2 class="mb-5">{{ __('app.Video Gallery') }}</h2>
                         @if($videoGalleries->isEmpty())
                             <div class="no-galleries">
                                 <div>
@@ -55,6 +66,38 @@
                 </section>
             </div>
         </div>
+        <!-- Call To Action Section -->
+        <section id="call-to-action" class="call-to-action section light-background">
 
-    </div>
+            <div class="content">
+                <div class="container">
+                    <div class="row align-items-center">
+                        <div class="col-lg-6">
+                            <h3>{{ __("app.Subscribe To Our Newsletter") }}</h3>
+                            <p class="opacity-50">
+                                Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                                Nesciunt, reprehenderit!
+                            </p>
+                        </div>
+                        <div class="col-lg-6">
+                            <form action="forms/newsletter.php" class="form-subscribe php-email-form">
+                                <div class="form-group d-flex align-items-stretch">
+                                    <input type="email" name="email" class="form-control h-100"
+                                        placeholder="Enter your e-mail">
+                                    <input type="submit" class="btn btn-secondary px-4" value="{{ __('app.Subscribe') }}">
+                                </div>
+                                <div class="loading">{{ __("app.Loading") }}</div>
+                                <div class="error-message"></div>
+                                <div class="sent-message">
+                                    {{ __("app.Your subscription request has been sent. Thank you!") }}
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section><!-- /Call To Action Section -->
+
+
+    </main>
 @endsection
