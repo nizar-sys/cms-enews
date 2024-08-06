@@ -36,12 +36,14 @@ class AppServiceProvider extends ServiceProvider
         Paginator::useBootstrapFour();
 
         View::composer('*', function ($view) {
-            $subsItemProjectCategories = ProjectCategory::select('id', 'name', 'slug')->get()->map(function ($category) {
+            $locale = session('locale', config('app.locale'));
+            $subsItemProjectCategories = ProjectCategory::select('id', 'name', 'slug')->get()->map(function ($category) use ($locale) {
                 return [
                     'label' => __('app.' . $category->name),
-                    'url' => route('project-category', ['locale' => session('locale'), 'slugCategory' => $category->slug]),
+                    'url' => route('project-category', ['locale' => $locale, 'slugCategory' => $category->slug]),
                 ];
             })->toArray();
+            
 
             $menuItems = [
                 [
@@ -54,9 +56,9 @@ class AppServiceProvider extends ServiceProvider
                     'url' => '#',
                     'route' => ['mca_nepal'],
                     'subItems' => [
-                        ['label' => __('app.board_of_directors'), 'url' => route('mca-nepal.board-of-director', ['locale' => session('locale')])],
-                        ['label' => __('app.executive_team'), 'url' => route('mca-nepal.executive-team', ['locale' => session('locale')])],
-                        ['label' => __('app.organizational_chart'), 'url' => route('mca-nepal.organizational-chart', ['locale' => session('locale')])]
+                        ['label' => __('app.board_of_directors'), 'url' => route('mca-nepal.board-of-director', ['locale' => $locale])],
+                        ['label' => __('app.executive_team'), 'url' => route('mca-nepal.executive-team', ['locale' => $locale])],
+                        ['label' => __('app.organizational_chart'), 'url' => route('mca-nepal.organizational-chart', ['locale' => $locale])]
                     ]
                 ],
                 [
@@ -84,13 +86,13 @@ class AppServiceProvider extends ServiceProvider
                     'url' => '#',
                     'route' => ['media_notices'],
                     'subItems' => [
-                        ['label' => __('app.News'), 'url' => '#'],
-                        ['label' => __('app.Community Voice'), 'url' => '#'],
-                        ['label' => __('app.Articles/Interviews'), 'url' => '#'],
-                        ['label' => __('app.Notice'), 'url' => '#'],
-                        ['label' => __('app.Press Releases'), 'url' => '#'],
-                        ['label' => __('app.Photo Gallery'), 'url' => '#'],
-                        ['label' => __('app.Video Gallery'), 'url' => '#']
+                        ['label' => __('app.News'), 'url' => route('media-notices.news', ['locale' => $locale])],
+                        ['label' => __('app.Community Voice'), 'url' => route('media-notices.community-voices', ['locale' => $locale])],
+                        ['label' => __('app.Articles & Interviews'), 'url' => route('media-notices.articles-interviews', ['locale' => $locale])],
+                        ['label' => __('app.Notices'), 'url' => route('media-notices.notices', ['locale' => $locale])],
+                        ['label' => __('app.Press Releases'), 'url' => route('media-notices.press-releases', ['locale' => $locale])],
+                        ['label' => __('app.Photo Gallery'), 'url' => route('media-notices.photo-gallery', ['locale' => $locale])],
+                        ['label' => __('app.Video Gallery'), 'url' => route('media-notices.video-gallery', ['locale' => $locale])]
                     ]
                 ],
                 [

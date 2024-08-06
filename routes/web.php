@@ -306,16 +306,18 @@ Route::prefix('{locale}')->group(function () {
     Route::get('/procurements/guidelines', [HomeController::class, 'procurementGuideline'])->name('guidelines');
     Route::get('/procurements/bid-challenge-systems', [HomeController::class, 'bidChallengeSystem'])->name('procurement-bid-challenge-systems');
     Route::get('/procurements/contract-award-notices', [HomeController::class, 'contractAwardNotice'])->name('procurement-contract-award-notices');
-    Route::get('/photo-gallery', [HomeController::class, 'photoGallery'])->name('photo-gallery');
-    Route::get('/video-gallery', [HomeController::class, 'videoGallery'])->name('video-gallery');
-    Route::get('/notices', [HomeController::class, 'notices'])->name('notices');
-    Route::get('/press-releases', [HomeController::class, 'pressReleases'])->name('press-releases');
-    Route::get('/articles-interviews', [HomeController::class, 'articlesInterviews'])->name('articles-interviews');
 
-    Route::get('/community-voices', [HomeController::class, 'communityVoices'])->name('community-voices');
-    Route::get('/community-voices/{slug}', [HomeController::class, 'communityVoiceDetail'])->name('community-voice-detail');
-    Route::get('/news', [HomeController::class, 'newsList'])->name('news');
-    Route::get('/news/{new}', [HomeController::class, 'newsDetail'])->name('news-detail');
+    Route::prefix('media-notices')->name('media-notices.')->group(function () {
+        Route::get('/photo-gallery', [HomeController::class, 'photoGallery'])->name('photo-gallery');
+        Route::get('/video-gallery', [HomeController::class, 'videoGallery'])->name('video-gallery');
+        Route::get('/notices', [HomeController::class, 'notices'])->name('notices');
+        Route::get('/press-releases', [HomeController::class, 'pressReleases'])->name('press-releases');
+        Route::get('/articles-interviews', [HomeController::class, 'articlesInterviews'])->name('articles-interviews');
+        Route::get('/community-voices', [HomeController::class, 'communityVoices'])->name('community-voices');
+        Route::get('/community-voices/{slug}', [HomeController::class, 'communityVoiceDetail'])->name('community-voice-detail');
+        Route::get('/news', [HomeController::class, 'newsList'])->name('news');
+        Route::get('/news/{new}', [HomeController::class, 'newsDetail'])->name('news-detail');
+    });
 
 
     // JOBS

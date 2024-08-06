@@ -48,7 +48,7 @@ return [
     "News" => "News",
     "Community Voice" => "Community Voice",
     "Articles/Interviews" => "Articles/Interviews",
-    "Notice" => "Notice",
+    "Notices" => "Notices",
     "Press Releases" => "Press Releases",
     "Photo Gallery" => "Photo Gallery",
     "Video Gallery" => "Video Gallery",
