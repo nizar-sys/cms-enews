@@ -4,9 +4,9 @@
     <section class="section">
         <div class="section-header">
             <div class="section-header-back">
-                <a href="{{ route('admin.job-lists.index') }}" class="btn btn-icon"><i class="fas fa-arrow-left"></i></a>
+                <a href="{{ url('/dashboard') }}" class="btn btn-icon"><i class="fas fa-arrow-left"></i></a>
             </div>
-            <h1>Vacancies List</h1>
+            <h1>List Of Photo Project</h1>
 
         </div>
 
@@ -16,10 +16,10 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="card-header">
-                            <h4>Vacancies List</h4>
+                            <h4>List Of Photo Project </h4>
                             <div class="card-header-action">
-                                <a href="{{ route('admin.job-lists.create') }}" class="btn btn-success">
-                                    Create Vacancies
+                                <a href="{{ route('admin.photo-project.create') }}" class="btn btn-success">
+                                    Create Photo Project 
                                     <i class="fas fa-plus"></i>
                                 </a>
                             </div>
@@ -37,6 +37,7 @@
             </div>
         </div>
     </section>
+
 @endsection
 
 @push('scripts')

@@ -6,7 +6,7 @@
             <div class="section-header-back">
                 <a href="{{ route('admin.article.index') }}" class="btn btn-icon"><i class="fas fa-arrow-left"></i></a>
             </div>
-            <h1>Article</h1>
+            <h1>Publication</h1>
 
         </div>
 
@@ -16,7 +16,7 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="card-header">
-                            <h4>Update Article</h4>
+                            <h4>Update Publication</h4>
                         </div>
                         <div class="card-body">
                             <form action="{{ route('admin.article.update', $article->id) }}" method="POST"
@@ -28,8 +28,7 @@
                                         Title
                                     </label>
                                     <div class="col-sm-12 col-md-7">
-                                        <input type="text" name="title"
-                                            class="form-control"
+                                        <input type="text" name="title" class="form-control"
                                             value="{{ old('title', $article->title) }}" required>
 
                                         @error('title')
@@ -47,7 +46,8 @@
                                             <option>Select</option>
                                             @foreach ($categories as $category)
                                                 <option value="{{ $category->id }}"
-                                                    @if (old('category_id', $category->category_id) == $category->id) selected @endif>{{ $category->category_name }}
+                                                    @if (old('category_id', $category->category_id) == $category->id) selected @endif>
+                                                    {{ $category->category_name }}
                                                 </option>
                                             @endforeach
                                         </select>
@@ -74,14 +74,13 @@
                                         @enderror
                                     </div>
                                 </div>
-                                
+
                                 <div class="form-group row mb-4">
                                     <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">
                                         Article Url
                                     </label>
                                     <div class="col-sm-12 col-md-7">
-                                        <input type="text" name="article_url"
-                                            class="form-control"
+                                        <input type="text" name="article_url" class="form-control"
                                             value="{{ old('article_url', $article->article_url) }}" required>
 
                                         @error('article_url')

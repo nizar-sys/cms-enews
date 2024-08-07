@@ -6,7 +6,7 @@
             <div class="section-header-back">
                 <a href="{{ url('/dashboard') }}" class="btn btn-icon"><i class="fas fa-arrow-left"></i></a>
             </div>
-            <h1>List Of Article Categories</h1>
+            <h1>List Of Publication Categories</h1>
 
         </div>
 
@@ -16,10 +16,10 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="card-header">
-                            <h4>List Of Article Categories</h4>
+                            <h4>List Of Publication Categories</h4>
                             <div class="card-header-action">
                                 <a href="{{ route('admin.article.category.create') }}" class="btn btn-success">
-                                    Create Article Categories
+                                    Create Publication Categories
                                     <i class="fas fa-plus"></i>
                                 </a>
                             </div>
@@ -37,7 +37,6 @@
             </div>
         </div>
     </section>
-
 @endsection
 
 @push('scripts')

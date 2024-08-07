@@ -6,7 +6,7 @@
             <div class="section-header-back">
                 <a href="{{ url('/dashboard') }}" class="btn btn-icon"><i class="fas fa-arrow-left"></i></a>
             </div>
-            <h1>List Of Article</h1>
+            <h1>List Of Publication</h1>
 
         </div>
 
@@ -16,10 +16,10 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="card-header">
-                            <h4>List Of Article </h4>
+                            <h4>List Of Publication </h4>
                             <div class="card-header-action">
                                 <a href="{{ route('admin.article.create') }}" class="btn btn-success">
-                                    Create Article 
+                                    Create Publication 
                                     <i class="fas fa-plus"></i>
                                 </a>
                             </div>

@@ -22,6 +22,7 @@ use App\Models\Hero;
 use App\Models\News;
 use App\Models\Notice;
 use App\Models\PhotoGallery;
+use App\Models\PhotoProject;
 use App\Models\Post;
 use App\Models\PressRelease;
 use App\Models\Project;
@@ -31,6 +32,7 @@ use App\Models\ServiceSectionSetting;
 use App\Models\SpesificProcurement;
 use App\Models\SpesificProcurementFile;
 use App\Models\VideoGallery;
+use App\Models\VideoProject;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use ZipArchive;
@@ -147,12 +149,29 @@ class HomeController extends Controller
         return view('frontends.photo_gallery', compact('projectCategories', 'photoGalleries'));
     }
 
+    public function photoProject($locale)
+    {
+        $projectCategories = ProjectCategory::select('name', 'slug')->get();
+        $photoProjects = PhotoProject::with('photoProjectAlbum')->get()->groupBy('album_id');
+
+
+        return view('frontends.photo_project', compact('projectCategories', 'photoProjects'));
+    }
+
     public function videoGallery($locale)
     {
         $projectCategories = ProjectCategory::select('name', 'slug')->get();
         $videoGalleries = VideoGallery::get();
 
         return view('frontends.video_gallery', compact('projectCategories', 'videoGalleries'));
+    }
+
+    public function videoProject($locale)
+    {
+        $projectCategories = ProjectCategory::select('name', 'slug')->get();
+        $videoProjects = VideoProject::get();
+
+        return view('frontends.video_project', compact('projectCategories', 'videoProjects'));
     }
 
     public function notices($locale)

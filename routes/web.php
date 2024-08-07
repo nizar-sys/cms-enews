@@ -47,10 +47,14 @@ use App\Http\Controllers\ContactController;
 use App\Http\Controllers\FaqController;
 use App\Http\Controllers\Frontend\ContactController as FrontendContactController;
 use App\Http\Controllers\Frontend\FaqController as FrontendFaqController;
+use App\Http\Controllers\Frontend\PostController as FrontendPostController;
 use App\Http\Controllers\JobsController;
 use App\Http\Controllers\McaNepal\BoardOfDirectorController;
 use App\Http\Controllers\McaNepal\ExecutiveTeamController;
 use App\Http\Controllers\McaNepal\OrganizationalChartController;
+use App\Http\Controllers\Admin\PhotoProjectAlbumController;
+use App\Http\Controllers\Admin\PhotoProjectController;
+use App\Http\Controllers\Admin\VideoProjectController;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Artisan;
 
@@ -213,6 +217,25 @@ Route::group(['middleware' => ['auth', 'admin'], 'prefix' => 'console', 'as' => 
         // Route::resource('gallery-section-setting', GallerySectionSettingController::class);
     });
 
+    // Photo Project Route
+    Route::prefix('photo-project')->group(function () {
+        Route::get('/albums', [PhotoProjectAlbumController::class, 'index'])->name('photo-project.album.index');
+        Route::get('/albums/create', [PhotoProjectAlbumController::class, 'create'])->name('photo-project.album.create');
+        Route::post('/albums/store', [PhotoProjectAlbumController::class, 'store'])->name('photo-project.album.store');
+        Route::get('/albums/edit/{id}', [PhotoProjectAlbumController::class, 'edit'])->name('photo-project.album.edit');
+        Route::put('/albums/update/{id}', [PhotoProjectAlbumController::class, 'update'])->name('photo-project.album.update');
+        Route::delete('/albums/{id}', [PhotoProjectAlbumController::class, 'destroy'])->name('photo-project.album.destroy');
+
+        Route::get('/', [PhotoProjectController::class, 'index'])->name('photo-project.index');
+        Route::get('/create', [PhotoProjectController::class, 'create'])->name('photo-project.create');
+        Route::post('/store', [PhotoProjectController::class, 'store'])->name('photo-project.store');
+        Route::get('/edit/{id}', [PhotoProjectController::class, 'edit'])->name('photo-project.edit');
+        Route::put('/update/{id}', [PhotoProjectController::class, 'update'])->name('photo-project.update');
+        Route::delete('/{id}', [PhotoProjectController::class, 'destroy'])->name('photo-project.destroy');
+
+        // Route::resource('gallery-section-setting', GallerySectionSettingController::class);
+    });
+
     // Video Gallery Route
     Route::prefix('video-gallery')->group(function () {
         Route::get('/', [VideoGalleryController::class, 'index'])->name('video-gallery.index');
@@ -221,6 +244,17 @@ Route::group(['middleware' => ['auth', 'admin'], 'prefix' => 'console', 'as' => 
         Route::get('/edit/{id}', [VideoGalleryController::class, 'edit'])->name('video-gallery.edit');
         Route::put('/update/{id}', [VideoGalleryController::class, 'update'])->name('video-gallery.update');
         Route::delete('/{id}', [VideoGalleryController::class, 'destroy'])->name('video-gallery.destroy');
+    });
+
+
+    // Video Project Route
+    Route::prefix('video-project')->group(function () {
+        Route::get('/', [VideoProjectController::class, 'index'])->name('video-project.index');
+        Route::get('/create', [VideoProjectController::class, 'create'])->name('video-project.create');
+        Route::post('/store', [VideoProjectController::class, 'store'])->name('video-project.store');
+        Route::get('/edit/{id}', [VideoProjectController::class, 'edit'])->name('video-project.edit');
+        Route::put('/update/{id}', [VideoProjectController::class, 'update'])->name('video-project.update');
+        Route::delete('/{id}', [VideoProjectController::class, 'destroy'])->name('video-project.destroy');
     });
 
     /**Spesific Procurements Route**/
@@ -292,6 +326,14 @@ Route::prefix('{locale}')->group(function () {
         Route::get('organizational-charts', [OrganizationalChartController::class, 'index'])->name('organizational-chart');
     });
 
+    Route::prefix('projects')->name('projects.')->group(function () {
+        Route::get('/posts', [FrontendPostController::class, 'index'])->name('posts');
+        Route::get('/articles-interviews', [HomeController::class, 'articlesInterviews'])->name('articles-interviews');
+        Route::get('/video-projects', [HomeController::class, 'videoProject'])->name('video-projects');
+        Route::get('/photo-projects', [HomeController::class, 'photoProject'])->name('photo-projects');
+    });
+
+
     Route::get('/projects/{slugCategory}/{slugProject}', [HomeController::class, 'projectDetail'])->name('project-detail');
     Route::get('/projects/{slugCategory}', [HomeController::class, 'projectCategory'])->name('project-category');
     Route::get('/documents-reports/{slugCategory}', [HomeController::class, 'documentCategory'])->name('document-category');
@@ -306,7 +348,7 @@ Route::prefix('{locale}')->group(function () {
         Route::get('/video-gallery', [HomeController::class, 'videoGallery'])->name('video-gallery');
         Route::get('/notices', [HomeController::class, 'notices'])->name('notices');
         Route::get('/press-releases', [HomeController::class, 'pressReleases'])->name('press-releases');
-        Route::get('/articles-interviews', [HomeController::class, 'articlesInterviews'])->name('articles-interviews');
+        // Route::get('/articles-interviews', [HomeController::class, 'articlesInterviews'])->name('articles-interviews');
         Route::get('/community-voices', [HomeController::class, 'communityVoices'])->name('community-voices');
         Route::get('/community-voices/{slug}', [HomeController::class, 'communityVoiceDetail'])->name('community-voice-detail');
         Route::get('/news', [HomeController::class, 'newsList'])->name('news');
