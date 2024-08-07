@@ -2349,6 +2349,11 @@
         padding: 5px 10px;
     }
 
+    .nav-item .dropdown-menu .dropdown-item .active {
+        padding: 5px 10px;
+        background-color: red;
+    }
+
     .dropdown-menu .dropdown-item.dropdown-toggle::after {
         margin-left: .255em;
         vertical-align: .255em;

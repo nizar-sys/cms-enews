@@ -37,7 +37,7 @@
 
     <style>
         .navbar-nav .nav-link.active {
-            color: #2c4666;
+            color: red;
         }
 
         .navbar-nav .nav-item.dropdown .dropdown-menu.active {
@@ -45,8 +45,8 @@
         }
 
         .navbar-nav .nav-item.dropdown .dropdown-menu .dropdown-item.active {
-            background-color: #007bff;
-            color: #ffffff;
+            background-color: red !important;
+            color: red !important;
         }
     </style>
 
@@ -279,17 +279,6 @@
                         </ul>
                     </div>
 
-                    <div class="col-lg-2 col-md-3 footer-links">
-                        <h4>{{ __('app.Newsletter') }}</h4>
-                        <p>{{ __('app.Subscribe To Our Newsletter') }}</p>
-
-                        <form action="" method="post">
-                            <input type="email" class="form-control" name="email"> <br>
-                            <input type="submit" class="btn btn-secondary btn-sm"
-                                value="{{ __('app.Subscribe') }}">
-                        </form>
-                    </div>
-
                 </div>
             </div>
         </div>
@@ -302,13 +291,6 @@
                     <div>
                         © {{ __('app.copyright') }} <strong><span>{{ __('app.app_name') }}</span></strong>.
                         {{ __('app.all_rights_reserved') }}
-                    </div>
-                    <div class="credits">
-                        <!-- All the links in the footer should remain intact. -->
-                        <!-- You can delete the links only if you purchased the pro version. -->
-                        <!-- Licensing information: https://bootstrapmade.com/license/ -->
-                        <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/herobiz-bootstrap-business-template/ -->
-                        {{ __('app.designed_by') }} <a href="https://bootstrapmade.com/">BootstrapMade</a>
                     </div>
                 </div>
 
@@ -339,14 +321,6 @@
 
     <!-- Main JS File -->
     <script>
-        /**
-         * Template Name: AgriCulture
-         * Template URL: https://bootstrapmade.com/agriculture-bootstrap-website-template/
-         * Updated: Jun 29 2024 with Bootstrap v5.3.3
-         * Author: BootstrapMade.com
-         * License: https://bootstrapmade.com/license/
-         */
-
         (function() {
             "use strict";
 

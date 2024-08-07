@@ -84,7 +84,7 @@ return [
     "Title & ID" => "Título & ID",
     "Issued Documents" => "Documentos Emitidos",
     "Important Date" => "Data Importante",
-    "Show FIles" => "Mostrar Arquivos",
+    "Show Files" => "Mostrar Arquivos",
     "First Date of Publication" => "Primeira Data de Publicação",
     "Last Submission Date/Time" => "Data/Hora da Última Submissão",
     "Title" => "Título",

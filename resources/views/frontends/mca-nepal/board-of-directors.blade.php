@@ -46,7 +46,8 @@
                                                             value="{{ $file->file_path }}"></td>
                                                     <td width="75%">{{ $file->filename }}</td>
                                                     <td class="text-center">
-                                                        <a href="{{ route('download.uploads', ['file' => $file->file_path]) }}"
+                                                        <a class="btn btn-danger"
+                                                            href="{{ route('download.uploads', ['file' => $file->file_path]) }}"
                                                             title="{{ $file->filename }}" target="_blank">
                                                             <i class="far fa-file-pdf"></i> {{ __('app.Download') }}
                                                         </a>
@@ -104,38 +105,6 @@
                 </div>
             </div>
         </section>
-
-        <section id="call-to-action" class="call-to-action section light-background">
-
-            <div class="content">
-                <div class="container">
-                    <div class="row align-items-center">
-                        <div class="col-lg-6">
-                            <h3>{{ __('app.Subscribe To Our Newsletter') }}</h3>
-                            <p class="opacity-50">
-                                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                                Nesciunt, reprehenderit!
-                            </p>
-                        </div>
-                        <div class="col-lg-6">
-                            <form action="forms/newsletter.php" class="form-subscribe php-email-form">
-                                <div class="form-group d-flex align-items-stretch">
-                                    <input type="email" name="email" class="form-control h-100"
-                                        placeholder="Enter your e-mail">
-                                    <input type="submit" class="btn btn-secondary px-4" value="{{ __('app.Subscribe') }}">
-                                </div>
-                                <div class="loading">{{ __('app.Loading') }}</div>
-                                <div class="error-message"></div>
-                                <div class="sent-message">
-                                    {{ __('app.Your subscription request has been sent. Thank you!') }}
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
     </main>
 @endsection
 
