@@ -32,6 +32,7 @@ use App\Models\SpesificProcurement;
 use App\Models\SpesificProcurementFile;
 use App\Models\VideoGallery;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use ZipArchive;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Log;
@@ -47,8 +48,9 @@ class HomeController extends Controller
         $about = About::first();
         $serviceSection = ServiceSectionSetting::first();
         $services = Service::get();
+        $user = Auth::user();
 
-        return view('frontends.home', compact('sliders', 'teamSectionSetting', 'teams', 'posts', 'about', 'serviceSection', 'services'));
+        return view('frontends.home', compact('sliders', 'teamSectionSetting', 'teams', 'posts', 'about', 'serviceSection', 'services', 'user'));
     }
 
     public function projectCategory($locale, $slugCategory)
