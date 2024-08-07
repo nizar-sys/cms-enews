@@ -129,4 +129,5 @@ return [
     "File Name" => "Nome do Arquivo",
     "Search" => "Procurar",
     "Enter search term" => "Digite o termo de pesquisa",
+    "Dashboard" => "painéis"
 ];

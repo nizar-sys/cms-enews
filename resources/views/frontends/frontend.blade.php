@@ -120,10 +120,15 @@
                                 <ul class="dropdown-menu" aria-labelledby="userDropdown">
                                     <li><a class="dropdown-item" href="#" data-bs-toggle="modal"
                                             data-bs-target="#logoutModal">{{ __('app.Logout') }}</a></li>
+                                    @if (Auth::user()->role == 'admin')
+                                        <li><a class="dropdown-item"
+                                                href="{{ route('dashboard') }}">{{ __('app.Dashboard') }}</a></li>
+                                    @endif
                                 </ul>
                             </div>
                         @endguest
                     </div>
+
                 </div>
 
                 <!-- Logout Modal -->
