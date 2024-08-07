@@ -129,4 +129,5 @@ return [
     "File Name" => "File Name",
     "Search" => "Search",
     "Enter search term" => "Enter search term",
+    "Dashboard" => "Dashboard",
 ];
