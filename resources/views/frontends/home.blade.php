@@ -55,11 +55,9 @@
                     <div class="col-lg-6 position-relative" data-aos="zoom-out">
                         <img src="{{ $about ? asset($about->image) : asset('/ac/assets/img/img_sq_1.jpg') }}" alt="Image"
                             class="img-fluid">
-                        @if (!$about)
-                            <a href="https://www.youtube.com/watch?v=LXb3EKWsInQ" class="glightbox pulsating-play-btn">
-                                <span class="play"><i class="bi bi-play-fill"></i></span>
-                            </a>
-                        @endif
+                        <a href="{{ $about ? $about->video_url : 'https://www.youtube.com/watch?v=LXb3EKWsInQ' }}" class="glightbox pulsating-play-btn">
+                            <span class="play"><i class="bi bi-play-fill"></i></span>
+                        </a>
                     </div>
                     <div class="col-lg-5" data-aos="fade-up" data-aos-delay="100">
                         <h2 class="content-title mb-4">{{ $about->title ?? __('app.Who We Are') }}</h2>

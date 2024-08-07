@@ -38,7 +38,7 @@
                                         <img id="leftIconPreview" class="w-25 mr-2" src="{{ asset($setting?->left_icon) }}"
                                             alt="">
                                         <img id="centerIconPreview" class="w-25 mr-2"
-                                            src="{{ asset($setting?->app_logo) }}" alt="">
+                                            src="{{ asset($setting?->logo) }}" alt="">
                                         <img id="rightIconPreview" class="w-25" src="{{ asset($setting?->right_icon) }}"
                                             alt="">
                                     </div>

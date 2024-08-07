@@ -20,7 +20,8 @@ class AboutController extends Controller
             'title' => ['required', 'max:200'],
             'description' => ['required', 'max:500000'],
             'image' => ['image', 'max:5000'],
-            'resume' => ['mimes:pdf,csv,txt', 'max:10000']
+            'resume' => ['mimes:pdf,csv,txt', 'max:10000'],
+            'video_url' => ['nullable', 'url']
         ]);
 
         $about = About::first();
@@ -32,8 +33,9 @@ class AboutController extends Controller
             [
                 'title' => $request->title,
                 'description' => $request->description,
-                'image' => (!empty($imagePath) ? $imagePath : $about->image),
-                'resume' => (!empty($resumePath) ? $resumePath : $about->resume)
+                'image' => ($imagePath ? $imagePath : $about?->image ?? null),
+                'resume' => ($resumePath ? $resumePath : $about?->resume ?? null),
+                'video_url' => $request->video_url
             ]
         );
         toastr()->success('updated Succesfully', 'Congrats');

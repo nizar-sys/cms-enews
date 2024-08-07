@@ -13,6 +13,7 @@ class About extends Model
         'title', 
         'description', 
         'image',
-        'resume'
+        'resume',
+        'video_url'
     ];
 }
