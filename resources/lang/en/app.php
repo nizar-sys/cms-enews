@@ -84,7 +84,7 @@ return [
     "Title & ID" => "Title & ID",
     "Issued Documents" => "Issued Documents",
     "Important Date" => "Important Date",
-    "Show FIles" => "Show FIles",
+    "Show Files" => "Show Files",
     "First Date of Publication" => "First Date of Publication",
     "Last Submission Date/Time" => "Last Submission Date/Time",
     "Title" => "Title",

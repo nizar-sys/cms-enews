@@ -55,8 +55,7 @@
     <main class="main">
 
         <!-- Page Title -->
-        <div class="page-title dark-background" data-aos="fade"
-            style="background-color: #2c4666">
+        <div class="page-title dark-background" data-aos="fade" style="background-color: #2c4666">
             <div class="container position-relative">
                 <h1>{{ $project->name }}</h1>
                 <nav class="breadcrumbs">
@@ -124,7 +123,7 @@
                     <section id="sp_news_widget-3" class="widget SP_News_Widget">
                         <h3 class="widget-title">{{ __('app.News') }}</h3>
                         <div class="recent-news-items no_p">
-                            <ul style="list-style: none">
+                            <ul>
 
                                 @foreach ($latestNews as $latestNew)
                                     <li class="news_li">
@@ -136,21 +135,6 @@
                             </ul>
                         </div>
 
-                    </section>
-                    <section id="block-4" class="widget widget_block">
-                        <div class="wp-block-group">
-                            <div class="wp-block-group__inner-container is-layout-flow wp-block-group-is-layout-flow"></div>
-                        </div>
-                    </section>
-                    <section id="block-5" class="widget widget_block">
-                        <div class="wp-block-group">
-                            <div class="wp-block-group__inner-container is-layout-flow wp-block-group-is-layout-flow"></div>
-                        </div>
-                    </section>
-                    <section id="block-6" class="widget widget_block">
-                        <div class="wp-block-group">
-                            <div class="wp-block-group__inner-container is-layout-flow wp-block-group-is-layout-flow"></div>
-                        </div>
                     </section>
                 </aside><!-- #secondary -->
             </div><!-- .row -->
