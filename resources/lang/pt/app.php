@@ -51,6 +51,7 @@ return [
     "Notice" => "Aviso",
     "Press Releases" => "Comunicados de Imprensa",
     "Photo Gallery" => "Galeria de Fotos",
+    "Photo Project" => "Projeto fotográfico",
     "Video Gallery" => "Galeria de Vídeos",
     "Main Agreements" => "Acordos Principais",
     "Publications & Resources" => "Publicações & Recursos",
@@ -97,6 +98,7 @@ return [
     "No data" => "Sem dados",
     "organizational_chart" => "Organograma Chart",
     "No Photo Galleries Available" => "Nenhuma Galeria de Fotos Disponível",
+    "No Photo Project Available" => "Sem projeto fotográfico disponível",
     "No Video Available" => "Nenhum Vídeo Disponível",
     "Video Gallery" => "Galeria de Vídeos",
     'phone' => 'Telefone',
@@ -129,5 +131,13 @@ return [
     "File Name" => "Nome do Arquivo",
     "Search" => "Procurar",
     "Enter search term" => "Digite o termo de pesquisa",
-    "Dashboard" => "painéis"
+    "Dashboard" => "painéis",
+    "About" => "sobre",
+    "Public Outreach" => "alcance público",
+    "HR Vacancies" => "vagas de RH",
+    "Posts" => "Postagens",
+    "Video Events" => "vídeos de eventos",
+    "Photo Events" => "evento fotográfico",
+    "Publications" => "publicação",
+    "Video Project" => "projetos de vídeo"
 ];

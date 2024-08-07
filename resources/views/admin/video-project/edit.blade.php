@@ -19,12 +19,12 @@
                             <h4>Edit Videos</h4>
                         </div>
                         <div class="card-body">
-                            <form action="{{ route('admin.video-project.update', $video->id) }}" method="POST"
+                            <form action="{{ route('admin.video-gallery.update', $video->id) }}" method="POST"
                                 enctype="multipart/form-data">
                                 @csrf
                                 @method('PUT')
 
-
+                                
                                 <div class="form-group row mb-4">
                                     <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">
                                         Title
