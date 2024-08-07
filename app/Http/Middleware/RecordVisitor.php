@@ -28,10 +28,10 @@ class RecordVisitor
         // Check if a similar visitor record already exists
         $exists = Visitor::where($visitorData)->exists();
 
-        // if (!$exists) {
-        //     // Save visitor data if not exists
-        //     Visitor::create($visitorData);
-        // }
+        if (!$exists) {
+            // Save visitor data if not exists
+            Visitor::create($visitorData);
+        }
 
         return $next($request);
     }
