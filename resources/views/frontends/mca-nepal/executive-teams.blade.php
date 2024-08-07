@@ -1,6 +1,6 @@
 @extends('frontends.frontend')
 
-@section('title', __('app.executive_team'))
+@section('title', $sectionSetting?->title ?? __('app.executive_team'))
 
 @push('style')
     <style>
@@ -20,8 +20,7 @@
     <main class="main">
 
         <!-- Page Title -->
-        <div class="page-title dark-background" data-aos="fade"
-            style="background-color: #2c4666">
+        <div class="page-title dark-background" data-aos="fade" style="background-color: #2c4666">
             <div class="container position-relative">
                 <h1>{{ $sectionSetting?->title }}</h1>
                 <div style="word-wrap: break-word;">

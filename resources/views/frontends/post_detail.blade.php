@@ -1,6 +1,6 @@
 @extends('frontends.frontend')
 
-@section('title', $post->title)
+@section('title', $sectionSetting?->title ?? __('app.Posts'))
 
 @push('style')
     <style>

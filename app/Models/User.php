@@ -21,7 +21,11 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
-        'role',
+        'business_name', // Added column
+        'address',       // Added column
+        'contact_person', // Added column
+        'phone',         // Added column
+        'mobile_numbers' // Added column
     ];
 
     /**

@@ -1,6 +1,6 @@
 @extends('frontends.frontend')
 
-@section('title', __('app.board_of_directors'))
+@section('title', $sectionSetting?->title ?? __('app.board_of_directors'))
 
 @section('content')
 

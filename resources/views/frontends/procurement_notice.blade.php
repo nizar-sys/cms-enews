@@ -1,16 +1,16 @@
 @extends('frontends.frontend')
 
-@section('title', __('app.procurement_notices'))
+@section('title', $sectionSetting?->title ?? __('app.procurement_notices'))
 
 @section('content')
     <main class="main">
         <div class="page-title dark-background" data-aos="fade" style="background-color: #2c4666">
             <div class="container position-relative">
-                <h1>{{ __('app.procurement_notices') }}</h1>
+                <h1>{{ $sectionSetting?->title ?? __('app.procurement_notices') }}</h1>
                 <nav class="breadcrumbs">
                     <ol>
                         <li><a href="{{ url('/', []) }}" class="text-primary">{{ __('app.home') }}</a></li>
-                        <li class="current">{{ __('app.procurement_notices') }}</li>
+                        <li class="current">{{ $sectionSetting?->title ?? __('app.procurement_notices') }}</li>
                     </ol>
                 </nav>
             </div>
@@ -20,7 +20,7 @@
             <div class="row">
                 <section id="primary" class="content-area col-sm-12 col-lg-12">
                     <header class="entry-header">
-                        <h1 class="entry-title">{{ __('app.Procurement Notices') }}</h1>
+                        <h1 class="entry-title">{{ $sectionSetting?->title ?? __('app.procurement_notices') }}</h1>
                     </header>
 
                     <main id="main" class="site-main" role="main">

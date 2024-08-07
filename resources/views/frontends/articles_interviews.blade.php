@@ -1,16 +1,16 @@
 @extends('frontends.frontend')
 
-@section('title', __('app.Publications'))
+@section('title', $sectionSetting?->title ?? __('app.Publications'))
 
 @section('content')
     <main class="main">
         <div class="page-title dark-background" data-aos="fade" style="background-color: #2c4666">
             <div class="container position-relative">
-                <h1>{{ __('app.Publications') }}</h1>
+                <h1>{{ $sectionSetting?->title ?? __('app.Publications') }}</h1>
                 <nav class="breadcrumbs">
                     <ol>
                         <li><a href="{{ url('/', []) }}" class="text-primary">{{ __('app.home') }}</a></li>
-                        <li class="current">{{ __('app.Publications') }}</li>
+                        <li class="current">{{ $sectionSetting?->title ?? __('app.Publications') }}</li>
                     </ol>
                 </nav>
             </div>
@@ -21,7 +21,7 @@
                     <div class="row">
                         <div class="col-md-12">
                             <main id="main" class="site-main" role="main">
-                                <h1 class="entry-title">{{ __('app.Publications') }}</h1>
+                                <h1 class="entry-title">{{ $sectionSetting?->title ?? __('app.Publications') }}</h1>
 
                                 @if ($articlesInterviews->isEmpty())
                                     <p>There is no published data</p>

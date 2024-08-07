@@ -1,5 +1,7 @@
 @extends('frontends.frontend')
 
+@section('title', $communityVoice?->title ?? __('app.Community Voice'))
+
 @section('content')
     <main class="main">
 

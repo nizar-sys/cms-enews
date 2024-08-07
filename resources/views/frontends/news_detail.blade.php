@@ -1,21 +1,20 @@
 @extends('frontends.frontend')
 
-@section('title', __('app.news'))
+@section('title', $sectionSetting?->title ?? __('app.news'))
 
 @section('content')
-<main class="main">
-    <div class="page-title dark-background" data-aos="fade"
-        style="background-color: #2c4666">
-        <div class="container position-relative">
-            <h1>{{ __('app.News') }}</h1>
-            <nav class="breadcrumbs">
-                <ol>
-                    <li><a href="{{ url('/', []) }}" class="text-primary">{{ __('app.home') }}</a></li>
-                    <li class="current">{{ __('app.News') }}</li>
-                </ol>
-            </nav>
+    <main class="main">
+        <div class="page-title dark-background" data-aos="fade" style="background-color: #2c4666">
+            <div class="container position-relative">
+                <h1>{{ $sectionSetting?->title ?? __('app.News') }}</h1>
+                <nav class="breadcrumbs">
+                    <ol>
+                        <li><a href="{{ url('/', []) }}" class="text-primary">{{ __('app.home') }}</a></li>
+                        <li class="current">{{ $sectionSetting?->title ?? __('app.News') }}</li>
+                    </ol>
+                </nav>
+            </div>
         </div>
-    </div>
         <div class="container">
             <div class="row">
 
@@ -67,9 +66,9 @@
                         </div>
                     </section>
                     <section id="sp_news_widget-3" class="widget SP_News_Widget">
-                        <h3 class="widget-title">{{ __('app.News') }}</h3>
+                        <h3 class="widget-title">{{ $sectionSetting?->title ?? __('app.News') }}</h3>
                         <div class="recent-news-items no_p">
-                            <ul>
+                            <ul style="list-style: none">
 
                                 @foreach ($latestNews as $latestNew)
                                     <li class="news_li">
@@ -100,5 +99,5 @@
                 </aside><!-- #secondary -->
             </div><!-- .row -->
         </div>
-</main>
+    </main>
 @endsection
