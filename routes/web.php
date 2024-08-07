@@ -24,14 +24,20 @@ use App\Http\Controllers\Admin\JobSectionSettingController;
 use App\Http\Controllers\Admin\OrganizationalChartSectionSettingController;
 use App\Http\Controllers\Admin\SeoSettingController;
 use App\Http\Controllers\Admin\ArticleController;
+use App\Http\Controllers\Admin\ArticleSectionSettingController;
 use App\Http\Controllers\Admin\BidChallengeSystemController;
+use App\Http\Controllers\Admin\CommunityVoiceSectionSettingController;
 use App\Http\Controllers\Admin\ContractAwardNoticeController;
+use App\Http\Controllers\Admin\FooterInfoController;
 use App\Http\Controllers\Admin\GuidelineProcurementController;
 use App\Http\Controllers\Admin\FooterSettingController;
 use App\Http\Controllers\Admin\FooterSocialLinkController;
+use App\Http\Controllers\Admin\FooterUsefulLinkController;
+use App\Http\Controllers\Admin\GuidelineSectionSettingController;
 use App\Http\Controllers\Admin\HeroController;
+use App\Http\Controllers\Admin\NewsSectionSettingController;
 use App\Http\Controllers\Admin\NoticeController;
-
+use App\Http\Controllers\Admin\NoticesSectionSettingController;
 use App\Http\Controllers\Admin\SpesificProcurementController;
 use App\Http\Controllers\Admin\SpesificProcurementFileController;
 
@@ -39,6 +45,7 @@ use App\Http\Controllers\Admin\PressReleaseController;
 use App\Http\Controllers\Frontend\HomeController;
 use App\Http\Controllers\Admin\PhotoGalleryAlbumController;
 use App\Http\Controllers\Admin\PhotoGalleryController;
+use App\Http\Controllers\Admin\PhotoGallerySectionSettingController;
 use App\Http\Controllers\Admin\PostController;
 use App\Http\Controllers\Admin\ServiceController;
 use App\Http\Controllers\Admin\ServiceSectionSettingController;
@@ -54,7 +61,12 @@ use App\Http\Controllers\McaNepal\ExecutiveTeamController;
 use App\Http\Controllers\McaNepal\OrganizationalChartController;
 use App\Http\Controllers\Admin\PhotoProjectAlbumController;
 use App\Http\Controllers\Admin\PhotoProjectController;
+use App\Http\Controllers\Admin\PhotoSectionSettingController;
+use App\Http\Controllers\Admin\PostSectionSettingController;
+use App\Http\Controllers\Admin\PressReleaseSectionSettingController;
+use App\Http\Controllers\Admin\VideoGallerySectionSettingController;
 use App\Http\Controllers\Admin\VideoProjectController;
+use App\Http\Controllers\Admin\VideoSectionSettingController;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Artisan;
 
@@ -288,14 +300,27 @@ Route::group(['middleware' => ['auth', 'admin'], 'prefix' => 'console', 'as' => 
     Route::resource('contacts', ContactController::class)->only(['index', 'update']);
 
     Route::resource('footer-social', FooterSocialLinkController::class);
+    Route::resource('footer-info', FooterInfoController::class);
+    Route::resource('footer-useful-links', FooterUsefulLinkController::class);
 
     Route::resource('hero', HeroController::class);
 
     Route::resource('categories', CategoryController::class);
+    Route::resource('posts-section-setting', PostSectionSettingController::class)->only(['index', 'update']);
     Route::resource('posts', PostController::class);
     Route::resource('about', AboutController::class);
     Route::resource('service-section-setting', ServiceSectionSettingController::class);
     Route::resource('service', ServiceController::class);
+    Route::resource('article-section-setting', ArticleSectionSettingController::class)->only(['index', 'update']);
+    Route::resource('video-section-setting', VideoSectionSettingController::class)->only(['index', 'update']);
+    Route::resource('photo-section-setting', PhotoSectionSettingController::class)->only(['index', 'update']);
+    Route::resource('press-release-section-setting', PressReleaseSectionSettingController::class)->only(['index', 'update']);
+    Route::resource('news-section-setting', NewsSectionSettingController::class)->only(['index', 'update']);
+    Route::resource('community-voice-section-setting', CommunityVoiceSectionSettingController::class)->only(['index', 'update']);
+    Route::resource('video-gallery-section-setting', VideoGallerySectionSettingController::class)->only(['index', 'update']);
+    Route::resource('photo-gallery-section-setting', PhotoGallerySectionSettingController::class)->only(['index', 'update']);
+    Route::resource('notices-section-setting', NoticesSectionSettingController::class)->only(['index', 'update']);
+    Route::resource('procurements-guidelines-section-setting', GuidelineSectionSettingController::class)->only(['index', 'update'])->parameters(['procurements-guidelines-section-setting' => 'guideline_section_setting']);
 });
 
 Route::prefix('{locale}')->group(function () {

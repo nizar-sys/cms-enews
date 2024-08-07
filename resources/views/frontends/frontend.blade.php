@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
-    <title>@yield('title') - {{ __('app.app_name') }}</title>
+    <title>@yield('title') - {{ $seoSetting ? $seoSetting->title : __('app.app_name') }}</title>
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"
         integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
     <meta content="{{ $seoSetting?->description }}" name="description">
@@ -252,19 +252,21 @@
 
     @yield('content')
 
-    <footer id="footer" class="footer dark-background">
+    <footer id="footer" class="footer light-background">
 
         <div class="footer-top mb-2">
             <div class="container">
                 <div class="row gy-4">
                     <div class="col-lg-4 col-md-6 footer-about">
                         <a href="{{ url('/') }}" class="logo d-flex align-items-center">
-                            <span class="sitename">{{ __('app.app_name') }}</span>
+                            <span class="sitename">{{ $seoSetting ? $seoSetting->title : __('app.app_name') }}</span>
                         </a>
                         <div class="footer-contact pt-3">
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur quasi ex excepturi vero
-                            dolorem molestias dolor est aut debitis obcaecati amet ratione facere illum, nesciunt
-                            explicabo neque aliquid modi? Necessitatibus.
+                            {{ $footerInfo
+                                ? $footerInfo->info
+                                : 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur quasi ex excepturi vero
+                                    dolorem molestias dolor est aut debitis obcaecati amet ratione facere illum, nesciunt
+                                    explicabo neque aliquid modi? Necessitatibus.' }}
                         </div>
                     </div>
 
@@ -280,7 +282,14 @@
                     <div class="col-lg-2 col-md-3 footer-links">
                         <h4>{{ __('app.useful_links') }}</h4>
                         <ul>
-                            <li><a href="#">{{ __('app.home') }}</a></li>
+                            @foreach ($footerUsefulLinks as $link)
+                                <li>
+                                    <a href="{{ $link->url }}"
+                                        @if (preg_match('/^https?:\/\//', $link->url)) target="_blank" @endif>
+                                        {{ $link->name }}
+                                    </a>
+                                </li>
+                            @endforeach
                         </ul>
                     </div>
 
@@ -293,10 +302,18 @@
                 class="container d-flex flex-column flex-lg-row justify-content-center justify-content-lg-between align-items-center">
 
                 <div class="d-flex flex-column align-items-center align-items-lg-start">
-                    <div>
-                        © {{ __('app.copyright') }} <strong><span>{{ __('app.app_name') }}</span></strong>.
-                        {{ __('app.all_rights_reserved') }}
-                    </div>
+                    @if ($footerInfo)
+                        <div>
+                            © {{ $footerInfo->info }}
+                        </div>
+                    @else
+                        <div>
+                            © {{ __('app.copyright') }}
+                            <strong><span>{{ $seoSetting ? $seoSetting->title : __('app.app_name') }}</span></strong>.
+                            {{ __('app.all_rights_reserved') }}
+                        </div>
+                    @endif
+
                 </div>
 
                 <div class="social-links order-first order-lg-last mb-3 mb-lg-0">

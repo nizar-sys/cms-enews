@@ -148,12 +148,17 @@
             </li>
 
             <li class="menu-header">Projects</li>
-            <li class="nav-item dropdown {{ setSidebarActive(['admin.article.category.*', 'admin.article.*']) }}">
+            <li
+                class="nav-item dropdown {{ setSidebarActive(['admin.article.category.*', 'admin.article.*', 'admin.article-section-setting.*']) }}">
                 <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i
                         class="fas fa-columns"></i>
                     <span>Publications</span>
                 </a>
                 <ul class="dropdown-menu" style="display: none;">
+                    <li class="{{ setSidebarActive(['admin.article-section-setting.*']) }}">
+                        <a class="nav-link" href="{{ route('admin.article-section-setting.index') }}">Section
+                            Setting</a>
+                    </li>
                     <li class="{{ setSidebarActive(['admin.article.category.*']) }}">
                         <a class="nav-link" href="{{ route('admin.article.category.index') }}">Categories</a>
                     </li>
@@ -163,12 +168,17 @@
                 </ul>
             </li>
 
-            <li class="nav-item dropdown {{ setSidebarActive(['admin.categories.*', 'admin.posts.*']) }}">
+            <li
+                class="nav-item dropdown {{ setSidebarActive(['admin.categories.*', 'admin.posts.*', 'admin.posts-section-setting.*']) }}">
                 <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i
                         class="fas fa-columns"></i>
                     <span>Blogs</span>
                 </a>
                 <ul class="dropdown-menu" style="display: none;">
+                    <li class="{{ setSidebarActive(['admin.posts-section-setting.*']) }}">
+                        <a class="nav-link" href="{{ route('admin.posts-section-setting.index') }}">Section
+                            Setting</a>
+                    </li>
                     <li class="nav-item {{ setSidebarActive(['admin.categories.*']) }}">
                         <a href="{{ route('admin.categories.index', []) }}"
                             class="nav-link"><span>Categories</span></a>
@@ -179,17 +189,34 @@
                 </ul>
             </li>
 
-            <li class="nav-item {{ setSidebarActive(['admin.video-project.*']) }}">
-                <a href="{{ route('admin.video-project.index') }}" class="nav-link"><i
-                        class="fas fa-columns"></i><span>Videos</span></a>
-            </li>
             <li
-                class="nav-item dropdown {{ setSidebarActive(['admin.photo-project.album.*', 'admin.photo-project.*']) }}">
+                class="nav-item dropdown {{ setSidebarActive(['admin.video-section-setting.*', 'admin.video-project.*']) }}">
+                <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i
+                        class="fas fa-columns"></i>
+                    <span>Video</span>
+                </a>
+                <ul class="dropdown-menu" style="display: none;">
+                    <li class="{{ setSidebarActive(['admin.video-section-setting.*']) }}">
+                        <a class="nav-link" href="{{ route('admin.video-section-setting.index') }}">Section
+                            Setting</a>
+                    </li>
+                    <li class="nav-item {{ setSidebarActive(['admin.video-project.*']) }}">
+                        <a href="{{ route('admin.video-project.index') }}" class="nav-link"><span>Videos</span></a>
+                    </li>
+                </ul>
+            </li>
+
+            <li
+                class="nav-item dropdown {{ setSidebarActive(['admin.photo-project.album.*', 'admin.photo-project.*', 'admin.photo-section-setting.*']) }}">
                 <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i
                         class="fas fa-columns"></i>
                     <span>Photo Projects</span>
                 </a>
                 <ul class="dropdown-menu" style="display: none;">
+                    <li class="{{ setSidebarActive(['admin.photo-section-setting.*']) }}">
+                        <a class="nav-link" href="{{ route('admin.photo-section-setting.index') }}">Section
+                            Setting</a>
+                    </li>
                     <li class="{{ setSidebarActive(['admin.photo-project.album.*']) }}">
                         <a class="nav-link" href="{{ route('admin.photo-project.album.index') }}">Album</a>
                     </li>
@@ -198,24 +225,61 @@
                     </li>
                 </ul>
             </li>
-            </li>
 
             <li class="menu-header">Public Outreach</li>
 
-            <li class="nav-item {{ setSidebarActive(['admin.press-release.*']) }}">
-                <a href="{{ route('admin.press-release.index') }}" class="nav-link"><i
-                        class="fas fa-columns"></i><span>Press Releases</span></a>
+            <li
+                class="nav-item dropdown {{ setSidebarActive(['admin.press-release.*', 'admin.press-release-section-setting.*']) }}">
+                <a href="#" class="nav-link has-dropdown" data-toggle="dropdown">
+                    <i class="fas fa-columns"></i>
+                    <span>Press Releases</span>
+                </a>
+                <ul class="dropdown-menu" style="display: none;">
+                    <li class="{{ setSidebarActive(['admin.press-release-section-setting.index']) }}">
+                        <a class="nav-link" href="{{ route('admin.press-release-section-setting.index') }}">Section
+                            Setting</a>
+                    </li>
+                    <li class="{{ setSidebarActive(['admin.press-release.index']) }}">
+                        <a class="nav-link" href="{{ route('admin.press-release.index') }}">Press Releases</a>
+                    </li>
+                </ul>
             </li>
 
-            <li class="nav-item {{ setSidebarActive(['admin.news.*']) }}">
-                <a href="{{ route('admin.news.index') }}" class="nav-link"><i
-                        class="fas fa-columns"></i><span>News</span></a>
+
+            <li class="nav-item dropdown {{ setSidebarActive(['admin.news.*', 'admin.news-section-setting.*']) }}">
+                <a href="#" class="nav-link has-dropdown" data-toggle="dropdown">
+                    <i class="fas fa-columns"></i>
+                    <span>News</span>
+                </a>
+                <ul class="dropdown-menu" style="display: none;">
+                    <li class="{{ setSidebarActive(['admin.news-section-setting.index']) }}">
+                        <a class="nav-link" href="{{ route('admin.news-section-setting.index') }}">Section
+                            Setting</a>
+                    </li>
+                    <li class="{{ setSidebarActive(['admin.news.index']) }}">
+                        <a class="nav-link" href="{{ route('admin.news.index') }}">News</a>
+                    </li>
+                </ul>
             </li>
 
-            <li class="nav-item {{ setSidebarActive(['admin.community-voice.*']) }}">
-                <a href="{{ route('admin.community-voice.index') }}" class="nav-link"><i
-                        class="fas fa-columns"></i><span>Events Announcements</span></a>
+            <li
+                class="nav-item dropdown {{ setSidebarActive(['admin.community-voice.*', 'admin.community-voice-section-setting.*']) }}">
+                <a href="#" class="nav-link has-dropdown" data-toggle="dropdown">
+                    <i class="fas fa-columns"></i>
+                    <span>Events Announcements</span>
+                </a>
+                <ul class="dropdown-menu" style="display: none;">
+                    <li class="{{ setSidebarActive(['admin.community-voice-section-setting.index']) }}">
+                        <a class="nav-link" href="{{ route('admin.community-voice-section-setting.index') }}">Section
+                            Setting</a>
+                    </li>
+                    <li class="{{ setSidebarActive(['admin.community-voice.index']) }}">
+                        <a class="nav-link" href="{{ route('admin.community-voice.index') }}">Events
+                            Announcements</a>
+                    </li>
+                </ul>
             </li>
+
             {{-- <li class="nav-item dropdown {{ setSidebarActive(['admin.article.category.*', 'admin.article.*']) }}">
                 <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i
                         class="fas fa-columns"></i>
@@ -230,18 +294,35 @@
                     </li>
                 </ul>
             </li> --}}
-            <li class="nav-item {{ setSidebarActive(['admin.video-gallery.*']) }}">
-                <a href="{{ route('admin.video-gallery.index') }}" class="nav-link"><i
-                        class="fas fa-columns"></i><span>Videos Events</span></a>
+            <li
+                class="nav-item dropdown {{ setSidebarActive(['admin.video-gallery.*', 'admin.video-gallery-section-setting.*']) }}">
+                <a href="#" class="nav-link has-dropdown" data-toggle="dropdown">
+                    <i class="fas fa-columns"></i>
+                    <span>Videos Events</span>
+                </a>
+                <ul class="dropdown-menu" style="display: none;">
+                    <li class="{{ setSidebarActive(['admin.video-gallery-section-setting.index']) }}">
+                        <a class="nav-link" href="{{ route('admin.video-gallery-section-setting.index') }}">Section
+                            Setting</a>
+                    </li>
+                    <li class="{{ setSidebarActive(['admin.video-gallery.index']) }}">
+                        <a class="nav-link" href="{{ route('admin.video-gallery.index') }}">Videos Events</a>
+                    </li>
+                </ul>
             </li>
 
+
             <li
-                class="nav-item dropdown {{ setSidebarActive(['admin.photo-gallery.album.*', 'admin.photo-gallery.*']) }}">
+                class="nav-item dropdown {{ setSidebarActive(['admin.photo-gallery.album.*', 'admin.photo-gallery.*', 'admin.photo-gallery-section-setting.*']) }}">
                 <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i
                         class="fas fa-columns"></i>
                     <span>Photo Events</span>
                 </a>
                 <ul class="dropdown-menu" style="display: none;">
+                    <li class="{{ setSidebarActive(['admin.photo-gallery-section-setting.index']) }}">
+                        <a class="nav-link" href="{{ route('admin.photo-gallery-section-setting.index') }}">Section
+                            Setting</a>
+                    </li>
                     <li class="{{ setSidebarActive(['admin.photo-gallery.album.*']) }}">
                         <a class="nav-link" href="{{ route('admin.photo-gallery.album.index') }}">Album</a>
                     </li>
@@ -274,15 +355,18 @@
                     </li>
                 </ul>
             </li>
-
-            <li class="menu-header">Procurement</li>
             <li
-                class="nav-item dropdown {{ setSidebarActive(['admin.spesific-procurements-notices.*', 'admin.general-procurements-notices.*']) }}">
+                class="nav-item dropdown {{ setSidebarActive(['admin.spesific-procurements-notices.*', 'admin.general-procurements-notices.*', 'admin.notices-section-setting.*']) }}">
                 <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i
                         class="fas fa-columns"></i>
                     <span>Notices</span>
                 </a>
                 <ul class="dropdown-menu" style="display: none;">
+                    <li class="{{ setSidebarActive(['admin.notices-section-setting.index']) }}">
+                        <a class="nav-link"
+                            href="{{ route('admin.notices-section-setting.index', ['locale' => session('locale', 'en')]) }}">Section
+                            Settings</a>
+                    </li>
                     <li class="{{ setSidebarActive(['admin.spesific-procurements-notices.*']) }}">
                         <a class="nav-link" href="{{ route('admin.spesific-procurements-notices.index') }}">Spesific
                             Procurement</a>
@@ -293,11 +377,26 @@
                     </li>
                 </ul>
             </li>
-            <li class="nav-item {{ setSidebarActive(['admin.procurements-guidelines.*']) }}">
-                <a href="{{ route('admin.procurements-guidelines.index') }}" class="nav-link"><i
-                        class="fas fa-columns"></i><span>Guidelines</span></a>
+            <li
+                class="nav-item dropdown {{ setSidebarActive(['admin.procurements-guidelines.*', 'admin.procurements-guidelines-section-setting.*']) }}">
+                <a href="#" class="nav-link has-dropdown" data-toggle="dropdown">
+                    <i class="fas fa-columns"></i>
+                    <span>Guidelines</span>
+                </a>
+                <ul class="dropdown-menu" style="display: none;">
+                    <li class="{{ setSidebarActive(['admin.procurements-guidelines-section-setting.index']) }}">
+                        <a class="nav-link"
+                            href="{{ route('admin.procurements-guidelines-section-setting.index') }}">Section
+                            Setting</a>
+                    </li>
+                    <li class="{{ setSidebarActive(['admin.procurements-guidelines.index']) }}">
+                        <a class="nav-link" href="{{ route('admin.procurements-guidelines.index') }}">Guidelines</a>
+                    </li>
+                </ul>
             </li>
-            <li class="nav-item {{ setSidebarActive(['admin.procurements-bid-challenge-systems.*']) }}">
+
+
+            {{-- <li class="nav-item {{ setSidebarActive(['admin.procurements-bid-challenge-systems.*']) }}">
                 <a href="{{ route('admin.procurements-bid-challenge-systems.index') }}" class="nav-link"><i
                         class="fas fa-columns"></i><span>Bid Challenge
                         System</span></a>
@@ -306,7 +405,7 @@
                 <a href="{{ route('admin.procurements-contract-award-notices.index', []) }}" class="nav-link"><i
                         class="fas fa-columns"></i><span>Contract Award
                         Notice</span></a>
-            </li>
+            </li> --}}
 
             <li class="menu-header">Faqs</li>
             <li class="nav-item {{ setSidebarActive(['admin.faqs.index']) }}">
@@ -329,7 +428,8 @@
                         class="fas fa-columns"></i><span>Sliders</span></a>
             </li>
 
-            <li class="nav-item dropdown {{ setSidebarActive(['admin.footer-social.*']) }}">
+            <li
+                class="nav-item dropdown {{ setSidebarActive(['admin.footer-social.*', 'admin.footer-info.*', 'admin.footer-useful-links.*']) }}">
                 <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i
                         class="fas fa-columns"></i>
                     <span>Footer</span>
@@ -337,6 +437,10 @@
                 <ul class="dropdown-menu" style="display: none;">
                     <li class="{{ setSidebarActive(['admin.footer-social.*']) }}"><a class="nav-link"
                             href="{{ route('admin.footer-social.index') }}">Social Links</a></li>
+                    <li class="{{ setSidebarActive(['admin.footer-info.*']) }}"><a class="nav-link"
+                            href="{{ route('admin.footer-info.index') }}">Footer Information</a></li>
+                    <li class="{{ setSidebarActive(['admin.footer-useful-links.*']) }}"><a class="nav-link"
+                            href="{{ route('admin.footer-useful-links.index') }}">Footer Useful Link</a></li>
                 </ul>
             </li>
             {{-- Setting --}}

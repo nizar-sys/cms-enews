@@ -1,19 +1,16 @@
 @extends('frontends.frontend')
 
-@section('title', __('app.Press Releases'))
+@section('title', $sectionSetting?->title ?? __('app.Press Releases'))
 
 @section('content')
     <main class="main">
-
-
         <div class="page-title dark-background" data-aos="fade" style="background-color: #2c4666">
             <div class="container position-relative">
-                <h1>{{ __('app.Press Releases') }}</h1>
-
+                <h1>{{ $sectionSetting?->title ?? __('app.Press Releases') }}</h1>
                 <nav class="breadcrumbs">
                     <ol>
                         <li><a href="{{ url('/', []) }}" class="text-primary">{{ __('app.home') }}</a></li>
-                        <li class="current">{{ __('app.Press Releases') }}</li>
+                        <li class="current">{{ $sectionSetting?->title ?? __('app.Press Releases') }}</li>
                     </ol>
                 </nav>
             </div>
@@ -24,7 +21,7 @@
                     <div class="row">
                         <div class="col-md-12">
                             <main id="main" class="site-main" role="main">
-                                <h1 class="entry-title mb-5">{{ __('app.Press Releases') }}</h1>
+                                <h1 class="entry-title mb-5">{{ $sectionSetting?->title ?? __('app.Press Releases') }}</h1>
                                 <div class="table-responsive">
                                     <form id="downloadPressReleasesForm" method="POST"
                                         action="{{ route('download.multiple') }}">

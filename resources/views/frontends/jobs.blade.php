@@ -1,6 +1,6 @@
 @extends('frontends.frontend')
 
-@section('title', __('app.jobs'))
+@section('title', $sectionSetting?->title ?? __('app.jobs'))
 
 @section('content')
     <main class="main">
