@@ -16,6 +16,9 @@
         <div class="page-title dark-background" data-aos="fade" style="background-color: #2c4666">
             <div class="container position-relative">
                 <h1>{{ $sectionSetting?->title ?? __('app.Documents') }}</h1>
+                <div style="word-wrap: break-word;">
+                    {!! $sectionSetting?->description !!}
+                </div>
                 <nav class="breadcrumbs">
                     <ol>
                         <li><a href="{{ url('/', []) }}" class="text-primary">{{ __('app.home') }}</a></li>

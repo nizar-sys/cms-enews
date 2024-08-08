@@ -55,7 +55,8 @@
                     <div class="col-lg-6 position-relative" data-aos="zoom-out">
                         <img src="{{ $about ? asset($about->image) : asset('/ac/assets/img/img_sq_1.jpg') }}" alt="Image"
                             class="img-fluid">
-                        <a href="{{ $about ? $about->video_url : 'https://www.youtube.com/watch?v=LXb3EKWsInQ' }}" class="glightbox pulsating-play-btn">
+                        <a href="{{ $about ? $about->video_url : 'https://www.youtube.com/watch?v=LXb3EKWsInQ' }}"
+                            class="glightbox pulsating-play-btn">
                             <span class="play"><i class="bi bi-play-fill"></i></span>
                         </a>
                     </div>
@@ -72,11 +73,14 @@
                                 repellendus architecto provident nisi ullam minus asperiores commodi!
                                 Tenetur, repellat aliquam nihil illo.
                             </p>
-                            <ul class="list-unstyled list-check">
-                                <li>Lorem ipsum dolor sit amet</li>
-                                <li>Velit explicabo vitae repellendu</li>
-                                <li>Repellat aliquam nihil illo</li>
-                            </ul>
+
+                            @if ($services)
+                                @foreach ($services as $service)
+                                    <ul class="list-unstyled list-check">
+                                        <li>{{ $service->name }}</li>
+                                    </ul>
+                                @endforeach
+                            @endif
                         @endif
                         <p>
                             <a href="{{ $about ? asset($about->resume) : '#services' }}"
@@ -112,7 +116,7 @@
                                     </div>
                                     <div class="service-item-content">
                                         <h3 class="service-heading">{{ $service->title }}</h3>
-                                        <p>{{ $service->description }}</p>
+                                        <p>{!! $service->description !!}</p>
                                     </div>
                                 </div>
                             </div>
@@ -123,7 +127,7 @@
         </section><!-- /Services Section -->
 
         <!-- About Section -->
-        <section id="about" class="about section">
+        {{-- <section id="about" class="about section">
 
             <div class="content">
                 <div class="container">
@@ -166,7 +170,7 @@
                     </div>
                 </div>
             </div>
-        </section><!-- /About Section -->
+        </section><!-- /About Section --> --}}
 
         <!-- Services 2 Section -->
         <section id="services-2" class="services-2 section dark-background">
@@ -253,8 +257,7 @@
                             <div class="post-item position-relative h-100" data-aos="fade-up" data-aos-delay="100">
 
                                 <div class="post-img position-relative overflow-hidden">
-                                    <img src="{{ asset($post->thumbnail) }}" class="img-fluid"
-                                        alt="{{ $post->title }}">
+                                    <img src="{{ asset($post->thumbnail) }}" class="img-fluid" alt="{{ $post->title }}">
                                     <span class="post-date">@datetime($post->created_at)</span>
                                 </div>
 

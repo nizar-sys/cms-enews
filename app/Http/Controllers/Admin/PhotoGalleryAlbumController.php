@@ -10,15 +10,18 @@ use App\Models\PhotoGalleryAlbum;
 
 class PhotoGalleryAlbumController extends Controller
 {
-    public function index(PhotoGalleryAlbumDataTable $datatable) {
+    public function index(PhotoGalleryAlbumDataTable $datatable)
+    {
         return $datatable->render('admin.photo-gallery.album.index');
     }
 
-    public function create() {
+    public function create()
+    {
         return view('admin.photo-gallery.album.create');
     }
 
-    public function store(Request $request) {
+    public function store(Request $request)
+    {
         $request->validate([
             'name' => 'required',
         ]);
@@ -31,12 +34,14 @@ class PhotoGalleryAlbumController extends Controller
         return redirect()->route('admin.photo-gallery.album.index');
     }
 
-    public function edit($id) {
+    public function edit($id)
+    {
         $album = PhotoGalleryAlbum::findOrfail($id);
         return view('admin.photo-gallery.album.edit', compact('album'));
     }
 
-    public function update(Request $request, $id) {
+    public function update(Request $request, $id)
+    {
         $request->validate([
             'name' => 'required',
         ]);
@@ -49,7 +54,8 @@ class PhotoGalleryAlbumController extends Controller
         return redirect()->route('admin.photo-gallery.album.index');
     }
 
-    public function destroy($id) {
+    public function destroy($id)
+    {
         $photos = PhotoGallery::where('album_id', $id)->get();
         foreach ($photos as $photo) {
             deleteFileIfExist($photo->photo_path);

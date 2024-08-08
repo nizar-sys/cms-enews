@@ -125,7 +125,7 @@ class HomeController extends Controller
 
         $spesificProcurement = SpesificProcurement::with('files')->where('id', $spesificProcurementId)->firstOrFail();
 
-        return view('frontends.procurement_notice_file', compact('spesificProcurement', 'projectCategories'));
+        return view('frontends.procurement_notice_file', compact('spesificProcurement'));
     }
 
     public function procurementGuideline($locale)
@@ -472,7 +472,7 @@ class HomeController extends Controller
     public function documentList($locale)
     {
         $sectionSetting = DocumentSectionSetting::first();
-        
+
         $documents = collect();
 
         $documents = $documents->merge(

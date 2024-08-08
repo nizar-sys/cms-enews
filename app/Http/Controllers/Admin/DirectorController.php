@@ -26,7 +26,7 @@ class DirectorController extends Controller
     {
         $request->validate([
             'name' => ['required', 'max:200'],
-            'description' => ['required', 'max:200'],
+            'description' => ['required', 'max:500'],
             'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:50048',
             'designation_id' => 'required',
         ]);
