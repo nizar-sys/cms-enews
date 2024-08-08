@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
 use App\Models\About;
+use App\Models\Administrative;
+use App\Models\AdministrativeSectionSetting;
 use App\Models\Article;
 use App\Models\ArticleSectionSetting;
 use App\Models\CommunityVoice;
@@ -14,6 +16,7 @@ use App\Models\ContractAwardNotice;
 
 use App\Models\DocumentCategory;
 use App\Models\DocumentFile;
+use App\Models\DocumentSectionSetting;
 use App\Models\ExecutiveSectionSetting;
 use App\Models\ExecutiveTeam;
 use App\Models\Faq;
@@ -40,10 +43,14 @@ use App\Models\Service;
 use App\Models\ServiceSectionSetting;
 use App\Models\SpesificProcurement;
 use App\Models\SpesificProcurementFile;
+use App\Models\TeachingLeading;
+use App\Models\TeachingLeadingSectionSetting;
 use App\Models\VideoGallery;
 use App\Models\VideoGallerySectionSetting;
 use App\Models\VideoProject;
 use App\Models\VideoSectionSetting;
+use App\Models\WaterSanitation;
+use App\Models\WaterSanitationSectionSetting;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use ZipArchive;
@@ -68,7 +75,6 @@ class HomeController extends Controller
 
     public function projectCategory($locale, $slugCategory)
     {
-        $projectCategories = ProjectCategory::select('name', 'slug')->get();
 
         $projectCategory = ProjectCategory::where('slug', $slugCategory)->firstOrFail();
 
@@ -78,12 +84,11 @@ class HomeController extends Controller
             $latestProjectsUpdate = ProjectCategory::orderBy('updated_at', 'desc')->take(2)->get();
         }
 
-        return view('frontends.project_category', compact('projectCategory', 'projectCategories', 'latestProjectsUpdate'));
+        return view('frontends.project_category', compact('projectCategory',  'latestProjectsUpdate'));
     }
 
     public function projectDetail($locale, $slugCategory, $slugProject)
     {
-        $projectCategories = ProjectCategory::select('name', 'slug')->get();
 
         $project = Project::where('slug', $slugProject)->firstOrFail();
 
@@ -94,12 +99,11 @@ class HomeController extends Controller
 
         $latestNews = News::select('title', 'created_at', 'id')->orderBy('created_at', 'desc')->take(5)->get();
 
-        return view('frontends.project_detail', compact('project', 'projectCategories', 'prevProject', 'nextProject', 'latestNews'));
+        return view('frontends.project_detail', compact('project',  'prevProject', 'nextProject', 'latestNews'));
     }
 
     public function documentCategory($locale, $slugCategoryDocumentReport)
     {
-        $projectCategories = ProjectCategory::select('name', 'slug')->get();
 
         $documentsReportsCategory = DocumentCategory::with('documentFiles')->where('slug', $slugCategoryDocumentReport)->firstOrFail();
 
@@ -108,18 +112,16 @@ class HomeController extends Controller
 
     public function procurementNotice($locale)
     {
-        $projectCategories = ProjectCategory::select('name', 'slug')->get();
 
         $spesificProcurements = SpesificProcurement::with('files')->get();
         $generalProcurements = GeneralProcurement::get();
         $sectionSetting = NoticesSectionSetting::first();
 
-        return view('frontends.procurement_notice', compact('projectCategories', 'spesificProcurements', 'generalProcurements', 'sectionSetting'));
+        return view('frontends.procurement_notice', compact('spesificProcurements', 'generalProcurements', 'sectionSetting'));
     }
 
     public function procurementNoticeFile($locale, $spesificProcurementId)
     {
-        $projectCategories = ProjectCategory::select('name', 'slug')->get();
 
         $spesificProcurement = SpesificProcurement::with('files')->where('id', $spesificProcurementId)->firstOrFail();
 
@@ -128,123 +130,109 @@ class HomeController extends Controller
 
     public function procurementGuideline($locale)
     {
-        $projectCategories = ProjectCategory::select('name', 'slug')->get();
         $guidelinesProcurement = GuidelineProcurement::get();
         $sectionSetting = GuidelineSectionSetting::first();
 
-        return view('frontends.procurement_guideline', compact('projectCategories', 'guidelinesProcurement', 'sectionSetting'));
+        return view('frontends.procurement_guideline', compact('guidelinesProcurement', 'sectionSetting'));
     }
 
     public function bidChallengeSystem($locale)
     {
-        $projectCategories = ProjectCategory::select('name', 'slug')->get();
 
         $bidChallengeSystem = BidChallengeSystem::get();
 
-        return view('frontends.bid_challenge_system', compact('projectCategories', 'bidChallengeSystem'));
+        return view('frontends.bid_challenge_system', compact('bidChallengeSystem'));
     }
 
     public function contractAwardNotice($locale)
     {
-        $projectCategories = ProjectCategory::select('name', 'slug')->get();
 
         $contractAwardNotice = ContractAwardNotice::get();
 
-        return view('frontends.contract_award_notice', compact('projectCategories', 'contractAwardNotice'));
+        return view('frontends.contract_award_notice', compact('contractAwardNotice'));
     }
 
     public function photoGallery($locale)
     {
-        $projectCategories = ProjectCategory::select('name', 'slug')->get();
         $photoGalleries = PhotoGallery::with('photoGalleryAlbum')->get()->groupBy('album_id');
         $sectionSetting = PhotoGallerySectionSetting::first();
 
-        return view('frontends.photo_gallery', compact('projectCategories', 'photoGalleries', 'sectionSetting'));
+        return view('frontends.photo_gallery', compact('photoGalleries', 'sectionSetting'));
     }
 
     public function photoProject($locale)
     {
-        $projectCategories = ProjectCategory::select('name', 'slug')->get();
         $photoProjects = PhotoProject::with('photoProjectAlbum')->get()->groupBy('album_id');
         $sectionSetting = PhotoSectionSetting::first();
 
-        return view('frontends.photo_project', compact('projectCategories', 'photoProjects', 'sectionSetting'));
+        return view('frontends.photo_project', compact('photoProjects', 'sectionSetting'));
     }
 
     public function videoGallery($locale)
     {
-        $projectCategories = ProjectCategory::select('name', 'slug')->get();
         $videoGalleries = VideoGallery::get();
         $sectionSetting = VideoGallerySectionSetting::first();
 
-        return view('frontends.video_gallery', compact('projectCategories', 'videoGalleries', 'sectionSetting'));
+        return view('frontends.video_gallery', compact('videoGalleries', 'sectionSetting'));
     }
 
     public function videoProject($locale)
     {
-        $projectCategories = ProjectCategory::select('name', 'slug')->get();
         $videoProjects = VideoProject::get();
         $sectionSetting = VideoSectionSetting::first();
 
-        return view('frontends.video_project', compact('projectCategories', 'videoProjects', 'sectionSetting'));
+        return view('frontends.video_project', compact('videoProjects', 'sectionSetting'));
     }
 
     public function notices($locale)
     {
-        $projectCategories = ProjectCategory::select('name', 'slug')->get();
         $noticeFiles = Notice::get();
 
-        return view('frontends.notices', compact('projectCategories', 'noticeFiles'));
+        return view('frontends.notices', compact('noticeFiles'));
     }
 
     public function pressReleases($locale)
     {
-        $projectCategories = ProjectCategory::select('name', 'slug')->get();
         $pressReleases = PressRelease::get();
         $sectionSetting = PressReleaseSectionSetting::first();
 
-        return view('frontends.press_releases', compact('projectCategories', 'pressReleases', 'sectionSetting'));
+        return view('frontends.press_releases', compact('pressReleases', 'sectionSetting'));
     }
 
     public function articlesInterviews($locale)
     {
-        $projectCategories = ProjectCategory::select('name', 'slug')->get();
         $articlesInterviews = Article::with('category')->get()->groupBy('category_id');
         $sectionSetting = ArticleSectionSetting::first();
 
-        return view('frontends.articles_interviews', compact('projectCategories', 'articlesInterviews', 'sectionSetting'));
+        return view('frontends.articles_interviews', compact('articlesInterviews', 'sectionSetting'));
     }
 
     public function communityVoices($locale)
     {
-        $projectCategories = ProjectCategory::select('name', 'slug')->get();
         $communityVoices = CommunityVoice::get();
         $sectionSetting = CommunityVoiceSectionSetting::first();
 
-        return view('frontends.community_voices', compact('projectCategories', 'communityVoices', 'sectionSetting'));
+        return view('frontends.community_voices', compact('communityVoices', 'sectionSetting'));
     }
 
     public function communityVoiceDetail($locale, $slugCommunityVoice)
     {
-        $projectCategories = ProjectCategory::select('name', 'slug')->get();
         $communityVoice = CommunityVoice::where('slug', $slugCommunityVoice)->firstOrFail();
         $sectionSetting = CommunityVoiceSectionSetting::first();
 
-        return view('frontends.community_voice_detail', compact('projectCategories', 'communityVoice', 'sectionSetting'));
+        return view('frontends.community_voice_detail', compact('communityVoice', 'sectionSetting'));
     }
 
     public function newsList($locale)
     {
-        $projectCategories = ProjectCategory::select('name', 'slug')->get();
         $news = News::query()->orderBy('created_at', 'desc')->paginate(10);
         $sectionSetting = NewsSectionSetting::first();
 
-        return view('frontends.news', compact('projectCategories', 'news', 'sectionSetting'));
+        return view('frontends.news', compact('news', 'sectionSetting'));
     }
 
     public function newsDetail($locale, $newsId)
     {
-        $projectCategories = ProjectCategory::select('name', 'slug')->get();
         $news = News::where('id', $newsId)->firstOrFail();
 
         $nextNews = News::where('id', '>', $news->id)->orderBy('id', 'asc')->first();
@@ -253,12 +241,11 @@ class HomeController extends Controller
         $latestNews = News::select('title', 'created_at', 'id')->orderBy('created_at', 'desc')->take(5)->get();
         $sectionSetting = NewsSectionSetting::first();
 
-        return view('frontends.news_detail', compact('projectCategories', 'news', 'nextNews', 'prevNews', 'latestNews', 'sectionSetting'));
+        return view('frontends.news_detail', compact('news', 'nextNews', 'prevNews', 'latestNews', 'sectionSetting'));
     }
 
     public function postDetail($locale, $postSlug)
     {
-        $projectCategories = ProjectCategory::select('name', 'slug')->get();
         $post = Post::where('slug', $postSlug)->firstOrFail();
 
         $nextPost = Post::where('id', '>', $post->id)->orderBy('id', 'asc')->first();
@@ -268,7 +255,7 @@ class HomeController extends Controller
 
         $sectionSetting = PostSectionSetting::first();
 
-        return view('frontends.post_detail', compact('projectCategories', 'post', 'nextPost', 'prevPost', 'latestPost', 'sectionSetting'));
+        return view('frontends.post_detail', compact('post', 'nextPost', 'prevPost', 'latestPost', 'sectionSetting'));
     }
 
     public function downloadMultiple(Request $request)
@@ -417,5 +404,102 @@ class HomeController extends Controller
         }
 
         return response()->json($results);
+    }
+
+    public function waterSanitationList($locale)
+    {
+        $news = WaterSanitation::query()->orderBy('created_at', 'desc')->paginate(10);
+        $sectionSetting = WaterSanitationSectionSetting::first();
+
+        return view('frontends.water_sanitation', compact('news', 'sectionSetting'));
+    }
+
+    public function waterSanitationDetail($locale, $newsId)
+    {
+        $news = WaterSanitation::where('id', $newsId)->firstOrFail();
+
+        $nextNews = WaterSanitation::where('id', '>', $news->id)->orderBy('id', 'asc')->first();
+        $prevNews = WaterSanitation::where('id', '<', $news->id)->orderBy('id', 'desc')->first();
+
+        $latestNews = WaterSanitation::select('title', 'created_at', 'id')->orderBy('created_at', 'desc')->take(5)->get();
+        $sectionSetting = WaterSanitationSectionSetting::first();
+
+        return view('frontends.water_sanitation_detail', compact('news', 'nextNews', 'prevNews', 'latestNews', 'sectionSetting'));
+    }
+
+    public function teachingLeadingList($locale)
+    {
+        $news = TeachingLeading::query()->orderBy('created_at', 'desc')->paginate(10);
+        $sectionSetting = TeachingLeadingSectionSetting::first();
+
+        return view('frontends.teaching_leading', compact('news', 'sectionSetting'));
+    }
+
+    public function teachingLeadingDetail($locale, $newsId)
+    {
+        $news = TeachingLeading::where('id', $newsId)->firstOrFail();
+
+        $nextNews = TeachingLeading::where('id', '>', $news->id)->orderBy('id', 'asc')->first();
+        $prevNews = TeachingLeading::where('id', '<', $news->id)->orderBy('id', 'desc')->first();
+
+        $latestNews = TeachingLeading::select('title', 'created_at', 'id')->orderBy('created_at', 'desc')->take(5)->get();
+        $sectionSetting = TeachingLeadingSectionSetting::first();
+
+        return view('frontends.teaching_leading_detail', compact('news', 'nextNews', 'prevNews', 'latestNews', 'sectionSetting'));
+    }
+
+    public function administrativeList($locale)
+    {
+        $news = Administrative::query()->orderBy('created_at', 'desc')->paginate(10);
+        $sectionSetting = AdministrativeSectionSetting::first();
+
+        return view('frontends.administrative', compact('news', 'sectionSetting'));
+    }
+
+    public function administrativeDetail($locale, $newsId)
+    {
+        $news = Administrative::where('id', $newsId)->firstOrFail();
+
+        $nextNews = Administrative::where('id', '>', $news->id)->orderBy('id', 'asc')->first();
+        $prevNews = Administrative::where('id', '<', $news->id)->orderBy('id', 'desc')->first();
+
+        $latestNews = Administrative::select('title', 'created_at', 'id')->orderBy('created_at', 'desc')->take(5)->get();
+        $sectionSetting = AdministrativeSectionSetting::first();
+
+        return view('frontends.administrative_detail', compact('news', 'nextNews', 'prevNews', 'latestNews', 'sectionSetting'));
+    }
+
+    public function documentList($locale)
+    {
+        $sectionSetting = DocumentSectionSetting::first();
+        
+        $documents = collect();
+
+        $documents = $documents->merge(
+            WaterSanitation::whereNotNull('file')->get()
+                ->map(fn ($item) => [
+                    'file_name' => $item->title,
+                    'file_path' => $item->file,
+                ])
+        );
+
+        $documents = $documents->merge(
+            TeachingLeading::whereNotNull('file')->get()
+                ->map(fn ($item) => [
+                    'file_name' => $item->title,
+                    'file_path' => $item->file,
+                ])
+        );
+
+        $documents = $documents->merge(
+            Administrative::whereNotNull('file')->get()
+                ->map(fn ($item) => [
+                    'file_name' => $item->title,
+                    'file_path' => $item->file,
+                ])
+        );
+
+
+        return view('frontends.documents', compact('sectionSetting', 'documents'));
     }
 }

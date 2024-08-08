@@ -123,20 +123,65 @@
             </li>
 
             <li class="menu-header">What do we do</li>
-            <li class="nav-item {{ setSidebarActive(['']) }}">
-                <a href="#" class="nav-link"><i class="fas fa-columns"></i><span>Water & Sanitation</span></a>
-            </li>
-            <li class="nav-item {{ setSidebarActive(['']) }}">
-                <a href="#" class="nav-link"><i class="fas fa-columns"></i><span>Teaching and
-                        Leading</span></a>
+            <li
+                class="nav-item dropdown {{ setSidebarActive(['admin.water-sanitation.*', 'admin.water-sanitation-section-setting.*']) }}">
+                <a href="#" class="nav-link has-dropdown" data-toggle="dropdown">
+                    <i class="fas fa-columns"></i>
+                    <span>Water & Sanitation</span>
+                </a>
+                <ul class="dropdown-menu" style="display: none;">
+                    <li class="{{ setSidebarActive(['admin.water-sanitation-section-setting.index']) }}">
+                        <a class="nav-link"
+                            href="{{ route('admin.water-sanitation-section-setting.index') }}">Section Setting</a>
+                    </li>
+                    <li class="{{ setSidebarActive(['admin.water-sanitation.index']) }}">
+                        <a class="nav-link" href="{{ route('admin.water-sanitation.index') }}">Water & Sanitation</a>
+                    </li>
+                </ul>
             </li>
             <li
-                class="nav-item dropdown {{ setSidebarActive(['admin.documents-reports-categories.*', 'admin.documents-reports-files.*']) }}">
+                class="nav-item dropdown {{ setSidebarActive(['admin.teaching-leading.*', 'admin.teaching-leading-section-setting.*']) }}">
+                <a href="#" class="nav-link has-dropdown" data-toggle="dropdown">
+                    <i class="fas fa-columns"></i>
+                    <span>Teaching & Leading</span>
+                </a>
+                <ul class="dropdown-menu" style="display: none;">
+                    <li class="{{ setSidebarActive(['admin.teaching-leading-section-setting.index']) }}">
+                        <a class="nav-link"
+                            href="{{ route('admin.teaching-leading-section-setting.index') }}">Section Setting</a>
+                    </li>
+                    <li class="{{ setSidebarActive(['admin.teaching-leading.index']) }}">
+                        <a class="nav-link" href="{{ route('admin.teaching-leading.index') }}">Teaching & Leading</a>
+                    </li>
+                </ul>
+            </li>
+            <li
+                class="nav-item dropdown {{ setSidebarActive(['admin.administrative.*', 'admin.administrative-section-setting.*']) }}">
+                <a href="#" class="nav-link has-dropdown" data-toggle="dropdown">
+                    <i class="fas fa-columns"></i>
+                    <span>Administrative</span>
+                </a>
+                <ul class="dropdown-menu" style="display: none;">
+                    <li class="{{ setSidebarActive(['admin.administrative-section-setting.index']) }}">
+                        <a class="nav-link" href="{{ route('admin.administrative-section-setting.index') }}">Section
+                            Setting</a>
+                    </li>
+                    <li class="{{ setSidebarActive(['admin.administrative.index']) }}">
+                        <a class="nav-link" href="{{ route('admin.administrative.index') }}">Administrative</a>
+                    </li>
+                </ul>
+            </li>
+            <li
+                class="nav-item dropdown {{ setSidebarActive(['admin.documents-reports-categories.*', 'admin.documents-reports-files.*', 'admin.documents-section-setting.*']) }}">
                 <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i
                         class="fas fa-columns"></i>
                     <span>Documents</span>
                 </a>
                 <ul class="dropdown-menu" style="display: none;">
+                    <li class="{{ setSidebarActive(['admin.documents-section-setting.*']) }}">
+                        <a class="nav-link" href="{{ route('admin.documents-section-setting.index') }}">Section
+                            Setting</a>
+                    </li>
                     <li class="{{ setSidebarActive(['admin.documents-reports-categories.*']) }}">
                         <a class="nav-link"
                             href="{{ route('admin.documents-reports-categories.index') }}">Categories</a>

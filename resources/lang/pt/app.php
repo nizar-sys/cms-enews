@@ -139,5 +139,12 @@ return [
     "Video Events" => "vídeos de eventos",
     "Photo Events" => "evento fotográfico",
     "Publications" => "publicação",
-    "Video Project" => "projetos de vídeo"
+    "Video Project" => "projetos de vídeo",
+    "Water & Sanitation" => "Água e saneamento",
+    "What do we do" => "O que fazemos",
+    "Work with Us" => "Trabalhe conosco",
+    "Teaching & Leading" => "Ensino e Liderança",
+    "Administrative" => "Administrativo",
+    "Documents" => "Documentos",
+    "Page Name" => "Nome da Página",
 ];

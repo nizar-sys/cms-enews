@@ -67,10 +67,15 @@ class AppServiceProvider extends ServiceProvider
                 ],
 
                 [
-                    'label' => __('What do we do'),
+                    'label' => __('app.What do we do'),
                     'url' => '#',
-                    'route' => ['documents_reports', 'document-category'],
-                    'subItems' => $subsItemDocumentCategories,
+                    'route' => ['what-we-do.water-sanitations', 'what-we-do.water-sanitations-detail', 'what-we-do.teaching-leadings', 'what-we-do.teaching-leadings-detail', 'what-we-do.administrative', 'what-we-do.administrative-detail', 'what-we-do.documents'],
+                    'subItems' => [
+                        ['label' => __('app.Water & Sanitation'), 'url' => route('what-we-do.water-sanitations', ['locale' => $locale])],
+                        ['label' => __('app.Teaching & Leading'), 'url' => route('what-we-do.teaching-leadings', ['locale' => $locale])],
+                        ['label' => __('app.Administrative'), 'url' => route('what-we-do.administrative', ['locale' => $locale])],
+                        ['label' => __('app.Documents'), 'url' => route('what-we-do.documents', ['locale' => $locale])],
+                    ],
                 ],
 
                 [
@@ -97,7 +102,7 @@ class AppServiceProvider extends ServiceProvider
                     ]
                 ],
                 [
-                    'label' => __('Work with Us'),
+                    'label' => __('app.Work with Us'),
                     'url' => '#',
                     'route' => ['procurement', 'procurement-notice', 'guidelines', 'jobs.index'],
                     'subItems' => [
