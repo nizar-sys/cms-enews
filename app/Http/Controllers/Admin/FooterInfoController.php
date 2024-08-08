@@ -17,7 +17,7 @@ class FooterInfoController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-            'info' => ['max:200'],
+            'info' => ['max:5000'],
             'copy_right' => ['max:200'],
             'powered_by' => ['max:200'],
         ]);

@@ -5,7 +5,8 @@
     <section class="section">
         <div class="section-header">
             <div class="section-header-back">
-                <a href="{{ url('/admin/news/') }}" class="btn btn-icon"><i class="fas fa-arrow-left"></i></a>
+                <a href="{{ route('admin.water-sanitation.index') }}" class="btn btn-icon"><i
+                        class="fas fa-arrow-left"></i></a>
             </div>
             <h1>Water And Sanitation</h1>
 

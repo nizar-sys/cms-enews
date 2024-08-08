@@ -28,7 +28,7 @@ class FaqDataTable extends DataTable
                         <a href="' . route('admin.faqs.destroy', $query->id) . '" class="btn btn-danger delete-item"><i class="fas fa-trash"></i></a>';
             })
             ->setRowId('id')
-            ->rawColumns(['action',]);
+            ->rawColumns(['action', 'answer']);
     }
 
     /**

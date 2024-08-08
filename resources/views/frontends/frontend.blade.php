@@ -262,11 +262,11 @@
                             <span class="sitename">{{ $seoSetting ? $seoSetting->title : __('app.app_name') }}</span>
                         </a>
                         <div class="footer-contact pt-3">
-                            {{ $footerInfo
+                            {!! $footerInfo
                                 ? $footerInfo->info
                                 : 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur quasi ex excepturi vero
-                                    dolorem molestias dolor est aut debitis obcaecati amet ratione facere illum, nesciunt
-                                    explicabo neque aliquid modi? Necessitatibus.' }}
+                                                                                                                        dolorem molestias dolor est aut debitis obcaecati amet ratione facere illum, nesciunt
+                                                                                                                        explicabo neque aliquid modi? Necessitatibus.' !!}
                         </div>
                     </div>
 
@@ -304,7 +304,7 @@
                 <div class="d-flex flex-column align-items-center align-items-lg-start">
                     @if ($footerInfo)
                         <div>
-                            © {{ $footerInfo->info }}
+                            © {!! $footerInfo->copy_right !!}
                         </div>
                     @else
                         <div>

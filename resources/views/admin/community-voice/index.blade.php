@@ -6,7 +6,7 @@
             <div class="section-header-back">
                 <a href="{{ url('/dashboard') }}" class="btn btn-icon"><i class="fas fa-arrow-left"></i></a>
             </div>
-            <h1>List Of Community Voice</h1>
+            <h1>List Of Event Announcements</h1>
 
         </div>
 
@@ -16,10 +16,10 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="card-header">
-                            <h4>List Of Community Voice</h4>
+                            <h4>List Of Event Announcements</h4>
                             <div class="card-header-action">
                                 <a href="{{ route('admin.community-voice.create') }}" class="btn btn-success">
-                                    Create Community Voice
+                                    Create Event Announcements
                                     <i class="fas fa-plus"></i>
                                 </a>
                             </div>

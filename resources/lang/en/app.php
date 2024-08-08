@@ -1,7 +1,7 @@
 <?php
 
 return [
-    'app_name' => 'Millenium Challenge Account Nepal',
+    'app_name' => 'Millenium Challenge Account',
     'year' => 'Year',
     'month' => 'Month',
     'days' => 'Days',

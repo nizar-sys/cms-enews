@@ -4,7 +4,7 @@
     <section class="section">
         <div class="section-header">
             <div class="section-header-back">
-                <a href="{{ route('admin.projects.index') }}" class="btn btn-icon"><i class="fas fa-arrow-left"></i></a>
+                <a href="{{ route('admin.article.index') }}" class="btn btn-icon"><i class="fas fa-arrow-left"></i></a>
             </div>
             <h1>Article</h1>
 
@@ -27,8 +27,7 @@
                                         Title
                                     </label>
                                     <div class="col-sm-12 col-md-7">
-                                        <input type="text" name="title"
-                                            class="form-control"
+                                        <input type="text" name="title" class="form-control"
                                             value="{{ old('title') }}" required>
 
                                         @error('title')
@@ -40,14 +39,15 @@
                                 </div>
 
                                 <div class="form-group row mb-4">
-                                    <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Article Category</label>
+                                    <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Article
+                                        Category</label>
                                     <div class="col-sm-12 col-md-7">
-                                        <select class="form-control selectric"
-                                            name="category_id" required>
+                                        <select class="form-control selectric" name="category_id" required>
                                             <option>Select</option>
                                             @foreach ($categories as $category)
                                                 <option value="{{ $category->id }}"
-                                                    @if (old('category_id') == $category->id) selected @endif>{{ $category->category_name }}
+                                                    @if (old('category_id') == $category->id) selected @endif>
+                                                    {{ $category->category_name }}
                                                 </option>
                                             @endforeach
                                         </select>
@@ -79,8 +79,7 @@
                                         Article Url
                                     </label>
                                     <div class="col-sm-12 col-md-7">
-                                        <input type="text" name="article_url"
-                                            class="form-control"
+                                        <input type="text" name="article_url" class="form-control"
                                             value="{{ old('article_url') }}" required>
 
                                         @error('article_url')

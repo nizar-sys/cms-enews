@@ -33,7 +33,7 @@ class DirectorDataTable extends DataTable
             })
             ->editColumn('designation', fn ($query) => $query->designation->designation)
             ->setRowId('id')
-            ->rawColumns(['image', 'action',]);
+            ->rawColumns(['image', 'action', 'description']);
     }
 
     /**

@@ -22,7 +22,7 @@ class FaqController extends Controller
     {
         $request->validate([
             'question' => ['required', 'max:200'],
-            'answer' => ['required', 'max:200'],
+            'answer' => ['required', 'max:5000'],
         ]);
 
         $faq = new faq();
@@ -44,7 +44,7 @@ class FaqController extends Controller
     {
         $request->validate([
             'question' => ['required', 'max:200'],
-            'answer' => ['required', 'max:200'],
+            'answer' => ['required', 'max:5000'],
         ]);
 
         $faq = faq::findOrFail($id);

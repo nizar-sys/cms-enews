@@ -4,7 +4,8 @@
     <section class="section">
         <div class="section-header">
             <div class="section-header-back">
-                <a href="{{ url('/admin/photo-gallery') }}" class="btn btn-icon"><i class="fas fa-arrow-left"></i></a>
+                <a href="{{ route('admin.photo-project.album.index') }}" class="btn btn-icon"><i
+                        class="fas fa-arrow-left"></i></a>
             </div>
             <h1>Create Photo Gallery Album</h1>
 
@@ -23,8 +24,10 @@
                             <form action="{{ route('admin.photo-gallery.album.store') }}" method="POST">
                                 @csrf
                                 <div class="form-group row mb-4">
-                                    <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3" for="name">Name</label>
-                                    <input class="col-sm-12 col-md-7 form-control" type="text" name="name" id="name" placeholder="Enter name">
+                                    <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3"
+                                        for="name">Name</label>
+                                    <input class="col-sm-12 col-md-7 form-control" type="text" name="name"
+                                        id="name" placeholder="Enter name">
                                 </div>
 
                                 <div class="form-group
@@ -41,5 +44,4 @@
             </div>
         </div>
     </section>
-
 @endsection

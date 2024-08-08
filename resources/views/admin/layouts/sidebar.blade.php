@@ -83,10 +83,12 @@
                         <a class="nav-link" href="{{ route('admin.bod.director-section-setting') }}">Section
                             Settings</a>
                     </li>
-                    <li class="{{ setSidebarActive(['admin.bod.designation*']) }}">
+                    <li
+                        class="{{ setSidebarActive(['admin.bod.designation', 'admin.bod.designation.create', 'admin.bod.designation.edit']) }}">
                         <a class="nav-link" href="{{ route('admin.bod.designation') }}">Designation</a>
                     </li>
-                    <li class="{{ setSidebarActive(['admin.bod.director*']) }}">
+                    <li
+                        class="{{ setSidebarActive(['admin.bod.director', 'admin.bod.director.create', 'admin.bod.director.edit']) }}">
                         <a class="nav-link" href="{{ route('admin.bod.director') }}">List Of Directors</a>
                     </li>
                 </ul>
@@ -146,11 +148,11 @@
                     <span>Teaching & Leading</span>
                 </a>
                 <ul class="dropdown-menu" style="display: none;">
-                    <li class="{{ setSidebarActive(['admin.teaching-leading-section-setting.index']) }}">
+                    <li class="{{ setSidebarActive(['admin.teaching-leading-section-setting.*']) }}">
                         <a class="nav-link"
                             href="{{ route('admin.teaching-leading-section-setting.index') }}">Section Setting</a>
                     </li>
-                    <li class="{{ setSidebarActive(['admin.teaching-leading.index']) }}">
+                    <li class="{{ setSidebarActive(['admin.teaching-leading.*']) }}">
                         <a class="nav-link" href="{{ route('admin.teaching-leading.index') }}">Teaching & Leading</a>
                     </li>
                 </ul>
@@ -207,7 +209,7 @@
                     <li class="{{ setSidebarActive(['admin.article.category.*']) }}">
                         <a class="nav-link" href="{{ route('admin.article.category.index') }}">Categories</a>
                     </li>
-                    <li class="{{ setSidebarActive(['admin.article.index', 'admin.article.edit']) }}">
+                    <li class="{{ setSidebarActive(['admin.article.*']) }}">
                         <a class="nav-link" href="{{ route('admin.article.index') }}">Publications</a>
                     </li>
                 </ul>
@@ -318,7 +320,7 @@
                         <a class="nav-link" href="{{ route('admin.community-voice-section-setting.index') }}">Section
                             Setting</a>
                     </li>
-                    <li class="{{ setSidebarActive(['admin.community-voice.index']) }}">
+                    <li class="{{ setSidebarActive(['admin.community-voice.*']) }}">
                         <a class="nav-link" href="{{ route('admin.community-voice.index') }}">Events
                             Announcements</a>
                     </li>
@@ -404,7 +406,7 @@
                 class="nav-item dropdown {{ setSidebarActive(['admin.spesific-procurements-notices.*', 'admin.general-procurements-notices.*', 'admin.notices-section-setting.*']) }}">
                 <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i
                         class="fas fa-columns"></i>
-                    <span>Notices</span>
+                    <span>Procurement</span>
                 </a>
                 <ul class="dropdown-menu" style="display: none;">
                     <li class="{{ setSidebarActive(['admin.notices-section-setting.index']) }}">
