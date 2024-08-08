@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\Admin\AboutController;
+use App\Http\Controllers\Admin\AdministrativeController;
+use App\Http\Controllers\Admin\AdministrativeSectionSettingController;
 use App\Http\Controllers\Admin\ArticleCategoryController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\DocumentCategoryController;
@@ -28,6 +30,7 @@ use App\Http\Controllers\Admin\ArticleSectionSettingController;
 use App\Http\Controllers\Admin\BidChallengeSystemController;
 use App\Http\Controllers\Admin\CommunityVoiceSectionSettingController;
 use App\Http\Controllers\Admin\ContractAwardNoticeController;
+use App\Http\Controllers\Admin\DocumentsSectionSettingController;
 use App\Http\Controllers\Admin\FooterInfoController;
 use App\Http\Controllers\Admin\GuidelineProcurementController;
 use App\Http\Controllers\Admin\FooterSettingController;
@@ -64,9 +67,13 @@ use App\Http\Controllers\Admin\PhotoProjectController;
 use App\Http\Controllers\Admin\PhotoSectionSettingController;
 use App\Http\Controllers\Admin\PostSectionSettingController;
 use App\Http\Controllers\Admin\PressReleaseSectionSettingController;
+use App\Http\Controllers\Admin\TeachingLeadingController;
+use App\Http\Controllers\Admin\TeachingLeadingSectionSettingController;
 use App\Http\Controllers\Admin\VideoGallerySectionSettingController;
 use App\Http\Controllers\Admin\VideoProjectController;
 use App\Http\Controllers\Admin\VideoSectionSettingController;
+use App\Http\Controllers\Admin\WaterSanitationController;
+use App\Http\Controllers\Admin\WaterSanitationSectionSettingController;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Artisan;
 
@@ -321,6 +328,34 @@ Route::group(['middleware' => ['auth', 'admin'], 'prefix' => 'console', 'as' => 
     Route::resource('photo-gallery-section-setting', PhotoGallerySectionSettingController::class)->only(['index', 'update']);
     Route::resource('notices-section-setting', NoticesSectionSettingController::class)->only(['index', 'update']);
     Route::resource('procurements-guidelines-section-setting', GuidelineSectionSettingController::class)->only(['index', 'update'])->parameters(['procurements-guidelines-section-setting' => 'guideline_section_setting']);
+    Route::resource('water-sanitation-section-setting', WaterSanitationSectionSettingController::class)->only(['index', 'update']);
+    Route::prefix('water-sanitation')->group(function () {
+        Route::get('/', [WaterSanitationController::class, 'index'])->name('water-sanitation.index');
+        Route::get('/create', [WaterSanitationController::class, 'create'])->name('water-sanitation.create');
+        Route::post('/store', [WaterSanitationController::class, 'store'])->name('water-sanitation.store');
+        Route::get('/edit/{id}', [WaterSanitationController::class, 'edit'])->name('water-sanitation.edit');
+        Route::put('/update/{id}', [WaterSanitationController::class, 'update'])->name('water-sanitation.update');
+        Route::delete('/{id}', [WaterSanitationController::class, 'destroy'])->name('water-sanitation.destroy');
+    });
+    Route::resource('teaching-leading-section-setting', TeachingLeadingSectionSettingController::class)->only(['index', 'update']);
+    Route::prefix('teaching-leading')->group(function () {
+        Route::get('/', [TeachingLeadingController::class, 'index'])->name('teaching-leading.index');
+        Route::get('/create', [TeachingLeadingController::class, 'create'])->name('teaching-leading.create');
+        Route::post('/store', [TeachingLeadingController::class, 'store'])->name('teaching-leading.store');
+        Route::get('/edit/{id}', [TeachingLeadingController::class, 'edit'])->name('teaching-leading.edit');
+        Route::put('/update/{id}', [TeachingLeadingController::class, 'update'])->name('teaching-leading.update');
+        Route::delete('/{id}', [TeachingLeadingController::class, 'destroy'])->name('teaching-leading.destroy');
+    });
+    Route::resource('administrative-section-setting', AdministrativeSectionSettingController::class)->only(['index', 'update']);
+    Route::prefix('administrative')->group(function () {
+        Route::get('/', [AdministrativeController::class, 'index'])->name('administrative.index');
+        Route::get('/create', [AdministrativeController::class, 'create'])->name('administrative.create');
+        Route::post('/store', [AdministrativeController::class, 'store'])->name('administrative.store');
+        Route::get('/edit/{id}', [AdministrativeController::class, 'edit'])->name('administrative.edit');
+        Route::put('/update/{id}', [AdministrativeController::class, 'update'])->name('administrative.update');
+        Route::delete('/{id}', [AdministrativeController::class, 'destroy'])->name('administrative.destroy');
+    });
+    Route::resource('documents-section-setting', DocumentsSectionSettingController::class)->only(['index', 'update']);
 });
 
 Route::prefix('{locale}')->group(function () {
@@ -388,4 +423,14 @@ Route::prefix('{locale}')->group(function () {
     Route::get('/contacts', [FrontendContactController::class, 'index'])->name('contact.index');
 
     Route::get('/posts/{post}', [HomeController::class, 'postDetail'])->name('posts-detail');
+
+    Route::prefix('wwd')->name('what-we-do.')->group(function () {
+        Route::get('/water-sanitations', [HomeController::class, 'waterSanitationList'])->name('water-sanitations');
+        Route::get('/water-sanitations/{id}', [HomeController::class, 'waterSanitationDetail'])->name('water-sanitations-detail');
+        Route::get('/teaching-leadings', [HomeController::class, 'teachingLeadingList'])->name('teaching-leadings');
+        Route::get('/teaching-leadings/{id}', [HomeController::class, 'teachingLeadingDetail'])->name('teaching-leadings-detail');
+        Route::get('/administrative', [HomeController::class, 'administrativeList'])->name('administrative');
+        Route::get('/administrative/{id}', [HomeController::class, 'administrativeDetail'])->name('administrative-detail');
+        Route::get('/documents', [HomeController::class, 'documentList'])->name('documents');
+    });
 });

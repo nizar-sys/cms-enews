@@ -140,4 +140,11 @@ return [
     "Photo Events" => "Photo Events",
     "Publications" => "Publications",
     "Video Project" => "Video Projects",
+    "Water & Sanitation" => "Water & Sanitation",
+    "What do we do" => "What do we do",
+    "Work with Us" => "Work with Us",
+    "Teaching & Leading" => "Teaching & Leading",
+    "Administrative" => "Administrative",
+    "Documents" => "Documents",
+    "Page Name" => "Page Name",
 ];
