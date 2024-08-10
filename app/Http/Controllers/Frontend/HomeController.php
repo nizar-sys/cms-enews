@@ -13,7 +13,8 @@ use App\Models\CommunityVoice;
 use App\Models\BidChallengeSystem;
 use App\Models\CommunityVoiceSectionSetting;
 use App\Models\ContractAwardNotice;
-
+use App\Models\Director;
+use App\Models\DirectorSectionSetting;
 use App\Models\DocumentCategory;
 use App\Models\DocumentFile;
 use App\Models\DocumentSectionSetting;
@@ -69,8 +70,13 @@ class HomeController extends Controller
         $serviceSection = ServiceSectionSetting::first();
         $services = Service::get();
         $user = Auth::user();
+        $directors = Director::all();
+        $directorSectionSetting = DirectorSectionSetting::first();
+        $videoEvents = VideoGallery::get();
+        $photoProjects = PhotoProject::all();
+        $photoProjectSectionSetting = PhotoGallerySectionSetting::first();
 
-        return view('frontends.home', compact('sliders', 'teamSectionSetting', 'teams', 'posts', 'about', 'serviceSection', 'services', 'user'));
+        return view('frontends.home', compact('sliders', 'teamSectionSetting', 'teams', 'posts', 'about', 'serviceSection', 'services', 'user', 'directors', 'directorSectionSetting', 'videoEvents', 'photoProjects', 'photoProjectSectionSetting'));
     }
 
     public function projectCategory($locale, $slugCategory)
@@ -304,7 +310,7 @@ class HomeController extends Controller
             $results = $results->merge(
                 BidChallengeSystem::where('file_name', 'like', "%$query%")
                     ->get()
-                    ->map(fn ($item) => [
+                    ->map(fn($item) => [
                         'title' => explode('/uploads/', $item->file_path)[1],
                         'detail' => $item->file_path,
                         'isFile' => true,
@@ -315,7 +321,7 @@ class HomeController extends Controller
             $results = $results->merge(
                 ContractAwardNotice::where('file_name', 'like', "%$query%")
                     ->get()
-                    ->map(fn ($item) => [
+                    ->map(fn($item) => [
                         'title' => explode('/uploads/', $item->file_path)[1],
                         'detail' => $item->file_path,
                         'isFile' => true,
@@ -326,7 +332,7 @@ class HomeController extends Controller
             $results = $results->merge(
                 DocumentFile::where('filename', 'like', "%$query%")
                     ->get()
-                    ->map(fn ($item) => [
+                    ->map(fn($item) => [
                         'title' => explode('/uploads/', $item->file_path)[1],
                         'detail' => $item->file_path,
                         'isFile' => true,
@@ -337,7 +343,7 @@ class HomeController extends Controller
             $results = $results->merge(
                 GuidelineProcurement::where('file_name', 'like', "%$query%")
                     ->get()
-                    ->map(fn ($item) => [
+                    ->map(fn($item) => [
                         'title' => explode('/uploads/', $item->file_path)[1],
                         'detail' => $item->file_path,
                         'isFile' => true,
@@ -348,7 +354,7 @@ class HomeController extends Controller
             $results = $results->merge(
                 News::where('title', 'like', "%$query%")
                     ->get()
-                    ->map(fn ($item) => [
+                    ->map(fn($item) => [
                         'title' => $item->title,
                         'detail' => route('media-notices.news-detail', ['locale' => session('locale', 'en'), 'new' => $item->id]),
                         'isFile' => false,
@@ -359,7 +365,7 @@ class HomeController extends Controller
             $results = $results->merge(
                 Notice::where('file_name', 'like', "%$query%")
                     ->get()
-                    ->map(fn ($item) => [
+                    ->map(fn($item) => [
                         'title' =>  explode('/uploads/', $item->file_path)[1],
                         'detail' => $item->file_path,
                         'isFile' => true,
@@ -372,7 +378,7 @@ class HomeController extends Controller
                     ->orWhere('slug', 'like', "%$query%")
                     ->orWhere('content', 'like', "%$query%")
                     ->get()
-                    ->map(fn ($item) => [
+                    ->map(fn($item) => [
                         'title' => $item->title,
                         'detail' => route('posts-detail', ['locale' => session('locale', 'en'), 'post' => $item->slug]),
                         'isFile' => false,
@@ -383,7 +389,7 @@ class HomeController extends Controller
             $results = $results->merge(
                 PressRelease::where('file_name', 'like', "%$query%")
                     ->get()
-                    ->map(fn ($item) => [
+                    ->map(fn($item) => [
                         'title' => explode('/uploads/', $item->file_path)[1],
                         'detail' => $item->file_path,
                         'isFile' => true,
@@ -394,7 +400,7 @@ class HomeController extends Controller
             $results = $results->merge(
                 SpesificProcurementFile::where('file_name', 'like', "%$query%")
                     ->get()
-                    ->map(fn ($item) => [
+                    ->map(fn($item) => [
                         'title' => explode('/uploads/', $item->file_path)[1],
                         'detail' => $item->file_path,
                         'isFile' => true,
@@ -477,7 +483,7 @@ class HomeController extends Controller
 
         $documents = $documents->merge(
             WaterSanitation::whereNotNull('file')->get()
-                ->map(fn ($item) => [
+                ->map(fn($item) => [
                     'file_name' => $item->title,
                     'file_path' => $item->file,
                 ])
@@ -485,7 +491,7 @@ class HomeController extends Controller
 
         $documents = $documents->merge(
             TeachingLeading::whereNotNull('file')->get()
-                ->map(fn ($item) => [
+                ->map(fn($item) => [
                     'file_name' => $item->title,
                     'file_path' => $item->file,
                 ])
@@ -493,7 +499,7 @@ class HomeController extends Controller
 
         $documents = $documents->merge(
             Administrative::whereNotNull('file')->get()
-                ->map(fn ($item) => [
+                ->map(fn($item) => [
                     'file_name' => $item->title,
                     'file_path' => $item->file,
                 ])
@@ -501,5 +507,11 @@ class HomeController extends Controller
 
 
         return view('frontends.documents', compact('sectionSetting', 'documents'));
+    }
+
+    public function aboutmeDetail($locale)
+    {
+        $about = About::first();
+        return view('frontends.aboutme-detail', compact('about'));
     }
 }

@@ -55,8 +55,9 @@
 
 <body class="index-page">
 
-    <header id="header" class="site-header navbar-static-top navbar-light" role="banner">
-        <nav class="navbar top-navigation bg-light py-2">
+    <header id="header" class="site-header navbar-static-top navbar-dark" role="banner"
+        style="background-color: #373A40">
+        <nav class="navbar top-navigation py-2">
             <div class="container d-flex justify-content-between align-items-center">
                 <div class="d-flex align-items-center">
                     <a href="{{ url('/', []) }}" target="_blank" class="d-flex align-items-center">
@@ -88,7 +89,8 @@
                         </div>
                     </a>
                 </div>
-                <div class="d-flex align-items-center">
+
+                <div class="d-flex align-items-center text-white">
                     <div class="social-links d-flex align-items-center me-3">
                         @foreach ($footerSocialLink as $navLink)
                             <a href="{{ $navLink->url }}" target="_blank" class="{{ $navLink->icon }} me-2"></a>
@@ -103,18 +105,27 @@
                     <div class="locale-switcher d-inline-block me-3">
                         <span>
                             <a href="{{ url(app()->getLocale() === 'pt' ? '/en' : '/pt') }}">
-                                {{ app()->getLocale() === 'pt' ? 'EN' : 'PT' }}
+                                <div class="smalltext">{{ app()->getLocale() === 'pt' ? 'EN' : 'PT' }}</div>
                             </a>
                         </span>
                     </div>
                     <div class="user-profile d-inline-block">
                         @guest
-                            <a href="{{ route('login') }}" class="btn text-light"
-                                style="background-color: #2c4666">{{ __('app.Login') }}</a>
+                            <a href="{{ route('login') }}" class="btn btn-primary"
+                                style="background-color: #2c4666; color: #ffffff; padding: 10px 20px; border-radius: 5px; 
+                                       transition: background-color 0.3s ease, transform 0.3s ease;"
+                                onmouseover="this.style.backgroundColor='#345c88'; this.style.transform='scale(1.05)';"
+                                onmouseout="this.style.backgroundColor='#2c4666'; this.style.transform='scale(1)';">
+                                {{ __('app.Login') }}
+                            </a>
                         @else
                             <div class="dropdown">
                                 <button class="btn btn-transparent dropdown-toggle" type="button" id="userDropdown"
-                                    data-bs-toggle="dropdown" aria-expanded="false">
+                                    data-bs-toggle="dropdown" aria-expanded="false"
+                                    style="color: #ffffff; background-color: #2c4666; padding: 10px 20px; border-radius: 5px;
+                                           transition: background-color 0.3s ease, transform 0.3s ease;"
+                                    onmouseover="this.style.backgroundColor='#345c88'; this.style.transform='scale(1.05)';"
+                                    onmouseout="this.style.backgroundColor='#2c4666'; this.style.transform='scale(1)';">
                                     {{ Auth::user()->name }}
                                 </button>
                                 <ul class="dropdown-menu" aria-labelledby="userDropdown">
@@ -130,6 +141,7 @@
                     </div>
 
                 </div>
+
 
                 <!-- Logout Modal -->
                 <div class="modal fade" id="logoutModal" tabindex="-1" aria-labelledby="logoutModalLabel"
@@ -197,7 +209,7 @@
             </div>
         </nav>
 
-        <nav class="navbar bg-white py-3">
+        <nav class="navbar bg-red py-3">
             <div class="container d-flex justify-content-between align-items-center">
                 <a href="{{ url('/') }}" class="d-flex align-items-center logo-link">
                     <img width="100"
@@ -211,12 +223,12 @@
             </div>
         </nav>
 
-        <nav class="navbar navbar-expand-xl navbar-light bg-transparent">
+        <nav class="navbar navbar-expand-xl navbar-dark bg-transparent">
             <div class="container">
                 <button class="navbar-toggler ms-auto" type="button" data-bs-toggle="collapse"
                     data-bs-target="#main-nav" aria-controls="main-nav" aria-expanded="false"
                     aria-label="Toggle navigation">
-                    <i class="mobile-nav-toggle d-xl-none bi bi-list text-dark"></i>
+                    <i class="mobile-nav-toggle d-xl-none bi bi-list text-white"></i>
                 </button>
                 <div id="main-nav" class="collapse navbar-collapse justify-content-end">
                     <ul class="navbar-nav">
@@ -265,8 +277,8 @@
                             {!! $footerInfo
                                 ? $footerInfo->info
                                 : 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur quasi ex excepturi vero
-                                                                                                                        dolorem molestias dolor est aut debitis obcaecati amet ratione facere illum, nesciunt
-                                                                                                                        explicabo neque aliquid modi? Necessitatibus.' !!}
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                dolorem molestias dolor est aut debitis obcaecati amet ratione facere illum, nesciunt
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                explicabo neque aliquid modi? Necessitatibus.' !!}
                         </div>
                     </div>
 

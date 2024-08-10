@@ -147,4 +147,6 @@ return [
     "Administrative" => "Administrative",
     "Documents" => "Documents",
     "Page Name" => "Page Name",
+    "Latest Video Update" => "Latest Video Updates",
+    "Latest Photo Update" => "Latest Photo Updates",
 ];

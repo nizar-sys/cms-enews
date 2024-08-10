@@ -5,84 +5,95 @@
 @section('content')
     <style>
         .no-galleries {
-            padding: 2.5rem 0;
-            /* Equivalent to py-10 */
+            padding: 40px 0;
+            text-align: center;
         }
 
         .no-galleries h2 {
-            font-size: 1.5rem;
-            /* Equivalent to text-2xl */
+            font-size: 1.75rem;
             font-weight: bold;
-            /* Equivalent to font-bold */
-            margin-bottom: 1rem;
-            /* Equivalent to mb-4 */
-        }
-
-        .no-galleries p {
-            color: #4B5563;
-            /* Equivalent to text-gray-600 */
+            margin-bottom: 16px;
+            color: #2c3e50;
         }
 
         .album {
-            margin-bottom: 2rem;
-            /* Equivalent to mb-8 */
+            margin-bottom: 32px;
             width: 100%;
-            /* Equivalent to w-full */
         }
 
         .album h2 {
-            font-size: 1.125rem;
-            /* Equivalent to text-lg */
+            font-size: 1.5rem;
             font-weight: bold;
-            /* Equivalent to font-bold */
-            margin-bottom: 1rem;
-            /* Equivalent to mb-4 */
+            margin-bottom: 16px;
+            color: #34495e;
         }
 
         .photo-container {
             display: flex;
-            flex-wrap: wrap;
-            /* Equivalent to flex flex-wrap */
+            overflow-x: auto;
+            gap: 15px;
+            padding-bottom: 15px;
         }
 
         .photo-wrapper {
-            width: 100%;
-            /* Default to full width */
-            margin-bottom: 1rem;
-            /* Equivalent to mb-4 */
-            padding-right: 0.5rem;
-            /* Equivalent to pr-2 */
-        }
-
-        @media (min-width: 640px) {
-
-            /* Equivalent to sm:w-1/2 */
-            .photo-wrapper {
-                width: 50%;
-                /* 2 items per row */
-            }
+            flex: 0 0 auto;
+            width: 200px;
         }
 
         .photo {
-            border-radius: 0.5rem;
-            /* Equivalent to rounded-lg */
-            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
-            /* Equivalent to shadow-md */
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             overflow: hidden;
-            /* Equivalent to overflow-hidden */
+            transition: transform 0.3s ease-in-out;
         }
 
         .photo img {
             width: 100%;
-            /* Equivalent to w-full */
             height: auto;
-            /* Equivalent to h-auto */
-            object-fit: contain;
-            /* Equivalent to object-contain */
+            object-fit: cover;
+        }
+
+        .page-title {
+            background-color: #2c4666;
+            padding: 60px 0;
+            text-align: center;
+            color: #fff;
+        }
+
+        .page-title h1 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+
+        .breadcrumbs {
+            display: inline-block;
+        }
+
+        .breadcrumbs ol {
+            padding: 0;
+            margin: 0;
+            list-style: none;
+            display: flex;
+            justify-content: center;
+        }
+
+        .breadcrumbs ol li {
+            margin: 0 8px;
+            font-size: 16px;
+            color: #bdc3c7;
+        }
+
+        .breadcrumbs ol li a {
+            color: #1abc9c;
+            text-decoration: none;
+        }
+
+        .breadcrumbs ol li.current {
+            color: #ecf0f1;
         }
     </style>
 
-    <div class="page-title dark-background" data-aos="fade" style="background-color: #2c4666">
+    <div class="page-title dark-background" data-aos="fade">
         <div class="container position-relative">
             <h1>{{ $sectionSetting?->title ?? __('app.Photo Gallery') }}</h1>
             <nav class="breadcrumbs">
@@ -93,14 +104,14 @@
             </nav>
         </div>
     </div>
-    <main class="main">
 
+    <main class="main">
         <div class="container">
             <div class="row">
-                <section id="primary" class="w-full ">
+                <section id="primary" class="w-full">
                     <main id="main" class="site-main" role="main">
-
-                        <h2 class="mb-5">{{ __('app.Photo Project') }}</h2>
+                        <h2 class="mb-5" style="text-align: center; font-size: 2rem; color: #34495e;">
+                            {{ __('app.Photo Project') }}</h2>
                         @if ($photoProjects->isEmpty())
                             <div class="no-galleries">
                                 <div>
