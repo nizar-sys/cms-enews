@@ -395,6 +395,7 @@ Route::prefix('{locale}')->group(function () {
 
 
     Route::get('/projects/{slugCategory}/{slugProject}', [HomeController::class, 'projectDetail'])->name('project-detail');
+    Route::get('/about-me/detail', [HomeController::class, 'aboutmeDetail'])->name('aboutme-detail');
     Route::get('/projects/{slugCategory}', [HomeController::class, 'projectCategory'])->name('project-category');
     Route::get('/documents-reports/{slugCategory}', [HomeController::class, 'documentCategory'])->name('document-category');
     Route::get('/procurements/procurement-notice/{spesificProcurementId}/files', [HomeController::class, 'procurementNoticeFile'])->name('procurement-notice-files');

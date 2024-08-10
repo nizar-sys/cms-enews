@@ -6,18 +6,25 @@
     <style>
         .video-gallery {
             display: flex;
+            flex-direction: row;
             flex-wrap: wrap;
+            gap: 1rem;
         }
 
         .video-item {
-            width: 100%;
+            flex: 1 1 calc(33.333% - 1rem);
             margin-bottom: 0.4rem;
-            padding-right: 0.5rem;
         }
 
-        @media (min-width: 640px) {
+        @media (max-width: 768px) {
             .video-item {
-                width: 50%;
+                flex: 1 1 calc(50% - 1rem);
+            }
+        }
+
+        @media (max-width: 480px) {
+            .video-item {
+                flex: 1 1 100%;
             }
         }
 
@@ -46,7 +53,7 @@
     <main class="main">
         <div class="container">
             <div class="row">
-                <section id="primary" class="w-full ">
+                <section id="primary" class="w-full">
                     <main id="main" class="site-main" role="main">
                         <h2 class="mb-5">{{ $sectionSetting?->title ?? __('app.Video Project') }}</h2>
                         @if ($videoProjects->isEmpty())
