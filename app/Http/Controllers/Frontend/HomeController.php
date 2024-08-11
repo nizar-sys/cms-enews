@@ -62,7 +62,6 @@ class HomeController extends Controller
 {
     public function index()
     {
-        $sliders = Hero::select('id', 'title', 'description', 'image')->get();
         $teamSectionSetting = ExecutiveSectionSetting::first();
         $teams = ExecutiveTeam::with('designation')->get();
         $posts = Post::published()->with('author')->orderBy('created_at', 'desc')->get();
@@ -76,7 +75,7 @@ class HomeController extends Controller
         $photoProjects = PhotoProject::all();
         $photoProjectSectionSetting = PhotoGallerySectionSetting::first();
 
-        return view('frontends.home', compact('sliders', 'teamSectionSetting', 'teams', 'posts', 'about', 'serviceSection', 'services', 'user', 'directors', 'directorSectionSetting', 'videoEvents', 'photoProjects', 'photoProjectSectionSetting'));
+        return view('frontends.home', compact('teamSectionSetting', 'teams', 'posts', 'about', 'serviceSection', 'services', 'user', 'directors', 'directorSectionSetting', 'videoEvents', 'photoProjects', 'photoProjectSectionSetting'));
     }
 
     public function projectCategory($locale, $slugCategory)
@@ -113,7 +112,7 @@ class HomeController extends Controller
 
         $documentsReportsCategory = DocumentCategory::with('documentFiles')->where('slug', $slugCategoryDocumentReport)->firstOrFail();
 
-        return view('frontends.document_category', compact('documentsReportsCategory', 'projectCategories'));
+        return view('frontends.document_category', compact('documentsReportsCategory'));
     }
 
     public function procurementNotice($locale)

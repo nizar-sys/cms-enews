@@ -33,6 +33,7 @@
                                     <thead>
                                         <tr>
                                             <th>Title & ID</th>
+                                            <th>File Category</th>
                                             <th>Document Name</th>
                                             <th>Document File</th>
                                             <th>Actions</th>
@@ -42,6 +43,7 @@
                                         @forelse ($spesificProcurementsNotice->files as $file)
                                             <tr>
                                                 <td>{!! str($file->spesificProcurement->title)->limit(50) !!}</td>
+                                                <td>{{ $file->category }}</td>
                                                 <td>{{ $file->file_name }}</td>
                                                 <td>
                                                     <a href="{{ route('download.uploads', ['file' => $file->file_path]) }}" target="_blank"

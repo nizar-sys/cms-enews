@@ -13,6 +13,7 @@ class SpesificProcurementFile extends Model
         'spesific_procurement_id',
         'file_name',
         'file_path',
+        'category'
     ];
 
     public function spesificProcurement()

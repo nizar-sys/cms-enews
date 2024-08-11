@@ -105,6 +105,7 @@ class GeneralProcurementDataTable extends DataTable
         return [
             Column::make('DT_RowIndex')->title('#')->orderable(false)->searchable(false),
             Column::make('title')->title('Title'),
+            Column::make('category')->title('File Category'),
             Column::make('file_path')->title('Notice'),
             Column::make('published_date')->title('Published Date'),
             Column::make('duration')->title('Duration'),

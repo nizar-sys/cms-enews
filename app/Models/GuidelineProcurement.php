@@ -11,6 +11,7 @@ class GuidelineProcurement extends Model
 
     protected $fillable = [
         'file_name',
-        'file_path'
+        'file_path',
+        'category'
     ];
 }

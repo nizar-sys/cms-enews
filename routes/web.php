@@ -84,6 +84,11 @@ Route::get('/optimize', function () {
     return 'Optimize Clear';
 });
 
+Route::get('/migrate', function () {
+    Artisan::call('migrate');
+    return 'Migrate';
+});
+
 Route::get('/', [HomeController::class, 'index'])->middleware('record.visitor')->name('home');
 
 Route::get('/download/{file}', function ($path) {

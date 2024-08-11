@@ -24,6 +24,7 @@ class RequestGuidelineProcurement extends FormRequest
         $rules = [
             'file_name' => 'nullable',
             'file' => '|file|mimes:pdf,doc,docx',
+            'category' => 'nullable',
         ];
 
         if ($this->isMethod('POST')) {

@@ -6,6 +6,35 @@
 
     <main class="main">
 
+        <!-- Hero Section -->
+        <section id="hero" class="hero section dark-background">
+
+            <div id="hero-carousel" class="carousel slide carousel-fade" data-bs-ride="carousel" data-bs-interval="3000">
+
+                @foreach ($sliders as $slider)
+                    <div class="carousel-item {{ $loop->iteration == 1 ? 'active' : '' }}">
+                        <img src="{{ asset($slider->image) }}" alt="{{ $slider->title }}">
+                        <div class="carousel-container">
+                            <h2>{{ $slider->title }}</h2>
+                            {!! $slider->description !!}
+                        </div>
+                    </div>
+                @endforeach
+
+                <a class="carousel-control-prev" href="#hero-carousel" role="button" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon bi bi-chevron-left" aria-hidden="true"></span>
+                </a>
+
+                <a class="carousel-control-next" href="#hero-carousel" role="button" data-bs-slide="next">
+                    <span class="carousel-control-next-icon bi bi-chevron-right" aria-hidden="true"></span>
+                </a>
+
+                <ol class="carousel-indicators"></ol>
+
+            </div>
+
+        </section><!-- /Hero Section -->
+
         <!-- Page Title -->
         <div class="page-title dark-background" data-aos="fade" style="background-color: #2c4666">
             <div class="container position-relative">
@@ -22,11 +51,69 @@
             </div>
         </div><!-- End Page Title -->
 
-        <section id="about-3" class="about-3 section">
-            <div class="container">
-                <div class="row gy-4 justify-content-between align-items-center">
-                    <div class="col-lg-6 order-lg-2 position-relative" data-aos="zoom-out">
-                        @if ($documentCategory && $documentCategory->document_files_count > 0)
+        <div class="container">
+            <div class="row">
+                <section id="primary" class="content-area col-sm-12 col-lg-12">
+                    <main id="main" class="site-main" role="main">
+                        <div class="container">
+                            <article id="post-22" class="post-22 page type-page status-publish hentry">
+                                <div class="entry-content">
+                                    <h2>{{ $sectionSetting?->title }}</h2>
+                                    <div class="row">
+                                        <div class="col-lg-12 col-md-12">
+                                            <p>{!! $sectionSetting?->sub_title !!}</p>
+                                        </div>
+                                    </div>
+
+                                    <div class="spacer"></div>
+
+                                    <div class="row">
+                                        @if ($directors->isEmpty())
+                                            <div class="col-12 text-center">
+                                                <h4>{{ __('app.No data') }}</h4>
+                                            </div>
+                                        @else
+                                            @foreach ($directors as $director)
+                                                @php
+                                                    $colSize =
+                                                        $directors->count() == 1
+                                                            ? 'col-12'
+                                                            : ($directors->count() == 2
+                                                                ? 'col-lg-6 col-md-6'
+                                                                : 'col-lg-4 col-md-4');
+                                                @endphp
+                                                <div class="{{ $colSize }}">
+                                                    <h4 class="text-center">{{ $director->designation->designation }}</h4>
+                                                    <h5 class="text-center">{{ $director->name }}</h5>
+                                                    <div class="wp-block-image text-center">
+                                                        <figure>
+                                                            <img decoding="async" src="{{ $director->image }}"
+                                                                width="127" class="executive-image"
+                                                                alt="{{ $director->name }}">
+                                                        </figure>
+                                                    </div>
+                                                </div>
+                                                @if ($loop->iteration % 2 == 0 && $directors->count() > 3 && !$loop->last)
+                                    </div>
+                                    <div class="row">
+                                        @endif
+                                        @endforeach
+                                        @endif
+                                    </div>
+                                </div><!-- .entry-content -->
+                            </article><!-- #post-## -->
+                        </div>
+                    </main>
+                </section>
+            </div>
+        </div>
+
+        @if ($documentCategory && $documentCategory->document_files_count > 0)
+            <section id="about-3" class="about-3 section">
+                <div class="container">
+                    <div class="row gy-4 justify-content-between align-items-center">
+                        <div class="col-lg-12 order-lg-2 position-relative" data-aos="zoom-out">
+
                             <h4>{{ $documentCategory->name }}</h4>
                             <div class="minutes_lists table-responsive">
                                 <form id="downloadForm" method="POST" action="{{ route('download.multiple') }}">
@@ -69,42 +156,12 @@
                                         href="{{ route('document-category', ['locale' => session('locale', 'en'), 'slugCategory' => $documentCategory->slug]) }}">{{ __('app.View More') }}</a>
                                 </div>
                             </div>
-                        @endif
-                    </div>
-                    <div class="col-lg-5 order-lg-1" data-aos="fade-up" data-aos-delay="100">
-                        <h2 class="content-title mb-4">{{ $sectionSetting?->title }}</h2>
-                        <div style="word-wrap: break-word;">
-                            {!! $sectionSetting?->sub_title !!}
-                        </div>
 
-                        @if ($directors->isEmpty())
-                            <div class="row mb-4">
-                                <div class="col-12 text-center">
-                                    <h4>{{ __('app.No data') }}</h4>
-                                </div>
-                            </div>
-                        @else
-                            @foreach ($directors as $director)
-                                <div class="row mb-4">
-                                    <div class="col-md-4">
-                                        <figure>
-                                            <img decoding="async" class="img-fluid" src="{{ $director->image }}"
-                                                alt="" style="border: 7px solid #ccc; width: 100%;" />
-                                        </figure>
-                                    </div>
-                                    <div class="col-md-8">
-                                        <h4>{{ $director->name_formatted }}</h4>
-                                        <div class="entry-content" style="word-wrap: break-word">
-                                            {!! $director->description !!}
-                                        </div><!-- .entry-content -->
-                                    </div>
-                                </div>
-                            @endforeach
-                        @endif
+                        </div>
                     </div>
                 </div>
-            </div>
-        </section>
+            </section>
+        @endif
     </main>
 @endsection
 

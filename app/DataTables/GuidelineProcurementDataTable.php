@@ -102,6 +102,9 @@ class GuidelineProcurementDataTable extends DataTable
     {
         return [
             Column::make('DT_RowIndex')->title('#')->orderable(false)->searchable(false),
+            Column::make('category')->title('File Category')
+                ->searchable(true)
+                ->orderable(true),
             Column::make('file_name')->title('File Name')
                 ->searchable(true)
                 ->orderable(true),

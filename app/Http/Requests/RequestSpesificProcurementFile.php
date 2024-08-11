@@ -24,6 +24,7 @@ class RequestSpesificProcurementFile extends FormRequest
         $rules = [
             'file_name' => 'nullable',
             'file' => 'file|mimes:pdf,doc,docx,xls,xlsx',
+            'category' => 'nullable',
         ];
 
         if ($this->isMethod('post')) {

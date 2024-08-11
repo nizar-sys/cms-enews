@@ -56,6 +56,23 @@
 
                                 <div class="form-group row mb-3">
                                     <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">
+                                        File Category
+                                    </label>
+                                    <div class="col-sm-12 col-md-7">
+                                        <input type="text" name="category" class="form-control"
+                                            value="{{ old('category', $generalProcurementsNotice->category) }}" required
+                                            placeholder="File Category">
+
+                                        @error('category')
+                                            <div class="invalid-feedback d-block">
+                                                {{ $message }}
+                                            </div>
+                                        @enderror
+                                    </div>
+                                </div>
+
+                                <div class="form-group row mb-3">
+                                    <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">
                                         Published Date
                                     </label>
                                     <div class="col-sm-12 col-md-7">

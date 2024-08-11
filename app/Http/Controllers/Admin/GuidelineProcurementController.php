@@ -25,6 +25,7 @@ class GuidelineProcurementController extends Controller
         GuidelineProcurement::create([
             'file_name' => $request->filled('file_name') ? $request->file_name : pathinfo($request->file->getClientOriginalName(), PATHINFO_FILENAME),
             'file_path' => handleUpload('file'),
+            'category' => $request->category,
         ]);
 
         toastr()->success('Guideline Procurement created successfully');
@@ -50,6 +51,7 @@ class GuidelineProcurementController extends Controller
         $procurementsGuideline->update([
             'file_name' => $fileName,
             'file_path' => $filePath,
+            'category' => $request->category,
         ]);
 
         toastr()->success('Guideline Procurement updated successfully');

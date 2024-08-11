@@ -25,7 +25,8 @@ class RequestGenenralProcurement extends FormRequest
             'title' => 'required|',
             'file' => 'file|mimes:pdf,doc,docx',
             'published_date' => 'required|date',
-            'duration' => 'required'
+            'duration' => 'required',
+            'category' => 'nullable'
         ];
 
         if ($this->isMethod('POST')) {
