@@ -23,10 +23,22 @@ class DocumentfileDataTable extends DataTable
     {
         return (new EloquentDataTable($query))
             ->addIndexColumn()
-            // ->editColumn('updated_at', fn ($documentCategory) => $documentCategory->updated_at->diffForHumans())
             ->addColumn('action', 'admin.documents_reports.actions')
-            ->editColumn('file_path', function ($documentfile) {
-                return '<a href="' . $documentfile->file_path . '" target="_blank" class="btn btn-sm btn-danger">View</a>';
+            ->editColumn('file_path', function ($query) {
+                if (!$query->file_path) {
+                    return __('app.No files found');
+                }
+
+                $url = route('download.uploads', [
+                    'file' => $query->file_path,
+                    'model' => get_class($query),
+                    'id' => $query->id
+                ]);
+
+                return sprintf(
+                    '<a target="_blank" href="%s" class="btn btn-sm btn-danger"><i class="fas fa-download"></i> View</a>',
+                    $url
+                );
             })
             ->rawColumns(['action', 'file_path']);
     }
@@ -114,6 +126,7 @@ class DocumentfileDataTable extends DataTable
                 ->orderable(false),
             Column::make('filename'),
             Column::make('file_path'),
+            Column::make('file_downloaded')->title('Count File Downloaded'),
             Column::computed('action')
                 ->exportable(false)
                 ->printable(false)

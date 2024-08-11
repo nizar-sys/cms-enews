@@ -209,7 +209,7 @@
                     <li class="{{ setSidebarActive(['admin.article.category.*']) }}">
                         <a class="nav-link" href="{{ route('admin.article.category.index') }}">Categories</a>
                     </li>
-                    <li class="{{ setSidebarActive(['admin.article.*']) }}">
+                    <li class="{{ setSidebarActive(['admin.article.index', 'admin.article.create', 'admin.article.edit']) }}">
                         <a class="nav-link" href="{{ route('admin.article.index') }}">Publications</a>
                     </li>
                 </ul>

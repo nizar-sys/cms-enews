@@ -18,6 +18,7 @@ use App\Models\DirectorSectionSetting;
 use App\Models\DocumentCategory;
 use App\Models\DocumentFile;
 use App\Models\DocumentSectionSetting;
+use App\Models\DownloadLog;
 use App\Models\ExecutiveSectionSetting;
 use App\Models\ExecutiveTeam;
 use App\Models\Faq;
@@ -309,7 +310,7 @@ class HomeController extends Controller
             $results = $results->merge(
                 BidChallengeSystem::where('file_name', 'like', "%$query%")
                     ->get()
-                    ->map(fn($item) => [
+                    ->map(fn ($item) => [
                         'title' => explode('/uploads/', $item->file_path)[1],
                         'detail' => $item->file_path,
                         'isFile' => true,
@@ -320,7 +321,7 @@ class HomeController extends Controller
             $results = $results->merge(
                 ContractAwardNotice::where('file_name', 'like', "%$query%")
                     ->get()
-                    ->map(fn($item) => [
+                    ->map(fn ($item) => [
                         'title' => explode('/uploads/', $item->file_path)[1],
                         'detail' => $item->file_path,
                         'isFile' => true,
@@ -331,7 +332,7 @@ class HomeController extends Controller
             $results = $results->merge(
                 DocumentFile::where('filename', 'like', "%$query%")
                     ->get()
-                    ->map(fn($item) => [
+                    ->map(fn ($item) => [
                         'title' => explode('/uploads/', $item->file_path)[1],
                         'detail' => $item->file_path,
                         'isFile' => true,
@@ -342,7 +343,7 @@ class HomeController extends Controller
             $results = $results->merge(
                 GuidelineProcurement::where('file_name', 'like', "%$query%")
                     ->get()
-                    ->map(fn($item) => [
+                    ->map(fn ($item) => [
                         'title' => explode('/uploads/', $item->file_path)[1],
                         'detail' => $item->file_path,
                         'isFile' => true,
@@ -353,7 +354,7 @@ class HomeController extends Controller
             $results = $results->merge(
                 News::where('title', 'like', "%$query%")
                     ->get()
-                    ->map(fn($item) => [
+                    ->map(fn ($item) => [
                         'title' => $item->title,
                         'detail' => route('media-notices.news-detail', ['locale' => session('locale', 'en'), 'new' => $item->id]),
                         'isFile' => false,
@@ -364,7 +365,7 @@ class HomeController extends Controller
             $results = $results->merge(
                 Notice::where('file_name', 'like', "%$query%")
                     ->get()
-                    ->map(fn($item) => [
+                    ->map(fn ($item) => [
                         'title' =>  explode('/uploads/', $item->file_path)[1],
                         'detail' => $item->file_path,
                         'isFile' => true,
@@ -377,7 +378,7 @@ class HomeController extends Controller
                     ->orWhere('slug', 'like', "%$query%")
                     ->orWhere('content', 'like', "%$query%")
                     ->get()
-                    ->map(fn($item) => [
+                    ->map(fn ($item) => [
                         'title' => $item->title,
                         'detail' => route('posts-detail', ['locale' => session('locale', 'en'), 'post' => $item->slug]),
                         'isFile' => false,
@@ -388,7 +389,7 @@ class HomeController extends Controller
             $results = $results->merge(
                 PressRelease::where('file_name', 'like', "%$query%")
                     ->get()
-                    ->map(fn($item) => [
+                    ->map(fn ($item) => [
                         'title' => explode('/uploads/', $item->file_path)[1],
                         'detail' => $item->file_path,
                         'isFile' => true,
@@ -399,7 +400,7 @@ class HomeController extends Controller
             $results = $results->merge(
                 SpesificProcurementFile::where('file_name', 'like', "%$query%")
                     ->get()
-                    ->map(fn($item) => [
+                    ->map(fn ($item) => [
                         'title' => explode('/uploads/', $item->file_path)[1],
                         'detail' => $item->file_path,
                         'isFile' => true,
@@ -482,7 +483,7 @@ class HomeController extends Controller
 
         $documents = $documents->merge(
             WaterSanitation::whereNotNull('file')->get()
-                ->map(fn($item) => [
+                ->map(fn ($item) => [
                     'file_name' => $item->title,
                     'file_path' => $item->file,
                 ])
@@ -490,7 +491,7 @@ class HomeController extends Controller
 
         $documents = $documents->merge(
             TeachingLeading::whereNotNull('file')->get()
-                ->map(fn($item) => [
+                ->map(fn ($item) => [
                     'file_name' => $item->title,
                     'file_path' => $item->file,
                 ])
@@ -498,7 +499,7 @@ class HomeController extends Controller
 
         $documents = $documents->merge(
             Administrative::whereNotNull('file')->get()
-                ->map(fn($item) => [
+                ->map(fn ($item) => [
                     'file_name' => $item->title,
                     'file_path' => $item->file,
                 ])
@@ -512,5 +513,33 @@ class HomeController extends Controller
     {
         $about = About::first();
         return view('frontends.aboutme-detail', compact('about'));
+    }
+
+    public function downloadFile(Request $request, $file)
+    {
+        $model = $request->query('model');
+        $id = $request->query('id');
+        $userId = Auth::id();
+
+        if ($model && $id && $userId) {
+            $alreadyDownloaded = DownloadLog::where('user_id', $userId)
+                ->where('downloadable_type', $model)
+                ->where('downloadable_id', $id)
+                ->exists();
+
+            if (!$alreadyDownloaded) {
+                $modelInstance = app($model)->find($id);
+                if ($modelInstance) {
+                    $modelInstance->increment('file_downloaded');
+                    DownloadLog::create([
+                        'user_id' => $userId,
+                        'downloadable_type' => $model,
+                        'downloadable_id' => $id,
+                    ]);
+                }
+            }
+        }
+
+        return redirect(asset($file));
     }
 }

@@ -13,8 +13,10 @@ use Yajra\DataTables\Html\Column;
 use Yajra\DataTables\Html\Editor\Editor;
 use Yajra\DataTables\Html\Editor\Fields;
 use Yajra\DataTables\Services\DataTable;
+use Illuminate\Support\Str;
 
-class ArticleDataTable extends DataTable {
+class ArticleDataTable extends DataTable
+{
 
     /**
      * Build DataTable class.
@@ -23,118 +25,130 @@ class ArticleDataTable extends DataTable {
      * @return \Yajra\DataTables\EloquentDataTable
      */
 
-     public function dataTable(QueryBuilder $query): EloquentDataTable
-     {
-         return (new EloquentDataTable($query))
-         ->addColumn('action', function ($query) {
-             return '<a href="' . route('admin.article.edit', $query->id) . '" class="btn btn-primary"><i class="fas fa-edit"></i></a>
-                     <a href="' . route('admin.article.destroy', $query->id) . '" class="btn btn-danger delete-item"><i class="fas fa-trash"></i></a>';
-         })
-         ->setRowId('id')
-         ->rawColumns(['action', 'description']);;
-     }
+    public function dataTable(QueryBuilder $query): EloquentDataTable
+    {
+        return (new EloquentDataTable($query))
+            ->addColumn('action', function ($query) {
+                return '<div class="d-flex">
+                        <a href="' . route('admin.article.edit', $query->id) . '" class="btn btn-sm btn-primary mr-2">
+                            <i class="fas fa-edit"></i>
+                        </a>
+                        <a href="' . route('admin.article.destroy', $query->id) . '" class="btn btn-sm btn-danger delete-item">
+                            <i class="fas fa-trash"></i>
+                        </a>
+                    </div>';
+            })
+            ->setRowId('id')
+            ->editColumn('description', function ($query) {
+                return Str::limit($query->description, 50, '...');
+            })
+            ->editColumn('updated_at', function ($query) {
+                return $query->updated_at->diffForHumans();
+            })
+            ->rawColumns(['action', 'description']);;
+    }
 
-     /**
-      * Get query source of dataTable.
-      *
-      * @param \App\Models\Designation $model
-      * @return \Illuminate\Database\Eloquent\Builder
-      */
-        public function query(Article $model): QueryBuilder
-        {
-            return $model->newQuery();
-        }
+    /**
+     * Get query source of dataTable.
+     *
+     * @param \App\Models\Designation $model
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public function query(Article $model): QueryBuilder
+    {
+        return $model->newQuery();
+    }
 
-        /**
-         * Optional method if you want to use html builder.
-         *
-         * @return \Yajra\DataTables\Html\Builder
-         */
-        public function html(): HtmlBuilder
-        {
-            return $this->builder()
-                ->setTableId('article-table')
-                ->columns($this->getColumns())
-                ->minifiedAjax()
-                //->dom('Bfrtip')
-                ->orderBy(1)
-                ->selectStyleSingle()
-                ->parameters([
-                    'dom' => '<"row"<"col-md-6"B><"col-md-6"f>>' .
-                        '<"row"<"col-md-6"l><"col-md-6">>' .
-                        'rt' .
-                        '<"row"<"col-md-5"i><"col-md-7"p>>',
-                    'buttons' => [
-                        [
-                            'extend' => 'excelHtml5',
-                            'text' => '<i class="fas fa-file-excel"></i>',
-                            'className' => 'btn btn-sm ml-1 btn-success',
-                            'filename' => $this->filename(),
-                            'exportOptions' => [
-                                'columns' => [0, 1, 2, 3],
-                            ],
-                            'sheetName' => $this->filename(),
+    /**
+     * Optional method if you want to use html builder.
+     *
+     * @return \Yajra\DataTables\Html\Builder
+     */
+    public function html(): HtmlBuilder
+    {
+        return $this->builder()
+            ->setTableId('article-table')
+            ->columns($this->getColumns())
+            ->minifiedAjax()
+            //->dom('Bfrtip')
+            ->orderBy(1)
+            ->selectStyleSingle()
+            ->parameters([
+                'dom' => '<"row"<"col-md-6"B><"col-md-6"f>>' .
+                    '<"row"<"col-md-6"l><"col-md-6">>' .
+                    'rt' .
+                    '<"row"<"col-md-5"i><"col-md-7"p>>',
+                'buttons' => [
+                    [
+                        'extend' => 'excelHtml5',
+                        'text' => '<i class="fas fa-file-excel"></i>',
+                        'className' => 'btn btn-sm ml-1 btn-success',
+                        'filename' => $this->filename(),
+                        'exportOptions' => [
+                            'columns' => [0, 1, 2, 3],
                         ],
-    
-                        [
-                            'extend' => 'pdf',
-                            'text' => '<i class="fas fa-file-pdf"></i>',
-                            'className' => 'btn btn-sm ml-1 btn-danger',
-                            'exportOptions' => [
-                                'columns' => [0, 1, 2, 3],
-                            ],
-                            'filename' => $this->filename(),
+                        'sheetName' => $this->filename(),
+                    ],
+
+                    [
+                        'extend' => 'pdf',
+                        'text' => '<i class="fas fa-file-pdf"></i>',
+                        'className' => 'btn btn-sm ml-1 btn-danger',
+                        'exportOptions' => [
+                            'columns' => [0, 1, 2, 3],
                         ],
-    
-                        [
-                            'text' => '<i class="fas fa-sync"></i>',
-                            'className' => 'btn btn-sm ml-1 btn-info',
-                            'action' => 'function(){
+                        'filename' => $this->filename(),
+                    ],
+
+                    [
+                        'text' => '<i class="fas fa-sync"></i>',
+                        'className' => 'btn btn-sm ml-1 btn-info',
+                        'action' => 'function(){
                                 var table = window.LaravelDataTables["project-table"];
                                 table.ajax.reload();
                                 table.search("").columns().search("").draw();
                             }',
-                        ],
-    
                     ],
-                    'language' => [
-                        'paginate' => [
-                            'previous' => '&laquo;',
-                            'next'     => '&raquo;',
-                        ],
-                    ]
-                ]);
-        }
 
-        /**
-         * Get columns.
-         *
-         * @return array
-         */
-        public function getColumns(): array
-        {
-            return [
-                Column::make('id'),
-                Column::make('title'),
-                Column::make('description'),
-                Column::make('article_url'),
-                Column::make('created_at'),
-                Column::computed('action')
+                ],
+                'language' => [
+                    'paginate' => [
+                        'previous' => '&laquo;',
+                        'next'     => '&raquo;',
+                    ],
+                ]
+            ]);
+    }
+
+    /**
+     * Get columns.
+     *
+     * @return array
+     */
+    public function getColumns(): array
+    {
+        return [
+            Column::make('id'),
+            Column::make('title'),
+            Column::make('description'),
+            Column::make('article_url'),
+            Column::make('updated_at')->title('Last Updated'),
+            Column::computed('action')
                 ->exportable(false)
                 ->printable(false)
                 ->width(60)
                 ->addClass('text-center')
-            ];
-        }
+        ];
+    }
 
-        /**
-         * Get filename for export.
-         *
-         * @return string
-         */
+    /**
+     * Get filename for export.
+     *
+     * @return string
+     */
 
-        protected function filename(): string
-        {
-            return 'ArticleCategory_' . date('YmdHis');
-        }
+    protected function filename(): string
+    {
+        return 'ArticleCategory_' . date('YmdHis');
+    }
 }

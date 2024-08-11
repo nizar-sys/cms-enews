@@ -28,15 +28,34 @@ class AdministrativeDataTable extends DataTable
                 return substr($query->description, 0, 50) . '...';
             })
             ->addColumn('action', function ($query) {
-                return '<a href="' . route('admin.administrative.edit', $query->id) . '" class="btn btn-sm btn-primary"><i class="fas fa-edit"></i></a>
-                     <a href="' . route('admin.administrative.destroy', $query->id) . '" class="btn btn-sm btn-danger delete-item"><i class="fas fa-trash"></i></a>';
+                return '<div class="d-flex justify-content-between">
+                            <a href="' . route('admin.administrative.edit', $query->id) . '" class="btn btn-sm btn-primary mr-2">
+                                <i class="fas fa-edit"></i>
+                            </a>
+                            <a href="' . route('admin.administrative.destroy', $query->id) . '" class="btn btn-sm btn-danger delete-item">
+                                <i class="fas fa-trash"></i>
+                            </a>
+                        </div>';
             })
             ->setRowId('id')
             ->editColumn('image', function ($query) {
                 return $query->image ? '<img src="' . asset($query->image) . '" style="width: 100px; height: 100px;">' : __('app.No files found');
             })
             ->editColumn('file', function ($query) {
-                return $query->file ? '<a target="__blank" href="' . asset($query->file) . '" class="btn btn-sm btn-primary"><i class="fas fa-download"></i></a>' : __('app.No files found');
+                if (!$query->file) {
+                    return __('app.No files found');
+                }
+
+                $url = route('download.uploads', [
+                    'file' => $query->file,
+                    'model' => get_class($query),
+                    'id' => $query->id
+                ]);
+
+                return sprintf(
+                    '<a target="_blank" href="%s" class="btn btn-sm btn-primary"><i class="fas fa-download"></i></a>',
+                    $url
+                );
             })
             ->rawColumns(['action', 'description', 'image', 'file']);
     }
@@ -127,6 +146,7 @@ class AdministrativeDataTable extends DataTable
             Column::make('title'),
             Column::make('description'),
             Column::make('file'),
+            Column::make('file_downloaded')->title('Count File Downloaded'),
             Column::computed('action')
                 ->exportable(false)
                 ->printable(false)

@@ -91,9 +91,10 @@ Route::get('/migrate', function () {
 
 Route::get('/', [HomeController::class, 'index'])->middleware('record.visitor')->name('home');
 
-Route::get('/download/{file}', function ($path) {
-    return redirect(asset($path));
-})->where('file', '.*')->middleware('auth.uploads')->name('download.uploads');
+Route::get('/download/{file}', [HomeController::class, 'downloadFile'])
+    ->where('file', '.*')
+    ->middleware('auth.uploads')
+    ->name('download.uploads');
 
 Route::post('/download-files', [HomeController::class, 'downloadMultiple'])->middleware('auth.uploads')->name('download.multiple');
 

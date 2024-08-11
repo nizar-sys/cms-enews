@@ -28,8 +28,16 @@ class PhotoProjectDataTable extends DataTable
     {
         return (new EloquentDataTable($query))
             ->addColumn('action', function ($query) {
-                return '<a href="' . route('admin.photo-project.edit', $query->id) . '" class="btn btn-primary"><i class="fas fa-edit"></i></a>
-                     <a href="' . route('admin.photo-project.destroy', $query->id) . '" class="btn btn-danger delete-item"><i class="fas fa-trash"></i></a>';
+                return '
+                <div class="d-flex">
+                    <a href="' . route('admin.photo-project.edit', $query->id) . '" class="btn btn-primary btn-sm me-2 mr-1">
+                        <i class="fas fa-edit"></i>
+                    </a>
+                    <a href="' . route('admin.photo-project.destroy', $query->id) . '" class="btn btn-danger btn-sm delete-item me-2">
+                        <i class="fas fa-trash"></i>
+                    </a>
+                </div>
+            ';
             })
             ->addColumn('album_name', function ($photo) {
                 return $photo->photoProjectAlbum->name;
