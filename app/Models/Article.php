@@ -9,8 +9,21 @@ class Article extends Model
 {
     use HasFactory;
 
-    
+
     protected $fillable = ['title','description', 'category_id', 'article_url'];
+
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::creating(function ($article) {
+            $article->created_at = now();
+        });
+
+        static::updating(function ($article) {
+            $article->updated_at = now();
+        });
+    }
 
     public function category()
     {

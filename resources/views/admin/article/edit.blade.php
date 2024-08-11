@@ -43,7 +43,7 @@
                                     <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Category</label>
                                     <div class="col-sm-12 col-md-7">
                                         <select class="form-control selectric" name="category_id" required>
-                                            <option>Select</option>
+                                            <option value="">Select</option>
                                             @foreach ($categories as $category)
                                                 <option value="{{ $category->id }}"
                                                     @if (old('category_id', $category->category_id) == $category->id) selected @endif>
