@@ -16,16 +16,14 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css"
         integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
 
+    <!-- Load reCAPTCHA v3 API -->
+    <script src="https://www.google.com/recaptcha/api.js?render=6LfVFiQqAAAAAMASEV8VhgS2ilrMLLQT0boT19e9"></script>
 
     <!-- Template CSS -->
     <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/components.css') }}">
     <style>
-        html {
-            --tw-bg-opacity: 1;
-            background-color: rgb(17 24 39 / var(--tw-bg-opacity));
-        }
-
+        html,
         #app {
             --tw-bg-opacity: 1;
             background-color: rgb(17 24 39 / var(--tw-bg-opacity));
@@ -42,7 +40,7 @@
                         class="col-12 col-sm-8 offset-sm-2 col-md-6 offset-md-3 col-lg-6 offset-lg-3 col-xl-4 offset-xl-4">
                         <div class="login-brand">
                             <img src="{{ asset($generalSetting?->logo) }}" alt="logo" width="130"
-                                class=" rounded-circle">
+                                class="rounded-circle">
                         </div>
 
                         <div class="card card-dark bg-transparent" style="margin-top: 0rem">
@@ -54,6 +52,9 @@
                                 <form method="POST" action="{{ route('login') }}" class="needs-validation"
                                     novalidate="">
                                     @csrf
+                                    <!-- Hidden field for reCAPTCHA token -->
+                                    <input type="hidden" name="recaptcha_token" id="recaptcha_token">
+
                                     <div class="form-group">
                                         <label for="email" style="color: white">Email</label>
                                         <input id="email" type="email" class="form-control bg-dark" name="email"
@@ -72,8 +73,8 @@
                                                 </a>
                                             </div>
                                         </div>
-                                        <input id="password" type="password" class="form-control bg-dark" name="password"
-                                            tabindex="2" required>
+                                        <input id="password" type="password" class="form-control bg-dark"
+                                            name="password" tabindex="2" required>
                                         @if ($errors->has('password'))
                                             <code>{{ $errors->first('password') }}</code>
                                         @endif
@@ -93,16 +94,13 @@
                                         </button>
                                     </div>
 
-                                    <div class="form-group
-                                        text-center">
-                                        <a href="{{ route('register') }}" class="btn btn-outline-primary btn-lg btn-block"
-                                            tabindex="4">
+                                    <div class="form-group text-center">
+                                        <a href="{{ route('register') }}"
+                                            class="btn btn-outline-primary btn-lg btn-block" tabindex="4">
                                             Register
                                         </a>
                                     </div>
                                 </form>
-
-
                             </div>
                         </div>
 
@@ -127,13 +125,22 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
     <script src="{{ asset('assets/js/stisla.js') }}"></script>
 
-    <!-- JS Libraies -->
-
     <!-- Template JS File -->
     <script src="{{ asset('assets/js/scripts.js') }}"></script>
     <script src="{{ asset('assets/js/custom.js') }}"></script>
 
-    <!-- Page Specific JS File -->
+    <!-- reCAPTCHA v3 Script -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            grecaptcha.ready(function() {
+                grecaptcha.execute('6LfVFiQqAAAAAMASEV8VhgS2ilrMLLQT0boT19e9', {
+                    action: 'login'
+                }).then(function(token) {
+                    document.getElementById('recaptcha_token').value = token;
+                });
+            });
+        });
+    </script>
 </body>
 
 </html>

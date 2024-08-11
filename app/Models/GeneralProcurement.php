@@ -14,5 +14,6 @@ class GeneralProcurement extends Model
         'file_path',
         'published_date',
         'duration',
+        'category'
     ];
 }

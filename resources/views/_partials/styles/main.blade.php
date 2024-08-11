@@ -2560,3 +2560,18 @@
         }
 
 </style>
+
+<style>
+    .navbar-nav .nav-link.active {
+        color: red;
+    }
+
+    .navbar-nav .nav-item.dropdown .dropdown-menu.active {
+        display: block;
+    }
+
+    .navbar-nav .nav-item.dropdown .dropdown-menu .dropdown-item.active {
+        background-color: red !important;
+        color: red !important;
+    }
+</style>

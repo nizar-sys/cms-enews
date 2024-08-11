@@ -149,4 +149,10 @@ return [
     "Page Name" => "Nome da Página",
     "Latest Video Update" => "última atualização de vídeo",
     "Latest Photo Update" => "última atualização de fotos",
+    "footer_info" => "<p>Este website foi possível através de uma subvenção concedida pelo povo dos Estados Unidos a Timor-Leste através da Millennium Challenge Corporation, nos termos de um pacto assinado entre os dois países. As informações fornecidas neste site não são informações oficiais do governo dos EUA e não representam as opiniões ou posições do governo dos EUA ou da Millennium Challenge Corporation.</p> <br>
+
+    <b>Reduzir a pobreza através do crescimento económico em Timor-Leste.</b>",
+    "Document Category" => "Categoria de Documento",
+    "Document Title" => "Título do Documento",
+    "Document Name" => "Nome do Documento",
 ];

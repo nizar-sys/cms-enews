@@ -26,6 +26,23 @@
 
                                 <div class="form-group row mb-4">
                                     <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">
+                                        Document Category
+                                    </label>
+                                    <div class="col-sm-12 col-md-7">
+                                        <input type="text" name="category"
+                                            class="form-control @error('category') is-invalid @enderror"
+                                            value="{{ old('category') }}">
+
+                                        @error('category')
+                                            <div class="invalid-feedback d-block">
+                                                {{ $message }}
+                                            </div>
+                                        @enderror
+                                    </div>
+                                </div>
+
+                                <div class="form-group row mb-4">
+                                    <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">
                                         Document Name
                                     </label>
                                     <div class="col-sm-12 col-md-7">

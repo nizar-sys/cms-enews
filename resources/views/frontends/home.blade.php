@@ -106,7 +106,7 @@
                         <p style="display: flex; align-items: center;">
                             <a href="{{ $about ? asset($about->resume) : '#services' }}"
                                 {{ $about ? 'target="_blank"' : '' }} class="btn-cta"
-                                style="background-color: #2c4666; color: #ffffff; padding: 10px 20px; border-radius: 5px; 
+                                style="background-color: #2c4666; color: #ffffff; padding: 10px 20px; border-radius: 5px;
                                        transition: background-color 0.3s ease, transform 0.3s ease; margin-right: 15px;"
                                 onmouseover="this.style.backgroundColor='#345c88'; this.style.transform='scale(1.05)';"
                                 onmouseout="this.style.backgroundColor='#2c4666'; this.style.transform='scale(1)';">
@@ -116,7 +116,7 @@
                             <span style="width: 1px; height: 40px; background-color: #373A40; margin-right: 15px;"></span>
 
                             <a href="{{ route('aboutme-detail', ['locale' => session('locale', 'en')]) }}" class="btn-cta"
-                                style="background-color: #4a76a8; color: #ffffff; padding: 10px 20px; border-radius: 5px; 
+                                style="background-color: #4a76a8; color: #ffffff; padding: 10px 20px; border-radius: 5px;
                                        transition: background-color 0.3s ease, transform 0.3s ease;"
                                 onmouseover="this.style.backgroundColor='red'; this.style.transform='scale(1.05)';"
                                 onmouseout="this.style.backgroundColor='#4a76a8'; this.style.transform='scale(1)';">
@@ -294,7 +294,7 @@
                                         position: relative;
                                         overflow: hidden;
                                         width: 250px; /* Set a fixed width for the cards */
-                                        height: 350px; /* Set a fixed height for the cards */
+                                        /* height: 350px; Set a fixed height for the cards */
                                         margin: 0 auto; /* Center the card */
                                     ">
                                         <img src="{{ asset($director->image) }}" alt="{{ $director->name }}"

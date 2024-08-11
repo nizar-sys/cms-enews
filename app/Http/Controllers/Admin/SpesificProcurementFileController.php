@@ -26,6 +26,7 @@ class SpesificProcurementFileController extends Controller
         $spesificProcurementsNotice->files()->create([
             'file_name' => $fileName,
             'file_path' => $filePath,
+            'category' => $validated['category'],
         ]);
 
         toastr()->success('Spesific procurement file created successfully');
@@ -54,6 +55,7 @@ class SpesificProcurementFileController extends Controller
         $file->update([
             'file_name' => $fileName,
             'file_path' => $filePath,
+            'category' => $validated['category'],
         ]);
 
         $file->spesificProcurement->update([

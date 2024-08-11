@@ -9,6 +9,7 @@ use App\Models\FooterSetting;
 use App\Models\FooterSocialLink;
 use App\Models\FooterUsefulLink;
 use App\Models\GeneralSetting;
+use App\Models\Hero;
 use App\Models\ProjectCategory;
 use App\Models\SeoSetting;
 use Illuminate\Pagination\Paginator;
@@ -40,13 +41,7 @@ class AppServiceProvider extends ServiceProvider
         View::composer('*', function ($view) {
             $locale = session('locale', config('app.locale'));
 
-            $subsItemDocumentCategories = DocumentCategory::select('id', 'name', 'slug')->get()->map(function ($category) use ($locale) {
-                return [
-                    'label' => __('app.' . $category->name),
-                    'url' => route('document-category', ['locale' => $locale, 'slugCategory' => $category->slug]),
-
-                ];
-            })->toArray();
+            $sliders = Hero::select('id', 'title', 'description', 'image')->get();
 
             $menuItems = [
                 [
@@ -104,7 +99,7 @@ class AppServiceProvider extends ServiceProvider
                 [
                     'label' => __('app.Work with Us'),
                     'url' => '#',
-                    'route' => ['procurement', 'procurement-notice', 'guidelines', 'jobs.index'],
+                    'route' => ['procurement', 'procurement-notice', 'guidelines', 'jobs.index', 'procurement-notice-files'],
                     'subItems' => [
                         ['label' => __('app.Procurement Notices'), 'url' => route('procurement-notice', ['locale' => $locale])],
                         ['label' => __('app.Procurement Guidelines'), 'url' => route('guidelines', ['locale' => $locale])],
@@ -130,6 +125,7 @@ class AppServiceProvider extends ServiceProvider
             $view->with('menuItems', $menuItems);
             $view->with('footerInfo', FooterInfo::first());
             $view->with('footerUsefulLinks', FooterUsefulLink::all());
+            $view->with('sliders', $sliders);
         });
 
         Blade::directive('datetime', function ($expression) {

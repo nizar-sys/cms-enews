@@ -149,4 +149,10 @@ return [
     "Page Name" => "Page Name",
     "Latest Video Update" => "Latest Video Updates",
     "Latest Photo Update" => "Latest Photo Updates",
+    "footer_info" => "<p>This website was made possible through a grant given by the people of the United States to Timor-Leste through the Millennium Challenge Corporation under the terms of a compact signed between the two countries. The information provided on this website is not official U.S. Government information and does not represent the views or positions of the U.S. Government or the Millennium Challenge Corporation.</p> <br>
+
+    <b>Reduce poverty through economic growth in Timor-Leste.</b>",
+    "Document Category" => "Document Category",
+    "Document Title" => "Document Title",
+    "Document Name" => "Document Name",
 ];
