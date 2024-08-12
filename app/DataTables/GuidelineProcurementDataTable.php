@@ -24,7 +24,22 @@ class GuidelineProcurementDataTable extends DataTable
         return (new EloquentDataTable($query))
             ->addColumn('action', 'admin.procurements.guidelines.actions')
             ->addIndexColumn()
-            ->editColumn('file_path', fn ($guidelineProcurement) => '<a class="btn btn-danger" href="' . asset($guidelineProcurement->file_path) . '" target="_blank"><i class="fa fa-file-pdf"></i> View PDF</a>')
+            ->editColumn('file_path', function ($query) {
+                if (!$query->file_path) {
+                    return __('app.No files found');
+                }
+
+                $url = route('download.uploads', [
+                    'file' => $query->file_path,
+                    'model' => get_class($query),
+                    'id' => $query->id
+                ]);
+
+                return sprintf(
+                    '<a target="_blank" href="%s" class="btn btn-sm btn-danger"><i class="fas fa-file"></i> View</a>',
+                    $url
+                );
+            })
             ->rawColumns(['file_path', 'action']);
     }
 
@@ -109,6 +124,7 @@ class GuidelineProcurementDataTable extends DataTable
                 ->searchable(true)
                 ->orderable(true),
             Column::make('file_path')->title('Guideline'),
+            Column::make('file_downloaded')->title('Count File Downloaded'),
             Column::computed('action')
                 ->exportable(false)
                 ->printable(false)

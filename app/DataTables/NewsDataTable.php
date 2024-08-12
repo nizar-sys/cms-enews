@@ -31,10 +31,15 @@ class NewsDataTable extends DataTable
              return substr($query->description, 0, 50) . '...';
          })
          ->addColumn('action', function ($query) {
-             return '<a href="' . route('admin.news.edit', $query->id) . '" class="btn btn-primary"><i class="fas fa-edit"></i></a>
-                     <a href="' . route('admin.news.destroy', $query->id) . '" class="btn btn-danger delete-item"><i class="fas fa-trash"></i></a>';
-         })
+            return '<div class="d-flex justify-content-center">
+                        <a href="' . route('admin.news.edit', $query->id) . '" class="btn btn-primary btn-sm mr-1"><i class="fas fa-edit"></i></a>
+                        <a href="' . route('admin.news.destroy', $query->id) . '" class="btn btn-danger btn-sm delete-item"><i class="fas fa-trash"></i></a>
+                    </div>';
+        })        
          ->setRowId('id')
+         ->editColumn('updated_at', function ($query) {
+             return $query->updated_at->diffForHumans();
+         })
          ->rawColumns(['action', 'description']);;
      }
 
@@ -76,7 +81,7 @@ class NewsDataTable extends DataTable
                              'className' => 'btn btn-sm ml-1 btn-success',
                              'filename' => $this->filename(),
                              'exportOptions' => [
-                                 'columns' => [0, 1, 2, 3],
+                                 'columns' => [0, 1, 2],
                              ],
                              'sheetName' => $this->filename(),
                          ],
@@ -86,7 +91,7 @@ class NewsDataTable extends DataTable
                              'text' => '<i class="fas fa-file-pdf"></i>',
                              'className' => 'btn btn-sm ml-1 btn-danger',
                              'exportOptions' => [
-                                 'columns' => [0, 1, 2, 3],
+                                 'columns' => [0, 1, 2],
                              ],
                              'filename' => $this->filename(),
                          ],
@@ -122,8 +127,7 @@ class NewsDataTable extends DataTable
                 Column::make('id'),
                 Column::make('title'),
                 Column::make('description'),
-                Column::make('created_at'),
-                Column::make('updated_at'),
+                Column::make('updated_at')->title('Last Updated'),
                 Column::computed('action')
                 ->exportable(false)
                 ->printable(false)

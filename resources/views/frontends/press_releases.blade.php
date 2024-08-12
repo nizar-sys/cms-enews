@@ -74,7 +74,7 @@
                                                         <td width="75%">{{ $file->file_name }}</td>
                                                         <td class="text-center">
                                                             <a class="btn btn-danger"
-                                                                href="{{ route('download.uploads', ['file' => $file->file_path]) }}"
+                                                                href="{{ route('download.uploads', ['file' => $file->file_path, 'model' => get_class($file), 'id' => $file->id]) }}"
                                                                 download>
                                                                 <i class="far fa-file"></i>
                                                                 {{ __('app.Show Files') }}

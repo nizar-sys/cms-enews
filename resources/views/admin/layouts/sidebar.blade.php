@@ -174,7 +174,7 @@
                 </ul>
             </li>
             <li
-                class="nav-item dropdown {{ setSidebarActive(['admin.documents-reports-categories.*', 'admin.documents-reports-files.*', 'admin.documents-section-setting.*']) }}">
+                class="nav-item dropdown {{ setSidebarActive(['admin.documents-section-setting.*']) }}">
                 <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i
                         class="fas fa-columns"></i>
                     <span>Documents</span>
@@ -184,6 +184,16 @@
                         <a class="nav-link" href="{{ route('admin.documents-section-setting.index') }}">Section
                             Setting</a>
                     </li>
+                </ul>
+            </li>
+            <li class="menu-header">Documents</li>
+            <li
+                class="nav-item dropdown {{ setSidebarActive(['admin.documents-reports-categories.*', 'admin.documents-reports-files.*']) }}">
+                <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i
+                        class="fas fa-columns"></i>
+                    <span>Documents</span>
+                </a>
+                <ul class="dropdown-menu" style="display: none;">
                     <li class="{{ setSidebarActive(['admin.documents-reports-categories.*']) }}">
                         <a class="nav-link"
                             href="{{ route('admin.documents-reports-categories.index') }}">Categories</a>

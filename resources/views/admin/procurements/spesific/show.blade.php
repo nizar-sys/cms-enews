@@ -36,6 +36,7 @@
                                             <th>File Category</th>
                                             <th>Document Name</th>
                                             <th>Document File</th>
+                                            <th>Count File Downloaded</th>
                                             <th>Actions</th>
                                         </tr>
                                     </thead>
@@ -46,8 +47,11 @@
                                                 <td>{{ $file->category }}</td>
                                                 <td>{{ $file->file_name }}</td>
                                                 <td>
-                                                    <a href="{{ route('download.uploads', ['file' => $file->file_path]) }}" target="_blank"
+                                                    <a href="{{ route('download.uploads', ['file' => $file->file_path, 'model' => get_class($file), 'id' => $file->id]) }}" target="_blank"
                                                         class="btn btn-danger btn-sm">View File</a>
+                                                </td>
+                                                <td>
+                                                    {{ $file->file_downloaded }}
                                                 </td>
                                                 <td>
                                                     <div class="d-flex">

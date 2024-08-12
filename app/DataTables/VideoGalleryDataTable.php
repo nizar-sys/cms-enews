@@ -26,9 +26,11 @@ class VideoGalleryDataTable extends DataTable {
      {
          return (new EloquentDataTable($query))
          ->addColumn('action', function ($query) {
-             return '<a href="' . route('admin.video-gallery.edit', $query->id) . '" class="btn btn-primary"><i class="fas fa-edit"></i></a>
-                     <a href="' . route('admin.video-gallery.destroy', $query->id) . '" class="btn btn-danger delete-item"><i class="fas fa-trash"></i></a>';
-         })
+            return '<div class="d-flex justify-content-center">
+                        <a href="' . route('admin.video-gallery.edit', $query->id) . '" class="btn btn-primary btn-sm mr-1"><i class="fas fa-edit"></i></a>
+                        <a href="' . route('admin.video-gallery.destroy', $query->id) . '" class="btn btn-danger btn-sm delete-item"><i class="fas fa-trash"></i></a>
+                    </div>';
+        })        
          ->editColumn('video_url', function ($video) {
              return '<a href="' . $video->url . '" target="_blank" class="btn btn-sm btn-danger">View</a>';
          })

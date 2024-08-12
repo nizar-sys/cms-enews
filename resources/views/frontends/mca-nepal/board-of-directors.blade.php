@@ -134,7 +134,7 @@
                                                     <td width="75%">{{ $file->filename }}</td>
                                                     <td class="text-center">
                                                         <a class="btn btn-danger"
-                                                            href="{{ route('download.uploads', ['file' => $file->file_path]) }}"
+                                                            href="{{ route('download.uploads', ['file' => $file->file_path, 'model' => get_class($file), 'id' => $file->id]) }}"
                                                             title="{{ $file->filename }}" target="_blank">
                                                             <i class="far fa-file-pdf"></i> {{ __('app.Download') }}
                                                         </a>

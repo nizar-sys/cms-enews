@@ -30,9 +30,11 @@ class CommunityVoiceDataTable extends DataTable {
              return substr($query->description, 0, 50) . '...';
          })
          ->addColumn('action', function ($query) {
-             return '<a href="' . route('admin.community-voice.edit', $query->id) . '" class="btn btn-primary"><i class="fas fa-edit"></i></a>
-                     <a href="' . route('admin.community-voice.destroy', $query->id) . '" class="btn btn-danger delete-item"><i class="fas fa-trash"></i></a>';
-         })
+            return '<div class="d-flex justify-content-center">
+                        <a href="' . route('admin.community-voice.edit', $query->id) . '" class="btn btn-primary btn-sm mr-1"><i class="fas fa-edit"></i></a>
+                        <a href="' . route('admin.community-voice.destroy', $query->id) . '" class="btn btn-danger btn-sm delete-item"><i class="fas fa-trash"></i></a>
+                    </div>';
+        })        
          ->setRowId('id')
          ->rawColumns(['action', 'description']);;
      }
