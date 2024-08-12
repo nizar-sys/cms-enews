@@ -88,6 +88,10 @@ Route::get('/migrate', function () {
     Artisan::call('migrate');
     return 'Migrate';
 });
+Route::get('/migrate-rollback', function () {
+    Artisan::call('migrate:rollback');
+    return 'Migrate Rollback';
+});
 
 Route::get('/', [HomeController::class, 'index'])->middleware('record.visitor')->name('home');
 
