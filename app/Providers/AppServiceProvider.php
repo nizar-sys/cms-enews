@@ -12,8 +12,11 @@ use App\Models\GeneralSetting;
 use App\Models\Hero;
 use App\Models\ProjectCategory;
 use App\Models\SeoSetting;
+use App\Models\Visitor;
+use Carbon\Carbon;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Facades\Blade;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
 
@@ -117,6 +120,39 @@ class AppServiceProvider extends ServiceProvider
                     'route' => 'contact.index',
                 ]
             ];
+
+            $today = Carbon::today()->toDateString();
+            $yesterday = Carbon::yesterday()->toDateString();
+            $thisWeekStart = Carbon::now()->startOfWeek()->toDateString();
+            $thisWeekEnd = Carbon::now()->endOfWeek()->toDateString();
+            $lastWeekStart = Carbon::now()->subWeek()->startOfWeek()->toDateString();
+            $lastWeekEnd = Carbon::now()->subWeek()->endOfWeek()->toDateString();
+            $thisMonth = Carbon::now()->month;
+            $lastMonth = Carbon::now()->subMonth()->month;
+
+            $visitorCounts = Visitor::select(
+                DB::raw("
+        COUNT(*) as all_visitors,
+        SUM(CASE WHEN DATE(created_at) = '$today' THEN 1 ELSE 0 END) as today,
+        SUM(CASE WHEN DATE(created_at) = '$yesterday' THEN 1 ELSE 0 END) as yesterday,
+        SUM(CASE WHEN DATE(created_at) BETWEEN '$thisWeekStart' AND '$thisWeekEnd' THEN 1 ELSE 0 END) as this_week,
+        SUM(CASE WHEN DATE(created_at) BETWEEN '$lastWeekStart' AND '$lastWeekEnd' THEN 1 ELSE 0 END) as last_week,
+        SUM(CASE WHEN MONTH(created_at) = $thisMonth THEN 1 ELSE 0 END) as this_month,
+        SUM(CASE WHEN MONTH(created_at) = $lastMonth THEN 1 ELSE 0 END) as last_month
+    ")
+            )->first();
+
+            $visitorCounts = [
+                'today' => $visitorCounts->today,
+                'yesterday' => $visitorCounts->yesterday,
+                'this_week' => $visitorCounts->this_week,
+                'last_week' => $visitorCounts->last_week,
+                'this_month' => $visitorCounts->this_month,
+                'last_month' => $visitorCounts->last_month,
+                'all' => $visitorCounts->all_visitors,
+            ];
+
+
             $view->with('generalSetting', GeneralSetting::first());
             $view->with('footerSettings', FooterSetting::all());
             $view->with('contactSetting', Contact::first());
@@ -126,6 +162,7 @@ class AppServiceProvider extends ServiceProvider
             $view->with('footerInfo', FooterInfo::first());
             $view->with('footerUsefulLinks', FooterUsefulLink::all());
             $view->with('sliders', $sliders);
+            $view->with('visitorCounts', $visitorCounts);
         });
 
         Blade::directive('datetime', function ($expression) {

@@ -282,6 +282,59 @@
                         </ul>
                     </div>
 
+                    <div class="col-lg-3 col-md-3 footer-links">
+                        <h4>{{ __('app.visitor_counter') }}</h4>
+                        <div class="row">
+                            <div class="col-6">
+                                <ul>
+                                    <li>
+                                        <i class="fas fa-calendar-day"></i>
+                                        {{ __('app.Today') }} {{ $visitorCounts['today'] }}
+                                    </li>
+                                    <li>
+                                        <i class="fas fa-calendar-minus"></i>
+                                        {{ __('app.Yesterday') }} {{ $visitorCounts['yesterday'] }}
+                                    </li>
+                                    <li>
+                                        <i class="fas fa-calendar-week"></i>
+                                        {{ __('app.This Week') }} {{ $visitorCounts['this_week'] }}
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="col-6">
+                                <ul>
+                                    <li>
+                                        <i class="fas fa-calendar-alt"></i>
+                                        {{ __('app.Last Week') }} {{ $visitorCounts['last_week'] }}
+                                    </li>
+                                    <li>
+                                        <i class="fas fa-calendar"></i>
+                                        {{ __('app.This Month') }} {{ $visitorCounts['this_month'] }}
+                                    </li>
+                                    <li>
+                                        <i class="fas fa-calendar-times"></i>
+                                        {{ __('app.Last Month') }} {{ $visitorCounts['last_month'] }}
+                                    </li>
+                                    <li>
+                                        <i class="fas fa-users"></i>
+                                        {{ __('app.All') }} {{ $visitorCounts['all'] }}
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <hr>
+
+                        <div class="visitor-details">
+                            <ul>
+                                <li><i class="fas fa-ip"></i> {{ __('app.Your IP Address') }}:
+                                    {{ request()->ip() }}</li>
+                                <li><i class="fas fa-browser"></i>
+                                    {{ request()->header('User-Agent') }}</li>
+                            </ul>
+                        </div>
+                    </div>
+
                 </div>
             </div>
         </div>
