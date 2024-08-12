@@ -78,7 +78,7 @@
                                                                 value="{{ $guideline->file_path }}"></td>
                                                         <td width="45%">{{ $guideline->category }}</td>
                                                         <td>
-                                                            <a href="{{ route('download.uploads', ['file' => $guideline->file_path]) }}"
+                                                            <a href="{{ route('download.uploads', ['file' => $guideline->file_path, 'model' => get_class($guideline), 'id' => $guideline->id]) }}"
                                                                 target="_blank" rel="noopener">
                                                                 {{ pathinfo(asset($guideline->file_path), PATHINFO_FILENAME) }}
                                                             </a>

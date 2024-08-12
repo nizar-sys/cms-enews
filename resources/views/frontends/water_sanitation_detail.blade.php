@@ -116,7 +116,7 @@
                                     <div class="m-4">
 
                                         File Attachment: <br>
-                                        <a href="{{ asset($news->file) }}" target="_blank"
+                                        <a href="{{ route('download.uploads', ['file' => $news->file, 'model' => get_class($news), 'id' => $news->id]) }}" target="_blank"
                                             class="btn btn-primary btn-sm mt-2">Download</a>
                                     </div>
                                 @endif

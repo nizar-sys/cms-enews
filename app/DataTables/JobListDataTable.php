@@ -29,11 +29,26 @@ class JobListDataTable extends DataTable
                 return '<img style="width:70px" src="' . asset($query->image) . '"></img>';
             })
             ->addColumn('action', function ($query) {
-                return '<a href="' . route('admin.job-lists.edit', $query->id) . '" class="btn btn-primary"><i class="fas fa-edit"></i></a>
-                        <a href="' . route('admin.job-lists.destroy', $query->id) . '   " class="btn btn-danger delete-item"><i class="fas fa-trash"></i></a>';
-            })
-            ->editColumn('filepath', function ($query) {
-                return '<a href="' . $query->filepath . '" target="_blank" class="btn btn-sm btn-danger">View</a>';
+                return '<div class="d-flex justify-content-center">
+                            <a href="' . route('admin.job-lists.edit', $query->id) . '" class="btn btn-primary btn-sm mr-1"><i class="fas fa-edit"></i></a>
+                            <a href="' . route('admin.job-lists.destroy', $query->id) . '" class="btn btn-danger btn-sm delete-item"><i class="fas fa-trash"></i></a>
+                        </div>';
+            })            
+            ->editColumn('filepath', function ($pressRelease) {
+                if (!$pressRelease->filepath) {
+                    return __('app.No files found');
+                }
+
+                $url = route('download.uploads', [
+                    'file' => $pressRelease->filepath,
+                    'model' => get_class($pressRelease),
+                    'id' => $pressRelease->id
+                ]);
+
+                return sprintf(
+                    '<a target="_blank" href="%s" class="btn btn-sm btn-danger"><i class="fas fa-file"></i> View</a>',
+                    $url
+                );
             })
             ->setRowId('id')
             ->rawColumns(['action', 'filepath']);
@@ -85,6 +100,7 @@ class JobListDataTable extends DataTable
             Column::make('position')->width(20)->title('Position'),
             Column::make('filename')->width(20)->title('File Name'),
             Column::make('filepath')->width(20)->title('File Path'),
+            Column::make('file_downloaded')->width(20)->title('Count File Downloaded'),
             Column::make('vacancy_deadline')->width(20)->title('Vacancy Deadline'),
             Column::make('current_status')->width(20)->title('Current Status'),
             Column::computed('action')->width(5)

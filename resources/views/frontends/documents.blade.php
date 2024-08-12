@@ -73,28 +73,35 @@
                                                 <tr>
                                                     <th><input type="checkbox" id="selectAllPressReleases"></th>
                                                     <th>{{ __('app.Page Name') }}</th>
+                                                    <th>{{ __('app.File Name') }}</th>
                                                     <th class="text-center">{{ __('app.Download') }}</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
                                                 @forelse ($documents as $file)
                                                     <tr>
-                                                        <td width="5%"><input type="checkbox" name="files[]"
-                                                                value="{{ $file['file_path'] }}"></td>
-                                                        <td width="75%">{{ $file['file_name'] }}</td>
-                                                        <td class="text-center">
-                                                            <a class="btn btn-danger"
-                                                                href="{{ route('download.uploads', ['file' => $file['file_path']]) }}"
+                                                        <td width="5%" class="text-center">
+                                                            <input type="checkbox" name="files[]"
+                                                                value="{{ $file['file_path'] }}">
+                                                        </td>
+                                                        <td width="20%" class="text-left">
+                                                            {{ $file['pageName'] }}
+                                                        </td>
+                                                        <td width="55%" class="text-left">
+                                                            {{ $file['file_name'] }}
+                                                        </td>
+                                                        <td width="20%" class="text-center">
+                                                            <a class="btn btn-danger btn-sm"
+                                                                href="{{ route('download.uploads', ['file' => $file['file_path'], 'model' => get_class($file['model']), 'id' => $file['id']]) }}"
                                                                 download>
-                                                                <i class="far fa-file"></i>
-                                                                {{ __('app.Show Files') }}
+                                                                <i class="far fa-file"></i> {{ __('app.Show Files') }}
                                                             </a>
                                                         </td>
                                                     </tr>
                                                 @empty
                                                     <tr>
-                                                        <td colspan="3" class="text-center">
-                                                            {{ __('app.No files found') }}</td>
+                                                        <td colspan="4" class="text-center">
+                                                            {{ __('app.No data found') }}</td>
                                                     </tr>
                                                 @endforelse
                                             </tbody>

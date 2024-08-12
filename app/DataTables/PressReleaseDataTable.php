@@ -23,13 +23,27 @@ class PressReleaseDataTable extends DataTable
     {
         return (new EloquentDataTable($query))
             ->addIndexColumn()
-            
             ->addColumn('action', function ($query) {
-                return '<a href="' . route('admin.press-release.edit', $query->id) . '" class="btn btn-primary"><i class="fas fa-edit"></i></a>
-                        <a href="' . route('admin.press-release.destroy', $query->id) . '" class="btn btn-danger delete-item"><i class="fas fa-trash"></i></a>';
+                return '<div class="d-flex justify-content-center">
+                            <a href="' . route('admin.press-release.edit', $query->id) . '" class="btn btn-primary btn-sm mr-1"><i class="fas fa-edit"></i></a>
+                            <a href="' . route('admin.press-release.destroy', $query->id) . '" class="btn btn-danger btn-sm delete-item"><i class="fas fa-trash"></i></a>
+                        </div>';
             })
             ->editColumn('file_path', function ($pressRelease) {
-                return '<a href="' . $pressRelease->file_path . '" target="_blank" class="btn btn-sm btn-danger">View</a>';
+                if (!$pressRelease->file_path) {
+                    return __('app.No files found');
+                }
+
+                $url = route('download.uploads', [
+                    'file' => $pressRelease->file_path,
+                    'model' => get_class($pressRelease),
+                    'id' => $pressRelease->id
+                ]);
+
+                return sprintf(
+                    '<a target="_blank" href="%s" class="btn btn-sm btn-danger"><i class="fas fa-file"></i> View</a>',
+                    $url
+                );
             })
             ->rawColumns(['action', 'file_path']);
     }
@@ -114,6 +128,7 @@ class PressReleaseDataTable extends DataTable
                 ->addClass('text-center'),
             Column::make('file_name'),
             Column::make('file_path'),
+            Column::make('file_downloaded')->title('Count File Downloaded'),
             Column::computed('action')
                 ->exportable(false)
                 ->printable(false)

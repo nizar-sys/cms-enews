@@ -75,7 +75,7 @@
                                                 <td width="45%">{{ $file['file_name'] }}</td>
                                                 <td width="50%">
                                                     <a target="_blank"
-                                                        href="{{ route('download.uploads', ['file' => $file['file_path']]) }}">
+                                                        href="{{ route('download.uploads', ['file' => $file['file_path'], 'model' => get_class($file), 'id' => $file['id']]) }}">
                                                         {{ $file['file_name'] }}
                                                     </a>
                                                 </td>

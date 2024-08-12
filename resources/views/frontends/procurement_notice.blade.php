@@ -162,7 +162,7 @@
                                                         <td width="35%">{!! $generalProcurement->title !!}</td>
                                                         <td width="20%">
                                                             <a class="btn btn-danger btn-sm"
-                                                                href="{{ route('download.uploads', ['file' => $generalProcurement->file_path]) }}"
+                                                                href="{{ route('download.uploads', ['file' => $generalProcurement->file_path, 'model' => get_class($generalProcurement), 'id' => $generalProcurement->id]) }}"
                                                                 target="_blank">
                                                                 <i class="fa fa-file"></i> {{ __('app.Show Files') }}
                                                             </a>

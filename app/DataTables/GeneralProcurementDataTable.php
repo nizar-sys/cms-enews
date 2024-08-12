@@ -26,7 +26,22 @@ class GeneralProcurementDataTable extends DataTable
             ->addColumn('action', 'admin.procurements.general.actions')
             ->addIndexColumn()
             ->editColumn('published_date', fn ($generalProcurement) => Carbon::parse($generalProcurement->published_date)->format('d/m/Y'))
-            ->editColumn('file_path', fn ($generalProcurement) => '<a class="btn btn-danger" href="' . asset($generalProcurement->file_path) . '" target="_blank"><i class="fa fa-file-pdf"></i> View PDF</a>')
+            ->editColumn('file_path', function ($query) {
+                if (!$query->file_path) {
+                    return __('app.No files found');
+                }
+
+                $url = route('download.uploads', [
+                    'file' => $query->file_path,
+                    'model' => get_class($query),
+                    'id' => $query->id
+                ]);
+
+                return sprintf(
+                    '<a target="_blank" href="%s" class="btn btn-sm btn-danger"><i class="fas fa-file"></i> View</a>',
+                    $url
+                );
+            })
             ->rawColumns(['title', 'file_path', 'action']);
     }
 
@@ -107,6 +122,7 @@ class GeneralProcurementDataTable extends DataTable
             Column::make('title')->title('Title'),
             Column::make('category')->title('File Category'),
             Column::make('file_path')->title('Notice'),
+            Column::make('file_downloaded')->title('Count File Downloaded'),
             Column::make('published_date')->title('Published Date'),
             Column::make('duration')->title('Duration'),
             Column::computed('action')
