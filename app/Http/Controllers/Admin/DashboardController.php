@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\DataTables\DownloadLogDataTable;
 use App\Http\Controllers\Controller;
 use App\Models\Article;
+use App\Models\DownloadLog;
 use App\Models\News;
 use App\Models\Post;
 use App\Models\User;
@@ -12,7 +14,7 @@ use Illuminate\Http\Request;
 
 class DashboardController extends Controller
 {
-    public function index()
+    public function index(DownloadLogDataTable $dataTable)
     {
         $data = [
             'count_post' => Post::count(),
@@ -22,6 +24,6 @@ class DashboardController extends Controller
             'count_visitor' => Visitor::count(),
         ];
 
-        return view('admin.dashboard', compact('data'));
+        return $dataTable->render('admin.dashboard', compact('data'));
     }
 }

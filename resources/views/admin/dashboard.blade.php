@@ -5,82 +5,66 @@
         <div class="section-header">
             <h1>Dashboard</h1>
         </div>
+
         <div class="row">
-            <div class="col-lg-3 col-md-6 col-sm-6 col-12">
-                <div class="card card-statistic-1">
-                    <div class="card-icon bg-primary">
-                        <i class="fas fa-file-alt"></i>
-                    </div>
-                    <div class="card-wrap">
-                        <div class="card-header">
-                            <h4>Total Pages</h4>
+            @foreach ($data as $key => $value)
+                @php
+                    $icons = [
+                        'count_post' => 'fas fa-file-alt',
+                        'count_news' => 'fas fa-newspaper',
+                        'count_article' => 'fas fa-comments',
+                        'count_user' => 'fas fa-user',
+                        'count_visitor' => 'fas fa-users'
+                    ];
+                    $colors = [
+                        'count_post' => 'bg-primary',
+                        'count_news' => 'bg-warning',
+                        'count_article' => 'bg-info',
+                        'count_user' => 'bg-success',
+                        'count_visitor' => 'bg-danger'
+                    ];
+                    $titles = [
+                        'count_post' => 'Total Pages',
+                        'count_news' => 'Total News',
+                        'count_article' => 'Total Articles',
+                        'count_user' => 'Total Users',
+                        'count_visitor' => 'Total Visitors'
+                    ];
+                @endphp
+
+                <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                    <div class="card card-statistic-1">
+                        <div class="card-icon {{ $colors[$key] }}">
+                            <i class="{{ $icons[$key] }}"></i>
                         </div>
-                        <div class="card-body">
-                            {{ $data['count_post'] }}
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-6 col-sm-6 col-12">
-                <div class="card card-statistic-1">
-                    <div class="card-icon bg-warning">
-                        <i class="fas fa-newspaper"></i>
-                    </div>
-                    <div class="card-wrap">
-                        <div class="card-header">
-                            <h4>Total News</h4>
-                        </div>
-                        <div class="card-body">
-                            {{ $data['count_news'] }}
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-6 col-sm-6 col-12">
-                <div class="card card-statistic-1">
-                    <div class="card-icon bg-info">
-                        <i class="fas fa-comments"></i>
-                    </div>
-                    <div class="card-wrap">
-                        <div class="card-header">
-                            <h4>Total Article</h4>
-                        </div>
-                        <div class="card-body">
-                            {{ $data['count_article'] }}
+                        <div class="card-wrap">
+                            <div class="card-header">
+                                <h4>{{ $titles[$key] }}</h4>
+                            </div>
+                            <div class="card-body">
+                                {{ $value }}
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-lg-3 col-md-6 col-sm-6 col-12">
-                <div class="card card-statistic-1">
-                    <div class="card-icon bg-success">
-                        <i class="fas fa-user"></i>
+            @endforeach
+        </div>
+
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h4>Download Logs</h4>
                     </div>
-                    <div class="card-wrap">
-                        <div class="card-header">
-                            <h4>Total Users</h4>
-                        </div>
-                        <div class="card-body">
-                            {{ $data['count_user'] }}
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-6 col-sm-6 col-12">
-                <div class="card card-statistic-1">
-                    <div class="card-icon bg-danger">
-                        <i class="fas fa-users"></i>
-                    </div>
-                    <div class="card-wrap">
-                        <div class="card-header">
-                            <h4>Total Visitors</h4>
-                        </div>
-                        <div class="card-body">
-                            {{ $data['count_visitor'] }}
-                        </div>
+                    <div class="card-body">
+                        {!! $dataTable->table(['class' => 'table table-striped']) !!}
                     </div>
                 </div>
             </div>
         </div>
     </section>
 @endsection
+
+@push('scripts')
+    {!! $dataTable->scripts() !!}
+@endpush

@@ -155,4 +155,13 @@ return [
     "Document Category" => "Document Category",
     "Document Title" => "Document Title",
     "Document Name" => "Document Name",
+    "visitor_counter" => "Visitor Counter",
+    "Today" => "Today",
+    "Yesterday" => "Yesterday",
+    "This Week" => "This Week",
+    "Last Week" => "Last Week",
+    "This Month" => "This Month",
+    "Last Month" => "Last Month",
+    "All" => "All",
+    "Your IP Address" => "Your IP Address",
 ];
