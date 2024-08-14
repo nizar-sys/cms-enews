@@ -32,7 +32,7 @@ class SpesificProcurementDataTable extends DataTable
                 return "First Date of Publication: <br> <b>{$dateOfPublication}</b> <br>
                         Last Submission Date/Time: <br> <b>{$lastSubmissionDateTime}</b>";
             })
-            ->editColumn('title', fn (SpesificProcurement $spesificProcurement) => Str::limit($spesificProcurement->title, 50))
+            ->editColumn('title', fn(SpesificProcurement $spesificProcurement) => Str::limit($spesificProcurement->title, 50))
             ->editColumn('status', function (SpesificProcurement $spesificProcurement) {
                 $status = $spesificProcurement->status ?? 'draft';
                 $badge = match ($status) {
@@ -121,7 +121,7 @@ class SpesificProcurementDataTable extends DataTable
     public function getColumns(): array
     {
         return [
-            Column::make('DT_RowIndex')->title('#')->orderable(false)->searchable(false),
+            Column::make('DT_RowIndex')->title(__('No'))->orderable(false)->searchable(false),
             Column::make('title')->title('Title & ID'),
             Column::make('important_date')->title('Important Date')
                 ->orderable(false)

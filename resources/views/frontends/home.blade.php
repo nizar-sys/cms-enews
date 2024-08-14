@@ -142,11 +142,10 @@
 
             <div class="content" data-aos="fade-up">
                 <div class="container">
-                    <div class="row">
+                    <div class="slick-slider">
                         @foreach ($services as $service)
-                            <div class="col-lg-4 col-md-4" style="display: flex; justify-content: center;">
-                                <div class="service-item"
-                                    style="
+                            <div class="service-item"
+                                style="
                                     background: #fff;
                                     border-radius: 8px;
                                     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -157,36 +156,65 @@
                                     overflow: hidden;
                                     cursor: pointer;
                                 "
-                                    onmouseover="this.style.transform='translateY(-10px)'; this.style.boxShadow='0 8px 16px rgba(0, 0, 0, 0.2)';"
-                                    onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 8px rgba(0, 0, 0, 0.1)';"
-                                    onclick="openModal('{{ asset($service->image) }}')">
-                                    <div class="service-item-icon" style="margin-bottom: 15px;">
-                                        <img src="{{ asset($service->image) }}" alt="{{ $service->title }}"
-                                            style="
+                                onmouseover="this.style.transform='translateY(-10px)'; this.style.boxShadow='0 8px 16px rgba(0, 0, 0, 0.2)';"
+                                onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 8px rgba(0, 0, 0, 0.1)';">
+                                <div class="service-item-icon" style="margin-bottom: 15px;">
+                                    <img src="{{ asset($service->image) }}" alt="{{ $service->title }}"
+                                        style="
                                             max-width: 200px;
                                             height: auto;
                                             width: 100%;
                                             object-fit: contain;
                                             cursor: pointer;
                                         ">
-                                    </div>
-                                    <div class="service-item-content">
-                                        <h3 class="service-heading"
-                                            style="
+                                </div>
+                                <div class="service-item-content">
+                                    <h3 class="service-heading"
+                                        style="
                                             margin-top: 0;
                                             margin-bottom: 10px;
                                         ">
-                                            {{ $service->title }}
-                                        </h3>
-                                        <p style="margin: 0;">{!! $service->description !!}</p>
-                                    </div>
+                                        {{ $service->title }}
+                                    </h3>
+                                    <p style="margin: 0;">
+                                        {!! \Illuminate\Support\Str::words(strip_tags($service->description), 10, '...') !!}
+                                    </p>
+                                </div>
+                                <div class="text-center mt-4">
+                                    <a href="#" class="btn-more" data-bs-toggle="modal" data-bs-target="#serviceModal"
+                                        data-service-title="{{ $service->title }}"
+                                        data-service-description="{!! strip_tags($service->description) !!}"
+                                        data-service-image="{{ asset($service->image) }}">
+                                        {{ __('app.Read More') }}
+                                    </a>
                                 </div>
                             </div>
                         @endforeach
                     </div>
                 </div>
             </div>
+
         </section>
+
+        <div class="modal fade" id="serviceModal" tabindex="-1" aria-labelledby="serviceModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-xl">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="serviceModalLabel">Service Title</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body text-center">
+                        <img id="modalImage" src="" alt="" class="img-fluid mb-3 mx-auto d-block">
+                        <hr> <!-- Pembatas -->
+                        <p id="modalDescription"></p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
 
         {{-- Modal Image --}}
 
@@ -524,7 +552,7 @@
             </div><!-- End Section Title -->
 
             <div class="container">
-                <div class="row gy-5">
+                <div class="row slick-slider">
                     @foreach ($posts as $post)
                         <div class="col-xl-4 col-md-6">
                             <div class="post-item position-relative h-100" data-aos="fade-up" data-aos-delay="100">
@@ -537,7 +565,7 @@
 
                                 <div class="post-content d-flex flex-column">
 
-                                    <h3 class="post-title">{{ $post->title }}</h3>
+                                    <h3 class="post-title"> {!! \Illuminate\Support\Str::words(strip_tags($post->title), 10, '...') !!}</h3>
 
                                     <div class="meta d-flex align-items-center">
                                         <div class="d-flex align-items-center">

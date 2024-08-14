@@ -34,6 +34,10 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css"
         integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
 
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel/slick/slick.css" />
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel/slick/slick-theme.css" />
+
+
     @stack('style')
 </head>
 
@@ -382,6 +386,7 @@
     <script src="{{ asset('/ac') }}/assets/vendor/aos/aos.js"></script>
     <script src="{{ asset('/ac') }}/assets/vendor/swiper/swiper-bundle.min.js"></script>
     <script src="{{ asset('/ac') }}/assets/vendor/glightbox/js/glightbox.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel/slick/slick.min.js"></script>
 
     <!-- Main JS File -->
     @include('_partials.scripts.main')

@@ -14,7 +14,8 @@ use Yajra\DataTables\Html\Editor\Editor;
 use Yajra\DataTables\Html\Editor\Fields;
 use Yajra\DataTables\Services\DataTable;
 
-class PhotoGalleryDataTable extends DataTable {
+class PhotoGalleryDataTable extends DataTable
+{
 
     /**
      * Build DataTable class.
@@ -23,125 +24,126 @@ class PhotoGalleryDataTable extends DataTable {
      * @return \Yajra\DataTables\EloquentDataTable
      */
 
-     public function dataTable(QueryBuilder $query): EloquentDataTable
-     {
-         return (new EloquentDataTable($query))
-         ->addColumn('action', function ($query) {
-            return '<div class="d-flex justify-content-center">
+    public function dataTable(QueryBuilder $query): EloquentDataTable
+    {
+        return (new EloquentDataTable($query))
+            ->addColumn('action', function ($query) {
+                return '<div class="d-flex justify-content-center">
                         <a href="' . route('admin.photo-gallery.edit', $query->id) . '" class="btn btn-primary btn-sm mr-1"><i class="fas fa-edit"></i></a>
                         <a href="' . route('admin.photo-gallery.destroy', $query->id) . '" class="btn btn-danger btn-sm delete-item"><i class="fas fa-trash"></i></a>
                     </div>';
-        })        
-         ->addColumn('album_name', function ($photo) {
-             return $photo->photoGalleryAlbum->name;
-         })
-         ->editColumn('photo', function ($photo) {
-             return '<a href="' . $photo->photo_path . '" target="_blank" class="btn btn-sm btn-danger">View</a>';
-         })
-         ->setRowId('id')
-         ->rawColumns(['action', 'photo']);;
-     }
+            })
+            ->addColumn('album_name', function ($photo) {
+                return $photo->photoGalleryAlbum->name;
+            })
+            ->editColumn('photo', function ($photo) {
+                return '<a href="' . $photo->photo_path . '" target="_blank" class="btn btn-sm btn-danger">View</a>';
+            })
+            ->setRowId('id')
+            ->addIndexColumn()
+            ->rawColumns(['action', 'photo']);;
+    }
 
-     /**
-      * Get query source of dataTable.
-      *
-      * @param \App\Models\Designation $model
-      * @return \Illuminate\Database\Eloquent\Builder
-      */
-        public function query(PhotoGallery $model): QueryBuilder
-        {
-            return $model->newQuery();
-        }
+    /**
+     * Get query source of dataTable.
+     *
+     * @param \App\Models\Designation $model
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public function query(PhotoGallery $model): QueryBuilder
+    {
+        return $model->newQuery();
+    }
 
-        /**
-         * Optional method if you want to use html builder.
-         *
-         * @return \Yajra\DataTables\Html\Builder
-         */
+    /**
+     * Optional method if you want to use html builder.
+     *
+     * @return \Yajra\DataTables\Html\Builder
+     */
 
-         public function html(): HtmlBuilder
-         {
-             return $this->builder()
-                 ->setTableId('photogallery-table')
-                 ->columns($this->getColumns())
-                 ->minifiedAjax()
-                 //->dom('Bfrtip')
-                 ->orderBy(1)
-                 ->selectStyleSingle()
-                 ->parameters([
-                     'dom' => '<"row"<"col-md-6"B><"col-md-6"f>>' .
-                         '<"row"<"col-md-6"l><"col-md-6">>' .
-                         'rt' .
-                         '<"row"<"col-md-5"i><"col-md-7"p>>',
-                     'buttons' => [
-                         [
-                             'extend' => 'excelHtml5',
-                             'text' => '<i class="fas fa-file-excel"></i>',
-                             'className' => 'btn btn-sm ml-1 btn-success',
-                             'filename' => $this->filename(),
-                             'exportOptions' => [
-                                 'columns' => [0, 1, 2, 3],
-                             ],
-                             'sheetName' => $this->filename(),
-                         ],
-     
-                         [
-                             'extend' => 'pdf',
-                             'text' => '<i class="fas fa-file-pdf"></i>',
-                             'className' => 'btn btn-sm ml-1 btn-danger',
-                             'exportOptions' => [
-                                 'columns' => [0, 1, 2, 3],
-                             ],
-                             'filename' => $this->filename(),
-                         ],
-     
-                         [
-                             'text' => '<i class="fas fa-sync"></i>',
-                             'className' => 'btn btn-sm ml-1 btn-info',
-                             'action' => 'function(){
+    public function html(): HtmlBuilder
+    {
+        return $this->builder()
+            ->setTableId('photogallery-table')
+            ->columns($this->getColumns())
+            ->minifiedAjax()
+            //->dom('Bfrtip')
+            ->orderBy(1)
+            ->selectStyleSingle()
+            ->parameters([
+                'dom' => '<"row"<"col-md-6"B><"col-md-6"f>>' .
+                    '<"row"<"col-md-6"l><"col-md-6">>' .
+                    'rt' .
+                    '<"row"<"col-md-5"i><"col-md-7"p>>',
+                'buttons' => [
+                    [
+                        'extend' => 'excelHtml5',
+                        'text' => '<i class="fas fa-file-excel"></i>',
+                        'className' => 'btn btn-sm ml-1 btn-success',
+                        'filename' => $this->filename(),
+                        'exportOptions' => [
+                            'columns' => [0, 1, 2, 3],
+                        ],
+                        'sheetName' => $this->filename(),
+                    ],
+
+                    [
+                        'extend' => 'pdf',
+                        'text' => '<i class="fas fa-file-pdf"></i>',
+                        'className' => 'btn btn-sm ml-1 btn-danger',
+                        'exportOptions' => [
+                            'columns' => [0, 1, 2, 3],
+                        ],
+                        'filename' => $this->filename(),
+                    ],
+
+                    [
+                        'text' => '<i class="fas fa-sync"></i>',
+                        'className' => 'btn btn-sm ml-1 btn-info',
+                        'action' => 'function(){
                                  var table = window.LaravelDataTables["project-table"];
                                  table.ajax.reload();
                                  table.search("").columns().search("").draw();
                              }',
-                         ],
-     
-                     ],
-                     'language' => [
-                         'paginate' => [
-                             'previous' => '&laquo;',
-                             'next'     => '&raquo;',
-                         ],
-                     ]
-                 ]);
-         }
+                    ],
 
-        /**
-         * Get columns.
-         *
-         * @return array
-         */
-        public function getColumns(): array
-        {
-            return [
-                Column::make('id'),
-                Column::make('album_name'),
-                Column::make('photo'),
-                Column::computed('action')
+                ],
+                'language' => [
+                    'paginate' => [
+                        'previous' => '&laquo;',
+                        'next'     => '&raquo;',
+                    ],
+                ]
+            ]);
+    }
+
+    /**
+     * Get columns.
+     *
+     * @return array
+     */
+    public function getColumns(): array
+    {
+        return [
+            Column::make('DT_RowIndex')->title(__('No'))->orderable(false)->searchable(false),
+            Column::make('album_name'),
+            Column::make('photo'),
+            Column::computed('action')
                 ->exportable(false)
                 ->printable(false)
                 ->width(60)
                 ->addClass('text-center')
-            ];
-        }
+        ];
+    }
 
-        /**
-         * Get filename for export.
-         *
-         * @return string
-         */
+    /**
+     * Get filename for export.
+     *
+     * @return string
+     */
 
-        protected function filename(): string
-        {
-            return 'PhotoGallery_' . date('YmdHis');
-        }
+    protected function filename(): string
+    {
+        return 'PhotoGallery_' . date('YmdHis');
+    }
 }

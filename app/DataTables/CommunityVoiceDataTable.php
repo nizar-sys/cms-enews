@@ -14,7 +14,8 @@ use Yajra\DataTables\Html\Editor\Editor;
 use Yajra\DataTables\Html\Editor\Fields;
 use Yajra\DataTables\Services\DataTable;
 
-class CommunityVoiceDataTable extends DataTable {
+class CommunityVoiceDataTable extends DataTable
+{
 
     /**
      * Build DataTable class.
@@ -23,84 +24,86 @@ class CommunityVoiceDataTable extends DataTable {
      * @return \Yajra\DataTables\EloquentDataTable
      */
 
-     public function dataTable(QueryBuilder $query): EloquentDataTable
-     {
-         return (new EloquentDataTable($query))
-         ->editColumn('description', function ($query) {
-             return substr($query->description, 0, 50) . '...';
-         })
-         ->addColumn('action', function ($query) {
-            return '<div class="d-flex justify-content-center">
+    public function dataTable(QueryBuilder $query): EloquentDataTable
+    {
+        return (new EloquentDataTable($query))
+            ->editColumn('description', function ($query) {
+                return substr($query->description, 0, 50) . '...';
+            })
+            ->addColumn('action', function ($query) {
+                return '<div class="d-flex justify-content-center">
                         <a href="' . route('admin.community-voice.edit', $query->id) . '" class="btn btn-primary btn-sm mr-1"><i class="fas fa-edit"></i></a>
                         <a href="' . route('admin.community-voice.destroy', $query->id) . '" class="btn btn-danger btn-sm delete-item"><i class="fas fa-trash"></i></a>
                     </div>';
-        })        
-         ->setRowId('id')
-         ->rawColumns(['action', 'description']);;
-     }
+            })
+            ->setRowId('id')
+            ->addIndexColumn()
+            ->rawColumns(['action', 'description']);;
+    }
 
-     /**
-      * Get query source of dataTable.
-      *
-      * @param \App\Models\Designation $model
-      * @return \Illuminate\Database\Eloquent\Builder
-      */
-        public function query(CommunityVoice $model): QueryBuilder
-        {
-            return $model->newQuery();
-        }
+    /**
+     * Get query source of dataTable.
+     *
+     * @param \App\Models\Designation $model
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public function query(CommunityVoice $model): QueryBuilder
+    {
+        return $model->newQuery();
+    }
 
-        /**
-         * Optional method if you want to use html builder.
-         *
-         * @return \Yajra\DataTables\Html\Builder
-         */
+    /**
+     * Optional method if you want to use html builder.
+     *
+     * @return \Yajra\DataTables\Html\Builder
+     */
 
-        public function html(): HtmlBuilder
-        {
-            return $this->builder()
+    public function html(): HtmlBuilder
+    {
+        return $this->builder()
             ->setTableId('community_voice-table')
             ->columns($this->getColumns())
             ->minifiedAjax()
             ->dom('Bfrtip')
             ->orderBy(1)
-            ->buttons([]
+            ->buttons(
+                []
                 // Button::make('create'),
                 // Button::make('export'),
                 // Button::make('print'),
                 // Button::make('reset'),
                 // Button::make('reload')
             );
-        }
+    }
 
-        /**
-         * Get columns.
-         *
-         * @return array
-         */
-        protected function getColumns()
-        {
-            return [
-                Column::make('id'),
-                Column::make('title'),
-                Column::make('description'),
-                Column::make('slug'),
-                Column::computed('action')
+    /**
+     * Get columns.
+     *
+     * @return array
+     */
+    protected function getColumns()
+    {
+        return [
+            Column::make('DT_RowIndex')->title(__('No'))->orderable(false)->searchable(false),
+            Column::make('title'),
+            Column::make('description'),
+            Column::make('slug'),
+            Column::computed('action')
                 ->exportable(false)
                 ->printable(false)
                 ->width(60)
                 ->addClass('text-center')
-            ];
-        }
+        ];
+    }
 
-        /**
-         * Get filename for export.
-         *
-         * @return string
-         */
+    /**
+     * Get filename for export.
+     *
+     * @return string
+     */
 
-        protected function filename(): string
-        {
-            return 'CommunityVoice_' . date('YmdHis');
-        }
+    protected function filename(): string
+    {
+        return 'CommunityVoice_' . date('YmdHis');
+    }
 }

@@ -46,6 +46,7 @@ class PhotoProjectDataTable extends DataTable
                 return '<a href="' . $photo->photo_path . '" target="_blank" class="btn btn-sm btn-danger">View</a>';
             })
             ->setRowId('id')
+            ->addIndexColumn()
             ->rawColumns(['action', 'photo']);;
     }
 
@@ -130,7 +131,7 @@ class PhotoProjectDataTable extends DataTable
     public function getColumns(): array
     {
         return [
-            Column::make('id'),
+            Column::make('DT_RowIndex')->title(__('No'))->orderable(false)->searchable(false),
             Column::make('album_name'),
             Column::make('photo'),
             Column::computed('action')

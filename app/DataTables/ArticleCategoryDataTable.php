@@ -41,6 +41,7 @@ class ArticleCategoryDataTable extends DataTable
             ->editColumn('updated_at', function ($query) {
                 return $query->updated_at->diffForHumans();
             })
+            ->addIndexColumn()
             ->rawColumns(['action']);
     }
 
@@ -124,7 +125,7 @@ class ArticleCategoryDataTable extends DataTable
     public function getColumns(): array
     {
         return [
-            Column::make('id'),
+            Column::make('DT_RowIndex')->title(__('No'))->orderable(false)->searchable(false),
             Column::make('category_name'),
             Column::make('slug'),
             Column::make('updated_at'),

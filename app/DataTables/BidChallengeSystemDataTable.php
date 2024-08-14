@@ -24,7 +24,7 @@ class BidChallengeSystemDataTable extends DataTable
         return (new EloquentDataTable($query))
             ->addColumn('action', 'admin.procurements.bid_challenge_systems.actions')
             ->addIndexColumn()
-            ->editColumn('file_path', fn ($guidelineProcurement) => '<a class="btn btn-danger" href="' . asset($guidelineProcurement->file_path) . '" target="_blank"><i class="fa fa-file-pdf"></i> View PDF</a>')
+            ->editColumn('file_path', fn($guidelineProcurement) => '<a class="btn btn-danger" href="' . asset($guidelineProcurement->file_path) . '" target="_blank"><i class="fa fa-file-pdf"></i> View PDF</a>')
             ->rawColumns(['file_path', 'action']);
     }
 
@@ -101,7 +101,7 @@ class BidChallengeSystemDataTable extends DataTable
     public function getColumns(): array
     {
         return [
-            Column::make('DT_RowIndex')->title('#')->orderable(false)->searchable(false),
+            Column::make('DT_RowIndex')->title(__('No'))->orderable(false)->searchable(false),
             Column::make('file_name')->title('File Name')
                 ->searchable(true)
                 ->orderable(true),

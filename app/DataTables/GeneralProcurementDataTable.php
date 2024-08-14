@@ -25,7 +25,7 @@ class GeneralProcurementDataTable extends DataTable
         return (new EloquentDataTable($query))
             ->addColumn('action', 'admin.procurements.general.actions')
             ->addIndexColumn()
-            ->editColumn('published_date', fn ($generalProcurement) => Carbon::parse($generalProcurement->published_date)->format('d/m/Y'))
+            ->editColumn('published_date', fn($generalProcurement) => Carbon::parse($generalProcurement->published_date)->format('d/m/Y'))
             ->editColumn('file_path', function ($query) {
                 if (!$query->file_path) {
                     return __('app.No files found');
@@ -42,6 +42,7 @@ class GeneralProcurementDataTable extends DataTable
                     $url
                 );
             })
+            ->addIndexColumn()
             ->rawColumns(['title', 'file_path', 'action']);
     }
 
@@ -118,7 +119,7 @@ class GeneralProcurementDataTable extends DataTable
     public function getColumns(): array
     {
         return [
-            Column::make('DT_RowIndex')->title('#')->orderable(false)->searchable(false),
+            Column::make('DT_RowIndex')->title(__('No'))->orderable(false)->searchable(false),
             Column::make('title')->title('Title'),
             Column::make('category')->title('File Category'),
             Column::make('file_path')->title('Notice'),
