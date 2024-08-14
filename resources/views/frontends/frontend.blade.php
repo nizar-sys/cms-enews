@@ -40,7 +40,7 @@
 <body class="index-page">
 
     <header id="header" class="site-header navbar-static-top navbar-dark" role="banner"
-        style="background-color: #373A40">
+        style="background-color: #FEFAF6">
         <nav class="navbar top-navigation py-2">
             <div class="container d-flex justify-content-between align-items-center">
                 <div class="d-flex align-items-center">
@@ -204,7 +204,7 @@
             </div>
         </nav>
 
-        <nav class="navbar navbar-expand-xl navbar-dark bg-transparent">
+        <nav class="navbar navbar-expand-xl navbar-light bg-transparent">
             <div class="container">
                 <button class="navbar-toggler ms-auto" type="button" data-bs-toggle="collapse"
                     data-bs-target="#main-nav" aria-controls="main-nav" aria-expanded="false"

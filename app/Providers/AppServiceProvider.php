@@ -108,6 +108,8 @@ class AppServiceProvider extends ServiceProvider
                     'subItems' => [
                         ['label' => __('app.Procurement Notices'), 'url' => route('procurement-notice', ['locale' => $locale])],
                         ['label' => __('app.Procurement Guidelines'), 'url' => route('guidelines', ['locale' => $locale])],
+                        ['label' => __('app.bid_challenge_system'), 'url' => route('procurement-bid-challenge-systems', ['locale' => $locale])],
+                        ['label' => __('app.contract_award_notice'), 'url' => route('procurement-contract-award-notices', ['locale' => $locale])],
                         ['label' => __('app.HR Vacancies'), 'url' => route('jobs.index', ['locale' => $locale])],
                     ]
                 ],

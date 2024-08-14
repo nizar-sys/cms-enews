@@ -173,8 +173,7 @@
                     </li>
                 </ul>
             </li>
-            <li
-                class="nav-item dropdown {{ setSidebarActive(['admin.documents-section-setting.*']) }}">
+            <li class="nav-item dropdown {{ setSidebarActive(['admin.documents-section-setting.*']) }}">
                 <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i
                         class="fas fa-columns"></i>
                     <span>Documents</span>
@@ -219,7 +218,8 @@
                     <li class="{{ setSidebarActive(['admin.article.category.*']) }}">
                         <a class="nav-link" href="{{ route('admin.article.category.index') }}">Categories</a>
                     </li>
-                    <li class="{{ setSidebarActive(['admin.article.index', 'admin.article.create', 'admin.article.edit']) }}">
+                    <li
+                        class="{{ setSidebarActive(['admin.article.index', 'admin.article.create', 'admin.article.edit']) }}">
                         <a class="nav-link" href="{{ route('admin.article.index') }}">Publications</a>
                     </li>
                 </ul>
@@ -452,17 +452,48 @@
                 </ul>
             </li>
 
-
-            {{-- <li class="nav-item {{ setSidebarActive(['admin.procurements-bid-challenge-systems.*']) }}">
-                <a href="{{ route('admin.procurements-bid-challenge-systems.index') }}" class="nav-link"><i
-                        class="fas fa-columns"></i><span>Bid Challenge
-                        System</span></a>
+            <li
+                class="nav-item dropdown {{ setSidebarActive(['admin.bid-challenge-system-section-setting.index', 'admin.procurements-bid-challenge-systems.*']) }}">
+                <a href="#" class="nav-link has-dropdown" data-toggle="dropdown">
+                    <i class="fas fa-columns"></i>
+                    <span>Bid Challenge Systems</span>
+                </a>
+                <ul class="dropdown-menu" style="display: none;">
+                    <li class="{{ setSidebarActive(['admin.bid-challenge-system-section-setting.index']) }}">
+                        <a class="nav-link"
+                            href="{{ route('admin.bid-challenge-system-section-setting.index') }}">Section
+                            Setting</a>
+                    </li>
+                    <li class="nav-item {{ setSidebarActive(['admin.procurements-bid-challenge-systems.*']) }}">
+                        <a href="{{ route('admin.procurements-bid-challenge-systems.index') }}"
+                            class="nav-link"><span>Bid Challenge
+                                System</span></a>
+                    </li>
+                </ul>
             </li>
-            <li class="nav-item {{ setSidebarActive(['admin.procurements-contract-award-notices.*']) }}">
-                <a href="{{ route('admin.procurements-contract-award-notices.index', []) }}" class="nav-link"><i
-                        class="fas fa-columns"></i><span>Contract Award
-                        Notice</span></a>
-            </li> --}}
+
+            <li
+                class="nav-item dropdown {{ setSidebarActive(['admin.contract-award-notice-section-setting.index', 'admin.procurements-contract-award-notices.*']) }}">
+                <a href="#" class="nav-link has-dropdown" data-toggle="dropdown">
+                    <i class="fas fa-columns"></i>
+                    <span>Contract Award Notice</span>
+                </a>
+                <ul class="dropdown-menu" style="display: none;">
+                    <li class="{{ setSidebarActive(['admin.contract-award-notice-section-setting.index']) }}">
+                        <a class="nav-link"
+                            href="{{ route('admin.contract-award-notice-section-setting.index') }}">Section
+                            Setting</a>
+                    </li>
+                    <li class="nav-item {{ setSidebarActive(['admin.procurements-contract-award-notices.*']) }}">
+                        <a href="{{ route('admin.procurements-contract-award-notices.index', []) }}"
+                            class="nav-link"><span>Contract Award
+                                Notice</span></a>
+                    </li>
+                </ul>
+            </li>
+
+
+
 
             <li class="menu-header">Faqs</li>
             <li class="nav-item {{ setSidebarActive(['admin.faqs.index']) }}">
