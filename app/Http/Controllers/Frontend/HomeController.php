@@ -11,8 +11,10 @@ use App\Models\ArticleSectionSetting;
 use App\Models\CommunityVoice;
 
 use App\Models\BidChallengeSystem;
+use App\Models\BidChallengeSystemSectionSetting;
 use App\Models\CommunityVoiceSectionSetting;
 use App\Models\ContractAwardNotice;
+use App\Models\ContractAwardNoticeSectionSetting;
 use App\Models\Director;
 use App\Models\DirectorSectionSetting;
 use App\Models\DocumentCategory;
@@ -146,16 +148,18 @@ class HomeController extends Controller
     {
 
         $bidChallengeSystem = BidChallengeSystem::get();
+        $sectionSetting = BidChallengeSystemSectionSetting::first();
 
-        return view('frontends.bid_challenge_system', compact('bidChallengeSystem'));
+        return view('frontends.bid_challenge_system', compact('bidChallengeSystem', 'sectionSetting'));
     }
 
     public function contractAwardNotice($locale)
     {
 
         $contractAwardNotice = ContractAwardNotice::get();
+        $sectionSetting = ContractAwardNoticeSectionSetting::first();
 
-        return view('frontends.contract_award_notice', compact('contractAwardNotice'));
+        return view('frontends.contract_award_notice', compact('contractAwardNotice', 'sectionSetting'));
     }
 
     public function photoGallery($locale)
@@ -311,7 +315,7 @@ class HomeController extends Controller
             $results = $results->merge(
                 BidChallengeSystem::where('file_name', 'like', "%$query%")
                     ->get()
-                    ->map(fn ($item) => [
+                    ->map(fn($item) => [
                         'title' => route('download.uploads', [
                             'file' => $item->file_path,
                             'model' => get_class($item),
@@ -326,7 +330,7 @@ class HomeController extends Controller
             $results = $results->merge(
                 ContractAwardNotice::where('file_name', 'like', "%$query%")
                     ->get()
-                    ->map(fn ($item) => [
+                    ->map(fn($item) => [
                         'title' => route('download.uploads', [
                             'file' => $item->file_path,
                             'model' => get_class($item),
@@ -341,7 +345,7 @@ class HomeController extends Controller
             $results = $results->merge(
                 DocumentFile::where('filename', 'like', "%$query%")
                     ->get()
-                    ->map(fn ($item) => [
+                    ->map(fn($item) => [
                         'title' => route('download.uploads', [
                             'file' => $item->file_path,
                             'model' => get_class($item),
@@ -356,7 +360,7 @@ class HomeController extends Controller
             $results = $results->merge(
                 GuidelineProcurement::where('file_name', 'like', "%$query%")
                     ->get()
-                    ->map(fn ($item) => [
+                    ->map(fn($item) => [
                         'title' => route('download.uploads', [
                             'file' => $item->file_path,
                             'model' => get_class($item),
@@ -371,7 +375,7 @@ class HomeController extends Controller
             $results = $results->merge(
                 News::where('title', 'like', "%$query%")
                     ->get()
-                    ->map(fn ($item) => [
+                    ->map(fn($item) => [
                         'title' => $item->title,
                         'detail' => route('media-notices.news-detail', ['locale' => session('locale', 'en'), 'new' => $item->id]),
                         'isFile' => false,
@@ -382,7 +386,7 @@ class HomeController extends Controller
             $results = $results->merge(
                 Notice::where('file_name', 'like', "%$query%")
                     ->get()
-                    ->map(fn ($item) => [
+                    ->map(fn($item) => [
                         'title' =>  route('download.uploads', [
                             'file' => $item->file_path,
                             'model' => get_class($item),
@@ -399,7 +403,7 @@ class HomeController extends Controller
                     ->orWhere('slug', 'like', "%$query%")
                     ->orWhere('content', 'like', "%$query%")
                     ->get()
-                    ->map(fn ($item) => [
+                    ->map(fn($item) => [
                         'title' => $item->title,
                         'detail' => route('posts-detail', ['locale' => session('locale', 'en'), 'post' => $item->slug]),
                         'isFile' => false,
@@ -410,7 +414,7 @@ class HomeController extends Controller
             $results = $results->merge(
                 PressRelease::where('file_name', 'like', "%$query%")
                     ->get()
-                    ->map(fn ($item) => [
+                    ->map(fn($item) => [
                         'title' => route('download.uploads', [
                             'file' => $item->file_path,
                             'model' => get_class($item),
@@ -425,7 +429,7 @@ class HomeController extends Controller
             $results = $results->merge(
                 SpesificProcurementFile::where('file_name', 'like', "%$query%")
                     ->get()
-                    ->map(fn ($item) => [
+                    ->map(fn($item) => [
                         'title' => route('download.uploads', [
                             'file' => $item->file_path,
                             'model' => get_class($item),
@@ -444,7 +448,7 @@ class HomeController extends Controller
                         $q->where('designation', 'like', "%$query%");
                     })
                     ->get()
-                    ->map(fn ($item) => [
+                    ->map(fn($item) => [
                         'title' => $item->name,
                         'detail' => route('mca-nepal.board-of-director', ['locale' => $locale]),
                         'isFile' => false,
@@ -460,7 +464,7 @@ class HomeController extends Controller
                     })
                     ->with('designation')
                     ->get()
-                    ->map(fn ($item) => [
+                    ->map(fn($item) => [
                         'title' => $item->name,
                         'detail' => route('mca-nepal.executive-team', ['locale' => $locale]),
                         'isFile' => false,
@@ -472,7 +476,7 @@ class HomeController extends Controller
                 WaterSanitation::where('title', 'like', "%$query%")
                     ->orWhere('description', 'like', "%$query%")
                     ->get()
-                    ->map(fn ($item) => [
+                    ->map(fn($item) => [
                         'title' => $item->title,
                         'detail' => route('what-we-do.water-sanitations-detail', [
                             'locale' => $locale,
@@ -487,7 +491,7 @@ class HomeController extends Controller
                 TeachingLeading::where('title', 'like', "%$query%")
                     ->orWhere('description', 'like', "%$query%")
                     ->get()
-                    ->map(fn ($item) => [
+                    ->map(fn($item) => [
                         'title' => $item->title,
                         'detail' => route('what-we-do.teaching-leadings-detail', [
                             'locale' => $locale,
@@ -502,7 +506,7 @@ class HomeController extends Controller
                 Administrative::where('title', 'like', "%$query%")
                     ->orWhere('description', 'like', "%$query%")
                     ->get()
-                    ->map(fn ($item) => [
+                    ->map(fn($item) => [
                         'title' => $item->title,
                         'detail' => route('what-we-do.administrative-detail', [
                             'locale' => $locale,
@@ -515,8 +519,8 @@ class HomeController extends Controller
 
             $results = $results->merge(
                 WaterSanitation::whereNotNull('file')->get()
-                    ->filter(fn ($item) => str_contains($item->file, $query))
-                    ->map(fn ($item) => [
+                    ->filter(fn($item) => str_contains($item->file, $query))
+                    ->map(fn($item) => [
                         'title' => $item->title,
                         'detail' => $item->file,
                         'isFile' => true,
@@ -524,8 +528,8 @@ class HomeController extends Controller
                     ]),
 
                 TeachingLeading::whereNotNull('file')->get()
-                    ->filter(fn ($item) => str_contains($item->file, $query))
-                    ->map(fn ($item) => [
+                    ->filter(fn($item) => str_contains($item->file, $query))
+                    ->map(fn($item) => [
                         'title' => $item->title,
                         'detail' => $item->file,
                         'isFile' => true,
@@ -533,8 +537,8 @@ class HomeController extends Controller
                     ]),
 
                 Administrative::whereNotNull('file')->get()
-                    ->filter(fn ($item) => str_contains($item->file, $query))
-                    ->map(fn ($item) => [
+                    ->filter(fn($item) => str_contains($item->file, $query))
+                    ->map(fn($item) => [
                         'title' => $item->title,
                         'detail' => $item->file,
                         'isFile' => true,
@@ -546,7 +550,7 @@ class HomeController extends Controller
                 Article::where('title', 'like', "%$query%")
                     ->orWhere('description', 'like', "%$query%")
                     ->get()
-                    ->map(fn ($item) => [
+                    ->map(fn($item) => [
                         'title' => $item->title,
                         'detail' => route('projects.articles-interviews', [
                             'locale' => $locale,
@@ -561,7 +565,7 @@ class HomeController extends Controller
                     ->orWhere('description', 'like', "%$query%")
                     ->orWhere('slug', 'like', "%$query%")
                     ->get()
-                    ->map(fn ($item) => [
+                    ->map(fn($item) => [
                         'title' => $item->title,
                         'detail' => route('media-notices.community-voice-detail', [
                             'locale' => $locale,
@@ -647,7 +651,7 @@ class HomeController extends Controller
 
         $documents = $documents->merge(
             WaterSanitation::whereNotNull('file')->get()
-                ->map(fn ($item) => [
+                ->map(fn($item) => [
                     'file_name' => $item->title,
                     'file_path' => $item->file,
                     'model' => $item,
@@ -658,7 +662,7 @@ class HomeController extends Controller
 
         $documents = $documents->merge(
             TeachingLeading::whereNotNull('file')->get()
-                ->map(fn ($item) => [
+                ->map(fn($item) => [
                     'file_name' => $item->title,
                     'file_path' => $item->file,
                     'model' => $item,
@@ -669,7 +673,7 @@ class HomeController extends Controller
 
         $documents = $documents->merge(
             Administrative::whereNotNull('file')->get()
-                ->map(fn ($item) => [
+                ->map(fn($item) => [
                     'file_name' => $item->title,
                     'file_path' => $item->file,
                     'model' => $item,

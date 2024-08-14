@@ -28,8 +28,10 @@ use App\Http\Controllers\Admin\SeoSettingController;
 use App\Http\Controllers\Admin\ArticleController;
 use App\Http\Controllers\Admin\ArticleSectionSettingController;
 use App\Http\Controllers\Admin\BidChallengeSystemController;
+use App\Http\Controllers\Admin\BidChallengeSystemSectionSettingController;
 use App\Http\Controllers\Admin\CommunityVoiceSectionSettingController;
 use App\Http\Controllers\Admin\ContractAwardNoticeController;
+use App\Http\Controllers\Admin\ContractAwardNoticeSectionSettingController;
 use App\Http\Controllers\Admin\DocumentsSectionSettingController;
 use App\Http\Controllers\Admin\FooterInfoController;
 use App\Http\Controllers\Admin\GuidelineProcurementController;
@@ -74,6 +76,8 @@ use App\Http\Controllers\Admin\VideoProjectController;
 use App\Http\Controllers\Admin\VideoSectionSettingController;
 use App\Http\Controllers\Admin\WaterSanitationController;
 use App\Http\Controllers\Admin\WaterSanitationSectionSettingController;
+use App\Models\BidChallengeSystemSectionSetting;
+use App\Models\ContractAwardNoticeSectionSetting;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Artisan;
 
@@ -339,6 +343,9 @@ Route::group(['middleware' => ['auth', 'admin'], 'prefix' => 'console', 'as' => 
     Route::resource('notices-section-setting', NoticesSectionSettingController::class)->only(['index', 'update']);
     Route::resource('procurements-guidelines-section-setting', GuidelineSectionSettingController::class)->only(['index', 'update'])->parameters(['procurements-guidelines-section-setting' => 'guideline_section_setting']);
     Route::resource('water-sanitation-section-setting', WaterSanitationSectionSettingController::class)->only(['index', 'update']);
+    Route::resource('bid-challenge-system-section-setting', BidChallengeSystemSectionSettingController::class)->only(['index', 'update'])->parameters(['bid-challenge-system-section-setting' => 'bidSectionSetting']);
+    Route::resource('contract-award-notice-section-setting', ContractAwardNoticeSectionSettingController::class)->only(['index', 'update'])->parameters(['contract-award-notice-section-setting' => 'contractSectionSetting']);
+
     Route::prefix('water-sanitation')->group(function () {
         Route::get('/', [WaterSanitationController::class, 'index'])->name('water-sanitation.index');
         Route::get('/create', [WaterSanitationController::class, 'create'])->name('water-sanitation.create');

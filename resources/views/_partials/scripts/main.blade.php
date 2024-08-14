@@ -244,4 +244,13 @@
             }
         });
     });
+
+    document.querySelectorAll('.navbar-nav .nav-link, .navbar-nav .dropdown-item').forEach(link => {
+        link.addEventListener('mouseover', function() {
+            this.style.color = 'red';
+        });
+        link.addEventListener('mouseout', function() {
+            this.style.color = '';
+        });
+    });
 </script>

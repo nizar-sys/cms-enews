@@ -2298,7 +2298,7 @@
     .year {
         display: block;
         font-size: 12px;
-        color: #ffffff;
+        color: black;
     }
 
 
@@ -2423,142 +2423,141 @@
     }
 
     .latest-videos {
-    background-color: #f7f7f7;
-    padding: 60px 0;
-}
+        background-color: #f7f7f7;
+        padding: 60px 0;
+    }
 
-.section-title h2 {
-    font-size: 36px;
-    color: #333;
-    text-align: center;
-    margin-bottom: 20px;
-}
+    .section-title h2 {
+        font-size: 36px;
+        color: #333;
+        text-align: center;
+        margin-bottom: 20px;
+    }
 
-.section-title p {
-    font-size: 18px;
-    color: #777;
-    text-align: center;
-    margin-bottom: 40px;
-}
+    .section-title p {
+        font-size: 18px;
+        color: #777;
+        text-align: center;
+        margin-bottom: 40px;
+    }
 
-.video-gallery {
-    display: flex;
-    justify-content: center;
-    gap: 30px;
-    flex-wrap: wrap;
-}
+    .video-gallery {
+        display: flex;
+        justify-content: center;
+        gap: 30px;
+        flex-wrap: wrap;
+    }
 
-.video-item {
-    background: #fff;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    overflow: hidden;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    position: relative;
-    margin-bottom: 30px;
-}
+    .video-item {
+        background: #fff;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        overflow: hidden;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        position: relative;
+        margin-bottom: 30px;
+    }
 
-.video-item:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
-}
+    .video-item:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+    }
 
-.video-thumbnail {
-    position: relative;
-    overflow: hidden;
-}
+    .video-thumbnail {
+        position: relative;
+        overflow: hidden;
+    }
 
-.video-thumbnail img {
-    width: 100%;
-    height: auto;
-    border-radius: 10px 10px 0 0;
-}
+    .video-thumbnail img {
+        width: 100%;
+        height: auto;
+        border-radius: 10px 10px 0 0;
+    }
 
-.play-button {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    font-size: 48px;
-    color: #fff;
-    text-decoration: none;
-    background-color: rgba(0, 0, 0, 0.6);
-    border-radius: 50%;
-    padding: 20px;
-    transition: background-color 0.3s ease;
-}
+    .play-button {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        font-size: 48px;
+        color: #fff;
+        text-decoration: none;
+        background-color: rgba(0, 0, 0, 0.6);
+        border-radius: 50%;
+        padding: 20px;
+        transition: background-color 0.3s ease;
+    }
 
-.play-button:hover {
-    background-color: rgba(0, 0, 0, 0.8);
-}
+    .play-button:hover {
+        background-color: rgba(0, 0, 0, 0.8);
+    }
 
-.video-title {
-    font-size: 18px;
-    color: #333;
-    text-align: center;
-    padding: 15px;
-}
+    .video-title {
+        font-size: 18px;
+        color: #333;
+        text-align: center;
+        padding: 15px;
+    }
 
-.photo-gallery {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 1rem;
-            justify-content: center;
-        }
+    .photo-gallery {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1rem;
+        justify-content: center;
+    }
 
+    .photo-item {
+        position: relative;
+        overflow: hidden;
+        border-radius: 0.5rem;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s ease;
+        flex: 1 1 calc(33.333% - 1rem);
+        max-width: calc(33.333% - 1rem);
+    }
+
+    @media (max-width: 768px) {
         .photo-item {
-            position: relative;
-            overflow: hidden;
-            border-radius: 0.5rem;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s ease;
-            flex: 1 1 calc(33.333% - 1rem);
-            max-width: calc(33.333% - 1rem);
+            flex: 1 1 calc(50% - 1rem);
+            max-width: calc(50% - 1rem);
         }
+    }
 
-        @media (max-width: 768px) {
-            .photo-item {
-                flex: 1 1 calc(50% - 1rem);
-                max-width: calc(50% - 1rem);
-            }
+    @media (max-width: 480px) {
+        .photo-item {
+            flex: 1 1 calc(100% - 1rem);
+            max-width: calc(100% - 1rem);
         }
+    }
 
-        @media (max-width: 480px) {
-            .photo-item {
-                flex: 1 1 calc(100% - 1rem);
-                max-width: calc(100% - 1rem);
-            }
-        }
+    .photo-item img {
+        width: 100%;
+        height: auto;
+        border-radius: 0.5rem;
+        transition: transform 0.3s ease, opacity 0.3s ease;
+    }
 
-        .photo-item img {
-            width: 100%;
-            height: auto;
-            border-radius: 0.5rem;
-            transition: transform 0.3s ease, opacity 0.3s ease;
-        }
+    .photo-item:hover img {
+        transform: scale(1.05);
+        opacity: 0.9;
+    }
 
-        .photo-item:hover img {
-            transform: scale(1.05);
-            opacity: 0.9;
-        }
+    .photo-caption {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background: rgba(0, 0, 0, 0.5);
+        color: #fff;
+        padding: 0.5rem;
+        text-align: center;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+    }
 
-        .photo-caption {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            background: rgba(0, 0, 0, 0.5);
-            color: #fff;
-            padding: 0.5rem;
-            text-align: center;
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
-
-        .photo-item:hover .photo-caption {
-            opacity: 1;
-        }
-
+    .photo-item:hover .photo-caption {
+        opacity: 1;
+    }
 </style>
 
 <style>
