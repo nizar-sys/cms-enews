@@ -37,6 +37,7 @@ class PhotoProjectAlbumDataTable extends DataTable
                     </div>';
             })
             ->setRowId('id')
+            ->addIndexColumn()
             ->rawColumns(['action']);;
     }
 
@@ -121,7 +122,7 @@ class PhotoProjectAlbumDataTable extends DataTable
     public function getColumns(): array
     {
         return [
-            Column::make('id'),
+            Column::make('DT_RowIndex')->title(__('No'))->orderable(false)->searchable(false),
             Column::make('name'),
             Column::computed('action')
                 ->exportable(false)

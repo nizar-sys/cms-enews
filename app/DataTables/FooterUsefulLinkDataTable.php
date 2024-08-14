@@ -23,10 +23,11 @@ class FooterUsefulLinkDataTable extends DataTable
     public function dataTable(QueryBuilder $query): EloquentDataTable
     {
         return (new EloquentDataTable($query))
-            ->addColumn('action', function($query){
-                return '<a href="'.route('admin.footer-useful-links.edit', $query->id).'" class="btn btn-primary"><i class="fas fa-edit"></i></a>
-                <a href="'.route('admin.footer-useful-links.destroy', $query->id).'" class="btn btn-danger delete-item"><i class="fas fa-trash"></i></a>';
-            }) 
+            ->addColumn('action', function ($query) {
+                return '<a href="' . route('admin.footer-useful-links.edit', $query->id) . '" class="btn btn-primary"><i class="fas fa-edit"></i></a>
+                <a href="' . route('admin.footer-useful-links.destroy', $query->id) . '" class="btn btn-danger delete-item"><i class="fas fa-trash"></i></a>';
+            })
+            ->addIndexColumn()
             ->setRowId('id');
     }
 
@@ -49,22 +50,19 @@ class FooterUsefulLinkDataTable extends DataTable
     public function html(): HtmlBuilder
     {
         return $this->builder()
-                    ->setTableId('footerusefullink-table') 
-                    ->columns($this->getColumns())
-                    ->minifiedAjax()
-                    //->dom('Bfrtip')
-                    // ->orderBy(0)
-                    ->selectStyleSingle()
-                    ->buttons([
-                      
-                    ])
-                    ->parameters([
-                        'responsive' => true,
-                        'autoWidth' => false,
-                    //     'ordering' => false
-                      ])
-                    ;
-                    
+            ->setTableId('footerusefullink-table')
+            ->columns($this->getColumns())
+            ->minifiedAjax()
+            //->dom('Bfrtip')
+            // ->orderBy(0)
+            ->selectStyleSingle()
+            ->buttons([])
+            ->parameters([
+                'responsive' => true,
+                'autoWidth' => false,
+                //     'ordering' => false
+            ])
+        ;
     }
 
     /**
@@ -75,15 +73,15 @@ class FooterUsefulLinkDataTable extends DataTable
     public function getColumns(): array
     {
         return [
-            Column::make('id'),
+            Column::make('DT_RowIndex')->title(__('No'))->orderable(false)->searchable(false),
             Column::make('name'),
             Column::make('url'),
             Column::computed('action')
-            ->exportable(false)
-            ->printable(false)
-            ->width(200)
-            ->addClass('text-center'),
-         
+                ->exportable(false)
+                ->printable(false)
+                ->width(200)
+                ->addClass('text-center'),
+
         ];
     }
 

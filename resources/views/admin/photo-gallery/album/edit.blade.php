@@ -20,7 +20,7 @@
                             <h4>Edit Photo Project Album</h4>
                         </div>
                         <div class="card-body">
-                            <form action="{{ route('admin.photo-project.album.update', $album->id) }}" method="POST"
+                            <form action="{{ route('admin.photo-gallery.album.update', $album->id) }}" method="POST"
                                 enctype="multipart/form-data">
                                 @csrf
                                 @method('PUT')

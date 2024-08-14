@@ -45,6 +45,7 @@ class PressReleaseDataTable extends DataTable
                     $url
                 );
             })
+            ->addIndexColumn()
             ->rawColumns(['action', 'file_path']);
     }
 
@@ -121,11 +122,7 @@ class PressReleaseDataTable extends DataTable
     public function getColumns(): array
     {
         return [
-            Column::make('DT_RowIndex')
-                ->title('#')
-                ->orderable(false)
-                ->searchable(false)
-                ->addClass('text-center'),
+            Column::make('DT_RowIndex')->title(__('No'))->orderable(false)->searchable(false),
             Column::make('file_name'),
             Column::make('file_path'),
             Column::make('file_downloaded')->title('Count File Downloaded'),

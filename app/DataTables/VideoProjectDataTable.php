@@ -40,6 +40,7 @@ class VideoProjectDataTable extends DataTable
                 return '<a href="' . $video->url . '" target="_blank" class="btn btn-sm btn-danger">View</a>';
             })
             ->setRowId('id')
+            ->addIndexColumn()
             ->rawColumns(['action', 'video_url']);;
     }
 
@@ -124,7 +125,7 @@ class VideoProjectDataTable extends DataTable
     public function getColumns(): array
     {
         return [
-            Column::make('id'),
+            Column::make('DT_RowIndex')->title(__('No'))->orderable(false)->searchable(false),
             Column::make('title'),
             Column::make('video_url'),
             Column::computed('action')

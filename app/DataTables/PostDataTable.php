@@ -24,6 +24,7 @@ class PostDataTable extends DataTable
         return (new EloquentDataTable($query))
             ->addIndexColumn()
             ->addColumn('action', 'admin.posts.actions')
+            ->addIndexColumn()
             ->rawColumns(['action']);
     }
 
@@ -100,11 +101,7 @@ class PostDataTable extends DataTable
     public function getColumns(): array
     {
         return [
-            Column::make('DT_RowIndex')
-                ->title('#')
-                ->orderable(false)
-                ->searchable(false)
-                ->addClass('text-center'),
+            Column::make('DT_RowIndex')->title(__('No'))->orderable(false)->searchable(false),
             Column::make('author.name')->title('Author'),
             Column::make('category.name')->title('Category Name'),
             Column::make('title')->title('Title'),

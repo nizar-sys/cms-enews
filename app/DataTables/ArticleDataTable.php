@@ -45,6 +45,7 @@ class ArticleDataTable extends DataTable
             ->editColumn('updated_at', function ($query) {
                 return $query->updated_at->diffForHumans();
             })
+            ->addIndexColumn()
             ->rawColumns(['action', 'description']);;
     }
 
@@ -128,7 +129,7 @@ class ArticleDataTable extends DataTable
     public function getColumns(): array
     {
         return [
-            Column::make('id'),
+            Column::make('DT_RowIndex')->title(__('No'))->orderable(false)->searchable(false),
             Column::make('title'),
             Column::make('description'),
             Column::make('article_url'),

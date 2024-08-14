@@ -24,7 +24,7 @@ class ContractAwardNoticeDataTable extends DataTable
         return (new EloquentDataTable($query))
             ->addColumn('action', 'admin.procurements.contract_award_notice.actions')
             ->addIndexColumn()
-            ->editColumn('file_path', fn ($contractAwardSystem) => '<a class="btn btn-danger" href="' . asset($contractAwardSystem->file_path) . '" target="_blank"><i class="fa fa-file-pdf"></i> View PDF</a>')
+            ->editColumn('file_path', fn($contractAwardSystem) => '<a class="btn btn-danger" href="' . asset($contractAwardSystem->file_path) . '" target="_blank"><i class="fa fa-file-pdf"></i> View PDF</a>')
             ->rawColumns(['file_path', 'action']);
     }
 
@@ -101,7 +101,7 @@ class ContractAwardNoticeDataTable extends DataTable
     public function getColumns(): array
     {
         return [
-            Column::make('DT_RowIndex')->title('#')->orderable(false)->searchable(false),
+            Column::make('DT_RowIndex')->title(__('No'))->orderable(false)->searchable(false),
             Column::make('file_name')->title('File Name')
                 ->searchable(true)
                 ->orderable(true),

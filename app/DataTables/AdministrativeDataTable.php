@@ -57,6 +57,7 @@ class AdministrativeDataTable extends DataTable
                     $url
                 );
             })
+            ->addIndexColumn()
             ->rawColumns(['action', 'description', 'image', 'file']);
     }
 
@@ -141,7 +142,7 @@ class AdministrativeDataTable extends DataTable
     public function getColumns(): array
     {
         return [
-            Column::make('id'),
+            Column::make('DT_RowIndex')->title(__('No'))->orderable(false)->searchable(false),
             Column::make('image')->title('Thumbnail'),
             Column::make('title'),
             Column::make('description'),

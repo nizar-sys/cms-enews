@@ -23,8 +23,9 @@ class CategoryDataTable extends DataTable
     {
         return (new EloquentDataTable($query))
             ->addIndexColumn()
-            ->editColumn('updated_at', fn ($category) => $category->updated_at->diffForHumans())
+            ->editColumn('updated_at', fn($category) => $category->updated_at->diffForHumans())
             ->addColumn('action', 'admin.posts.category.actions')
+            ->addIndexColumn()
             ->rawColumns(['action']);
     }
 
@@ -101,11 +102,7 @@ class CategoryDataTable extends DataTable
     public function getColumns(): array
     {
         return [
-            Column::make('DT_RowIndex')
-                ->title('#')
-                ->orderable(false)
-                ->searchable(false)
-                ->addClass('text-center'),
+            Column::make('DT_RowIndex')->title(__('No'))->orderable(false)->searchable(false),
             Column::make('name')->title('Category Name'),
             Column::make('slug'),
             Column::make('updated_at'),

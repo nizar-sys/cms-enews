@@ -253,4 +253,63 @@
             this.style.color = '';
         });
     });
+
+    $(document).ready(function() {
+        $('.slick-slider').slick({
+            slidesToShow: 3,
+            slidesToScroll: 1,
+            autoplay: true,
+            autoplaySpeed: 2000,
+            dots: true,
+            arrows: true,
+            responsive: [{
+                    breakpoint: 1024,
+                    settings: {
+                        slidesToShow: 2,
+                        slidesToScroll: 1,
+                        infinite: true,
+                        dots: true
+                    }
+                },
+                {
+                    breakpoint: 600,
+                    settings: {
+                        slidesToShow: 1,
+                        slidesToScroll: 1
+                    }
+                }
+            ]
+        });
+    });
+
+    document.addEventListener('DOMContentLoaded', function() {
+        var modalElement = document.getElementById('serviceModal');
+        var modal = new bootstrap.Modal(modalElement);
+        var modalTitle = modalElement.querySelector('.modal-title');
+        var modalBody = modalElement.querySelector('.modal-body');
+
+        modalElement.addEventListener('show.bs.modal', function(event) {
+            var button = event.relatedTarget;
+            var title = button.getAttribute('data-service-title');
+            var description = button.getAttribute('data-service-description');
+            var image = button.getAttribute('data-service-image');
+
+            modalTitle.textContent = title;
+            modalBody.innerHTML = `
+                <img src="${image}" alt="${title}" class="img-fluid mb-3">
+                <p>${description}</p>
+            `;
+        });
+
+        modalElement.addEventListener('hidden.bs.modal', function() {
+            // Menghilangkan kelas `modal-open` dari body
+            document.body.classList.remove('modal-open');
+
+            // Pastikan elemen overlay Bootstrap benar-benar hilang
+            var modalBackdrop = document.querySelector('.modal-backdrop');
+            if (modalBackdrop) {
+                modalBackdrop.parentNode.removeChild(modalBackdrop);
+            }
+        });
+    });
 </script>

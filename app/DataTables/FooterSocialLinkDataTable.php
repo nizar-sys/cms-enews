@@ -31,6 +31,7 @@ class FooterSocialLinkDataTable extends DataTable
                 <a href="' . route('admin.footer-social.destroy', $query->id) . '" class="btn btn-danger delete-item"><i class="fas fa-trash"></i></a>';
             })
             ->rawColumns(['icon', 'action'])
+            ->addIndexColumn()
             ->setRowId('id');
     }
 
@@ -114,8 +115,7 @@ class FooterSocialLinkDataTable extends DataTable
     public function getColumns(): array
     {
         return [
-
-            Column::make('id'),
+            Column::make('DT_RowIndex')->title(__('No'))->orderable(false)->searchable(false),
             Column::make('icon'),
             Column::make('url'),
             Column::computed('action')
