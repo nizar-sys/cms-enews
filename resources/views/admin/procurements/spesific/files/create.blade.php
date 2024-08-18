@@ -1,11 +1,13 @@
 @extends('admin.layouts.layout')
 
+@section('title', 'Spesific Procurement')
+
 @section('content')
     <section class="section">
         <div class="section-header">
             <div class="section-header-back">
-                <a href="{{ route('admin.spesific-procurements-notices.show', $spesificProcurementsNotice->id) }}" class="btn btn-icon"><i
-                        class="fas fa-arrow-left"></i></a>
+                <a href="{{ route('admin.spesific-procurements-notices.show', $spesificProcurementsNotice->id) }}"
+                    class="btn btn-icon"><i class="fas fa-arrow-left"></i></a>
             </div>
             <h1>Procurement Notices Files</h1>
 
@@ -20,8 +22,9 @@
                             <h4>Add Procurement Notices Files</h4>
                         </div>
                         <div class="card-body">
-                            <form action="{{ route('admin.spesific-procurements-notices.files.store', $spesificProcurementsNotice->id) }}" method="POST"
-                                enctype="multipart/form-data">
+                            <form
+                                action="{{ route('admin.spesific-procurements-notices.files.store', $spesificProcurementsNotice->id) }}"
+                                method="POST" enctype="multipart/form-data">
                                 @csrf
 
                                 <div class="form-group row mb-4">

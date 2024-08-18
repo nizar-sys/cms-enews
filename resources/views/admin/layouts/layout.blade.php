@@ -9,7 +9,7 @@
     <meta charset="UTF-8">
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no" name="viewport">
     <meta name="csrf-token" content="{{ csrf_token() }}" />
-    <title>{{ @$seoSetting?->title }}</title>
+    <title>@yield('title') - {{ $seoSetting ? $seoSetting->title : __('app.app_name') }}</title>
     <link rel="shortcut icon" type="image/ico" href="{{ asset($generalSetting?->favicon) }}" />
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
 

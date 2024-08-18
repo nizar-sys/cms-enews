@@ -1,5 +1,7 @@
 @extends('admin.layouts.layout')
 
+@section('title', 'Event Announcement')
+
 @section('content')
     {{-- create news view with title, description, multiple images --}}
     <section class="section">

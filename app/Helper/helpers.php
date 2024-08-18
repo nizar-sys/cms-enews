@@ -126,6 +126,13 @@ if (!function_exists('setNavbarActiveNew')) {
 if (!function_exists('setSubNavbarActiveNew')) {
   function setSubNavbarActiveNew($parentRoute, $subItemUrl)
   {
-    return request()->is(parse_url($subItemUrl, PHP_URL_PATH)) && in_array($parentRoute, request()->route()->getName()) ? 'active' : '';
+    $currentUrl = url()->current();
+    $subItemFullUrl = url($subItemUrl);
+
+    if ($currentUrl === $subItemFullUrl) {
+      return 'active';
+    }
+
+    return '';
   }
 }

@@ -17,6 +17,6 @@ class PhotoProject extends Model
 
     public function photoProjectAlbum()
     {
-        return $this->belongsTo(PhotoProjectAlbum::class, 'album_id', 'id');
+        return $this->belongsTo(PhotoProjectAlbum::class, 'album_id');
     }
 }

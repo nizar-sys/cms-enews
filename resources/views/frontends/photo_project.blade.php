@@ -5,96 +5,85 @@
 @section('content')
     <style>
         .no-galleries {
-            padding: 40px 0;
-            text-align: center;
+            padding: 2.5rem 0;
+            /* Equivalent to py-10 */
         }
 
         .no-galleries h2 {
-            font-size: 1.75rem;
+            font-size: 1.5rem;
+            /* Equivalent to text-2xl */
             font-weight: bold;
-            margin-bottom: 16px;
-            color: #2c3e50;
+            /* Equivalent to font-bold */
+            margin-bottom: 1rem;
+            /* Equivalent to mb-4 */
+        }
+
+        .no-galleries p {
+            color: #4B5563;
+            /* Equivalent to text-gray-600 */
         }
 
         .album {
-            margin-bottom: 32px;
+            margin-bottom: 2rem;
+            /* Equivalent to mb-8 */
             width: 100%;
+            /* Equivalent to w-full */
         }
 
         .album h2 {
-            font-size: 1.5rem;
+            font-size: 1.125rem;
+            /* Equivalent to text-lg */
             font-weight: bold;
-            margin-bottom: 16px;
-            color: #34495e;
+            /* Equivalent to font-bold */
+            margin-bottom: 1rem;
+            /* Equivalent to mb-4 */
         }
 
         .photo-container {
             display: flex;
-            overflow-x: auto;
-            gap: 15px;
-            padding-bottom: 15px;
+            flex-wrap: wrap;
+            /* Equivalent to flex flex-wrap */
         }
 
         .photo-wrapper {
-            flex: 0 0 auto;
-            width: 200px;
+            width: 100%;
+            /* Default to full width */
+            margin-bottom: 1rem;
+            /* Equivalent to mb-4 */
+            padding-right: 0.5rem;
+            /* Equivalent to pr-2 */
+        }
+
+        @media (min-width: 640px) {
+
+            /* Equivalent to sm:w-1/2 */
+            .photo-wrapper {
+                width: 50%;
+                /* 2 items per row */
+            }
         }
 
         .photo {
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 0.5rem;
+            /* Equivalent to rounded-lg */
+            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+            /* Equivalent to shadow-md */
             overflow: hidden;
-            transition: transform 0.3s ease-in-out;
+            /* Equivalent to overflow-hidden */
         }
 
         .photo img {
             width: 100%;
+            /* Equivalent to w-full */
             height: auto;
-            object-fit: cover;
-        }
-
-        .page-title {
-            background-color: #2c4666;
-            padding: 60px 0;
-            text-align: center;
-            color: #fff;
-        }
-
-        .page-title h1 {
-            font-size: 2.5rem;
-            margin-bottom: 20px;
-        }
-
-        .breadcrumbs {
-            display: inline-block;
-        }
-
-        .breadcrumbs ol {
-            padding: 0;
-            margin: 0;
-            list-style: none;
-            display: flex;
-            justify-content: center;
-        }
-
-        .breadcrumbs ol li {
-            margin: 0 8px;
-            font-size: 16px;
-            color: #bdc3c7;
-        }
-
-        .breadcrumbs ol li a {
-            color: #1abc9c;
-            text-decoration: none;
-        }
-
-        .breadcrumbs ol li.current {
-            color: #ecf0f1;
+            /* Equivalent to h-auto */
+            object-fit: contain;
+            /* Equivalent to object-contain */
         }
     </style>
 
-
     <main class="main">
+
         <!-- Hero Section -->
         <section id="hero" class="hero section dark-background">
 
@@ -124,7 +113,7 @@
 
         </section><!-- /Hero Section -->
 
-        <div class="page-title dark-background" data-aos="fade">
+        <div class="page-title dark-background" data-aos="fade" style="background-color: #2c4666">
             <div class="container position-relative">
                 <h1>{{ $sectionSetting?->title ?? __('app.Photo Gallery') }}</h1>
                 <nav class="breadcrumbs">
@@ -137,20 +126,21 @@
         </div>
         <div class="container">
             <div class="row">
-                <section id="primary" class="w-full">
+                <section id="primary" class="w-full ">
                     <main id="main" class="site-main" role="main">
-                        <h2 class="mb-5" style="text-align: center; font-size: 2rem; color: #34495e;">
-                            {{ __('app.Photo Project') }}</h2>
+
+                        <h2 class="mb-5">{{ $sectionSetting?->title ?? __('app.Photo Gallery') }}</h2>
                         @if ($photoProjects->isEmpty())
                             <div class="no-galleries">
                                 <div>
-                                    <h2>{{ __('app.No Photo Project Available') }}</h2>
+                                    <h2>{{ __('app.No Photo Galleries Available') }}</h2>
                                 </div>
                             </div>
                         @else
                             @foreach ($photoProjects as $albumId => $photos)
                                 <div class="album">
-                                    <h2>{{ $photos[0]->photoProjectAlbum->name }}</h2>
+                                    <h2>{{ __('app.Album') }} : {{ $photos[0]->photoProjectAlbum->name }}</h2>
+                                    <hr>
                                     <div class="photo-container">
                                         @foreach ($photos as $photo)
                                             <div class="photo-wrapper">

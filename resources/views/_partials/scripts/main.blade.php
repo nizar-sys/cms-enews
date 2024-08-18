@@ -247,12 +247,40 @@
 
     document.querySelectorAll('.navbar-nav .nav-link, .navbar-nav .dropdown-item').forEach(link => {
         link.addEventListener('mouseover', function() {
-            this.style.color = 'red';
+            this.style.color = 'white';
+            item.style.backgroundColor = 'red'
         });
         link.addEventListener('mouseout', function() {
             this.style.color = '';
         });
     });
+
+    document.addEventListener('DOMContentLoaded', function() {
+        const menuItems = document.querySelectorAll('.nav-link');
+        const subMenuItems = document.querySelectorAll('.dropdown-item');
+
+        menuItems.forEach(function(item) {
+            item.addEventListener('mouseover', function() {
+                item.style.backgroundColor =
+                    'rgba(63, 162, 246, 0.7)'; // Warna background dengan opacity 0.7
+            });
+            item.addEventListener('mouseout', function() {
+                item.style.backgroundColor = 'transparent'; // Kembali ke background transparan
+            });
+        });
+
+        subMenuItems.forEach(function(subItem) {
+            subItem.addEventListener('mouseover', function() {
+                subItem.style.backgroundColor =
+                    'rgba(63, 162, 246, 0.7)'; // Warna background dengan opacity 0.7
+            });
+            subItem.addEventListener('mouseout', function() {
+                subItem.style.backgroundColor =
+                    'transparent'; // Kembali ke background transparan
+            });
+        });
+    });
+
 
     $(document).ready(function() {
         $('.slick-slider').slick({
@@ -302,14 +330,21 @@
         });
 
         modalElement.addEventListener('hidden.bs.modal', function() {
-            // Menghilangkan kelas `modal-open` dari body
             document.body.classList.remove('modal-open');
 
-            // Pastikan elemen overlay Bootstrap benar-benar hilang
             var modalBackdrop = document.querySelector('.modal-backdrop');
             if (modalBackdrop) {
                 modalBackdrop.parentNode.removeChild(modalBackdrop);
             }
         });
     });
+
+    function toggleReplyForm(commentId) {
+        const replyForm = document.getElementById(`reply-form-${commentId}`);
+        if (replyForm.style.display === "none") {
+            replyForm.style.display = "block";
+        } else {
+            replyForm.style.display = "none";
+        }
+    }
 </script>

@@ -1,5 +1,7 @@
 @extends('admin.layouts.layout')
 
+@section('title', 'Video Events')
+
 @section('content')
     <section class="section">
         <div class="section-header">
@@ -19,7 +21,7 @@
                             <h4>List Of Video Gallery </h4>
                             <div class="card-header-action">
                                 <a href="{{ route('admin.video-gallery.create') }}" class="btn btn-success">
-                                    Add Video  
+                                    Add Video
                                     <i class="fas fa-plus"></i>
                                 </a>
                             </div>

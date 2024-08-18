@@ -1,5 +1,7 @@
 @extends('admin.layouts.layout')
 
+@section('title', 'Video Project')
+
 @section('content')
     <section class="section">
         <div class="section-header">
@@ -24,7 +26,7 @@
                                 @csrf
                                 @method('PUT')
 
-                                
+
                                 <div class="form-group row mb-4">
                                     <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">
                                         Title

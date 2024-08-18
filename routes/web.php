@@ -76,6 +76,7 @@ use App\Http\Controllers\Admin\VideoProjectController;
 use App\Http\Controllers\Admin\VideoSectionSettingController;
 use App\Http\Controllers\Admin\WaterSanitationController;
 use App\Http\Controllers\Admin\WaterSanitationSectionSettingController;
+use App\Http\Controllers\Frontend\CommentController;
 use App\Models\BidChallengeSystemSectionSetting;
 use App\Models\ContractAwardNoticeSectionSetting;
 use Illuminate\Support\Facades\App;
@@ -408,6 +409,11 @@ Route::prefix('{locale}')->group(function () {
         Route::get('/articles-interviews', [HomeController::class, 'articlesInterviews'])->name('articles-interviews');
         Route::get('/video-projects', [HomeController::class, 'videoProject'])->name('video-projects');
         Route::get('/photo-projects', [HomeController::class, 'photoProject'])->name('photo-projects');
+
+        // Comments
+        Route::post('/posts/{post}/comment', [CommentController::class,'store'])->name('comments.store');
+        // Route::get('/posts/{postId}/comments', [CommentController::class, 'index'])->name('comments.index');
+        // Route::delete('/posts/{postId}/comments/{commentId}', [CommentController::class, 'destroy'])->name('comments.destroy');
     });
 
 

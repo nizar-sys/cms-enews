@@ -1,5 +1,7 @@
 @extends('admin.layouts.layout')
 
+@section('title', 'Video Projects')
+
 @section('content')
     <section class="section">
         <div class="section-header">

@@ -1,5 +1,7 @@
 @extends('admin.layouts.layout')
 
+@section('title', 'Dashboard')
+
 @section('content')
     <section class="section">
         <div class="section-header">
@@ -14,21 +16,21 @@
                         'count_news' => 'fas fa-newspaper',
                         'count_article' => 'fas fa-comments',
                         'count_user' => 'fas fa-user',
-                        'count_visitor' => 'fas fa-users'
+                        'count_visitor' => 'fas fa-users',
                     ];
                     $colors = [
                         'count_post' => 'bg-primary',
                         'count_news' => 'bg-warning',
                         'count_article' => 'bg-info',
                         'count_user' => 'bg-success',
-                        'count_visitor' => 'bg-danger'
+                        'count_visitor' => 'bg-danger',
                     ];
                     $titles = [
                         'count_post' => 'Total Pages',
                         'count_news' => 'Total News',
                         'count_article' => 'Total Articles',
                         'count_user' => 'Total Users',
-                        'count_visitor' => 'Total Visitors'
+                        'count_visitor' => 'Total Visitors',
                     ];
                 @endphp
 

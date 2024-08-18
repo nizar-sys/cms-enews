@@ -1,11 +1,12 @@
 @extends('admin.layouts.layout')
 
+@section('title', 'Press Release')
+
 @section('content')
     <section class="section">
         <div class="section-header">
             <div class="section-header-back">
-                <a href="{{ route('admin.press-release.index') }}" class="btn btn-icon"><i
-                        class="fas fa-arrow-left"></i></a>
+                <a href="{{ route('admin.press-release.index') }}" class="btn btn-icon"><i class="fas fa-arrow-left"></i></a>
             </div>
             <h1>Press Release Files</h1>
 
@@ -24,7 +25,7 @@
                                 enctype="multipart/form-data">
                                 @csrf
 
-                                
+
 
                                 <div class="form-group row mb-4">
                                     <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">File</label>

@@ -2318,7 +2318,7 @@
     }
 
     .navbar-light .navbar-nav .nav-link {
-        color: rgba(0, 0, 0, 0.5);
+        color: white;
     }
 
     /* New styles for better mobile navigation */
@@ -2562,7 +2562,8 @@
 
 <style>
     .navbar-nav .nav-link.active {
-        color: red;
+        color: white;
+        background-color: rgba(63, 162, 246, 0.7);
     }
 
     .navbar-nav .nav-item.dropdown .dropdown-menu.active {
@@ -2570,8 +2571,8 @@
     }
 
     .navbar-nav .nav-item.dropdown .dropdown-menu .dropdown-item.active {
-        background-color: red !important;
-        color: red !important;
+        background-color: rgba(63, 162, 246, 0.7);
+        color: white !important;
     }
 
     .service-item {
@@ -2650,5 +2651,145 @@
         display: flex;
         flex-direction: column;
         justify-content: space-between;
+    }
+
+    /* CSS umum */
+    .social-button {
+        font-size: 24px;
+        color: #fff;
+        /* Warna ikon default jika diperlukan */
+        border-radius: 50%;
+        padding: 10px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        text-decoration: none;
+        background-color: #e0e0e0;
+        /* Warna latar belakang default */
+        margin: 5px;
+        /* Jarak antar tombol */
+    }
+
+    .social-button.facebook {
+        background-color: #3b5998;
+        /* Facebook blue */
+    }
+
+    .social-button.linkedin {
+        background-color: #0077b5;
+        /* LinkedIn blue */
+    }
+
+    .social-button.twitter {
+        background-color: #1da1f2;
+        /* Twitter blue */
+    }
+
+    .social-button.whatsapp {
+        background-color: #25d366;
+        /* WhatsApp green */
+    }
+
+    .social-button.telegram {
+        background-color: #0088cc;
+        /* Telegram blue */
+    }
+
+    .social-button.reddit {
+        background-color: #ff4500;
+        /* Reddit orange */
+    }
+
+    .social-button.pinterest {
+        background-color: #e60023;
+        /* Pinterest red */
+    }
+
+    .social-button.instagram {
+        background: linear-gradient(45deg, #f58529, #dd2a7b, #8134af, #515bd4);
+        /* Instagram gradient */
+    }
+
+    .social-button:hover {
+        opacity: 0.8;
+    }
+
+    .submenu-font-rule {
+        /* background-color: red */
+        color: white !important;
+    }
+
+    @media (max-width: 768px) {
+        .post-navigation {
+            flex-direction: column;
+        }
+
+        .nav-links {
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .nav-links a {
+            width: 100%;
+            margin-bottom: 10px;
+        }
+
+        #social-buttons {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        #social-buttons h3 {
+            font-size: 18px;
+            margin-bottom: 15px;
+        }
+
+        .social-button {
+            display: inline-block;
+            margin: 0 5px 10px;
+            padding: 10px;
+            font-size: 20px;
+        }
+    }
+
+    @media (max-width: 768px) {
+        .post-navigation {
+            flex-direction: row;
+            /* Pastikan tombol tetap dalam satu baris */
+            justify-content: space-between;
+            /* Pastikan tombol berada di posisi start dan end */
+            gap: 10px;
+        }
+
+        .nav-links {
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+        }
+
+        .nav-prev {
+            text-align: left;
+            /* Teks pada tombol Previous berada di kiri */
+            flex: 1;
+        }
+
+        .nav-next {
+            text-align: right;
+            /* Teks pada tombol Next berada di kanan */
+            flex: 1;
+        }
+
+        .nav-links a {
+            width: 100%;
+            padding: 10px;
+            text-align: center;
+        }
+    }
+
+
+    @media (max-width: 576px) {
+        .social-button {
+            font-size: 18px;
+        }
     }
 </style>
