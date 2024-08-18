@@ -1,5 +1,7 @@
 @extends('admin.layouts.layout')
 
+@section('title', 'Photo Project Album')
+
 @section('content')
     <section class="section">
         <div class="section-header">
@@ -23,8 +25,10 @@
                             <form action="{{ route('admin.photo-project.album.store') }}" method="POST">
                                 @csrf
                                 <div class="form-group row mb-4">
-                                    <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3" for="name">Name</label>
-                                    <input class="col-sm-12 col-md-7 form-control" type="text" name="name" id="name" placeholder="Enter name">
+                                    <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3"
+                                        for="name">Name</label>
+                                    <input class="col-sm-12 col-md-7 form-control" type="text" name="name"
+                                        id="name" placeholder="Enter name">
                                 </div>
 
                                 <div class="form-group

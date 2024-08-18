@@ -1,5 +1,7 @@
 @extends('admin.layouts.layout')
 
+@section('title', 'Executive Teams')
+
 @section('content')
     <section class="section">
         <div class="section-header">

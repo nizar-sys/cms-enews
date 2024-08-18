@@ -1,12 +1,14 @@
 @extends('admin.layouts.layout')
 
+@section('title', 'Water and Sanitations')
+
 @section('content')
     <section class="section">
         <div class="section-header">
             <div class="section-header-back">
                 <a href="{{ url('/dashboard', []) }}" class="btn btn-icon"><i class="fas fa-arrow-left"></i></a>
             </div>
-            <h1>Section Settings</h1>
+            <h1>Water and Sanitations</h1>
         </div>
 
         <div class="section-body">

@@ -164,4 +164,5 @@ return [
     "Last Month" => "Last Month",
     "All" => "All",
     "Your IP Address" => "Your IP Address",
+    "Album" => 'Album'
 ];

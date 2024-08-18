@@ -175,5 +175,5 @@ return [
     "Last Month" => "Mês Passado",
     "All" => "Todos",
     "Your IP Address" => "Seu Endereço de IP",
-
+    "Album" => "álbum"
 ];

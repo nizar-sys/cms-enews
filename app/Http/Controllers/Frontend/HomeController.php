@@ -12,6 +12,7 @@ use App\Models\CommunityVoice;
 
 use App\Models\BidChallengeSystem;
 use App\Models\BidChallengeSystemSectionSetting;
+use App\Models\Comment;
 use App\Models\CommunityVoiceSectionSetting;
 use App\Models\ContractAwardNotice;
 use App\Models\ContractAwardNoticeSectionSetting;
@@ -254,9 +255,11 @@ class HomeController extends Controller
         return view('frontends.news_detail', compact('news', 'nextNews', 'prevNews', 'latestNews', 'sectionSetting'));
     }
 
-    public function postDetail($locale, $postSlug)
+    public function postDetail($locale, $id)
     {
-        $post = Post::where('slug', $postSlug)->firstOrFail();
+        $post = Post::where('id', $id)->firstOrFail();
+
+        // dd($post);
 
         $nextPost = Post::where('id', '>', $post->id)->orderBy('id', 'asc')->first();
         $prevPost = Post::where('id', '<', $post->id)->orderBy('id', 'desc')->first();
@@ -265,7 +268,11 @@ class HomeController extends Controller
 
         $sectionSetting = PostSectionSetting::first();
 
-        return view('frontends.post_detail', compact('post', 'nextPost', 'prevPost', 'latestPost', 'sectionSetting'));
+        $comments = Comment::all();
+
+        // dd($comments);
+
+        return view('frontends.post_detail', compact('post', 'nextPost', 'prevPost', 'latestPost', 'sectionSetting', 'comments'));
     }
 
     public function downloadMultiple(Request $request)

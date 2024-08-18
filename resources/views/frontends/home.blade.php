@@ -580,10 +580,9 @@
 
                                     <hr>
 
-                                    <a href="{{ route('posts-detail', ['locale' => session('locale', 'en'), 'post' => $post->slug]) }}"
+                                    <a href="{{ route('posts-detail', ['locale' => session('locale', 'en'), 'post' => $post->id]) }}"
                                         class="readmore stretched-link"><span>{{ __('app.Read More') }}</span><i
                                             class="bi bi-arrow-right"></i></a>
-
                                 </div>
 
                             </div>

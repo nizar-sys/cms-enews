@@ -17,6 +17,7 @@
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com" rel="preconnect">
     <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+    <link rel="stylesheet"href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link
         href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&family=Marcellus:wght@400&display=swap"
         rel="stylesheet">
@@ -208,7 +209,7 @@
             </div>
         </nav>
 
-        <nav class="navbar navbar-expand-xl navbar-light bg-transparent">
+        <nav class="navbar navbar-expand-xl navbar-light bg-transparent" style="background-color: #005ca8 !important">
             <div class="container">
                 <button class="navbar-toggler ms-auto" type="button" data-bs-toggle="collapse"
                     data-bs-target="#main-nav" aria-controls="main-nav" aria-expanded="false"
@@ -226,12 +227,12 @@
                                     aria-expanded="{{ isset($item['subItems']) ? 'false' : '' }}">
                                     {{ $item['label'] }}
                                 </a>
-
                                 @if (isset($item['subItems']))
-                                    <ul class="dropdown-menu bg-light" aria-labelledby="dropdownMenuButton">
+                                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton"
+                                        style="background-color: #005ca8 !important;">
                                         @foreach ($item['subItems'] as $subItem)
                                             <li>
-                                                <a class="dropdown-item {{ setSubNavbarActiveNew($item['route'], $subItem['url']) }}"
+                                                <a class="dropdown-item submenu-font-rule {{ setSubNavbarActiveNew($item['route'], $subItem['url']) }}"
                                                     href="{{ $subItem['url'] }}">
                                                     {{ $subItem['label'] }}
                                                 </a>
