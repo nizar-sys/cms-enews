@@ -1,6 +1,6 @@
 @extends('frontends.frontend')
 
-@section('title', $sectionSetting?->title ?? __('app.Press Releases'))
+@section('title', GoogleTranslate::trans($sectionSetting?->title ?? __('app.Press Releases'), app()->getLocale()))
 
 @section('content')
     <main class="main">
@@ -11,10 +11,11 @@
 
                 @foreach ($sliders as $slider)
                     <div class="carousel-item {{ $loop->iteration == 1 ? 'active' : '' }}">
-                        <img src="{{ asset($slider->image) }}" alt="{{ $slider->title }}">
+                        <img src="{{ asset($slider->image) }}"
+                            alt="{{ GoogleTranslate::trans($slider->title, app()->getLocale()) }}">
                         <div class="carousel-container">
-                            <h2>{{ $slider->title }}</h2>
-                            {!! $slider->description !!}
+                            <h2>{{ GoogleTranslate::trans($slider->title, app()->getLocale()) }}</h2>
+                            {!! GoogleTranslate::trans($slider->description, app()->getLocale()) !!}
                         </div>
                     </div>
                 @endforeach
@@ -35,14 +36,17 @@
 
         <div class="page-title dark-background" data-aos="fade" style="background-color: #2c4666">
             <div class="container position-relative">
-                <h1>{{ $sectionSetting?->title ?? __('app.Press Releases') }}</h1>
+                <h1>{{ GoogleTranslate::trans($sectionSetting?->title ?? __('app.Press Releases'), app()->getLocale()) }}
+                </h1>
                 <div style="word-wrap: break-word;">
                     {!! $sectionSetting?->description !!}
                 </div>
                 <nav class="breadcrumbs">
                     <ol>
                         <li><a href="{{ url('/', []) }}" class="text-primary">{{ __('app.home') }}</a></li>
-                        <li class="current">{{ $sectionSetting?->title ?? __('app.Press Releases') }}</li>
+                        <li class="current">
+                            {{ GoogleTranslate::trans($sectionSetting?->title ?? __('app.Press Releases'), app()->getLocale()) }}
+                        </li>
                     </ol>
                 </nav>
             </div>
@@ -53,7 +57,9 @@
                     <div class="row">
                         <div class="col-md-12">
                             <main id="main" class="site-main" role="main">
-                                <h1 class="entry-title mb-5">{{ $sectionSetting?->title ?? __('app.Press Releases') }}</h1>
+                                <h1 class="entry-title mb-5">
+                                    {{ GoogleTranslate::trans($sectionSetting?->title ?? __('app.Press Releases'), app()->getLocale()) }}
+                                </h1>
                                 <div class="table-responsive">
                                     <form id="downloadPressReleasesForm" method="POST"
                                         action="{{ route('download.multiple') }}">
@@ -71,7 +77,9 @@
                                                     <tr>
                                                         <td width="5%"><input type="checkbox" name="files[]"
                                                                 value="{{ $file->file_path }}"></td>
-                                                        <td width="75%">{{ $file->file_name }}</td>
+                                                        <td width="75%">
+                                                            {{ GoogleTranslate::trans($file->file_name, app()->getLocale()) }}
+                                                        </td>
                                                         <td class="text-center">
                                                             <a class="btn btn-danger"
                                                                 href="{{ route('download.uploads', ['file' => $file->file_path, 'model' => get_class($file), 'id' => $file->id]) }}"

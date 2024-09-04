@@ -1,6 +1,6 @@
 @extends('frontends.frontend')
 
-@section('title', $project->name)
+@section('title', GoogleTranslate::trans($project->name, app()->getLocale()))
 
 @push('style')
     <style>
@@ -61,10 +61,11 @@
 
                 @foreach ($sliders as $slider)
                     <div class="carousel-item {{ $loop->iteration == 1 ? 'active' : '' }}">
-                        <img src="{{ asset($slider->image) }}" alt="{{ $slider->title }}">
+                        <img src="{{ asset($slider->image) }}"
+                            alt="{{ GoogleTranslate::trans($slider->title, app()->getLocale()) }}">
                         <div class="carousel-container">
-                            <h2>{{ $slider->title }}</h2>
-                            {!! $slider->description !!}
+                            <h2>{{ GoogleTranslate::trans($slider->title, app()->getLocale()) }}</h2>
+                            {!! GoogleTranslate::trans($slider->description, app()->getLocale()) !!}
                         </div>
                     </div>
                 @endforeach
@@ -86,11 +87,11 @@
         <!-- Page Title -->
         <div class="page-title dark-background" data-aos="fade" style="background-color: #2c4666">
             <div class="container position-relative">
-                <h1>{{ $project->name }}</h1>
+                <h1>{{ GoogleTranslate::trans($project->name, app()->getLocale()) }}</h1>
                 <nav class="breadcrumbs">
                     <ol>
                         <li><a href="{{ url('/', []) }}" class="text-primary">{{ __('app.home') }}</a></li>
-                        <li class="current">{{ $project->name }}</li>
+                        <li class="current">{{ GoogleTranslate::trans($project->name, app()->getLocale()) }}</li>
                     </ol>
                 </nav>
             </div>
@@ -109,10 +110,11 @@
                                     decoding="async" fetchpriority="high" sizes="(max-width: 960px) 100vw, 960px">
                             </div>
                             <header class="entry-header mt-2">
-                                <h1 class="entry-title">{{ $project->name }}</h1>
+                                <h1 class="entry-title">{{ GoogleTranslate::trans($project->name, app()->getLocale()) }}
+                                </h1>
                             </header><!-- .entry-header -->
                             <div class="entry-content">
-                                {!! $project->description !!}
+                                {!! GoogleTranslate::trans($project->description, app()->getLocale()) !!}
                             </div><!-- .entry-content -->
 
                             <footer class="entry-footer">
@@ -128,10 +130,10 @@
                                                 <a href="{{ route('project-detail', [
                                                     'locale' => session('locale', 'en'),
                                                     'slugCategory' => Str::of($project->category->slug)->explode('-')->map(fn($segment) => Str::substr($segment, 0, 1))->implode(''),
-                                                    'slugProject' => str($project->name)->slug(),
+                                                    'slugProject' => str(GoogleTranslate::trans($project->name, app()->getLocale()))->slug(),
                                                 ]) }}"
                                                     rel="{{ $rel }}">
-                                                    {{ $project->name }}
+                                                    {{ GoogleTranslate::trans($project->name, app()->getLocale()) }}
                                                 </a>
                                             </div>
                                         @endif
@@ -157,7 +159,7 @@
                                 @foreach ($latestNews as $latestNew)
                                     <li class="news_li">
                                         <a class="newspost-title"
-                                            href="{{ route('media-notices.news-detail', ['locale' => session('locale', 'en'), 'new' => $latestNew->id]) }}">{{ $latestNew->title }}</a>
+                                            href="{{ route('media-notices.news-detail', ['locale' => session('locale', 'en'), 'new' => $latestNew->id]) }}">{{ GoogleTranslate::trans($latestNew->title, app()->getLocale()) }}</a>
                                     </li>
                                 @endforeach
 

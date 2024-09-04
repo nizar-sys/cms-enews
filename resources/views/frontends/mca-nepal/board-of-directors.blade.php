@@ -1,6 +1,7 @@
 @extends('frontends.frontend')
 
-@section('title', $sectionSetting?->title ?? __('app.board_of_directors'))
+@section('title', $sectionSetting ? GoogleTranslate::trans($sectionSetting->title, app()->getLocale()) :
+    __('app.board_of_directors'))
 
 @section('content')
 
@@ -13,10 +14,11 @@
 
                 @foreach ($sliders as $slider)
                     <div class="carousel-item {{ $loop->iteration == 1 ? 'active' : '' }}">
-                        <img src="{{ asset($slider->image) }}" alt="{{ $slider->title }}">
+                        <img src="{{ asset($slider->image) }}"
+                            alt="{{ GoogleTranslate::trans($slider->title, app()->getLocale()) }}">
                         <div class="carousel-container">
-                            <h2>{{ $slider->title }}</h2>
-                            {!! $slider->description !!}
+                            <h2>{{ GoogleTranslate::trans($slider->title, app()->getLocale()) }}</h2>
+                            {!! GoogleTranslate::trans($slider->description, app()->getLocale()) !!}
                         </div>
                     </div>
                 @endforeach
@@ -38,9 +40,9 @@
         <!-- Page Title -->
         <div class="page-title dark-background" data-aos="fade" style="background-color: #2c4666">
             <div class="container position-relative">
-                <h1>{{ $sectionSetting?->title }}</h1>
+                <h1>{{ $sectionSetting ? GoogleTranslate::trans($sectionSetting->title, app()->getLocale()) : '' }}</h1>
                 <div style="word-wrap: break-word;">
-                    {!! $sectionSetting?->sub_title !!}
+                    {!! $sectionSetting ? GoogleTranslate::trans($sectionSetting->sub_title, app()->getLocale()) : '' !!}
                 </div>
                 <nav class="breadcrumbs">
                     <ol>
@@ -58,10 +60,11 @@
                         <div class="container">
                             <article id="post-22" class="post-22 page type-page status-publish hentry">
                                 <div class="entry-content">
-                                    <h2>{{ $sectionSetting?->title }}</h2>
+                                    <h2>{{ $sectionSetting ? GoogleTranslate::trans($sectionSetting->title, app()->getLocale()) : '' }}
+                                    </h2>
                                     <div class="row">
                                         <div class="col-lg-12 col-md-12">
-                                            <p>{!! $sectionSetting?->sub_title !!}</p>
+                                            <p>{!! $sectionSetting ? GoogleTranslate::trans($sectionSetting->sub_title, app()->getLocale()) : '' !!}</p>
                                         </div>
                                     </div>
 
@@ -83,7 +86,7 @@
                                                                 : 'col-lg-4 col-md-4');
                                                 @endphp
                                                 <div class="{{ $colSize }}">
-                                                    <h4 class="text-center">{{ $director->designation->designation }}</h4>
+                                                    <h4 class="text-center">{{ GoogleTranslate::trans($director->designation->designation, app()->getLocale()) }}</h4>
                                                     <h5 class="text-center">{{ $director->name }}</h5>
                                                     <div class="wp-block-image text-center">
                                                         <figure>
@@ -114,7 +117,7 @@
                     <div class="row gy-4 justify-content-between align-items-center">
                         <div class="col-lg-12 order-lg-2 position-relative" data-aos="zoom-out">
 
-                            <h4>{{ $documentCategory->name }}</h4>
+                            <h4>{{ GoogleTranslate::trans($documentCategory->name, app()->getLocale()) }}</h4>
                             <div class="minutes_lists table-responsive">
                                 <form id="downloadForm" method="POST" action="{{ route('download.multiple') }}">
                                     @csrf
@@ -131,11 +134,11 @@
                                                 <tr>
                                                     <td width="5%"><input type="checkbox" name="files[]"
                                                             value="{{ $file->file_path }}"></td>
-                                                    <td width="75%">{{ $file->filename }}</td>
+                                                    <td width="75%">{{ GoogleTranslate::trans($file->filename, app()->getLocale()) }}</td>
                                                     <td class="text-center">
                                                         <a class="btn btn-danger"
                                                             href="{{ route('download.uploads', ['file' => $file->file_path, 'model' => get_class($file), 'id' => $file->id]) }}"
-                                                            title="{{ $file->filename }}" target="_blank">
+                                                            title="{{ GoogleTranslate::trans($file->filename, app()->getLocale()) }}" target="_blank">
                                                             <i class="far fa-file-pdf"></i> {{ __('app.Download') }}
                                                         </a>
                                                     </td>

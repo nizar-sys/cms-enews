@@ -12,10 +12,11 @@
 
                 @foreach ($sliders as $slider)
                     <div class="carousel-item {{ $loop->iteration == 1 ? 'active' : '' }}">
-                        <img src="{{ asset($slider->image) }}" alt="{{ $slider->title }}">
+                        <img src="{{ asset($slider->image) }}"
+                            alt="{{ GoogleTranslate::trans($slider->title, app()->getLocale()) }}">
                         <div class="carousel-container">
-                            <h2>{{ $slider->title }}</h2>
-                            {!! $slider->description !!}
+                            <h2>{{ GoogleTranslate::trans($slider->title, app()->getLocale()) }}</h2>
+                            {!! GoogleTranslate::trans($slider->description, app()->getLocale()) !!}
                         </div>
                     </div>
                 @endforeach
@@ -71,12 +72,16 @@
                                             <tr>
                                                 <td width="5%"><input type="checkbox" name="files[]"
                                                         value="{{ $file['file_path'] }}"></td>
-                                                <td width="45%">{{ $file['category'] }}</td>
-                                                <td width="45%">{{ $file['file_name'] }}</td>
+                                                <td width="45%">
+                                                    {{ GoogleTranslate::trans($file['category'], app()->getLocale()) }}
+                                                </td>
+                                                <td width="45%">
+                                                    {{ GoogleTranslate::trans($file['file_name'], app()->getLocale()) }}
+                                                </td>
                                                 <td width="50%">
                                                     <a target="_blank"
                                                         href="{{ route('download.uploads', ['file' => $file['file_path'], 'model' => get_class($file), 'id' => $file['id']]) }}">
-                                                        {{ $file['file_name'] }}
+                                                        {{ GoogleTranslate::trans($file['file_name'], app()->getLocale()) }}
                                                     </a>
                                                 </td>
                                             </tr>

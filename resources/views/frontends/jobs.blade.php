@@ -1,6 +1,6 @@
 @extends('frontends.frontend')
 
-@section('title', $sectionSetting?->title ?? __('app.jobs'))
+@section('title', GoogleTranslate::trans($sectionSetting?->title ?? __('app.jobs'), app()->getLocale()))
 
 @section('content')
     <main class="main">
@@ -12,10 +12,11 @@
 
                 @foreach ($sliders as $slider)
                     <div class="carousel-item {{ $loop->iteration == 1 ? 'active' : '' }}">
-                        <img src="{{ asset($slider->image) }}" alt="{{ $slider->title }}">
+                        <img src="{{ asset($slider->image) }}"
+                            alt="{{ GoogleTranslate::trans($slider->title, app()->getLocale()) }}">
                         <div class="carousel-container">
-                            <h2>{{ $slider->title }}</h2>
-                            {!! $slider->description !!}
+                            <h2>{{ GoogleTranslate::trans($slider->title, app()->getLocale()) }}</h2>
+                            {!! GoogleTranslate::trans($slider->description, app()->getLocale()) !!}
                         </div>
                     </div>
                 @endforeach
@@ -37,9 +38,9 @@
         <!-- Page Title -->
         <div class="page-title dark-background" data-aos="fade" style="background-color: #2c4666">
             <div class="container position-relative">
-                <h1>{{ $sectionSetting?->title }}</h1>
+                <h1>{{ GoogleTranslate::trans($sectionSetting?->title ?? 'no data', app()->getLocale()) }}</h1>
                 <div style="word-wrap: break-word;">
-                    {!! $sectionSetting?->description !!}
+                    {!! GoogleTranslate::trans($sectionSetting?->description ?? 'No Data', app()->getLocale()) !!}
                 </div>
                 <nav class="breadcrumbs">
                     <ol>
@@ -59,27 +60,27 @@
 
                         <article id="post-126" class="post-126 page type-page status-publish hentry">
                             <header class="entry-header">
-                                <h1 class="entry-title">{{ $sectionSetting?->title }}</h1>
+                                <h1 class="entry-title">{{ GoogleTranslate::trans($sectionSetting?->title ?? 'No Data', app()->getLocale()) }}</h1>
                             </header><!-- .entry-header -->
 
                             <div class="entry-content">
-                                {!! $sectionSetting?->description !!}
+                                {!! GoogleTranslate::trans($sectionSetting?->description ?? 'No Data', app()->getLocale()) !!}
                                 <p>&nbsp;</p>
                                 <table class="table table-bordered">
                                     <thead>
                                         <tr>
-                                            <th>Position</th>
-                                            <th>Vacancy Deadline</th>
-                                            <th>Current Status</th>
+                                            <th>{{ GoogleTranslate::trans('Position', app()->getLocale()) }}</th>
+                                            <th>{{ GoogleTranslate::trans('Vacancy Deadline', app()->getLocale()) }}</th>
+                                            <th>{{ GoogleTranslate::trans('Current Status', app()->getLocale()) }}</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         @foreach ($jobLists as $job)
                                             <tr>
                                                 <td><a href="{{ $job->filepath }}" target="_blank"
-                                                        rel="noopener">{{ $job->position }}</a></td>
-                                                <td>{{ $job->vacancy_deadline }}</td>
-                                                <td>{{ $job->current_status }}</td>
+                                                        rel="noopener">{{ GoogleTranslate::trans($job->position, app()->getLocale()) }}</a></td>
+                                                <td>{{ GoogleTranslate::trans($job->vacancy_deadline, app()->getLocale()) }}</td>
+                                                <td>{{ GoogleTranslate::trans($job->current_status, app()->getLocale()) }}</td>
                                             </tr>
                                         @endforeach
                                     </tbody>

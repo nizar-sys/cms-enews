@@ -1,6 +1,6 @@
 @extends('frontends.frontend')
 
-@section('title', $sectionSetting?->title ?? __('app.bid_challenge_system'))
+@section('title', GoogleTranslate::trans($sectionSetting?->title ?? __('app.bid_challenge_system'), app()->getLocale()))
 
 @section('content')
     <main class="main">
@@ -12,10 +12,11 @@
 
                 @foreach ($sliders as $slider)
                     <div class="carousel-item {{ $loop->iteration == 1 ? 'active' : '' }}">
-                        <img src="{{ asset($slider->image) }}" alt="{{ $slider->title }}">
+                        <img src="{{ asset($slider->image) }}"
+                            alt="{{ GoogleTranslate::trans($slider->title, app()->getLocale()) }}">
                         <div class="carousel-container">
-                            <h2>{{ $slider->title }}</h2>
-                            {!! $slider->description !!}
+                            <h2>{{ GoogleTranslate::trans($slider->title, app()->getLocale()) }}</h2>
+                            {!! GoogleTranslate::trans($slider->description, app()->getLocale()) !!}
                         </div>
                     </div>
                 @endforeach
@@ -36,7 +37,7 @@
 
         <div class="page-title dark-background" data-aos="fade" style="background-color: #2c4666">
             <div class="container position-relative">
-                <h1>{{ $sectionSetting?->title ?? __('app.bid_challenge_system') }}</h1>
+                <h1>{{ GoogleTranslate::trans($sectionSetting?->title ?? __('app.bid_challenge_system'), app()->getLocale()) }}</h1>
                 <div style="word-wrap: break-word;">
                     {!! $sectionSetting?->sub_title !!}
                 </div>
@@ -56,7 +57,7 @@
                     <main id="main" class="site-main" role="main">
                         <article id="post-303" class="post-303 page type-page status-publish hentry">
                             <header class="entry-header">
-                                <h1 class="entry-title">{{ __('app.Bid Challenge System') }}</h1>
+                                <h1 class="entry-title">{{ GoogleTranslate::trans('Bid Challenge System', app()->getLocale()) }}</h1>
                             </header><!-- .entry-header -->
 
                             <div class="entry-content">
@@ -79,7 +80,7 @@
                                                             <h6><strong>
                                                                     <a target="_blank"
                                                                         href="{{ route('download.uploads', ['file' => $bid->file_path]) }}">
-                                                                        {{ $bid->file_name }}
+                                                                        {{ GoogleTranslate::trans($bid->file_name, app()->getLocale()) }}
                                                                     </a>
                                                                 </strong></h6>
                                                         </td>

@@ -10,6 +10,7 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Validation\Rules;
 use Illuminate\View\View;
 
@@ -53,6 +54,10 @@ class RegisteredUserController extends Controller
         ]);
 
         event(new Registered($user));
+
+        Mail::send('mail.welcome', ['user' => $user], function ($message) use ($user) {
+            $message->to($user->email, $user->name)->subject('Welcome to our website');
+        });
 
         Auth::login($user);
 

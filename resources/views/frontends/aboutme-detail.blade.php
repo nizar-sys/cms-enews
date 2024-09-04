@@ -1,6 +1,6 @@
 @extends('frontends.frontend')
 
-@section('title', __('app.About'))
+@section('title', GoogleTranslate::trans(__('app.About'), app()->getLocale()))
 
 @push('style')
     <style>
@@ -26,10 +26,11 @@
 
                 @foreach ($sliders as $slider)
                     <div class="carousel-item {{ $loop->iteration == 1 ? 'active' : '' }}">
-                        <img src="{{ asset($slider->image) }}" alt="{{ $slider->title }}">
+                        <img src="{{ asset($slider->image) }}"
+                            alt="{{ GoogleTranslate::trans($slider->title, app()->getLocale()) }}">
                         <div class="carousel-container">
-                            <h2>{{ $slider->title }}</h2>
-                            {!! $slider->description !!}
+                            <h2>{{ GoogleTranslate::trans($slider->title, app()->getLocale()) }}</h2>
+                            {!! GoogleTranslate::trans($slider->description, app()->getLocale()) !!}
                         </div>
                     </div>
                 @endforeach
@@ -53,7 +54,7 @@
             <div class="container position-relative">
                 <h1></h1>
                 <div style="word-wrap: break-word;">
-                    {{ $about->title ?? 'app.Read More' }}
+                    {{ GoogleTranslate::trans($about?->title ?? 'Read More', app()->getLocale()) }}
                 </div>
                 <nav class="breadcrumbs">
                     <ol>
@@ -67,7 +68,7 @@
         <div class="container">
             <div class="row">
                 <section id="primary" class="content-area col-sm-12 col-lg-12">
-                    <h1>{{ $about->title ?? 'app.Read More' }}</h1>
+                    <h1>{{ GoogleTranslate::trans($about?->title ?? 'Read More', app()->getLocale()) }}</h1>
                     <main id="main" class="site-main" role="main">
                         <div class="container">
                             <div class="row justify-content-center">
@@ -90,7 +91,7 @@
                                 <div class="entry-content">
                                     <div class="row">
                                         <div class="col-lg-12 col-md-12">
-                                            <p>{!! $about->description !!}</p>
+                                            <p>{!! GoogleTranslate::trans($about->description, app()->getLocale()) !!}</p>
                                         </div>
                                     </div>
                                 </div><!-- .entry-content -->

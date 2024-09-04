@@ -53,27 +53,27 @@
                         <div id="clockdiv" class="d-flex">
                             <div class="clockrow">
                                 <span class="year" id="year">4</span>
-                                <div class="smalltext">{{ __('app.year') }}</div>
+                                <div class="smalltext">{{ GoogleTranslate::trans('Year', app()->getLocale()) }}</div>
                             </div>
                             <div class="clockrow">
                                 <span class="month" id="month">0</span>
-                                <div class="smalltext">{{ __('app.month') }}</div>
+                                <div class="smalltext">{{ GoogleTranslate::trans('Month', app()->getLocale()) }}</div>
                             </div>
                             <div class="clockrow">
                                 <span class="days" id="days">24</span>
-                                <div class="smalltext">{{ __('app.days') }}</div>
+                                <div class="smalltext">{{ GoogleTranslate::trans('Days', app()->getLocale()) }}</div>
                             </div>
                             <div class="clockrow">
                                 <span class="hours" id="hour">14</span>
-                                <div class="smalltext">{{ __('app.hours') }}</div>
+                                <div class="smalltext">{{ GoogleTranslate::trans('Hours', app()->getLocale()) }}</div>
                             </div>
                             <div class="clockrow">
                                 <span class="minutes" id="minute">38</span>
-                                <div class="smalltext">{{ __('app.minutes') }}</div>
+                                <div class="smalltext">{{ GoogleTranslate::trans('Minutes', app()->getLocale()) }}</div>
                             </div>
                             <div class="clockrow">
                                 <span class="seconds" id="second">6</span>
-                                <div class="smalltext">{{ __('app.seconds') }}</div>
+                                <div class="smalltext">{{ GoogleTranslate::trans('Seconds', app()->getLocale()) }}</div>
                             </div>
                         </div>
                     </a>
@@ -109,7 +109,7 @@
                                        transition: background-color 0.3s ease, transform 0.3s ease;"
                                 onmouseover="this.style.backgroundColor='#345c88'; this.style.transform='scale(1.05)';"
                                 onmouseout="this.style.backgroundColor='#2c4666'; this.style.transform='scale(1)';">
-                                {{ __('app.Login') }}
+                                {{ GoogleTranslate::trans('Login', app()->getLocale()) }}
                             </a>
                         @else
                             <div class="dropdown">
@@ -123,10 +123,10 @@
                                 </button>
                                 <ul class="dropdown-menu" aria-labelledby="userDropdown">
                                     <li><a class="dropdown-item" href="#" data-bs-toggle="modal"
-                                            data-bs-target="#logoutModal">{{ __('app.Logout') }}</a></li>
+                                            data-bs-target="#logoutModal">{{ GoogleTranslate::trans('Logout', app()->getLocale()) }}</a></li>
                                     @if (Auth::user()->role == 'admin')
                                         <li><a class="dropdown-item"
-                                                href="{{ route('dashboard') }}">{{ __('app.Dashboard') }}</a></li>
+                                                href="{{ route('dashboard') }}">{{ GoogleTranslate::trans('Dashboard', app()->getLocale()) }}</a></li>
                                     @endif
                                 </ul>
                             </div>
@@ -142,19 +142,19 @@
                     <div class="modal-dialog">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h5 class="modal-title" id="logoutModalLabel">{{ __('app.Logout') }}</h5>
+                                <h5 class="modal-title" id="logoutModalLabel">{{ GoogleTranslate::trans('Logout', app()->getLocale()) }}</h5>
                                 <button type="button" class="btn-close" data-bs-dismiss="modal"
                                     aria-label="Close"></button>
                             </div>
                             <div class="modal-body">
-                                {{ __('app.Are you sure you want to logout?') }}
+                                {{ GoogleTranslate::trans('Are you sure you want to logout?', app()->getLocale()) }}
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary"
-                                    data-bs-dismiss="modal">{{ __('app.Cancel') }}</button>
+                                    data-bs-dismiss="modal">{{ GoogleTranslate::trans('Cancel', app()->getLocale()) }}</button>
                                 <form method="POST" action="{{ route('logout') }}">
                                     @csrf
-                                    <button type="submit" class="btn btn-danger">{{ __('app.Logout') }}</button>
+                                    <button type="submit" class="btn btn-danger">{{ GoogleTranslate::trans('Logout', app()->getLocale()) }}</button>
                                 </form>
                             </div>
                         </div>
@@ -166,7 +166,7 @@
                     <div class="modal-dialog modal-lg">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h5 class="modal-title" id="searchModalLabel">{{ __('app.Search') }}</h5>
+                                <h5 class="modal-title" id="searchModalLabel">{{ GoogleTranslate::trans('Search', app()->getLocale()) }}</h5>
                                 <button type="button" class="btn-close" data-bs-dismiss="modal"
                                     aria-label="Close"></button>
                             </div>
@@ -174,7 +174,7 @@
                                 <!-- Search Form -->
                                 <form method="get" action="#" class="mb-4">
                                     <input type="text" name="search" id="searchInput" class="form-control"
-                                        placeholder="{{ __('app.Enter search term') }}"
+                                        placeholder="{{ GoogleTranslate::trans('Enter search term', app()->getLocale()) }}"
                                         style="border: 1px solid #2c4666;" autocomplete="off" autofocus>
                                 </form>
 
@@ -204,11 +204,11 @@
                 <a href="{{ url('/') }}" class="d-flex align-items-center logo-link">
                     <img width="100"
                         src="{{ $generalSetting ? asset($generalSetting->left_icon) : 'https://mcanp.org/en/wp-content/uploads/sites/2/2021/08/mca-nepal-logo@2x-e1630344272397.png' }}"
-                        alt="{{ __('app.Millennium Challenge Account Nepal') }}">
+                        alt="{{ GoogleTranslate::trans('Millennium Challenge Account Nepal', app()->getLocale()) }}">
                 </a>
                 <a href="{{ url('/') }}" class="d-flex align-items-center logo-link">
                     <img src="{{ $generalSetting ? asset($generalSetting->right_icon) : 'http://mcanp.org/wp-content/uploads/2020/06/Nepal-Government-logo.png' }}"
-                        alt="Nepal Government" width="100">
+                        alt="{{ GoogleTranslate::trans('Nepal Government', app()->getLocale()) }}" width="100">
                 </a>
             </div>
         </nav>
