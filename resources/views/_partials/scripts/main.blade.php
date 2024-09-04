@@ -347,4 +347,12 @@
             replyForm.style.display = "none";
         }
     }
+
+    function setActiveLocale(element) {
+        document.querySelectorAll('.locale-link').forEach(link => {
+            link.classList.remove('text-danger');
+        });
+
+        element.classList.add('text-danger');
+    }
 </script>

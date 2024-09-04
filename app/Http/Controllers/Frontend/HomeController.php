@@ -30,6 +30,7 @@ use App\Models\GuidelineProcurement;
 use App\Models\GeneralSetting;
 use App\Models\GuidelineSectionSetting;
 use App\Models\Hero;
+use App\Models\MovingText;
 use App\Models\News;
 use App\Models\NewsSectionSetting;
 use App\Models\Notice;
@@ -78,8 +79,9 @@ class HomeController extends Controller
         $videoEvents = VideoGallery::get();
         $photoProjects = PhotoProject::all();
         $photoProjectSectionSetting = PhotoGallerySectionSetting::first();
+        $movingText = MovingText::first();
 
-        return view('frontends.home', compact('teamSectionSetting', 'teams', 'posts', 'about', 'serviceSection', 'services', 'user', 'directors', 'directorSectionSetting', 'videoEvents', 'photoProjects', 'photoProjectSectionSetting'));
+        return view('frontends.home', compact('teamSectionSetting', 'teams', 'posts', 'about', 'serviceSection', 'services', 'user', 'directors', 'directorSectionSetting', 'videoEvents', 'photoProjects', 'photoProjectSectionSetting', 'movingText'));
     }
 
     public function projectCategory($locale, $slugCategory)
