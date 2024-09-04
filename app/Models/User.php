@@ -51,4 +51,9 @@ class User extends Authenticatable
     {
         return $this->hasMany(Comment::class);
     }
+
+    public function downloadLogs()
+    {
+        return $this->hasMany(Downloadlog::class);
+    }
 }

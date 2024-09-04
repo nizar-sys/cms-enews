@@ -56,6 +56,11 @@
                 <a href="{{ route('admin.about.index') }}" class="nav-link"><i class="fas fa-user-cog"></i><span>About
                         Setting</span></a>
             </li>
+            <li class="nav-item {{ setSidebarActive(['admin.moving-texts.*']) }}">
+                <a href="{{ route('admin.moving-texts.index') }}" class="nav-link"><i
+                        class="fas fa-user-cog"></i><span>Moving
+                        Text Setting</span></a>
+            </li>
             <li
                 class="nav-item dropdown {{ setSidebarActive(['admin.service.*', 'admin.service-section-setting.*']) }}">
                 <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-columns"></i>
@@ -112,7 +117,8 @@
             </li>
 
             <li class="nav-item dropdown {{ setSidebarActive(['admin.bod.organizational-chart-settings.*']) }}">
-                <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-sitemap"></i>
+                <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i
+                        class="fas fa-sitemap"></i>
                     <span>Organizational Chart</span>
                 </a>
                 <ul class="dropdown-menu" style="display: none;">
@@ -199,6 +205,19 @@
                     </li>
                     <li class="{{ setSidebarActive(['admin.documents-reports-files.*']) }}">
                         <a class="nav-link" href="{{ route('admin.documents-reports-files.index') }}">Files</a>
+                    </li>
+                </ul>
+            </li>
+
+            <li class="nav-item dropdown {{ setSidebarActive(['admin.vendors.*']) }}">
+                <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i
+                        class="fas fa-user-tie"></i>
+                    <span>Vendors</span>
+                </a>
+                <ul class="dropdown-menu" style="display: none;">
+                    <li class="{{ setSidebarActive(['admin.vendors.*']) }}">
+                        <a class="nav-link" href="{{ route('admin.vendors.index') }}">List
+                            Vendors</a>
                     </li>
                 </ul>
             </li>

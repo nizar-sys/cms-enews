@@ -40,6 +40,7 @@ use App\Http\Controllers\Admin\FooterSocialLinkController;
 use App\Http\Controllers\Admin\FooterUsefulLinkController;
 use App\Http\Controllers\Admin\GuidelineSectionSettingController;
 use App\Http\Controllers\Admin\HeroController;
+use App\Http\Controllers\Admin\MovingTextController;
 use App\Http\Controllers\Admin\NewsSectionSettingController;
 use App\Http\Controllers\Admin\NoticeController;
 use App\Http\Controllers\Admin\NoticesSectionSettingController;
@@ -71,6 +72,7 @@ use App\Http\Controllers\Admin\PostSectionSettingController;
 use App\Http\Controllers\Admin\PressReleaseSectionSettingController;
 use App\Http\Controllers\Admin\TeachingLeadingController;
 use App\Http\Controllers\Admin\TeachingLeadingSectionSettingController;
+use App\Http\Controllers\Admin\VendorController;
 use App\Http\Controllers\Admin\VideoGallerySectionSettingController;
 use App\Http\Controllers\Admin\VideoProjectController;
 use App\Http\Controllers\Admin\VideoSectionSettingController;
@@ -173,6 +175,7 @@ Route::group(['middleware' => ['auth', 'admin'], 'prefix' => 'console', 'as' => 
     /**Documents & Reports Route**/
     Route::resource('documents-reports-categories', DocumentCategoryController::class);
     Route::resource('documents-reports-files', DocumentFileController::class);
+    Route::resource('vendors', VendorController::class);
 
 
     /** Media / Notices Route */
@@ -331,6 +334,11 @@ Route::group(['middleware' => ['auth', 'admin'], 'prefix' => 'console', 'as' => 
     Route::resource('posts-section-setting', PostSectionSettingController::class)->only(['index', 'update']);
     Route::resource('posts', PostController::class);
     Route::resource('about', AboutController::class);
+    Route::resource('moving-texts', MovingTextController::class)
+        ->parameters([
+            'moving-texts' => 'movingText',
+        ])
+        ->only(['index', 'update']);
     Route::resource('service-section-setting', ServiceSectionSettingController::class);
     Route::resource('service', ServiceController::class);
     Route::resource('article-section-setting', ArticleSectionSettingController::class)->only(['index', 'update']);
@@ -411,7 +419,7 @@ Route::prefix('{locale}')->group(function () {
         Route::get('/photo-projects', [HomeController::class, 'photoProject'])->name('photo-projects');
 
         // Comments
-        Route::post('/posts/{post}/comment', [CommentController::class,'store'])->name('comments.store');
+        Route::post('/posts/{post}/comment', [CommentController::class, 'store'])->name('comments.store');
         // Route::get('/posts/{postId}/comments', [CommentController::class, 'index'])->name('comments.index');
         // Route::delete('/posts/{postId}/comments/{commentId}', [CommentController::class, 'destroy'])->name('comments.destroy');
     });

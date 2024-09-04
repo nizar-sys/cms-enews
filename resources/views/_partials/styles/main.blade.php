@@ -2719,6 +2719,10 @@
         color: white !important;
     }
 
+    .background-section{
+        background-color: #005ca8 !important;
+    }
+
     @media (max-width: 768px) {
         .post-navigation {
             flex-direction: column;

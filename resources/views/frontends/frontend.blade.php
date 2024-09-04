@@ -81,6 +81,17 @@
 
                 <div class="d-flex align-items-center text-white">
                     <div class="social-links d-flex align-items-center me-3">
+                        <div class="locale-switcher d-inline-block me-3">
+                            <a href="{{ url('/en') }}"
+                                class="{{ app()->getLocale() === 'en' ? 'font-weight-bold text-danger' : '' }}">
+                                EN
+                            </a>
+                            <span style="color: black"> | </span>
+                            <a href="{{ url('/pt') }}"
+                                class="{{ app()->getLocale() === 'pt' ? 'font-weight-bold text-danger' : '' }}">
+                                PT
+                            </a>
+                        </div>
                         @foreach ($footerSocialLink as $navLink)
                             <a href="{{ $navLink->url }}" target="_blank" class="{{ $navLink->icon }} me-2"></a>
                         @endforeach
@@ -90,13 +101,6 @@
                             data-bs-toggle="modal">
                             <i class="bi bi-search"></i>
                         </button>
-                    </div>
-                    <div class="locale-switcher d-inline-block me-3">
-                        <span>
-                            <a href="{{ url(app()->getLocale() === 'pt' ? '/en' : '/pt') }}">
-                                <div class="smalltext">{{ app()->getLocale() === 'pt' ? 'EN' : 'PT' }}</div>
-                            </a>
-                        </span>
                     </div>
                     <div class="user-profile d-inline-block">
                         @guest
@@ -344,28 +348,30 @@
             </div>
         </div>
 
-        <div class="copyright text-center">
+        <div class="copyright text-center" style="background-color: red; padding: 20px;">
             <div
                 class="container d-flex flex-column flex-lg-row justify-content-center justify-content-lg-between align-items-center">
 
                 <div class="d-flex flex-column align-items-center align-items-lg-start">
                     @if ($footerInfo)
-                        <div>
+                        <div style="color: white;">
                             © {!! $footerInfo->copy_right !!}
                         </div>
                     @else
-                        <div>
+                        <div style="color: white; background-color: white">
                             © {{ __('app.copyright') }}
-                            <strong><span>{{ $seoSetting ? $seoSetting->title : __('app.app_name') }}</span></strong>.
+                            <strong><span
+                                    style="color: yellow;">{{ $seoSetting ? $seoSetting->title : __('app.app_name') }}</span></strong>.
                             {{ __('app.all_rights_reserved') }}
                         </div>
                     @endif
-
                 </div>
 
                 <div class="social-links order-first order-lg-last mb-3 mb-lg-0">
                     @foreach ($footerSocialLink as $link)
-                        <a href="{{ $link->url }}" target="_blank"><i class="{{ $link->icon }}"></i></a>
+                        <a href="{{ $link->url }}" target="_blank" style="color: white; margin: 0 10px;">
+                            <i class="{{ $link->icon }}"></i>
+                        </a>
                     @endforeach
                 </div>
 

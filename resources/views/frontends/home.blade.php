@@ -68,6 +68,14 @@
 
         </section><!-- /Hero Section -->
 
+        <section style="background-color: red; padding: 20px;">
+            <div class="container">
+                <marquee style="color: white; font-size: 18px;" behavior="scroll" direction="left">
+                    {{ $movingText->moving_text }}
+                </marquee>
+            </div>
+        </section>
+
         <section id="about-3" class="about-3 section">
             <div class="container">
                 <div class="row gy-4 justify-content-between align-items-center">
@@ -251,16 +259,23 @@
 
 
         {{-- Board Of Directors --}}
-        <section id="services-2" class="services-2 section dark-background">
+        <section id="services-2" class="services-2 section background-section">
             <!-- Section Title -->
             <div class="container section-title" data-aos="fade-up">
-                <h2>{{ $directorSectionSetting ? $directorSectionSetting->title : __('app.board_of_directors') }}</h2>
+                <h2 style="color: white;">
+                    {{ $directorSectionSetting ? $directorSectionSetting->title : __('app.board_of_directors') }}
+                </h2>
                 @if ($directorSectionSetting)
-                    {!! $directorSectionSetting->sub_title !!}
+                    <div style="color: white;">
+                        {!! $directorSectionSetting->sub_title !!}
+                    </div>
                 @else
-                    <p>{{ __('app.board_of_directors') }}</p>
+                    <p style="color: white;">
+                        {{ __('app.board_of_directors') }}
+                    </p>
                 @endif
             </div><!-- End Section Title -->
+
 
             <div class="services-carousel-wrap">
                 <div class="container">
@@ -356,14 +371,16 @@
 
 
         <!-- END Executive Teams -->
-        <section id="services-2" class="services-2 section dark-background">
+        <section id="services-2" class="services-2 section background-section">
             <!-- Section Title -->
             <div class="container section-title" data-aos="fade-up">
-                <h2>{{ $teamSectionSetting ? $teamSectionSetting->title : __('app.Our Team') }}</h2>
+                <h2 style="color: white;">{{ $teamSectionSetting ? $teamSectionSetting->title : __('app.Our Team') }}</h2>
                 @if ($teamSectionSetting)
-                    {!! $teamSectionSetting->sub_title !!}
+                    <div style="color: white;">
+                        {!! $teamSectionSetting->sub_title !!}
+                    </div>
                 @else
-                    <p>{{ __('app.Meet Our Executive Teams') }}</p>
+                    <p style="color: white;">{{ __('app.Meet Our Executive Teams') }}</p>
                 @endif
             </div><!-- End Section Title -->
 
@@ -508,9 +525,6 @@
                 <div class="row" style="display: flex; justify-content: center;">
                     <section id="primary" class="w-full">
                         <main id="main" class="site-main" role="main">
-                            <h2 class="mb-5" style="text-align: center; font-size: 30px; color: #333;">
-                                {{ $photoProjectSectionSetting?->title ?? __('app.Photo Project') }}
-                            </h2>
                             @if ($photoProjects->isEmpty())
                                 <div class="no-galleries" style="text-align: center; padding: 50px;">
                                     <h2 style="font-size: 24px; color: #999;">{{ __('app.No Photo Project Available') }}
