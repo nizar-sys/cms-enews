@@ -6,3 +6,62 @@ Stack trace:
 #2 /home/friq1533/public_html/public/index.php(34): require('/home/friq1533/...')
 #3 {main}
   thrown in /home/friq1533/public_html/vendor/composer/autoload_real.php on line 41
+[05-Sep-2024 09:22:36 UTC] PHP Fatal error:  Composer detected issues in your platform: Your Composer dependencies require a PHP version ">= 8.1.0". You are running 7.4.33. in /home/lolucloud/public_html/vendor/composer/platform_check.php on line 28
+[05-Sep-2024 09:22:37 UTC] PHP Fatal error:  Composer detected issues in your platform: Your Composer dependencies require a PHP version ">= 8.1.0". You are running 7.4.33. in /home/lolucloud/public_html/vendor/composer/platform_check.php on line 28
+[05-Sep-2024 09:22:38 UTC] PHP Fatal error:  Composer detected issues in your platform: Your Composer dependencies require a PHP version ">= 8.1.0". You are running 7.4.33. in /home/lolucloud/public_html/vendor/composer/platform_check.php on line 28
+[05-Sep-2024 09:22:38 UTC] PHP Fatal error:  Composer detected issues in your platform: Your Composer dependencies require a PHP version ">= 8.1.0". You are running 7.4.33. in /home/lolucloud/public_html/vendor/composer/platform_check.php on line 28
+[05-Sep-2024 09:22:38 UTC] PHP Fatal error:  Composer detected issues in your platform: Your Composer dependencies require a PHP version ">= 8.1.0". You are running 7.4.33. in /home/lolucloud/public_html/vendor/composer/platform_check.php on line 28
+[05-Sep-2024 09:22:38 UTC] PHP Fatal error:  Composer detected issues in your platform: Your Composer dependencies require a PHP version ">= 8.1.0". You are running 7.4.33. in /home/lolucloud/public_html/vendor/composer/platform_check.php on line 28
+[05-Sep-2024 09:22:38 UTC] PHP Fatal error:  Composer detected issues in your platform: Your Composer dependencies require a PHP version ">= 8.1.0". You are running 7.4.33. in /home/lolucloud/public_html/vendor/composer/platform_check.php on line 28
+[05-Sep-2024 09:22:40 UTC] PHP Fatal error:  Composer detected issues in your platform: Your Composer dependencies require a PHP version ">= 8.1.0". You are running 7.4.33. in /home/lolucloud/public_html/vendor/composer/platform_check.php on line 28
+[05-Sep-2024 09:23:07 UTC] PHP Fatal error:  Composer detected issues in your platform: Your Composer dependencies require a PHP version ">= 8.1.0". You are running 7.4.33. in /home/lolucloud/public_html/vendor/composer/platform_check.php on line 28
+[05-Sep-2024 09:23:07 UTC] PHP Fatal error:  Composer detected issues in your platform: Your Composer dependencies require a PHP version ">= 8.1.0". You are running 7.4.33. in /home/lolucloud/public_html/vendor/composer/platform_check.php on line 28
+[05-Sep-2024 09:23:07 UTC] PHP Fatal error:  Composer detected issues in your platform: Your Composer dependencies require a PHP version ">= 8.1.0". You are running 7.4.33. in /home/lolucloud/public_html/vendor/composer/platform_check.php on line 28
+[05-Sep-2024 09:23:08 UTC] PHP Fatal error:  Composer detected issues in your platform: Your Composer dependencies require a PHP version ">= 8.1.0". You are running 7.4.33. in /home/lolucloud/public_html/vendor/composer/platform_check.php on line 28
+[05-Sep-2024 09:23:08 UTC] PHP Fatal error:  Composer detected issues in your platform: Your Composer dependencies require a PHP version ">= 8.1.0". You are running 7.4.33. in /home/lolucloud/public_html/vendor/composer/platform_check.php on line 28
+[05-Sep-2024 09:23:08 UTC] PHP Fatal error:  Composer detected issues in your platform: Your Composer dependencies require a PHP version ">= 8.1.0". You are running 7.4.33. in /home/lolucloud/public_html/vendor/composer/platform_check.php on line 28
+[05-Sep-2024 09:23:26 UTC] PHP Fatal error:  Composer detected issues in your platform: Your Composer dependencies require a PHP version ">= 8.1.0". You are running 7.4.33. in /home/lolucloud/public_html/vendor/composer/platform_check.php on line 28
+[05-Sep-2024 09:23:30 UTC] PHP Fatal error:  Composer detected issues in your platform: Your Composer dependencies require a PHP version ">= 8.1.0". You are running 7.4.33. in /home/lolucloud/public_html/vendor/composer/platform_check.php on line 28
+[05-Sep-2024 09:23:30 UTC] PHP Fatal error:  Composer detected issues in your platform: Your Composer dependencies require a PHP version ">= 8.1.0". You are running 7.4.33. in /home/lolucloud/public_html/vendor/composer/platform_check.php on line 28
+[05-Sep-2024 09:23:30 UTC] PHP Fatal error:  Composer detected issues in your platform: Your Composer dependencies require a PHP version ">= 8.1.0". You are running 7.4.33. in /home/lolucloud/public_html/vendor/composer/platform_check.php on line 28
+[05-Sep-2024 09:23:31 UTC] PHP Fatal error:  Composer detected issues in your platform: Your Composer dependencies require a PHP version ">= 8.1.0". You are running 7.4.33. in /home/lolucloud/public_html/vendor/composer/platform_check.php on line 28
+[05-Sep-2024 09:23:31 UTC] PHP Fatal error:  Composer detected issues in your platform: Your Composer dependencies require a PHP version ">= 8.1.0". You are running 7.4.33. in /home/lolucloud/public_html/vendor/composer/platform_check.php on line 28
+[05-Sep-2024 09:23:31 UTC] PHP Fatal error:  Composer detected issues in your platform: Your Composer dependencies require a PHP version ">= 8.1.0". You are running 7.4.33. in /home/lolucloud/public_html/vendor/composer/platform_check.php on line 28
+[05-Sep-2024 09:23:32 UTC] PHP Fatal error:  Composer detected issues in your platform: Your Composer dependencies require a PHP version ">= 8.1.0". You are running 7.4.33. in /home/lolucloud/public_html/vendor/composer/platform_check.php on line 28
+[05-Sep-2024 09:23:32 UTC] PHP Fatal error:  Composer detected issues in your platform: Your Composer dependencies require a PHP version ">= 8.1.0". You are running 7.4.33. in /home/lolucloud/public_html/vendor/composer/platform_check.php on line 28
+[05-Sep-2024 09:23:32 UTC] PHP Fatal error:  Composer detected issues in your platform: Your Composer dependencies require a PHP version ">= 8.1.0". You are running 7.4.33. in /home/lolucloud/public_html/vendor/composer/platform_check.php on line 28
+[05-Sep-2024 09:23:33 UTC] PHP Fatal error:  Composer detected issues in your platform: Your Composer dependencies require a PHP version ">= 8.1.0". You are running 7.4.33. in /home/lolucloud/public_html/vendor/composer/platform_check.php on line 28
+[05-Sep-2024 09:23:33 UTC] PHP Fatal error:  Composer detected issues in your platform: Your Composer dependencies require a PHP version ">= 8.1.0". You are running 7.4.33. in /home/lolucloud/public_html/vendor/composer/platform_check.php on line 28
+[05-Sep-2024 09:23:33 UTC] PHP Fatal error:  Composer detected issues in your platform: Your Composer dependencies require a PHP version ">= 8.1.0". You are running 7.4.33. in /home/lolucloud/public_html/vendor/composer/platform_check.php on line 28
+[05-Sep-2024 09:25:31 UTC] PHP Warning:  require(/home/lolucloud/public_html/vendor/composer/../../app/Helper/Helpers.php): Failed to open stream: No such file or directory in /home/lolucloud/public_html/vendor/composer/autoload_real.php on line 41
+[05-Sep-2024 09:25:31 UTC] PHP Fatal error:  Uncaught Error: Failed opening required '/home/lolucloud/public_html/vendor/composer/../../app/Helper/Helpers.php' (include_path='.:/opt/cpanel/ea-php81/root/usr/share/pear') in /home/lolucloud/public_html/vendor/composer/autoload_real.php:41
+Stack trace:
+#0 /home/lolucloud/public_html/vendor/composer/autoload_real.php(45): {closure}('2e63b8599f9ae98...', '/home/lolucloud...')
+#1 /home/lolucloud/public_html/vendor/autoload.php(25): ComposerAutoloaderInit3197abf209b989440d04539097a294ae::getLoader()
+#2 /home/lolucloud/public_html/public/index.php(34): require('/home/lolucloud...')
+#3 {main}
+  thrown in /home/lolucloud/public_html/vendor/composer/autoload_real.php on line 41
+[05-Sep-2024 09:26:04 UTC] PHP Warning:  require(/home/lolucloud/public_html/vendor/composer/../../app/Helper/Helpers.php): Failed to open stream: No such file or directory in /home/lolucloud/public_html/vendor/composer/autoload_real.php on line 41
+[05-Sep-2024 09:26:04 UTC] PHP Fatal error:  Uncaught Error: Failed opening required '/home/lolucloud/public_html/vendor/composer/../../app/Helper/Helpers.php' (include_path='.:/opt/cpanel/ea-php81/root/usr/share/pear') in /home/lolucloud/public_html/vendor/composer/autoload_real.php:41
+Stack trace:
+#0 /home/lolucloud/public_html/vendor/composer/autoload_real.php(45): {closure}('2e63b8599f9ae98...', '/home/lolucloud...')
+#1 /home/lolucloud/public_html/vendor/autoload.php(25): ComposerAutoloaderInit3197abf209b989440d04539097a294ae::getLoader()
+#2 /home/lolucloud/public_html/public/index.php(34): require('/home/lolucloud...')
+#3 {main}
+  thrown in /home/lolucloud/public_html/vendor/composer/autoload_real.php on line 41
+[05-Sep-2024 09:26:06 UTC] PHP Warning:  require(/home/lolucloud/public_html/vendor/composer/../../app/Helper/Helpers.php): Failed to open stream: No such file or directory in /home/lolucloud/public_html/vendor/composer/autoload_real.php on line 41
+[05-Sep-2024 09:26:06 UTC] PHP Fatal error:  Uncaught Error: Failed opening required '/home/lolucloud/public_html/vendor/composer/../../app/Helper/Helpers.php' (include_path='.:/opt/cpanel/ea-php81/root/usr/share/pear') in /home/lolucloud/public_html/vendor/composer/autoload_real.php:41
+Stack trace:
+#0 /home/lolucloud/public_html/vendor/composer/autoload_real.php(45): {closure}('2e63b8599f9ae98...', '/home/lolucloud...')
+#1 /home/lolucloud/public_html/vendor/autoload.php(25): ComposerAutoloaderInit3197abf209b989440d04539097a294ae::getLoader()
+#2 /home/lolucloud/public_html/public/index.php(34): require('/home/lolucloud...')
+#3 {main}
+  thrown in /home/lolucloud/public_html/vendor/composer/autoload_real.php on line 41
+[05-Sep-2024 09:26:06 UTC] PHP Warning:  require(/home/lolucloud/public_html/vendor/composer/../../app/Helper/Helpers.php): Failed to open stream: No such file or directory in /home/lolucloud/public_html/vendor/composer/autoload_real.php on line 41
+[05-Sep-2024 09:26:06 UTC] PHP Fatal error:  Uncaught Error: Failed opening required '/home/lolucloud/public_html/vendor/composer/../../app/Helper/Helpers.php' (include_path='.:/opt/cpanel/ea-php81/root/usr/share/pear') in /home/lolucloud/public_html/vendor/composer/autoload_real.php:41
+Stack trace:
+#0 /home/lolucloud/public_html/vendor/composer/autoload_real.php(45): {closure}('2e63b8599f9ae98...', '/home/lolucloud...')
+#1 /home/lolucloud/public_html/vendor/autoload.php(25): ComposerAutoloaderInit3197abf209b989440d04539097a294ae::getLoader()
+#2 /home/lolucloud/public_html/public/index.php(34): require('/home/lolucloud...')
+#3 {main}
+  thrown in /home/lolucloud/public_html/vendor/composer/autoload_real.php on line 41
