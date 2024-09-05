@@ -44,7 +44,7 @@
 
             <div id="hero-carousel" class="carousel slide carousel-fade" data-bs-ride="carousel" data-bs-interval="3000">
 
-                @foreach ($sliders as $slider)
+                @foreach (\App\Models\Hero::select('id', 'title', 'description', 'image')->get() as $slider)
                     <div class="carousel-item {{ $loop->iteration == 1 ? 'active' : '' }}">
                         <img src="{{ asset($slider->image) }}"
                             alt="{{ GoogleTranslate::trans($slider->title, app()->getLocale()) }}">
@@ -106,9 +106,9 @@
                             <p class="mb-4">
                                 {{ GoogleTranslate::trans(
                                     'Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim
-                                                                                                necessitatibus placeat, atque qui voluptatem velit explicabo vitae
-                                                                                                repellendus architecto provident nisi ullam minus asperiores commodi!
-                                                                                                Tenetur, repellat aliquam nihil illo.',
+                                                                                                                                necessitatibus placeat, atque qui voluptatem velit explicabo vitae
+                                                                                                                                repellendus architecto provident nisi ullam minus asperiores commodi!
+                                                                                                                                Tenetur, repellat aliquam nihil illo.',
                                     app()->getLocale(),
                                 ) }}
                             </p>
