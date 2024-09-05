@@ -15,10 +15,10 @@
                 @foreach (\App\Models\Hero::select('id', 'title', 'description', 'image')->get() as $slider)
                     <div class="carousel-item {{ $loop->iteration == 1 ? 'active' : '' }}">
                         <img src="{{ asset($slider->image) }}"
-                            alt="{{ GoogleTranslate::trans($slider->title, app()->getLocale()) }}">
+                            alt="{{ GoogleTranslate::trans($slider->title ?? '', app()->getLocale()) }}">
                         <div class="carousel-container">
-                            <h2>{{ GoogleTranslate::trans($slider->title, app()->getLocale()) }}</h2>
-                            {!! GoogleTranslate::trans($slider->description, app()->getLocale()) !!}
+                            <h2>{{ GoogleTranslate::trans($slider->title ?? '', app()->getLocale()) }}</h2>
+                            {!! GoogleTranslate::trans($slider->description ?? '', app()->getLocale()) !!}
                         </div>
                     </div>
                 @endforeach
@@ -86,7 +86,7 @@
                                                                 : 'col-lg-4 col-md-4');
                                                 @endphp
                                                 <div class="{{ $colSize }}">
-                                                    <h4 class="text-center">{{ GoogleTranslate::trans($director->designation->designation, app()->getLocale()) }}</h4>
+                                                    <h4 class="text-center">{{ GoogleTranslate::trans($director->designation?->designation ?? 'No Data', app()->getLocale()) }}</h4>
                                                     <h5 class="text-center">{{ $director->name }}</h5>
                                                     <div class="wp-block-image text-center">
                                                         <figure>
@@ -117,7 +117,7 @@
                     <div class="row gy-4 justify-content-between align-items-center">
                         <div class="col-lg-12 order-lg-2 position-relative" data-aos="zoom-out">
 
-                            <h4>{{ GoogleTranslate::trans($documentCategory->name, app()->getLocale()) }}</h4>
+                            <h4>{{ GoogleTranslate::trans($documentCategory->name ?? 'No Data', app()->getLocale()) }}</h4>
                             <div class="minutes_lists table-responsive">
                                 <form id="downloadForm" method="POST" action="{{ route('download.multiple') }}">
                                     @csrf
@@ -134,11 +134,11 @@
                                                 <tr>
                                                     <td width="5%"><input type="checkbox" name="files[]"
                                                             value="{{ $file->file_path }}"></td>
-                                                    <td width="75%">{{ GoogleTranslate::trans($file->filename, app()->getLocale()) }}</td>
+                                                    <td width="75%">{{ GoogleTranslate::trans($file->filename ?? 'No Data', app()->getLocale()) }}</td>
                                                     <td class="text-center">
                                                         <a class="btn btn-danger"
                                                             href="{{ route('download.uploads', ['file' => $file->file_path, 'model' => get_class($file), 'id' => $file->id]) }}"
-                                                            title="{{ GoogleTranslate::trans($file->filename, app()->getLocale()) }}" target="_blank">
+                                                            title="{{ GoogleTranslate::trans($file->filename ?? 'No Data', app()->getLocale()) }}" target="_blank">
                                                             <i class="far fa-file-pdf"></i> {{ __('app.Download') }}
                                                         </a>
                                                     </td>

@@ -47,10 +47,10 @@
                 @foreach (\App\Models\Hero::select('id', 'title', 'description', 'image')->get() as $slider)
                     <div class="carousel-item {{ $loop->iteration == 1 ? 'active' : '' }}">
                         <img src="{{ asset($slider->image) }}"
-                            alt="{{ GoogleTranslate::trans($slider->title, app()->getLocale()) }}">
+                            alt="{{ GoogleTranslate::trans($slider->title ?? '', app()->getLocale()) }}">
                         <div class="carousel-container">
-                            <h2>{{ GoogleTranslate::trans($slider->title, app()->getLocale()) }}</h2>
-                            {!! GoogleTranslate::trans($slider->description, app()->getLocale()) !!}
+                            <h2>{{ GoogleTranslate::trans($slider->title ?? '', app()->getLocale()) }}</h2>
+                            {!! GoogleTranslate::trans($slider->description ?? '', app()->getLocale()) !!}
                         </div>
                     </div>
                 @endforeach
@@ -179,7 +179,7 @@
                                 onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 8px rgba(0, 0, 0, 0.1)';">
                                 <div class="service-item-icon" style="margin-bottom: 15px;">
                                     <img src="{{ asset($service->image) }}"
-                                        alt="{{ GoogleTranslate::trans($service->title, app()->getLocale()) }}"
+                                        alt="{{ GoogleTranslate::trans($service->title ?? '', app()->getLocale()) }}"
                                         style="
                                             max-width: 200px;
                                             height: auto;
@@ -194,7 +194,7 @@
                                             margin-top: 0;
                                             margin-bottom: 10px;
                                         ">
-                                        {{ GoogleTranslate::trans($service->title, app()->getLocale()) }}
+                                        {{ GoogleTranslate::trans($service->title ?? '', app()->getLocale()) }}
                                     </h3>
                                     <p style="margin: 0;">
                                         {!! GoogleTranslate::trans(
@@ -545,7 +545,7 @@
                                         <div class="photo-item"
                                             style="width: 300px; overflow: hidden; border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); position: relative;">
                                             <img src="{{ $photo->photo }}"
-                                                alt="{{ GoogleTranslate::trans($photo->title, app()->getLocale()) }}"
+                                                alt="{{ GoogleTranslate::trans($photo->title ?? '', app()->getLocale()) }}"
                                                 style="width: 100%; height: auto; transition: transform 0.3s ease;">
                                             <div class="photo-caption"
                                                 style="position: absolute; bottom: 0; background: rgba(0,0,0,0.5); width: 100%; text-align: center; padding: 10px; color: #fff; font-size: 18px; transition: background 0.3s ease;">

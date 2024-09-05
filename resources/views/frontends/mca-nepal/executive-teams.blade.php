@@ -27,10 +27,10 @@
                 @foreach (\App\Models\Hero::select('id', 'title', 'description', 'image')->get() as $slider)
                     <div class="carousel-item {{ $loop->iteration == 1 ? 'active' : '' }}">
                         <img src="{{ asset($slider->image) }}"
-                            alt="{{ GoogleTranslate::trans($slider->title, app()->getLocale()) }}">
+                            alt="{{ GoogleTranslate::trans($slider->title ?? '', app()->getLocale()) }}">
                         <div class="carousel-container">
-                            <h2>{{ GoogleTranslate::trans($slider->title, app()->getLocale()) }}</h2>
-                            {!! GoogleTranslate::trans($slider->description, app()->getLocale()) !!}
+                            <h2>{{ GoogleTranslate::trans($slider->title ?? '', app()->getLocale()) }}</h2>
+                            {!! GoogleTranslate::trans($slider->description ?? '', app()->getLocale()) !!}
                         </div>
                     </div>
                 @endforeach
@@ -99,7 +99,7 @@
                                                 @endphp
                                                 <div class="{{ $colSize }}">
                                                     <h4 class="text-center">
-                                                        {{ GoogleTranslate::trans($executive->designation->designation, app()->getLocale()) }}
+                                                        {{ GoogleTranslate::trans($executive->designation?->designation?? 'No Data', app()->getLocale()) }}
                                                     </h4>
                                                     <h5 class="text-center">{{ $executive->name }}</h5>
                                                     <div class="wp-block-image text-center">
