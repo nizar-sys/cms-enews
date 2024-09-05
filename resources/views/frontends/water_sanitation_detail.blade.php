@@ -1,6 +1,6 @@
 @extends('frontends.frontend')
 
-@section('title', $sectionSetting?->title ?? __('app.Water & Sanitation'))
+@section('title', GoogleTranslate::trans($sectionSetting?->title ?? __('app.Water & Sanitation'), app()->getLocale()))
 
 @push('style')
     <style>
@@ -57,12 +57,13 @@
 
             <div id="hero-carousel" class="carousel slide carousel-fade" data-bs-ride="carousel" data-bs-interval="3000">
 
-                @foreach ($sliders as $slider)
+                @foreach (\App\Models\Hero::select('id', 'title', 'description', 'image')->get() as $slider)
                     <div class="carousel-item {{ $loop->iteration == 1 ? 'active' : '' }}">
-                        <img src="{{ asset($slider->image) }}" alt="{{ $slider->title }}">
+                        <img src="{{ asset($slider->image) }}"
+                            alt="{{ GoogleTranslate::trans($slider->title ?? '', app()->getLocale()) }}">
                         <div class="carousel-container">
-                            <h2>{{ $slider->title }}</h2>
-                            {!! $slider->description !!}
+                            <h2>{{ GoogleTranslate::trans($slider->title ?? '', app()->getLocale()) }}</h2>
+                            {!! GoogleTranslate::trans($slider->description ?? '', app()->getLocale()) !!}
                         </div>
                     </div>
                 @endforeach
@@ -82,11 +83,14 @@
         </section><!-- /Hero Section -->
         <div class="page-title dark-background" data-aos="fade" style="background-color: #2c4666">
             <div class="container position-relative">
-                <h1>{{ $sectionSetting?->title ?? __('app.Water & Sanitation') }}</h1>
+                <h1>{{ GoogleTranslate::trans($sectionSetting?->title ?? __('app.Water & Sanitation'), app()->getLocale()) }}
+                </h1>
                 <nav class="breadcrumbs">
                     <ol>
                         <li><a href="{{ url('/', []) }}" class="text-primary">{{ __('app.home') }}</a></li>
-                        <li class="current">{{ $sectionSetting?->title ?? __('app.Water & Sanitation') }}</li>
+                        <li class="current">
+                            {{ GoogleTranslate::trans($sectionSetting?->title ?? __('app.Water & Sanitation'), app()->getLocale()) }}
+                        </li>
                     </ol>
                 </nav>
             </div>
@@ -101,23 +105,25 @@
                         <article id="post-2761" class="post-2761 news type-news status-publish hentry">
                             @if ($news->image)
                                 <div class="post-thumbnail">
-                                    <img src="{{ asset($news->image) }}" class="img-fluid" alt="{{ $news->title }}">
+                                    <img src="{{ asset($news->image) }}" class="img-fluid"
+                                        alt="{{ GoogleTranslate::trans($news->title, app()->getLocale()) }}">
                                 </div>
                             @endif
                             <header class="entry-header">
-                                <h1 class="entry-title">{{ $news->title }}</h1>
+                                <h1 class="entry-title">{{ GoogleTranslate::trans($news->title, app()->getLocale()) }}</h1>
                             </header><!-- .entry-header -->
                             <div class="entry-content">
-                                {!! $news->description !!}
+                                {!! GoogleTranslate::trans($news->description, app()->getLocale()) !!}
                             </div><!-- .entry-content -->
 
                             <footer class="entry-footer">
                                 @if ($news->file)
                                     <div class="m-4">
 
-                                        File Attachment: <br>
-                                        <a href="{{ route('download.uploads', ['file' => $news->file, 'model' => get_class($news), 'id' => $news->id]) }}" target="_blank"
-                                            class="btn btn-primary btn-sm mt-2">Download</a>
+                                        {{ GoogleTranslate::trans('File Attachment', app()->getLocale()) }}: <br>
+                                        <a href="{{ route('download.uploads', ['file' => $news->file, 'model' => get_class($news), 'id' => $news->id]) }}"
+                                            target="_blank"
+                                            class="btn btn-primary btn-sm mt-2">{{ GoogleTranslate::trans('Download', app()->getLocale()) }}</a>
                                     </div>
                                 @endif
                             </footer><!-- .entry-footer -->
@@ -135,9 +141,9 @@
                                                 ]) }}"
                                                     class="btn btn-primary" rel="{{ $rel }}">
                                                     @if ($rel === 'prev')
-                                                        {{ $news->title }}
+                                                        {{ GoogleTranslate::trans($news->title, app()->getLocale()) }}
                                                     @else
-                                                        {{ $news->title }}
+                                                        {{ GoogleTranslate::trans($news->title, app()->getLocale()) }}
                                                     @endif
                                                 </a>
                                             </div>
@@ -158,14 +164,16 @@
                         </div>
                     </section>
                     <section id="sp_news_widget-3" class="widget SP_News_Widget">
-                        <h3 class="widget-title">{{ $sectionSetting?->title ?? __('app.Water & Sanitation') }}</h3>
+                        <h3 class="widget-title">
+                            {{ GoogleTranslate::trans($sectionSetting?->title ?? __('app.Water & Sanitation'), app()->getLocale()) }}
+                        </h3>
                         <div class="recent-news-items no_p">
                             <ul style="list-style: none">
 
                                 @foreach ($latestNews as $latestNew)
                                     <li class="news_li">
                                         <a class="newspost-title"
-                                            href="{{ route('what-we-do.water-sanitations-detail', ['locale' => session('locale', 'en'), 'id' => $latestNew->id]) }}">{{ $latestNew->title }}</a>
+                                            href="{{ route('what-we-do.water-sanitations-detail', ['locale' => session('locale', 'en'), 'id' => $latestNew->id]) }}">{{ GoogleTranslate::trans($latestNew->title, app()->getLocale()) }}</a>
                                     </li>
                                 @endforeach
 

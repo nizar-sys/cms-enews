@@ -44,12 +44,13 @@
 
             <div id="hero-carousel" class="carousel slide carousel-fade" data-bs-ride="carousel" data-bs-interval="3000">
 
-                @foreach ($sliders as $slider)
+                @foreach (\App\Models\Hero::select('id', 'title', 'description', 'image')->get() as $slider)
                     <div class="carousel-item {{ $loop->iteration == 1 ? 'active' : '' }}">
-                        <img src="{{ asset($slider->image) }}" alt="{{ $slider->title }}">
+                        <img src="{{ asset($slider->image) }}"
+                            alt="{{ GoogleTranslate::trans($slider->title ?? '', app()->getLocale()) }}">
                         <div class="carousel-container">
-                            <h2>{{ $slider->title }}</h2>
-                            {!! $slider->description !!}
+                            <h2>{{ GoogleTranslate::trans($slider->title ?? '', app()->getLocale()) }}</h2>
+                            {!! GoogleTranslate::trans($slider->description ?? '', app()->getLocale()) !!}
                         </div>
                     </div>
                 @endforeach
@@ -68,13 +69,15 @@
 
         </section><!-- /Hero Section -->
 
-        <section style="background-color: red; padding: 20px;">
-            <div class="container">
-                <marquee style="color: white; font-size: 18px;" behavior="scroll" direction="left">
-                    {{ $movingText->moving_text }}
-                </marquee>
-            </div>
-        </section>
+        @if ($movingText)
+            <section style="background-color: red; padding: 20px;">
+                <div class="container">
+                    <marquee style="color: white; font-size: 18px;" behavior="scroll" direction="left">
+                        {{ GoogleTranslate::trans($movingText->moving_text, app()->getLocale()) }}
+                    </marquee>
+                </div>
+            </section>
+        @endif
 
         <section id="about-3" class="about-3 section">
             <div class="container">
@@ -88,25 +91,32 @@
                         </a>
                     </div>
                     <div class="col-lg-5" data-aos="fade-up" data-aos-delay="100">
-                        <h2 class="content-title mb-4">{{ $about->title ?? __('app.Who We Are') }}</h2>
+                        <h2 class="content-title mb-4">
+                            {{ GoogleTranslate::trans($about->title ?? __('app.Who We Are'), app()->getLocale()) }}</h2>
                         @if ($about)
                             <div class="mb-4">
                                 {!! str_word_count($about->description, 0) > 50
-                                    ? implode(' ', array_slice(explode(' ', $about->description), 0, 50)) . '...'
-                                    : $about->description !!}
+                                    ? GoogleTranslate::trans(
+                                        implode(' ', array_slice(explode(' ', $about->description), 0, 50)) . '...',
+                                        app()->getLocale(),
+                                    )
+                                    : GoogleTranslate::trans($about->description, app()->getLocale()) !!}
                             </div>
                         @else
                             <p class="mb-4">
-                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim
-                                necessitatibus placeat, atque qui voluptatem velit explicabo vitae
-                                repellendus architecto provident nisi ullam minus asperiores commodi!
-                                Tenetur, repellat aliquam nihil illo.
+                                {{ GoogleTranslate::trans(
+                                    'Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim
+                                                                                                                                necessitatibus placeat, atque qui voluptatem velit explicabo vitae
+                                                                                                                                repellendus architecto provident nisi ullam minus asperiores commodi!
+                                                                                                                                Tenetur, repellat aliquam nihil illo.',
+                                    app()->getLocale(),
+                                ) }}
                             </p>
 
                             @if ($services)
                                 @foreach ($services as $service)
                                     <ul class="list-unstyled list-check">
-                                        <li>{{ $service->name }}</li>
+                                        <li>{{ GoogleTranslate::trans($service->name, app()->getLocale()) }}</li>
                                     </ul>
                                 @endforeach
                             @endif
@@ -140,11 +150,12 @@
         <section id="services" class="services section">
             <!-- Section Title -->
             <div class="container section-title" data-aos="fade-up">
-                <h2>{{ $serviceSection ? $serviceSection->title : __('app.Our Services') }}</h2>
+                <h2>{{ $serviceSection ? GoogleTranslate::trans($serviceSection->title, app()->getLocale()) : __('app.Our Services') }}
+                </h2>
                 @if ($serviceSection)
-                    {!! $serviceSection->sub_title !!}
+                    {!! GoogleTranslate::trans($serviceSection->sub_title, app()->getLocale()) !!}
                 @else
-                    <p>We work with you to achieve your goals</p>
+                    <p>{{ GoogleTranslate::trans('We work with you to achieve your goals', app()->getLocale()) }}</p>
                 @endif
             </div><!-- End Section Title -->
 
@@ -167,7 +178,8 @@
                                 onmouseover="this.style.transform='translateY(-10px)'; this.style.boxShadow='0 8px 16px rgba(0, 0, 0, 0.2)';"
                                 onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 8px rgba(0, 0, 0, 0.1)';">
                                 <div class="service-item-icon" style="margin-bottom: 15px;">
-                                    <img src="{{ asset($service->image) }}" alt="{{ $service->title }}"
+                                    <img src="{{ asset($service->image) }}"
+                                        alt="{{ GoogleTranslate::trans($service->title ?? '', app()->getLocale()) }}"
                                         style="
                                             max-width: 200px;
                                             height: auto;
@@ -182,10 +194,13 @@
                                             margin-top: 0;
                                             margin-bottom: 10px;
                                         ">
-                                        {{ $service->title }}
+                                        {{ GoogleTranslate::trans($service->title ?? '', app()->getLocale()) }}
                                     </h3>
                                     <p style="margin: 0;">
-                                        {!! \Illuminate\Support\Str::words(strip_tags($service->description), 10, '...') !!}
+                                        {!! GoogleTranslate::trans(
+                                            \Illuminate\Support\Str::words(strip_tags($service->description), 10, '...'),
+                                            app()->getLocale(),
+                                        ) !!}
                                     </p>
                                 </div>
                                 <div class="text-center mt-4">
@@ -208,7 +223,8 @@
             <div class="modal-dialog modal-xl">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="serviceModalLabel">Service Title</h5>
+                        <h5 class="modal-title" id="serviceModalLabel">
+                            {{ GoogleTranslate::trans('Service Title', app()->getLocale()) }}</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body text-center">
@@ -217,14 +233,12 @@
                         <p id="modalDescription"></p>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-secondary"
+                            data-bs-dismiss="modal">{{ GoogleTranslate::trans('Close', app()->getLocale()) }}</button>
                     </div>
                 </div>
             </div>
         </div>
-
-
-        {{-- Modal Image --}}
 
         <div id="imageModal"
             style="
@@ -255,19 +269,16 @@
             margin: auto;
         ">
         </div>
-        {{-- End Modal Image --}}
 
-
-        {{-- Board Of Directors --}}
         <section id="services-2" class="services-2 section background-section">
             <!-- Section Title -->
             <div class="container section-title" data-aos="fade-up">
                 <h2 style="color: white;">
-                    {{ $directorSectionSetting ? $directorSectionSetting->title : __('app.board_of_directors') }}
+                    {{ $directorSectionSetting ? GoogleTranslate::trans($directorSectionSetting->title, app()->getLocale()) : __('app.board_of_directors') }}
                 </h2>
                 @if ($directorSectionSetting)
                     <div style="color: white;">
-                        {!! $directorSectionSetting->sub_title !!}
+                        {!! GoogleTranslate::trans($directorSectionSetting->sub_title, app()->getLocale()) !!}
                     </div>
                 @else
                     <p style="color: white;">
@@ -354,7 +365,7 @@
                                             font-size: 16px;
                                             color: #555;
                                         ">
-                                            <b>{{ $director->designation->designation }}</b>
+                                            <b>{{ GoogleTranslate::trans($director->designation->designation, app()->getLocale()) }}</b>
                                             <br>
                                             {{ $director->name }}
                                         </p>
@@ -367,17 +378,18 @@
                 </div>
             </div>
         </section>
-        {{-- END Board Of Directors --}}
 
 
         <!-- END Executive Teams -->
         <section id="services-2" class="services-2 section background-section">
             <!-- Section Title -->
             <div class="container section-title" data-aos="fade-up">
-                <h2 style="color: white;">{{ $teamSectionSetting ? $teamSectionSetting->title : __('app.Our Team') }}</h2>
+                <h2 style="color: white;">
+                    {{ $teamSectionSetting ? GoogleTranslate::trans($teamSectionSetting->title, app()->getLocale()) : __('app.Our Team') }}
+                </h2>
                 @if ($teamSectionSetting)
                     <div style="color: white;">
-                        {!! $teamSectionSetting->sub_title !!}
+                        {!! GoogleTranslate::trans($teamSectionSetting->sub_title, app()->getLocale()) !!}
                     </div>
                 @else
                     <p style="color: white;">{{ __('app.Meet Our Executive Teams') }}</p>
@@ -454,7 +466,7 @@
                                             font-size: 16px;
                                             color: #555;
                                         ">
-                                            <b>{{ $team->designation->designation }}</b>
+                                            <b>{{ GoogleTranslate::trans($team->designation->designation, app()->getLocale()) }}</b>
                                             <br>
                                             {{ $team->name }}
                                         </p>
@@ -469,7 +481,6 @@
         </section>
         <!-- /END Executive Teams -->
 
-        {{-- Video Events --}}
         <section id="latest-videos" class="latest-videos section">
             <!-- Section Title -->
             <div class="container section-title" data-aos="fade-up">
@@ -509,10 +520,7 @@
             </div>
 
         </section>
-        {{-- END Video Events --}}
 
-
-        {{-- Photo Projects --}}
         <section id="latest-photo-projects" class="latest-photo-projects section"
             style="padding: 50px 0; background-color: #f9f9f9;">
             <!-- Section Title -->
@@ -536,7 +544,8 @@
                                     @foreach ($photoProjects as $photo)
                                         <div class="photo-item"
                                             style="width: 300px; overflow: hidden; border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); position: relative;">
-                                            <img src="{{ $photo->photo }}" alt="{{ $photo->title }}"
+                                            <img src="{{ $photo->photo }}"
+                                                alt="{{ GoogleTranslate::trans($photo->title ?? '', app()->getLocale()) }}"
                                                 style="width: 100%; height: auto; transition: transform 0.3s ease;">
                                             <div class="photo-caption"
                                                 style="position: absolute; bottom: 0; background: rgba(0,0,0,0.5); width: 100%; text-align: center; padding: 10px; color: #fff; font-size: 18px; transition: background 0.3s ease;">
@@ -555,8 +564,6 @@
             </div>
         </section>
 
-        {{-- END Photo Projects --}}
-
         <!-- Recent Posts Section -->
         <section id="recent-posts" class="recent-posts section">
 
@@ -573,13 +580,16 @@
 
                                 <div class="post-img position-relative overflow-hidden">
                                     <img src="{{ asset($post->thumbnail) }}" class="img-fluid"
-                                        alt="{{ $post->title }}">
+                                        alt="{{ GoogleTranslate::trans($post->title, app()->getLocale()) }}">
                                     <span class="post-date">@datetime($post->created_at)</span>
                                 </div>
 
                                 <div class="post-content d-flex flex-column">
 
-                                    <h3 class="post-title"> {!! \Illuminate\Support\Str::words(strip_tags($post->title), 10, '...') !!}</h3>
+                                    <h3 class="post-title"> {!! GoogleTranslate::trans(
+                                        \Illuminate\Support\Str::words(strip_tags($post->title), 10, '...'),
+                                        app()->getLocale(),
+                                    ) !!}</h3>
 
                                     <div class="meta d-flex align-items-center">
                                         <div class="d-flex align-items-center">

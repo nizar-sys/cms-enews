@@ -1,6 +1,6 @@
 @extends('frontends.frontend')
 
-@section('title', $projectCategory->name)
+@section('title', GoogleTranslate::trans($projectCategory->name, app()->getLocale()))
 
 @section('content')
     <main class="main">
@@ -10,12 +10,13 @@
 
             <div id="hero-carousel" class="carousel slide carousel-fade" data-bs-ride="carousel" data-bs-interval="3000">
 
-                @foreach ($sliders as $slider)
+                @foreach (\App\Models\Hero::select('id', 'title', 'description', 'image')->get() as $slider)
                     <div class="carousel-item {{ $loop->iteration == 1 ? 'active' : '' }}">
-                        <img src="{{ asset($slider->image) }}" alt="{{ $slider->title }}">
+                        <img src="{{ asset($slider->image) }}"
+                            alt="{{ GoogleTranslate::trans($slider->title ?? '', app()->getLocale()) }}">
                         <div class="carousel-container">
-                            <h2>{{ $slider->title }}</h2>
-                            {!! $slider->description !!}
+                            <h2>{{ GoogleTranslate::trans($slider->title ?? '', app()->getLocale()) }}</h2>
+                            {!! GoogleTranslate::trans($slider->description ?? '', app()->getLocale()) !!}
                         </div>
                     </div>
                 @endforeach
@@ -35,14 +36,13 @@
         </section><!-- /Hero Section -->
 
         <!-- Page Title -->
-        <div class="page-title dark-background" data-aos="fade"
-            style="background-color: #2c4666">
+        <div class="page-title dark-background" data-aos="fade" style="background-color: #2c4666">
             <div class="container position-relative">
-                <h1>{{ $projectCategory->name }}</h1>
+                <h1>{{ GoogleTranslate::trans($projectCategory->name, app()->getLocale()) }}</h1>
                 <nav class="breadcrumbs">
                     <ol>
                         <li><a href="{{ url('/', []) }}" class="text-primary">{{ __('app.home') }}</a></li>
-                        <li class="current">{{ $projectCategory->name }}</li>
+                        <li class="current">{{ GoogleTranslate::trans($projectCategory->name, app()->getLocale()) }}</li>
                     </ol>
                 </nav>
             </div>
@@ -57,7 +57,8 @@
                         @if ($latestProjectsUpdate)
                             <article id="post-2242" class="post-2242 page type-page status-publish hentry">
                                 <header class="entry-header">
-                                    <h1 class="entry-title">Latest Project Updates</h1>
+                                    <h1 class="entry-title">
+                                        {{ GoogleTranslate::trans('Latest Project Updates', app()->getLocale()) }}</h1>
                                 </header><!-- .entry-header -->
 
                                 <div class="entry-content">
@@ -66,8 +67,8 @@
                                             <tr>
                                                 @foreach ($latestProjectsUpdate as $latest)
                                                     <td style="text-align: {{ $loop->iteration == 1 ? 'left' : 'right' }};">
-                                                        <h5><a title="{{ $latest->name }}"
-                                                                href="{{ route('project-category', ['locale' => session('locale', 'en'), 'slugCategory' => $latest->slug]) }}">{{ $latest->name }}</a>
+                                                        <h5><a title="{{ GoogleTranslate::trans($latest->name, app()->getLocale()) }}"
+                                                                href="{{ route('project-category', ['locale' => session('locale', 'en'), 'slugCategory' => $latest->slug]) }}">{{ GoogleTranslate::trans($latest->name, app()->getLocale()) }}</a>
                                                         </h5>
                                                     </td>
                                                 @endforeach
@@ -81,7 +82,8 @@
                             @if ($projectCategory->description)
                                 <article id="post-26" class="post-26 page type-page status-publish hentry">
                                     <header class="entry-header">
-                                        <h1 class="entry-title">{{ $projectCategory->name }}</h1>
+                                        <h1 class="entry-title">
+                                            {{ GoogleTranslate::trans($projectCategory->name, app()->getLocale()) }}</h1>
                                     </header><!-- .entry-header -->
 
                                     <div class="entry-content">
@@ -90,7 +92,8 @@
 
                                 </article>
                             @else
-                                <h1 class="entry-title">{{ $projectCategory->name }}</h1>
+                                <h1 class="entry-title">
+                                    {{ GoogleTranslate::trans($projectCategory->name, app()->getLocale()) }}</h1>
                                 <div class="row">
                                     @foreach ($projectCategory->projects as $project)
                                         <div class="project_single col-md-4">
@@ -113,14 +116,14 @@
                                                                 return Str::substr($segment, 0, 1);
                                                             })->implode(''),
                                                         'slugProject' => $project->slug,
-                                                    ]) }}">{{ $project->name }}</a>
+                                                    ]) }}">{{ GoogleTranslate::trans($project->name, app()->getLocale()) }}</a>
                                             </h3>
                                             <p class="dates"><i
                                                     class="far fa-calendar-alt"></i>{{ $project->created_at->format('Y-m-d') }}
                                             </p>
                                             <p></p>
                                             <p>
-                                                {!! str($project->description)->limit(50) !!}
+                                                {!! GoogleTranslate::trans(str($project->description)->limit(50), app()->getLocale()) !!}
                                             </p>
                                             <p></p>
                                             <!-- <p></p> -->

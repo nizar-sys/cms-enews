@@ -1,6 +1,6 @@
 @extends('frontends.frontend')
 
-@section('title', $sectionSetting?->title ?? __('app.Photo Gallery'))
+@section('title', GoogleTranslate::trans($sectionSetting?->title ?? __('app.Photo Gallery'), app()->getLocale()))
 
 @section('content')
     <style>
@@ -89,12 +89,13 @@
 
             <div id="hero-carousel" class="carousel slide carousel-fade" data-bs-ride="carousel" data-bs-interval="3000">
 
-                @foreach ($sliders as $slider)
+                @foreach (\App\Models\Hero::select('id', 'title', 'description', 'image')->get() as $slider)
                     <div class="carousel-item {{ $loop->iteration == 1 ? 'active' : '' }}">
-                        <img src="{{ asset($slider->image) }}" alt="{{ $slider->title }}">
+                        <img src="{{ asset($slider->image) }}"
+                            alt="{{ GoogleTranslate::trans($slider->title ?? '', app()->getLocale()) }}">
                         <div class="carousel-container">
-                            <h2>{{ $slider->title }}</h2>
-                            {!! $slider->description !!}
+                            <h2>{{ GoogleTranslate::trans($slider->title ?? '', app()->getLocale()) }}</h2>
+                            {!! GoogleTranslate::trans($slider->description ?? '', app()->getLocale()) !!}
                         </div>
                     </div>
                 @endforeach
@@ -115,11 +116,14 @@
 
         <div class="page-title dark-background" data-aos="fade" style="background-color: #2c4666">
             <div class="container position-relative">
-                <h1>{{ $sectionSetting?->title ?? __('app.Photo Gallery') }}</h1>
+                <h1>{{ GoogleTranslate::trans($sectionSetting?->title ?? __('app.Photo Gallery'), app()->getLocale()) }}
+                </h1>
                 <nav class="breadcrumbs">
                     <ol>
                         <li><a href="{{ url('/', []) }}" class="text-primary">{{ __('app.home') }}</a></li>
-                        <li class="current">{{ $sectionSetting?->title ?? __('app.Photo Gallery') }}</li>
+                        <li class="current">
+                            {{ GoogleTranslate::trans($sectionSetting?->title ?? __('app.Photo Gallery'), app()->getLocale()) }}
+                        </li>
                     </ol>
                 </nav>
             </div>
@@ -129,7 +133,9 @@
                 <section id="primary" class="w-full ">
                     <main id="main" class="site-main" role="main">
 
-                        <h2 class="mb-5">{{ $sectionSetting?->title ?? __('app.Photo Gallery') }}</h2>
+                        <h2 class="mb-5">
+                            {{ GoogleTranslate::trans($sectionSetting?->title ?? __('app.Photo Gallery'), app()->getLocale()) }}
+                        </h2>
                         @if ($photoProjects->isEmpty())
                             <div class="no-galleries">
                                 <div>
@@ -139,7 +145,9 @@
                         @else
                             @foreach ($photoProjects as $albumId => $photos)
                                 <div class="album">
-                                    <h2>{{ __('app.Album') }} : {{ $photos[0]->photoProjectAlbum->name }}</h2>
+                                    <h2>{{ __('app.Album') }} :
+                                        {{ GoogleTranslate::trans($photos[0]->photoProjectAlbum->name, app()->getLocale()) }}
+                                    </h2>
                                     <hr>
                                     <div class="photo-container">
                                         @foreach ($photos as $photo)

@@ -1,6 +1,6 @@
 @extends('frontends.frontend')
 
-@section('title', $sectionSetting?->title ?? __('app.contract_award_notice'))
+@section('title', GoogleTranslate::trans($sectionSetting?->title ?? __('app.contract_award_notice'), app()->getLocale()))
 
 @section('content')
     <main class="main">
@@ -10,12 +10,13 @@
 
             <div id="hero-carousel" class="carousel slide carousel-fade" data-bs-ride="carousel" data-bs-interval="3000">
 
-                @foreach ($sliders as $slider)
+                @foreach (\App\Models\Hero::select('id', 'title', 'description', 'image')->get() as $slider)
                     <div class="carousel-item {{ $loop->iteration == 1 ? 'active' : '' }}">
-                        <img src="{{ asset($slider->image) }}" alt="{{ $slider->title }}">
+                        <img src="{{ asset($slider->image) }}"
+                            alt="{{ GoogleTranslate::trans($slider->title ?? '', app()->getLocale()) }}">
                         <div class="carousel-container">
-                            <h2>{{ $slider->title }}</h2>
-                            {!! $slider->description !!}
+                            <h2>{{ GoogleTranslate::trans($slider->title ?? '', app()->getLocale()) }}</h2>
+                            {!! GoogleTranslate::trans($slider->description ?? '', app()->getLocale()) !!}
                         </div>
                     </div>
                 @endforeach
@@ -36,7 +37,7 @@
 
         <div class="page-title dark-background" data-aos="fade" style="background-color: #2c4666">
             <div class="container position-relative">
-                <h1>{{ $sectionSetting?->title ?? __('app.contract_award_notice') }}</h1>
+                <h1>{{ GoogleTranslate::trans($sectionSetting?->title ?? __('app.contract_award_notice'), app()->getLocale()) }}</h1>
                 <div style="word-wrap: break-word;">
                     {!! $sectionSetting?->sub_title !!}
                 </div>
@@ -74,7 +75,7 @@
                                             <tr>
                                                 <td width="5%"><input type="checkbox" name="files[]"
                                                         value="{{ $contractAward->file_path }}"></td>
-                                                <td width="55%">{{ $contractAward->file_name }}</td>
+                                                <td width="55%">{{ GoogleTranslate::trans($contractAward->file_name, app()->getLocale()) }}</td>
                                                 <td width="15%">
                                                     {{ \Carbon\Carbon::parse($contractAward->posted_on)->format('d/m/Y') }}
                                                 </td>

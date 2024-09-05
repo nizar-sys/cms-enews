@@ -10,12 +10,13 @@
 
             <div id="hero-carousel" class="carousel slide carousel-fade" data-bs-ride="carousel" data-bs-interval="3000">
 
-                @foreach ($sliders as $slider)
+                @foreach (\App\Models\Hero::select('id', 'title', 'description', 'image')->get() as $slider)
                     <div class="carousel-item {{ $loop->iteration == 1 ? 'active' : '' }}">
-                        <img src="{{ asset($slider->image) }}" alt="{{ $slider->title }}">
+                        <img src="{{ asset($slider->image) }}"
+                            alt="{{ GoogleTranslate::trans($slider->title ?? '', app()->getLocale()) }}">
                         <div class="carousel-container">
-                            <h2>{{ $slider->title }}</h2>
-                            {!! $slider->description !!}
+                            <h2>{{ GoogleTranslate::trans($slider->title ?? '', app()->getLocale()) }}</h2>
+                            {!! GoogleTranslate::trans($slider->description ?? '', app()->getLocale()) !!}
                         </div>
                     </div>
                 @endforeach
@@ -54,7 +55,7 @@
                     <main id="main" class="site-main" role="main">
                         <article id="post-478" class="post-478 page type-page status-publish hentry">
                             <header class="entry-header">
-                                <h1 class="entry-title">FAQs</h1>
+                                <h1 class="entry-title">{{ GoogleTranslate::trans('FAQs', app()->getLocale()) }}</h1>
                             </header><!-- .entry-header -->
 
                             <div class="entry-content">
@@ -63,17 +64,17 @@
                                         <div class="accordion-item">
                                             <h2 class="accordion-header" id="heading-{{ $loop->index }}">
                                                 <button class="accordion-button {{ $loop->first ? '' : 'collapsed' }}" type="button" data-bs-toggle="collapse" data-bs-target="#collapse-{{ $loop->index }}" aria-expanded="{{ $loop->first ? 'true' : 'false' }}" aria-controls="collapse-{{ $loop->index }}">
-                                                    {{ $faq->question }}
+                                                    {{ GoogleTranslate::trans($faq->question, app()->getLocale()) }}
                                                 </button>
                                             </h2>
                                             <div id="collapse-{{ $loop->index }}" class="accordion-collapse collapse {{ $loop->first ? 'show' : '' }}" aria-labelledby="heading-{{ $loop->index }}" data-bs-parent="#faqAccordion">
                                                 <div class="accordion-body">
-                                                    {!! $faq->answer !!}
+                                                    {!! GoogleTranslate::trans($faq->answer, app()->getLocale()) !!}
                                                 </div>
                                             </div>
                                         </div>
                                     @empty
-                                        <p>No data</p>
+                                        <p>{{ GoogleTranslate::trans('No data', app()->getLocale()) }}</p>
                                     @endforelse
                                 </div>
                             </div><!-- .entry-content -->

@@ -1,6 +1,7 @@
 @extends('frontends.frontend')
 
-@section('title', $sectionSetting?->title ?? __('app.procurement_guidelines'))
+@section('title', GoogleTranslate::trans($sectionSetting?->title ?? __('app.procurement_guidelines'),
+    app()->getLocale()))
 
 @section('content')
     <main class="main">
@@ -10,12 +11,13 @@
 
             <div id="hero-carousel" class="carousel slide carousel-fade" data-bs-ride="carousel" data-bs-interval="3000">
 
-                @foreach ($sliders as $slider)
+                @foreach (\App\Models\Hero::select('id', 'title', 'description', 'image')->get() as $slider)
                     <div class="carousel-item {{ $loop->iteration == 1 ? 'active' : '' }}">
-                        <img src="{{ asset($slider->image) }}" alt="{{ $slider->title }}">
+                        <img src="{{ asset($slider->image) }}"
+                            alt="{{ GoogleTranslate::trans($slider->title ?? '', app()->getLocale()) }}">
                         <div class="carousel-container">
-                            <h2>{{ $slider->title }}</h2>
-                            {!! $slider->description !!}
+                            <h2>{{ GoogleTranslate::trans($slider->title ?? '', app()->getLocale()) }}</h2>
+                            {!! GoogleTranslate::trans($slider->description ?? '', app()->getLocale()) !!}
                         </div>
                     </div>
                 @endforeach
@@ -36,11 +38,14 @@
 
         <div class="page-title dark-background" data-aos="fade" style="background-color: #2c4666">
             <div class="container position-relative">
-                <h1>{{ $sectionSetting?->title ?? __('app.procurement_guidelines') }}</h1>
+                <h1>{{ GoogleTranslate::trans($sectionSetting?->title ?? __('app.procurement_guidelines'), app()->getLocale()) }}
+                </h1>
                 <nav class="breadcrumbs">
                     <ol>
                         <li><a href="{{ url('/', []) }}" class="text-primary">{{ __('app.home') }}</a></li>
-                        <li class="current">{{ $sectionSetting?->title ?? __('app.procurement_guidelines') }}</li>
+                        <li class="current">
+                            {{ GoogleTranslate::trans($sectionSetting?->title ?? __('app.procurement_guidelines'), app()->getLocale()) }}
+                        </li>
                     </ol>
                 </nav>
             </div>
@@ -76,11 +81,13 @@
                                                     <tr>
                                                         <td width="5%"><input type="checkbox" name="files[]"
                                                                 value="{{ $guideline->file_path }}"></td>
-                                                        <td width="45%">{{ $guideline->category }}</td>
+                                                        <td width="45%">
+                                                            {{ GoogleTranslate::trans($guideline->category, app()->getLocale()) }}
+                                                        </td>
                                                         <td>
                                                             <a href="{{ route('download.uploads', ['file' => $guideline->file_path, 'model' => get_class($guideline), 'id' => $guideline->id]) }}"
                                                                 target="_blank" rel="noopener">
-                                                                {{ pathinfo(asset($guideline->file_path), PATHINFO_FILENAME) }}
+                                                                {{ GoogleTranslate::trans(pathinfo(asset($guideline->file_path), PATHINFO_FILENAME), app()->getLocale()) }}
                                                             </a>
                                                         </td>
                                                     </tr>

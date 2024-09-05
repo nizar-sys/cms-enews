@@ -1,6 +1,6 @@
 @extends('frontends.frontend')
 
-@section('title', $sectionSetting?->title ?? __('app.Posts'))
+@section('title', GoogleTranslate::trans($sectionSetting?->title ?? __('app.Posts'), app()->getLocale()))
 
 @push('style')
     <style>
@@ -19,12 +19,13 @@
 
             <div id="hero-carousel" class="carousel slide carousel-fade" data-bs-ride="carousel" data-bs-interval="3000">
 
-                @foreach ($sliders as $slider)
+                @foreach (\App\Models\Hero::select('id', 'title', 'description', 'image')->get() as $slider)
                     <div class="carousel-item {{ $loop->iteration == 1 ? 'active' : '' }}">
-                        <img src="{{ asset($slider->image) }}" alt="{{ $slider->title }}">
+                        <img src="{{ asset($slider->image) }}"
+                            alt="{{ GoogleTranslate::trans($slider->title ?? '', app()->getLocale()) }}">
                         <div class="carousel-container">
-                            <h2>{{ $slider->title }}</h2>
-                            {!! $slider->description !!}
+                            <h2>{{ GoogleTranslate::trans($slider->title ?? '', app()->getLocale()) }}</h2>
+                            {!! GoogleTranslate::trans($slider->description ?? '', app()->getLocale()) !!}
                         </div>
                     </div>
                 @endforeach
@@ -45,14 +46,16 @@
 
         <div class="page-title dark-background" data-aos="fade" style="background-color: #2c4666">
             <div class="container position-relative">
-                <h1>{{ $sectionSetting?->title ?? __('app.Posts') }}</h1>
+                <h1>{{ GoogleTranslate::trans($sectionSetting?->title ?? __('app.Posts'), app()->getLocale()) }}</h1>
                 <div style="word-wrap: break-word;">
-                    {!! $sectionSetting?->description !!}
+                    {!! GoogleTranslate::trans($sectionSetting?->description ?? 'No Data', app()->getLocale()) !!}
                 </div>
                 <nav class="breadcrumbs">
                     <ol>
                         <li><a href="{{ url('/', []) }}" class="text-primary">{{ __('app.home') }}</a></li>
-                        <li class="current">{{ $sectionSetting?->title ?? __('app.Posts') }}</li>
+                        <li class="current">
+                            {{ GoogleTranslate::trans($sectionSetting?->title ?? __('app.Posts'), app()->getLocale()) }}
+                        </li>
                     </ol>
                 </nav>
             </div>
@@ -71,13 +74,15 @@
                             <div class="post-item position-relative h-100" data-aos="fade-up" data-aos-delay="100">
 
                                 <div class="post-img position-relative overflow-hidden">
-                                    <img src="{{ asset($post->thumbnail) }}" class="img-fluid" alt="{{ $post->title }}">
+                                    <img src="{{ asset($post->thumbnail) }}" class="img-fluid"
+                                        alt="{{ GoogleTranslate::trans($post->title, app()->getLocale()) }}">
                                     <span class="post-date">@datetime($post->created_at)</span>
                                 </div>
 
                                 <div class="post-content d-flex flex-column">
 
-                                    <h3 class="post-title">{{ $post->title }}</h3>
+                                    <h3 class="post-title">{{ GoogleTranslate::trans($post->title, app()->getLocale()) }}
+                                    </h3>
 
                                     <div class="meta d-flex align-items-center">
                                         <div class="d-flex align-items-center">
@@ -93,7 +98,7 @@
                                     <hr>
 
                                     <a href="{{ route('posts-detail', ['locale' => session('locale', 'en'), 'post' => $post->id]) }}"
-                                        class="readmore stretched-link"><span>Read More</span><i
+                                        class="readmore stretched-link"><span>{{ GoogleTranslate::trans('Read More', app()->getLocale()) }}</span><i
                                             class="bi bi-arrow-right"></i></a>
 
                                 </div>
