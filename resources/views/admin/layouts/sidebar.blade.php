@@ -412,25 +412,7 @@
                         class="fas fa-columns"></i><span>Video Gallery</span></a>
             </li> --}}
 
-            <li class="menu-header">Work with us</li>
-
-            <li
-                class="nav-item dropdown {{ setSidebarActive(['admin.job-section-setting.index', 'admin.job-lists*']) }}">
-                <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i
-                        class="fas fa-columns"></i>
-                    <span>HR Vacancies</span>
-                </a>
-                <ul class="dropdown-menu" style="display: none;">
-                    <li class="{{ setSidebarActive(['admin.job-section-setting.index']) }}">
-                        <a class="nav-link"
-                            href="{{ route('admin.job-section-setting.index', ['locale' => session('locale', 'en')]) }}">Section
-                            Settings</a>
-                    </li>
-                    <li class="{{ setSidebarActive(['admin.job-lists*']) }}">
-                        <a class="nav-link" href="{{ route('admin.job-lists.index') }}">HR Vacancies</a>
-                    </li>
-                </ul>
-            </li>
+            <li class="menu-header">Procurement</li>
             <li
                 class="nav-item dropdown {{ setSidebarActive(['admin.spesific-procurements-notices.*', 'admin.general-procurements-notices.*', 'admin.notices-section-setting.*']) }}">
                 <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i
@@ -511,6 +493,25 @@
                 </ul>
             </li>
 
+
+            <li class="menu-header">Vacancies</li>
+            <li
+                class="nav-item dropdown {{ setSidebarActive(['admin.job-section-setting.index', 'admin.job-lists*']) }}">
+                <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i
+                        class="fas fa-columns"></i>
+                    <span>HR Vacancies</span>
+                </a>
+                <ul class="dropdown-menu" style="display: none;">
+                    <li class="{{ setSidebarActive(['admin.job-section-setting.index']) }}">
+                        <a class="nav-link"
+                            href="{{ route('admin.job-section-setting.index', ['locale' => session('locale', 'en')]) }}">Section
+                            Settings</a>
+                    </li>
+                    <li class="{{ setSidebarActive(['admin.job-lists*']) }}">
+                        <a class="nav-link" href="{{ route('admin.job-lists.index') }}">HR Vacancies</a>
+                    </li>
+                </ul>
+            </li>
 
 
 

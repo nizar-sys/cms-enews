@@ -53,11 +53,52 @@
                                 </div>
                             </div>
 
-                            <!-- Tabel untuk data downloaded -->
+                            <!-- Additional fields for business_name, address, contact_person, phone, and mobile_numbers -->
+                            <div class="form-group row mb-4">
+                                <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Business Name</label>
+                                <div class="col-sm-12 col-md-6">
+                                    <input type="text" name="business_name" class="form-control"
+                                        value="{{ $vendor->business_name }}" readonly>
+                                </div>
+                            </div>
+
+                            <div class="form-group row mb-4">
+                                <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Address</label>
+                                <div class="col-sm-12 col-md-6">
+                                    <input type="text" name="address" class="form-control" value="{{ $vendor->address }}"
+                                        readonly>
+                                </div>
+                            </div>
+
+                            <div class="form-group row mb-4">
+                                <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Contact Person</label>
+                                <div class="col-sm-12 col-md-6">
+                                    <input type="text" name="contact_person" class="form-control"
+                                        value="{{ $vendor->contact_person }}" readonly>
+                                </div>
+                            </div>
+
+                            <div class="form-group row mb-4">
+                                <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Phone</label>
+                                <div class="col-sm-12 col-md-6">
+                                    <input type="text" name="phone" class="form-control" value="{{ $vendor->phone }}"
+                                        readonly>
+                                </div>
+                            </div>
+
+                            <div class="form-group row mb-4">
+                                <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Mobile Numbers</label>
+                                <div class="col-sm-12 col-md-6">
+                                    <input type="text" name="mobile_numbers" class="form-control"
+                                        value="{{ $vendor->mobile_numbers }}" readonly>
+                                </div>
+                            </div>
+
+                            <!-- Tabel untuk data downloaded dengan scroll jika data terlalu banyak -->
                             <div class="form-group row mb-4">
                                 <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Downloads</label>
                                 <div class="col-sm-12 col-md-9">
-                                    <div class="table-responsive">
+                                    <div class="table-responsive" style="max-height: 300px; overflow-y: auto;">
                                         @if ($downloadLogs->isEmpty())
                                             <p>No files downloaded yet.</p>
                                         @else
@@ -84,7 +125,6 @@
                                 </div>
                             </div>
 
-
                             <div class="form-group row mb-4">
                                 <div class="col-sm-12 col-md-6 offset-md-3">
                                     <a href="{{ route('admin.vendors.edit', $vendor->id) }}" class="btn btn-primary">Edit
@@ -97,5 +137,6 @@
                 </div>
             </div>
         </div>
+
     </section>
 @endsection

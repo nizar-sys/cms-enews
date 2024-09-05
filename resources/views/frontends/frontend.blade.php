@@ -64,7 +64,7 @@
         ],
 
         [
-            'label' => GoogleTranslate::trans('projects', app()->getLocale()),
+            'label' => GoogleTranslate::trans('Projects', app()->getLocale()),
             'url' => '#',
             'route' => [
                 'projects.posts',
@@ -131,7 +131,7 @@
             ],
         ],
         [
-            'label' => GoogleTranslate::trans('Work with Us', app()->getLocale()),
+            'label' => GoogleTranslate::trans('Procurement', app()->getLocale()),
             'url' => '#',
             'route' => ['procurement', 'procurement-notice', 'guidelines', 'jobs.index', 'procurement-notice-files'],
             'subItems' => [
@@ -151,11 +151,12 @@
                     'label' => GoogleTranslate::trans('Contract Award Notice', app()->getLocale()),
                     'url' => route('procurement-contract-award-notices', ['locale' => $locale]),
                 ],
-                [
-                    'label' => GoogleTranslate::trans('HR Vacancies', app()->getLocale()),
-                    'url' => route('jobs.index', ['locale' => $locale]),
-                ],
             ],
+        ],
+        [
+            'label' => GoogleTranslate::trans('HR Vacancies', app()->getLocale()),
+            'url' => route('jobs.index', ['locale' => $locale]),
+            'route' => 'jobs.index',
         ],
         [
             'label' => GoogleTranslate::trans('Faqs', app()->getLocale()),
@@ -599,7 +600,8 @@
     </footer>
 
     <!-- Scroll Top -->
-    <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center mb-4 bottom-5"><i
+    <a href="#" id="scroll-top"
+        class="scroll-top d-flex align-items-center justify-content-center mb-4 bottom-5"><i
             class="bi bi-arrow-up-short"></i></a>
 
     <!-- Preloader -->

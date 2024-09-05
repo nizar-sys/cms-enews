@@ -262,7 +262,7 @@
                                 @foreach ($latestPost as $p)
                                     <li class="news_li">
                                         <a class="newspost-title"
-                                            href="{{ route('posts-detail', ['locale' => session('locale', 'en'), 'post' => $p->slug]) }}">{{ GoogleTranslate::trans($p->title, app()->getLocale()) }}</a>
+                                            href="{{ route('posts-detail', ['locale' => session('locale', 'en'), 'post' => $p->id]) }}">{{ GoogleTranslate::trans($p->title, app()->getLocale()) }}</a>
                                     </li>
                                 @endforeach
                             </ul>
@@ -385,7 +385,7 @@
                             <button type="submit"
                                 style="background-color: #007bff; color: #fff; padding: 8px 12px; border: none; border-radius: 4px; cursor: pointer;">{{ GoogleTranslate::trans(
                                     'Submit
-                                                                                                Comment',
+                                                                                                                                Comment',
                                     app()->getLocale(),
                                 ) }}</button>
                         </form>
