@@ -1,6 +1,7 @@
 @extends('frontends.frontend')
 
-@section('title', GoogleTranslate::trans($sectionSetting?->title ?? __('app.contract_award_notice'), app()->getLocale()))
+@section('title', GoogleTranslate::trans($sectionSetting?->title ?? __('app.contract_award_notice'),
+    app()->getLocale()))
 
 @section('content')
     <main class="main">
@@ -37,7 +38,8 @@
 
         <div class="page-title dark-background" data-aos="fade" style="background-color: #2c4666">
             <div class="container position-relative">
-                <h1>{{ GoogleTranslate::trans($sectionSetting?->title ?? __('app.contract_award_notice'), app()->getLocale()) }}</h1>
+                <h1>{{ GoogleTranslate::trans($sectionSetting?->title ?? __('app.contract_award_notice'), app()->getLocale()) }}
+                </h1>
                 <div style="word-wrap: break-word;">
                     {!! $sectionSetting?->sub_title !!}
                 </div>
@@ -61,6 +63,20 @@
                         <div class="table-responsive">
                             <form id="downloadContractsForm" method="POST" action="{{ route('download.multiple') }}">
                                 @csrf
+                                @if ($latestContractAwardDate)
+                                    <div class="alert alert-info alert-dismissible fade show" role="alert">
+                                        <strong>{{ GoogleTranslate::trans('Info', app()->getLocale()) }}!</strong>
+                                        {{ GoogleTranslate::trans('Latest updated contract award notices file at:', app()->getLocale()) }}
+                                        <strong>{{ \Carbon\Carbon::parse($latestContractAwardDate)->format('d/m/Y') }}
+                                            <small>({{ \Carbon\Carbon::parse($latestContractAwardDate)->diffForHumans() }})</small></strong>
+                                        <button type="button" class="close btn btn-transparent" data-bs-dismiss="alert"
+                                            aria-label="Close">
+                                            <span aria-hidden="true">
+                                                <i class="fas fa-times"></i>
+                                            </span>
+                                        </button>
+                                    </div>
+                                @endif
                                 <table class="table table-bordered table-striped">
                                     <thead>
                                         <tr>
@@ -75,7 +91,9 @@
                                             <tr>
                                                 <td width="5%"><input type="checkbox" name="files[]"
                                                         value="{{ $contractAward->file_path }}"></td>
-                                                <td width="55%">{{ GoogleTranslate::trans($contractAward->file_name, app()->getLocale()) }}</td>
+                                                <td width="55%">
+                                                    {{ GoogleTranslate::trans($contractAward->file_name, app()->getLocale()) }}
+                                                </td>
                                                 <td width="15%">
                                                     {{ \Carbon\Carbon::parse($contractAward->posted_on)->format('d/m/Y') }}
                                                 </td>

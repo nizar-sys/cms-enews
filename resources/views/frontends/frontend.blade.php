@@ -426,6 +426,11 @@
                         alt="{{ GoogleTranslate::trans('Millennium Challenge Account Nepal', app()->getLocale()) }}">
                 </a>
                 <a href="{{ url('/') }}" class="d-flex align-items-center logo-link">
+                    <img width="100"
+                        src="{{ $generalSetting ? asset($generalSetting->center_icon) : 'https://mcanp.org/en/wp-content/uploads/sites/2/2021/08/mca-nepal-logo@2x-e1630344272397.png' }}"
+                        alt="{{ GoogleTranslate::trans('Millennium Challenge Account Nepal', app()->getLocale()) }}">
+                </a>
+                <a href="{{ url('/') }}" class="d-flex align-items-center logo-link">
                     <img src="{{ $generalSetting ? asset($generalSetting->right_icon) : 'http://mcanp.org/wp-content/uploads/2020/06/Nepal-Government-logo.png' }}"
                         alt="{{ GoogleTranslate::trans('Nepal Government', app()->getLocale()) }}" width="100">
                 </a>

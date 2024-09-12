@@ -68,6 +68,20 @@
                                     <form id="downloadGuidelinesForm" method="POST"
                                         action="{{ route('download.multiple') }}">
                                         @csrf
+                                        @if ($latestProcurementDate)
+                                            <div class="alert alert-info alert-dismissible fade show" role="alert">
+                                                <strong>{{ GoogleTranslate::trans('Info', app()->getLocale()) }}!</strong>
+                                                {{ GoogleTranslate::trans('Latest updated procurement guideline at:', app()->getLocale()) }}
+                                                <strong>{{ \Carbon\Carbon::parse($latestProcurementDate)->format('d/m/Y') }}
+                                                    <small>({{ \Carbon\Carbon::parse($latestProcurementDate)->diffForHumans() }})</small></strong>
+                                                <button type="button" class="close btn btn-transparent"
+                                                    data-bs-dismiss="alert" aria-label="Close">
+                                                    <span aria-hidden="true">
+                                                        <i class="fas fa-times"></i>
+                                                    </span>
+                                                </button>
+                                            </div>
+                                        @endif
                                         <table class="table table-bordered table-striped">
                                             <thead>
                                                 <tr>
@@ -82,7 +96,7 @@
                                                         <td width="5%"><input type="checkbox" name="files[]"
                                                                 value="{{ $guideline->file_path }}"></td>
                                                         <td width="45%">
-                                                            {{ GoogleTranslate::trans($guideline->category, app()->getLocale()) }}
+                                                            {{ GoogleTranslate::trans($guideline->category ?? 'No Data', app()->getLocale()) }}
                                                         </td>
                                                         <td>
                                                             <a href="{{ route('download.uploads', ['file' => $guideline->file_path, 'model' => get_class($guideline), 'id' => $guideline->id]) }}"

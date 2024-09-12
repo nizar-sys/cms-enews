@@ -1,31 +1,103 @@
-<x-guest-layout>
-    <div class="mb-4 text-sm text-gray-600">
-        {{ __('Thanks for signing up! Before getting started, could you verify your email address by clicking on the link we just emailed to you? If you didn\'t receive the email, we will gladly send you another.') }}
-    </div>
+@php
+    $seoSetting = \App\Models\SeoSetting::first();
+    $generalSetting = \App\Models\GeneralSetting::first();
+@endphp
+<!DOCTYPE html>
+<html lang="en">
 
-    @if (session('status') == 'verification-link-sent')
-        <div class="mb-4 font-medium text-sm text-green-600">
-            {{ __('A new verification link has been sent to the email address you provided during registration.') }}
-        </div>
-    @endif
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no" name="viewport">
+    <title>Email Verification &mdash; {{ @$seoSetting?->title }}</title>
 
-    <div class="mt-4 flex items-center justify-between">
-        <form method="POST" action="{{ route('verification.send') }}">
-            @csrf
+    <!-- General CSS Files -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css"
+        integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
 
-            <div>
-                <x-primary-button>
-                    {{ __('Resend Verification Email') }}
-                </x-primary-button>
+    <!-- Template CSS -->
+    <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/components.css') }}">
+    <style>
+        html,
+        #app {
+            --tw-bg-opacity: 1;
+            background-color: rgb(17 24 39 / var(--tw-bg-opacity));
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <section class="section">
+            <div class="container mt-5">
+                <div class="row">
+                    <div
+                        class="col-12 col-sm-8 offset-sm-2 col-md-6 offset-md-3 col-lg-6 offset-lg-3 col-xl-4 offset-xl-4">
+                        <div class="login-brand">
+                            <img src="{{ asset($generalSetting?->logo) }}" alt="logo" width="130"
+                                class="rounded-circle">
+                        </div>
+
+                        <div class="card card-dark bg-transparent" style="margin-top: 0rem">
+                            <div class="card-header">
+                                <h4>Email Verification</h4>
+                            </div>
+
+                            <div class="card-body">
+                                <div class="mb-4 text-sm text-white">
+                                    {{ __('Thanks for signing up! Before getting started, could you verify your email address by clicking on the link we just emailed to you? If you didn\'t receive the email, we will gladly send you another.') }}
+                                </div>
+
+                                @if (session('status') == 'verification-link-sent')
+                                    <div class="mb-4 font-medium text-sm text-green-600">
+                                        {{ __('A new verification link has been sent to the email address you provided during registration.') }}
+                                    </div>
+                                @endif
+
+                                <div class="mt-4 d-flex justify-content-between">
+                                    <form method="POST" action="{{ route('verification.send') }}">
+                                        @csrf
+                                        <button type="submit" class="btn btn-primary">
+                                            {{ __('Resend Verification Email') }}
+                                        </button>
+                                    </form>
+
+                                    <form method="POST" action="{{ route('logout') }}">
+                                        @csrf
+                                        <button type="submit" class="btn btn-outline-light">
+                                            {{ __('Log Out') }}
+                                        </button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="simple-footer">
+                            Copyright &copy; {{ date('Y') }}
+                        </div>
+                    </div>
+                </div>
             </div>
-        </form>
-
-        <form method="POST" action="{{ route('logout') }}">
-            @csrf
-
-            <button type="submit" class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-                {{ __('Log Out') }}
-            </button>
-        </form>
+        </section>
     </div>
-</x-guest-layout>
+
+    <!-- General JS Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous">
+    </script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.nicescroll/3.7.6/jquery.nicescroll.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+    <script src="{{ asset('assets/js/stisla.js') }}"></script>
+
+    <!-- Template JS File -->
+    <script src="{{ asset('assets/js/scripts.js') }}"></script>
+    <script src="{{ asset('assets/js/custom.js') }}"></script>
+</body>
+
+</html>

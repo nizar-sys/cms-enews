@@ -58,6 +58,22 @@
                         <div class="table-responsive">
                             <form id="downloadDocumentsForm" method="POST" action="{{ route('download.multiple') }}">
                                 @csrf
+                                <div class="content-area col-sm-12 col-lg-12" style="margin:15px 0;">
+                                    @if ($latestProcurementFilesDate)
+                                        <div class="alert alert-info alert-dismissible fade show" role="alert">
+                                            <strong>{{ GoogleTranslate::trans('Info', app()->getLocale()) }}!</strong>
+                                            {{ GoogleTranslate::trans('Latest updated procurement files at:', app()->getLocale()) }}
+                                            <strong>{{ \Carbon\Carbon::parse($latestProcurementFilesDate)->format('d/m/Y') }}
+                                                <small>({{ \Carbon\Carbon::parse($latestProcurementFilesDate)->diffForHumans() }})</small></strong>
+                                            <button type="button" class="close btn btn-transparent"
+                                                data-bs-dismiss="alert" aria-label="Close">
+                                                <span aria-hidden="true">
+                                                    <i class="fas fa-times"></i>
+                                                </span>
+                                            </button>
+                                        </div>
+                                    @endif
+                                </div>
                                 <table class="table table-bordered table-striped">
                                     <thead>
                                         <tr>
