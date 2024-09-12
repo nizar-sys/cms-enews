@@ -64,6 +64,20 @@
                                 <div class="table-responsive">
                                     <form id="downloadBidsForm" method="POST" action="{{ route('download.multiple') }}">
                                         @csrf
+                                        @if ($latestBidChallengeDate)
+                                            <div class="alert alert-info alert-dismissible fade show" role="alert">
+                                                <strong>{{ GoogleTranslate::trans('Info', app()->getLocale()) }}!</strong>
+                                                {{ GoogleTranslate::trans('Latest updated bid challenge system file at:', app()->getLocale()) }}
+                                                <strong>{{ \Carbon\Carbon::parse($latestBidChallengeDate)->format('d/m/Y') }}
+                                                    <small>({{ \Carbon\Carbon::parse($latestBidChallengeDate)->diffForHumans() }})</small></strong>
+                                                <button type="button" class="close btn btn-transparent"
+                                                    data-bs-dismiss="alert" aria-label="Close">
+                                                    <span aria-hidden="true">
+                                                        <i class="fas fa-times"></i>
+                                                    </span>
+                                                </button>
+                                            </div>
+                                        @endif
                                         <table class="table table-bordered table-striped">
                                             <thead>
                                                 <tr>

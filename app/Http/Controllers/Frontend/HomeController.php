@@ -127,24 +127,27 @@ class HomeController extends Controller
         $spesificProcurements = SpesificProcurement::with('files')->get();
         $generalProcurements = GeneralProcurement::get();
         $sectionSetting = NoticesSectionSetting::first();
+        $latestProcurementDate = GeneralProcurement::max('created_at');
 
-        return view('frontends.procurement_notice', compact('spesificProcurements', 'generalProcurements', 'sectionSetting'));
+        return view('frontends.procurement_notice', compact('spesificProcurements', 'generalProcurements', 'sectionSetting', 'latestProcurementDate'));
     }
 
     public function procurementNoticeFile($locale, $spesificProcurementId)
     {
 
         $spesificProcurement = SpesificProcurement::with('files')->where('id', $spesificProcurementId)->firstOrFail();
+        $latestProcurementFilesDate = SpesificProcurementFile::max('created_at');
 
-        return view('frontends.procurement_notice_file', compact('spesificProcurement'));
+        return view('frontends.procurement_notice_file', compact('spesificProcurement', 'latestProcurementFilesDate'));
     }
 
     public function procurementGuideline($locale)
     {
         $guidelinesProcurement = GuidelineProcurement::get();
         $sectionSetting = GuidelineSectionSetting::first();
+        $latestProcurementDate = GuidelineProcurement::max('created_at');
 
-        return view('frontends.procurement_guideline', compact('guidelinesProcurement', 'sectionSetting'));
+        return view('frontends.procurement_guideline', compact('guidelinesProcurement', 'sectionSetting', 'latestProcurementDate'));
     }
 
     public function bidChallengeSystem($locale)
@@ -152,8 +155,9 @@ class HomeController extends Controller
 
         $bidChallengeSystem = BidChallengeSystem::get();
         $sectionSetting = BidChallengeSystemSectionSetting::first();
+        $latestBidChallengeDate = BidChallengeSystem::max('created_at');
 
-        return view('frontends.bid_challenge_system', compact('bidChallengeSystem', 'sectionSetting'));
+        return view('frontends.bid_challenge_system', compact('bidChallengeSystem', 'sectionSetting', 'latestBidChallengeDate'));
     }
 
     public function contractAwardNotice($locale)
@@ -161,8 +165,9 @@ class HomeController extends Controller
 
         $contractAwardNotice = ContractAwardNotice::get();
         $sectionSetting = ContractAwardNoticeSectionSetting::first();
+        $latestContractAwardDate = ContractAwardNotice::max('created_at');
 
-        return view('frontends.contract_award_notice', compact('contractAwardNotice', 'sectionSetting'));
+        return view('frontends.contract_award_notice', compact('contractAwardNotice', 'sectionSetting', 'latestContractAwardDate'));
     }
 
     public function photoGallery($locale)
