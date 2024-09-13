@@ -336,14 +336,14 @@
                                     {{ Auth::user()->name }}
                                 </button>
                                 <ul class="dropdown-menu" aria-labelledby="userDropdown">
-                                    <li><a class="dropdown-item" href="#" data-bs-toggle="modal"
-                                            data-bs-target="#logoutModal">{{ GoogleTranslate::trans('Logout', app()->getLocale()) }}</a>
-                                    </li>
                                     @if (Auth::user()->role == 'admin')
                                         <li><a class="dropdown-item"
                                                 href="{{ route('dashboard') }}">{{ GoogleTranslate::trans('Dashboard', app()->getLocale()) }}</a>
                                         </li>
                                     @endif
+                                    <li><a class="dropdown-item" href="#" data-bs-toggle="modal"
+                                        data-bs-target="#logoutModal">{{ GoogleTranslate::trans('Logout', app()->getLocale()) }}</a>
+                                    </li>
                                 </ul>
                             </div>
                         @endguest
