@@ -552,7 +552,7 @@
                 </ul>
             </li>
             {{-- Setting --}}
-            <li class="{{ setSidebarActive(['admin.setting.*']) }}">
+            <li class="{{ setSidebarActive(['Favicon Preview.*']) }}">
                 <a class="nav-link" href="{{ route('admin.setting.index') }}"><i class="fas fa-cogs"></i>
                     <span>Settings</span>
                 </a>

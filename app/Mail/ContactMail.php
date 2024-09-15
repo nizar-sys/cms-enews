@@ -13,51 +13,16 @@ class ContactMail extends Mailable
 {
     use Queueable, SerializesModels;
 
-    public $mailData;
+    public $details;
 
-    /**
-     * Create a new message instance.
-     *
-     * @return void
-     */
-    public function __construct($mailData)
+    public function __construct($details)
     {
-        $this->mailData = $mailData;
+        $this->details = $details;
     }
 
-    /**
-     * Get the message envelope.
-     *
-     * @return \Illuminate\Mail\Mailables\Envelope
-     */
-    public function envelope()
+    public function build()
     {
-        return new Envelope(
-            subject: $this->mailData['subject'],
-            to: env('MAIL_FROM_ADDRESS'),
-            from: $this->mailData['email']
-        );
-    }
-
-    /**
-     * Get the message content definition.
-     *
-     * @return \Illuminate\Mail\Mailables\Content
-     */
-    public function content()
-    {
-        return new Content(
-            view: 'mail.contact-mail',
-        );
-    }
-
-    /**
-     * Get the attachments for the message.
-     *
-     * @return array
-     */
-    public function attachments()
-    {
-        return [];
+        return $this->view('mail.contact-mail')
+            ->with('details', $this->details);
     }
 }
