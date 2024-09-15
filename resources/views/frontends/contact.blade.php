@@ -2,6 +2,32 @@
 
 @section('title', __('app.contact'))
 
+@push('style')
+    <style>
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+@endpush
+
 @section('content')
     <main class="main">
 
@@ -36,8 +62,7 @@
         </section><!-- /Hero Section -->
 
         <!-- Page Title -->
-        <div class="page-title dark-background" data-aos="fade"
-            style="background-color: #2c4666">
+        <div class="page-title dark-background" data-aos="fade" style="background-color: #2c4666">
             <div class="container position-relative">
                 <h1>{{ __('app.contact') }}</h1>
                 <nav class="breadcrumbs">
@@ -64,13 +89,60 @@
                             <div class="entry-content">
                                 <p>{{ $contact?->address }}<br />
                                     <i class="fa fa-phone"> </i> {{ __('app.phone') }}: {{ $contact?->phone }}<br />
-                                    <i class="fa fa-envelope"></i> {{ __('app.email') }}: {{ $contact?->email }}</a><br /><br />
+                                    <i class="fa fa-envelope"></i> {{ __('app.email') }}:
+                                    {{ $contact?->email }}</a><br /><br />
                                 </p>
                                 <div class="map"><iframe style="border: 0 margin:0;" src="{{ $contact?->maps }}"
                                         width="100%" height="450" frameborder="0"
                                         allowfullscreen="allowfullscreen"></iframe></div>
-                            </div><!-- .entry-content -->
 
+                                <div class="contact-form"
+                                    style="background-color: #f7f9fc; padding: 20px; border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
+                                    <h2
+                                        style="text-align: center; color: #2c4666; margin-bottom: 20px; animation: fadeIn 1s ease-in-out;">
+                                        {{ GoogleTranslate::trans('Contact Us' ?? '', app()->getLocale()) }}</h2>
+
+                                    <form action="{{ route('contact.send', ['locale' => session('locale', 'en')]) }}"
+                                        method="POST" style="animation: fadeInUp 1.2s ease-in-out;">
+                                        @csrf
+                                        <div class="form-group" style="margin-bottom: 15px;">
+                                            <label for="name"
+                                                style="color: #2c4666;">{{ GoogleTranslate::trans('Name' ?? '', app()->getLocale()) }}</label>
+                                            <input type="text" id="name" name="name" class="form-control"
+                                                required
+                                                style="padding: 10px; width: 100%; border: 1px solid #ddd; border-radius: 5px; transition: border-color 0.3s ease-in-out;"
+                                                onfocus="this.style.borderColor='#2c4666'"
+                                                onblur="this.style.borderColor='#ddd'">
+                                        </div>
+
+                                        <div class="form-group" style="margin-bottom: 15px;">
+                                            <label for="email"
+                                                style="color: #2c4666;">{{ GoogleTranslate::trans('Email' ?? '', app()->getLocale()) }}</label>
+                                            <input type="email" id="email" name="email" class="form-control"
+                                                required
+                                                style="padding: 10px; width: 100%; border: 1px solid #ddd; border-radius: 5px; transition: border-color 0.3s ease-in-out;"
+                                                onfocus="this.style.borderColor='#2c4666'"
+                                                onblur="this.style.borderColor='#ddd'">
+                                        </div>
+
+                                        <div class="form-group" style="margin-bottom: 20px;">
+                                            <label for="message"
+                                                style="color: #2c4666;">{{ GoogleTranslate::trans('Message' ?? '', app()->getLocale()) }}</label>
+                                            <textarea id="message" name="message" class="form-control" rows="4" required
+                                                style="padding: 10px; width: 100%; border: 1px solid #ddd; border-radius: 5px; transition: border-color 0.3s ease-in-out;"
+                                                onfocus="this.style.borderColor='#2c4666'" onblur="this.style.borderColor='#ddd'"></textarea>
+                                        </div>
+
+                                        <button type="submit" class="btn btn-primary"
+                                            style="background-color: #2c4666; color: #fff; padding: 10px 20px; border: none; border-radius: 5px; width: 100%; 
+                                                    cursor: pointer; transition: background-color 0.3s ease-in-out;"
+                                            onmouseover="this.style.backgroundColor='#1f3550'"
+                                            onmouseout="this.style.backgroundColor='#2c4666'">
+                                            {{ GoogleTranslate::trans('Submit' ?? '', app()->getLocale()) }}
+                                        </button>
+                                    </form>
+                                </div><!-- .contact-form -->
+                            </div><!-- .entry-content -->
                         </article><!-- #post-## -->
 
                     </main><!-- #main -->
