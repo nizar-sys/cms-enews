@@ -25,11 +25,13 @@ use App\Models\DownloadLog;
 use App\Models\ExecutiveSectionSetting;
 use App\Models\ExecutiveTeam;
 use App\Models\Faq;
+use App\Models\GenderInclusion;
 use App\Models\GeneralProcurement;
 use App\Models\GuidelineProcurement;
 use App\Models\GeneralSetting;
 use App\Models\GuidelineSectionSetting;
 use App\Models\Hero;
+use App\Models\MonitoringEvaluation;
 use App\Models\MovingText;
 use App\Models\News;
 use App\Models\NewsSectionSetting;
@@ -47,6 +49,7 @@ use App\Models\Project;
 use App\Models\ProjectCategory;
 use App\Models\Service;
 use App\Models\ServiceSectionSetting;
+use App\Models\SocialBehaviour;
 use App\Models\SpesificProcurement;
 use App\Models\SpesificProcurementFile;
 use App\Models\TeachingLeading;
@@ -464,7 +467,7 @@ class HomeController extends Controller
                     ->get()
                     ->map(fn($item) => [
                         'title' => $item->name,
-                        'detail' => route('mca-nepal.board-of-director', ['locale' => $locale]),
+                        'detail' => route('mca-tl.board-of-director', ['locale' => $locale]),
                         'isFile' => false,
                         'type' => __('app.board_of_directors')
                     ])
@@ -480,7 +483,7 @@ class HomeController extends Controller
                     ->get()
                     ->map(fn($item) => [
                         'title' => $item->name,
-                        'detail' => route('mca-nepal.executive-team', ['locale' => $locale]),
+                        'detail' => route('mca-tl.executive-team', ['locale' => $locale]),
                         'isFile' => false,
                         'type' => __('app.executive_team')
                     ])
@@ -731,5 +734,23 @@ class HomeController extends Controller
         }
 
         return redirect(asset($file));
+    }
+
+    public function socialBehaviourChanges()
+    {
+        $socialBehaviour = SocialBehaviour::first();
+        return view('frontends.social-behaviour', compact('socialBehaviour'));
+    }
+
+    public function genderSocialInclusion()
+    {
+        $genderInclusion = GenderInclusion::first();
+        return view('frontends.gender-inclusion', compact('genderInclusion'));
+    }
+
+    public function monitoringEvaluation()
+    {
+        $monitoringEvaluation = MonitoringEvaluation::first();
+        return view('frontends.monitoring-evaluation', compact('monitoringEvaluation'));
     }
 }

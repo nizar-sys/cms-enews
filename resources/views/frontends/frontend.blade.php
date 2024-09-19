@@ -9,24 +9,19 @@
         [
             'label' => GoogleTranslate::trans('About', app()->getLocale()),
             'url' => '#',
-            'route' => [
-                'mca_nepal',
-                'mca-nepal.board-of-director',
-                'mca-nepal.executive-team',
-                'mca-nepal.organizational-chart',
-            ],
+            'route' => ['mca_tl', 'mca-tl.board-of-director', 'mca-tl.executive-team', 'mca-tl.organizational-chart'],
             'subItems' => [
                 [
                     'label' => GoogleTranslate::trans('Board Of Directors', app()->getLocale()),
-                    'url' => route('mca-nepal.board-of-director', ['locale' => $locale]),
+                    'url' => route('mca-tl.board-of-director', ['locale' => $locale]),
                 ],
                 [
                     'label' => GoogleTranslate::trans('Executive Team', app()->getLocale()),
-                    'url' => route('mca-nepal.executive-team', ['locale' => $locale]),
+                    'url' => route('mca-tl.executive-team', ['locale' => $locale]),
                 ],
                 [
                     'label' => GoogleTranslate::trans('Organizational Chart', app()->getLocale()),
-                    'url' => route('mca-nepal.organizational-chart', ['locale' => $locale]),
+                    'url' => route('mca-tl.organizational-chart', ['locale' => $locale]),
                 ],
             ],
         ],
@@ -106,6 +101,8 @@
                 'media-notices.video-gallery',
                 'media-notices.news-detail',
                 'media-notices.community-voice-detail',
+                'social-behaviour-changes',
+                'gender-social-inclusion',
             ],
             'subItems' => [
                 [
@@ -127,6 +124,18 @@
                 [
                     'label' => GoogleTranslate::trans('Video Events', app()->getLocale()),
                     'url' => route('media-notices.video-gallery', ['locale' => $locale]),
+                ],
+                [
+                    'label' => GoogleTranslate::trans('Social Behaviour Changes', app()->getLocale()),
+                    'url' => route('social-behaviour-changes', ['locale' => $locale]),
+                ],
+                [
+                    'label' => GoogleTranslate::trans('Gender & Social Inclusion', app()->getLocale()),
+                    'url' => route('gender-social-inclusion', ['locale' => $locale]),
+                ],
+                [
+                    'label' => GoogleTranslate::trans('Monitoring Evaluation', app()->getLocale()),
+                    'url' => route('monitoring-evaluation', ['locale' => $locale]),
                 ],
             ],
         ],
@@ -342,7 +351,7 @@
                                         </li>
                                     @endif
                                     <li><a class="dropdown-item" href="#" data-bs-toggle="modal"
-                                        data-bs-target="#logoutModal">{{ GoogleTranslate::trans('Logout', app()->getLocale()) }}</a>
+                                            data-bs-target="#logoutModal">{{ GoogleTranslate::trans('Logout', app()->getLocale()) }}</a>
                                     </li>
                                 </ul>
                             </div>
@@ -423,16 +432,16 @@
                 <a href="{{ url('/') }}" class="d-flex align-items-center logo-link">
                     <img width="100"
                         src="{{ $generalSetting ? asset($generalSetting->left_icon) : 'https://mcanp.org/en/wp-content/uploads/sites/2/2021/08/mca-nepal-logo@2x-e1630344272397.png' }}"
-                        alt="{{ GoogleTranslate::trans('Millennium Challenge Account Nepal', app()->getLocale()) }}">
+                        alt="{{ GoogleTranslate::trans('Millennium Challenge Account TL', app()->getLocale()) }}">
                 </a>
                 <a href="{{ url('/') }}" class="d-flex align-items-center logo-link">
                     <img width="100"
                         src="{{ $generalSetting ? asset($generalSetting->center_icon) : 'https://mcanp.org/en/wp-content/uploads/sites/2/2021/08/mca-nepal-logo@2x-e1630344272397.png' }}"
-                        alt="{{ GoogleTranslate::trans('Millennium Challenge Account Nepal', app()->getLocale()) }}">
+                        alt="{{ GoogleTranslate::trans('Millennium Challenge Account TL', app()->getLocale()) }}">
                 </a>
                 <a href="{{ url('/') }}" class="d-flex align-items-center logo-link">
                     <img src="{{ $generalSetting ? asset($generalSetting->right_icon) : 'http://mcanp.org/wp-content/uploads/2020/06/Nepal-Government-logo.png' }}"
-                        alt="{{ GoogleTranslate::trans('Nepal Government', app()->getLocale()) }}" width="100">
+                        alt="{{ GoogleTranslate::trans('TL Government', app()->getLocale()) }}" width="100">
                 </a>
             </div>
         </nav>
