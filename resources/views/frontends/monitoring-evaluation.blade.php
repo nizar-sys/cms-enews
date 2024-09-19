@@ -91,7 +91,7 @@
                                 <div class="entry-content">
                                     <div class="row">
                                         <div class="col-lg-12 col-md-12">
-                                            <p>{!! GoogleTranslate::trans($monitoringEvaluation->description, app()->getLocale()) !!}</p>
+                                            <p>{!! GoogleTranslate::trans($monitoringEvaluation->description ?? '', app()->getLocale()) !!}</p>
                                         </div>
                                     </div>
                                 </div><!-- .entry-content -->
