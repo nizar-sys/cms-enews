@@ -38,8 +38,10 @@ use App\Http\Controllers\Admin\GuidelineProcurementController;
 use App\Http\Controllers\Admin\FooterSettingController;
 use App\Http\Controllers\Admin\FooterSocialLinkController;
 use App\Http\Controllers\Admin\FooterUsefulLinkController;
+use App\Http\Controllers\Admin\GenderInclusionController;
 use App\Http\Controllers\Admin\GuidelineSectionSettingController;
 use App\Http\Controllers\Admin\HeroController;
+use App\Http\Controllers\Admin\MonitoringEvaluationController;
 use App\Http\Controllers\Admin\MovingTextController;
 use App\Http\Controllers\Admin\NewsSectionSettingController;
 use App\Http\Controllers\Admin\NoticeController;
@@ -70,6 +72,7 @@ use App\Http\Controllers\Admin\PhotoProjectController;
 use App\Http\Controllers\Admin\PhotoSectionSettingController;
 use App\Http\Controllers\Admin\PostSectionSettingController;
 use App\Http\Controllers\Admin\PressReleaseSectionSettingController;
+use App\Http\Controllers\Admin\SocialBehaviourController;
 use App\Http\Controllers\Admin\TeachingLeadingController;
 use App\Http\Controllers\Admin\TeachingLeadingSectionSettingController;
 use App\Http\Controllers\Admin\VendorController;
@@ -382,6 +385,9 @@ Route::group(['middleware' => ['auth', 'admin'], 'prefix' => 'console', 'as' => 
         Route::delete('/{id}', [AdministrativeController::class, 'destroy'])->name('administrative.destroy');
     });
     Route::resource('documents-section-setting', DocumentsSectionSettingController::class)->only(['index', 'update']);
+    Route::resource('social-behaviour', SocialBehaviourController::class)->only(['index', 'update']);
+    Route::resource('gender-inclusion', GenderInclusionController::class)->only(['index', 'update']);
+    Route::resource('monitoring-evaluation', MonitoringEvaluationController::class)->only(['index', 'update']);
 });
 
 Route::prefix('{locale}')->group(function () {
@@ -400,8 +406,8 @@ Route::prefix('{locale}')->group(function () {
         return redirect($url);
     });
 
-    // MCA-NEPAL
-    Route::prefix('mca-nepal')->name('mca-nepal.')->group(function () {
+    // MCA-TL
+    Route::prefix('mca-tl')->name('mca-tl.')->group(function () {
         // Board Of Directors
         Route::get('board-of-directors', [BoardOfDirectorController::class, 'index'])->name('board-of-director');
 
@@ -466,4 +472,8 @@ Route::prefix('{locale}')->group(function () {
         Route::get('/administrative/{id}', [HomeController::class, 'administrativeDetail'])->name('administrative-detail');
         Route::get('/documents', [HomeController::class, 'documentList'])->name('documents');
     });
+
+    Route::get('social-behaviour-changes', [HomeController::class, 'socialBehaviourChanges'])->name('social-behaviour-changes');
+    Route::get('gender-social-inclusion', [HomeController::class, 'genderSocialInclusion'])->name('gender-social-inclusion');
+    Route::get('monitoring-evaluation', [HomeController::class, 'monitoringEvaluation'])->name('monitoring-evaluation');
 });

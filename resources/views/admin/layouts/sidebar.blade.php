@@ -356,20 +356,6 @@
                 </ul>
             </li>
 
-            {{-- <li class="nav-item dropdown {{ setSidebarActive(['admin.article.category.*', 'admin.article.*']) }}">
-                <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i
-                        class="fas fa-columns"></i>
-                    <span>Articles / Interviews</span>
-                </a>
-                <ul class="dropdown-menu" style="display: none;">
-                    <li class="{{ setSidebarActive(['admin.article.category.*']) }}">
-                        <a class="nav-link" href="{{ route('admin.article.category.index') }}">Categories</a>
-                    </li>
-                    <li class="{{ setSidebarActive(['admin.article.*']) }}">
-                        <a class="nav-link" href="{{ route('admin.article.index') }}">Articles / Interviews</a>
-                    </li>
-                </ul>
-            </li> --}}
             <li
                 class="nav-item dropdown {{ setSidebarActive(['admin.video-gallery.*', 'admin.video-gallery-section-setting.*']) }}">
                 <a href="#" class="nav-link has-dropdown" data-toggle="dropdown">
@@ -407,10 +393,19 @@
                     </li>
                 </ul>
             </li>
-            {{-- <li class="nav-item {{ setSidebarActive(['admin.video-gallery.*']) }}">
-                <a href="{{ route('admin.video-gallery.index') }}" class="nav-link"><i
-                        class="fas fa-columns"></i><span>Video Gallery</span></a>
-            </li> --}}
+
+            <li class="nav-item {{ setSidebarActive(['admin.social-behaviour.*']) }}">
+                <a href="{{ route('admin.social-behaviour.index') }}" class="nav-link"><i
+                        class="fas fa-user-cog"></i><span>Social Behaviour</span></a>
+            </li>
+            <li class="nav-item {{ setSidebarActive(['admin.gender-inclusion.*']) }}">
+                <a href="{{ route('admin.gender-inclusion.index') }}" class="nav-link"><i
+                        class="fas fa-user-cog"></i><span>Gender & Social</span></a>
+            </li>
+            <li class="nav-item {{ setSidebarActive(['admin.monitoring-evaluation.*']) }}">
+                <a href="{{ route('admin.monitoring-evaluation.index') }}" class="nav-link"><i
+                        class="fas fa-user-cog"></i><span>Monitoring Evaluation</span></a>
+            </li>
 
             <li class="menu-header">Procurement</li>
             <li
