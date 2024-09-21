@@ -1,6 +1,6 @@
 @extends('admin.layouts.layout')
 
-@section('title', 'Social Behaviours')
+@section('title', 'Social Behaviour Categories')
 
 @section('content')
     <section class="section">
@@ -8,7 +8,7 @@
             <div class="section-header-back">
                 <a href="{{ url('/dashboard') }}" class="btn btn-icon"><i class="fas fa-arrow-left"></i></a>
             </div>
-            <h1>Social Behaviours</h1>
+            <h1>Social Behaviour Categories</h1>
         </div>
 
         <div class="section-body">
@@ -17,9 +17,9 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="card-header">
-                            <h4>Social Behaviours</h4>
+                            <h4>Social Behaviour Categories</h4>
                             <div class="card-header-action">
-                                <a href="{{ route('admin.social-behaviour.create') }}" class="btn btn-success">
+                                <a href="{{ route('admin.social-behaviour-category.create') }}" class="btn btn-success">
                                     Add Data
                                     <i class="fas fa-plus"></i>
                                 </a>

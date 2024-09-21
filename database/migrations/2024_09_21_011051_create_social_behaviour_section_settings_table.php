@@ -11,13 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('gender_inclusions', function (Blueprint $table) {
+        Schema::create('social_behaviour_section_settings', function (Blueprint $table) {
             $table->id();
             $table->string('title')->nullable();
-            $table->text('description')->nullable();
-            $table->text('image')->nullable();
-            $table->text('document')->nullable();
-            $table->string('video_url')->nullable();
+            $table->longText('description')->nullable();
             $table->timestamps();
         });
     }
@@ -27,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('gender_inclusions');
+        Schema::dropIfExists('social_behaviour_section_settings');
     }
 };

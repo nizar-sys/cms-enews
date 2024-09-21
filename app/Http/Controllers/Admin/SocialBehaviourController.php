@@ -2,43 +2,70 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\DataTables\SocialBehaviourDataTable;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\RequestStoreSocialBehaviour;
 use App\Models\SocialBehaviour;
+use App\Models\SocialBehaviourCategory;
 use Illuminate\Http\Request;
 
 class SocialBehaviourController extends Controller
 {
-    public function index()
+    public function index(SocialBehaviourDataTable $dataTable)
     {
-        $socialBehaviour = SocialBehaviour::first();
-        return view('admin.social-behaviour.index', compact('socialBehaviour'));
+        return $dataTable->render('admin.social-behaviour.index');
     }
 
-    public function update(Request $request, $id)
+    public function create()
     {
-        $request->validate([
-            'title' => ['required', 'max:200'],
-            'description' => ['required', 'max:500000'],
-            'image' => ['image', 'max:5000'],
-            'document' => ['mimes:pdf,csv,txt', 'max:10000'],
-            'video_url' => ['nullable', 'url']
-        ]);
+        $categories = SocialBehaviourCategory::latest()->get(['id', 'name']);
 
-        $socialBehaviour = SocialBehaviour::first();
-        $imagePath = handleUpload('image', $socialBehaviour);
-        $documentPath = handleUpload('document', $socialBehaviour);
+        return view('admin.social-behaviour.create', compact('categories'));
+    }
 
-        SocialBehaviour::updateOrCreate(
-            ['id' => $id],
-            [
-                'title' => $request->title,
-                'description' => $request->description,
-                'image' => ($imagePath ? $imagePath : $socialBehaviour?->image ?? null),
-                'document' => ($documentPath ? $documentPath : $socialBehaviour?->document ?? null),
-                'video_url' => $request->video_url
-            ]
-        );
-        toastr()->success('Updated Successfully !', 'Congrats');
-        return redirect()->back();
+    public function store(RequestStoreSocialBehaviour $request)
+    {
+        $payloadSocial = $request->validated();
+        $payloadSocial['thumbnail'] = handleUpload('thumbnail');
+
+        SocialBehaviour::create($payloadSocial);
+
+        toastr()->success('Social Behaviour created successfully!');
+        return redirect()->route('admin.social-behaviour.index');
+    }
+
+    public function edit(SocialBehaviour $behaviour)
+    {
+        $categories = SocialBehaviourCategory::latest()->get(['id', 'name']);
+
+        return view('admin.social-behaviour.edit', compact('behaviour', 'categories'));
+    }
+
+    public function update(RequestStoreSocialBehaviour $request, SocialBehaviour $behaviour)
+    {
+        $payloadSocial = $request->validated();
+
+        if ($request->hasFile('thumbnail')) {
+            deleteFileIfExist($behaviour->thumbnail);
+            $payloadSocial['thumbnail'] = handleUpload('thumbnail');
+        }
+
+        if ($request->filled('status')) {
+            $payloadSocial['status'] = $request->status;
+        }
+
+        $behaviour->update($payloadSocial);
+
+        toastr()->success('Social Behaviour updated successfully!');
+        return redirect()->route('admin.social-behaviour.index');
+    }
+
+    public function destroy(SocialBehaviour $behaviour)
+    {
+        deleteFileIfExist($behaviour->thumbnail);
+        $behaviour->delete();
+
+        toastr()->success('Social Behaviour updated successfully!');
+        return redirect()->route('admin.social-behaviour.index');
     }
 }

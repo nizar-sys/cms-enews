@@ -38,10 +38,14 @@ use App\Http\Controllers\Admin\GuidelineProcurementController;
 use App\Http\Controllers\Admin\FooterSettingController;
 use App\Http\Controllers\Admin\FooterSocialLinkController;
 use App\Http\Controllers\Admin\FooterUsefulLinkController;
-use App\Http\Controllers\Admin\GenderInclusionController;
+use App\Http\Controllers\Admin\GenderInclusion\GenderInclusionCategoryController;
+use App\Http\Controllers\Admin\GenderInclusion\GenderInclusionController;
+use App\Http\Controllers\Admin\GenderInclusion\GenderInclusionSectionSettingController;
 use App\Http\Controllers\Admin\GuidelineSectionSettingController;
 use App\Http\Controllers\Admin\HeroController;
-use App\Http\Controllers\Admin\MonitoringEvaluationController;
+use App\Http\Controllers\Admin\MonitoringEvaluation\MonitoringEvaluationCategoryController;
+use App\Http\Controllers\Admin\MonitoringEvaluation\MonitoringEvaluationController;
+use App\Http\Controllers\Admin\MonitoringEvaluation\MonitoringEvaluationSectionSettingController;
 use App\Http\Controllers\Admin\MovingTextController;
 use App\Http\Controllers\Admin\NewsSectionSettingController;
 use App\Http\Controllers\Admin\NoticeController;
@@ -72,6 +76,8 @@ use App\Http\Controllers\Admin\PhotoProjectController;
 use App\Http\Controllers\Admin\PhotoSectionSettingController;
 use App\Http\Controllers\Admin\PostSectionSettingController;
 use App\Http\Controllers\Admin\PressReleaseSectionSettingController;
+use App\Http\Controllers\Admin\SocialBehaviour\CategoryController as SocialBehaviourCategoryController;
+use App\Http\Controllers\Admin\SocialBehaviour\SocialBehaviourSectionSettingController;
 use App\Http\Controllers\Admin\SocialBehaviourController;
 use App\Http\Controllers\Admin\TeachingLeadingController;
 use App\Http\Controllers\Admin\TeachingLeadingSectionSettingController;
@@ -82,6 +88,9 @@ use App\Http\Controllers\Admin\VideoSectionSettingController;
 use App\Http\Controllers\Admin\WaterSanitationController;
 use App\Http\Controllers\Admin\WaterSanitationSectionSettingController;
 use App\Http\Controllers\Frontend\CommentController;
+use App\Http\Controllers\Frontend\GenderSocialInclusionController;
+use App\Http\Controllers\Frontend\MonitoringEvaluationController as FrontendMonitoringEvaluationController;
+use App\Http\Controllers\Frontend\SocialBehaviourController as FrontendSocialBehaviourController;
 use App\Models\BidChallengeSystemSectionSetting;
 use App\Models\ContractAwardNoticeSectionSetting;
 use Illuminate\Support\Facades\App;
@@ -385,9 +394,24 @@ Route::group(['middleware' => ['auth', 'admin'], 'prefix' => 'console', 'as' => 
         Route::delete('/{id}', [AdministrativeController::class, 'destroy'])->name('administrative.destroy');
     });
     Route::resource('documents-section-setting', DocumentsSectionSettingController::class)->only(['index', 'update']);
-    Route::resource('social-behaviour', SocialBehaviourController::class)->only(['index', 'update']);
-    Route::resource('gender-inclusion', GenderInclusionController::class)->only(['index', 'update']);
-    Route::resource('monitoring-evaluation', MonitoringEvaluationController::class)->only(['index', 'update']);
+
+    // Social Behaviours
+    Route::resource('social-behaviour-section-setting', SocialBehaviourSectionSettingController::class)->only(['index', 'update']);
+    Route::resource('social-behaviour-category', SocialBehaviourCategoryController::class)->parameters(['social-behaviour-category' => 'category']);
+    Route::resource('social-behaviour', SocialBehaviourController::class)->parameters(['social-behaviour' => 'behaviour']);
+    // End Social Behaviours
+
+    // Gender Inclusion
+    Route::resource('gender-inclusion-section-setting', GenderInclusionSectionSettingController::class)->only(['index', 'update']);
+    Route::resource('gender-inclusion-category', GenderInclusionCategoryController::class)->parameters(['gender-inclusion-category' => 'category']);
+    Route::resource('gender-inclusion', GenderInclusionController::class)->parameters(['gender-inclusion' => 'inclusion']);
+    // End Gender Inclusion
+
+    // Monitoring Evaluation
+    Route::resource('monitoring-evaluation-section-setting', MonitoringEvaluationSectionSettingController::class)->only(['index', 'update'])->parameters(['monitoring-evaluation-section-setting' => 'monitoringSectionSetting']);
+    Route::resource('monitoring-evaluation-category', MonitoringEvaluationCategoryController::class)->parameters(['monitoring-evaluation-category' => 'category']);
+    Route::resource('monitoring-evaluation', MonitoringEvaluationController::class)->parameters(['monitoring-evaluation' => 'evaluation']);
+    // End Monitoring Evaluation
 });
 
 Route::prefix('{locale}')->group(function () {
@@ -473,7 +497,16 @@ Route::prefix('{locale}')->group(function () {
         Route::get('/documents', [HomeController::class, 'documentList'])->name('documents');
     });
 
-    Route::get('social-behaviour-changes', [HomeController::class, 'socialBehaviourChanges'])->name('social-behaviour-changes');
-    Route::get('gender-social-inclusion', [HomeController::class, 'genderSocialInclusion'])->name('gender-social-inclusion');
-    Route::get('monitoring-evaluation', [HomeController::class, 'monitoringEvaluation'])->name('monitoring-evaluation');
+    // Social Behaviour
+    Route::get('/social-behaviour-changes', [FrontendSocialBehaviourController::class, 'index'])->name('social-behaviour-changes');
+    Route::get('/social-behaviour-changes/{behaviour}', [FrontendSocialBehaviourController::class, 'show'])->name('social-behaviour-changes-show');
+    // End Social Behaviour
+
+    // Gender Social Inclusion
+    Route::get('/gender-social-inclusion', [GenderSocialInclusionController::class, 'index'])->name('gender-social-inclusion');
+    Route::get('/gender-social-inclusion/{inclusion}', [GenderSocialInclusionController::class, 'show'])->name('gender-social-inclusion.show');
+    // End Gender Inclusion
+
+    Route::get('/monitoring-evaluation', [FrontendMonitoringEvaluationController::class, 'index'])->name('monitoring-evaluation');
+    Route::get('/monitoring-evaluation/{evaluation}', [FrontendMonitoringEvaluationController::class, 'show'])->name('monitoring-evaluation.show');
 });

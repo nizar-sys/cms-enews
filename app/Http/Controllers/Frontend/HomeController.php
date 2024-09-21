@@ -269,7 +269,6 @@ class HomeController extends Controller
     {
         $post = Post::where('id', $id)->firstOrFail();
 
-        // dd($post);
 
         $nextPost = Post::where('id', '>', $post->id)->orderBy('id', 'asc')->first();
         $prevPost = Post::where('id', '<', $post->id)->orderBy('id', 'desc')->first();
@@ -279,8 +278,6 @@ class HomeController extends Controller
         $sectionSetting = PostSectionSetting::first();
 
         $comments = Comment::all();
-
-        // dd($comments);
 
         return view('frontends.post_detail', compact('post', 'nextPost', 'prevPost', 'latestPost', 'sectionSetting', 'comments'));
     }
