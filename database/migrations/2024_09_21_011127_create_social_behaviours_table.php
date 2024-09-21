@@ -13,11 +13,13 @@ return new class extends Migration
     {
         Schema::create('social_behaviours', function (Blueprint $table) {
             $table->id();
-            $table->string('title')->nullable();
-            $table->text('description')->nullable();
-            $table->text('image')->nullable();
-            $table->text('document')->nullable();
-            $table->string('video_url')->nullable();
+            $table->foreignId('author_id')->constrained('users')->cascadeOnDelete()->cascadeOnUpdate();
+            $table->foreignId('category_id')->constrained('social_behaviour_categories')->cascadeOnDelete()->cascadeOnUpdate();
+            $table->string('title');
+            $table->string('slug')->unique();
+            $table->longText('content');
+            $table->string('thumbnail')->nullable();
+            $table->string('status')->default('draft');
             $table->timestamps();
         });
     }

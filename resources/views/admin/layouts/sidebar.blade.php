@@ -394,18 +394,75 @@
                 </ul>
             </li>
 
-            <li class="nav-item {{ setSidebarActive(['admin.social-behaviour.*']) }}">
-                <a href="{{ route('admin.social-behaviour.index') }}" class="nav-link"><i
-                        class="fas fa-user-cog"></i><span>Social Behaviour</span></a>
+            <li
+                class="nav-item dropdown {{ setSidebarActive(['admin.social-behaviour-section-setting.*', 'admin.social-behaviour-category.*', 'admin.social-behaviour.*']) }}">
+                <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i
+                        class="fas fa-columns"></i>
+                    <span>Social Behaviours</span>
+                </a>
+                <ul class="dropdown-menu" style="display: none;">
+                    <li class="{{ setSidebarActive(['admin.social-behaviour-section-setting.*']) }}">
+                        <a class="nav-link"
+                            href="{{ route('admin.social-behaviour-section-setting.index') }}">Section
+                            Setting</a>
+                    </li>
+                    <li class="nav-item {{ setSidebarActive(['admin.social-behaviour-category.*']) }}">
+                        <a href="{{ route('admin.social-behaviour-category.index', []) }}"
+                            class="nav-link"><span>Categories</span></a>
+                    </li>
+                    <li class="nav-item {{ setSidebarActive(['admin.social-behaviour.*']) }}">
+                        <a href="{{ route('admin.social-behaviour.index', []) }}" class="nav-link"><span>Social
+                                Behaviour</span></a>
+                    </li>
+                </ul>
             </li>
-            <li class="nav-item {{ setSidebarActive(['admin.gender-inclusion.*']) }}">
-                <a href="{{ route('admin.gender-inclusion.index') }}" class="nav-link"><i
-                        class="fas fa-user-cog"></i><span>Gender & Social</span></a>
+
+
+            <li
+                class="nav-item dropdown {{ setSidebarActive(['admin.gender-inclusion-section-setting.*', 'admin.gender-inclusion-category.*', 'admin.gender-inclusion.*']) }}">
+                <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i
+                        class="fas fa-columns"></i>
+                    <span>Gender Inclusions</span>
+                </a>
+                <ul class="dropdown-menu" style="display: none;">
+                    <li class="{{ setSidebarActive(['admin.gender-inclusion-section-setting.*']) }}">
+                        <a class="nav-link"
+                            href="{{ route('admin.gender-inclusion-section-setting.index') }}">Section
+                            Setting</a>
+                    </li>
+                    <li class="nav-item {{ setSidebarActive(['admin.gender-inclusion-category.*']) }}">
+                        <a href="{{ route('admin.gender-inclusion-category.index', []) }}"
+                            class="nav-link"><span>Categories</span></a>
+                    </li>
+                    <li class="nav-item {{ setSidebarActive(['admin.gender-inclusion.*']) }}">
+                        <a href="{{ route('admin.gender-inclusion.index', []) }}" class="nav-link"><span>Gender Inclusion</span></a>
+                    </li>
+                </ul>
             </li>
-            <li class="nav-item {{ setSidebarActive(['admin.monitoring-evaluation.*']) }}">
-                <a href="{{ route('admin.monitoring-evaluation.index') }}" class="nav-link"><i
-                        class="fas fa-user-cog"></i><span>Monitoring Evaluation</span></a>
+
+
+            <li
+                class="nav-item dropdown {{ setSidebarActive(['admin.monitoring-evaluation-section-setting.*', 'admin.monitoring-evaluation-category.*', 'admin.monitoring-evaluation.*']) }}">
+                <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i
+                        class="fas fa-columns"></i>
+                    <span>Monitoring Evaluations</span>
+                </a>
+                <ul class="dropdown-menu" style="display: none;">
+                    <li class="{{ setSidebarActive(['admin.monitoring-evaluation-section-setting.*']) }}">
+                        <a class="nav-link"
+                            href="{{ route('admin.monitoring-evaluation-section-setting.index') }}">Section
+                            Setting</a>
+                    </li>
+                    <li class="nav-item {{ setSidebarActive(['admin.monitoring-evaluation-category.*']) }}">
+                        <a href="{{ route('admin.monitoring-evaluation-category.index', []) }}"
+                            class="nav-link"><span>Categories</span></a>
+                    </li>
+                    <li class="nav-item {{ setSidebarActive(['admin.monitoring-evaluation.*']) }}">
+                        <a href="{{ route('admin.monitoring-evaluation.index', []) }}" class="nav-link"><span>Monitoring Evaluation</span></a>
+                    </li>
+                </ul>
             </li>
+
 
             <li class="menu-header">Procurement</li>
             <li

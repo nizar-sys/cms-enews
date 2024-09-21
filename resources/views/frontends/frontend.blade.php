@@ -103,6 +103,7 @@
                 'media-notices.community-voice-detail',
                 'social-behaviour-changes',
                 'gender-social-inclusion',
+                'monitoring-evaluation',
             ],
             'subItems' => [
                 [

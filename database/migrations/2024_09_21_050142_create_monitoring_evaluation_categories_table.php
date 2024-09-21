@@ -11,13 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('monitoring_evaluations', function (Blueprint $table) {
+        Schema::create('monitoring_evaluation_categories', function (Blueprint $table) {
             $table->id();
-            $table->string('title')->nullable();
+            $table->string('name');
+            $table->string('slug')->unique();
             $table->text('description')->nullable();
-            $table->text('image')->nullable();
-            $table->text('document')->nullable();
-            $table->string('video_url')->nullable();
             $table->timestamps();
         });
     }
@@ -27,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('monitoring_evaluations');
+        Schema::dropIfExists('monitoring_evaluation_categories');
     }
 };
