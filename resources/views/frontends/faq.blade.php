@@ -13,10 +13,10 @@
                 @foreach (\App\Models\Hero::select('id', 'title', 'description', 'image')->get() as $slider)
                     <div class="carousel-item {{ $loop->iteration == 1 ? 'active' : '' }}">
                         <img src="{{ asset($slider->image) }}"
-                            alt="{{ GoogleTranslate::trans($slider->title ?? '', app()->getLocale()) }}">
+                            alt="{{ translate($slider->title ?? '', app()->getLocale()) }}">
                         <div class="carousel-container">
-                            <h2>{{ GoogleTranslate::trans($slider->title ?? '', app()->getLocale()) }}</h2>
-                            {!! GoogleTranslate::trans($slider->description ?? '', app()->getLocale()) !!}
+                            <h2>{{ translate($slider->title ?? '', app()->getLocale()) }}</h2>
+                            {!! translate($slider->description ?? '', app()->getLocale()) !!}
                         </div>
                     </div>
                 @endforeach
@@ -36,8 +36,7 @@
         </section><!-- /Hero Section -->
 
         <!-- Page Title -->
-        <div class="page-title dark-background" data-aos="fade"
-            style="background-color: #2c4666">
+        <div class="page-title dark-background" data-aos="fade" style="background-color: #2c4666">
             <div class="container position-relative">
                 <h1>{{ __('app.faqs') }}</h1>
                 <nav class="breadcrumbs">
@@ -55,7 +54,7 @@
                     <main id="main" class="site-main" role="main">
                         <article id="post-478" class="post-478 page type-page status-publish hentry">
                             <header class="entry-header">
-                                <h1 class="entry-title">{{ GoogleTranslate::trans('FAQs', app()->getLocale()) }}</h1>
+                                <h1 class="entry-title">{{ translate('FAQs', app()->getLocale()) }}</h1>
                             </header><!-- .entry-header -->
 
                             <div class="entry-content">
@@ -63,18 +62,25 @@
                                     @forelse ($faqs as $faq)
                                         <div class="accordion-item">
                                             <h2 class="accordion-header" id="heading-{{ $loop->index }}">
-                                                <button class="accordion-button {{ $loop->first ? '' : 'collapsed' }}" type="button" data-bs-toggle="collapse" data-bs-target="#collapse-{{ $loop->index }}" aria-expanded="{{ $loop->first ? 'true' : 'false' }}" aria-controls="collapse-{{ $loop->index }}">
-                                                    {{ GoogleTranslate::trans($faq->question, app()->getLocale()) }}
+                                                <button class="accordion-button {{ $loop->first ? '' : 'collapsed' }}"
+                                                    type="button" data-bs-toggle="collapse"
+                                                    data-bs-target="#collapse-{{ $loop->index }}"
+                                                    aria-expanded="{{ $loop->first ? 'true' : 'false' }}"
+                                                    aria-controls="collapse-{{ $loop->index }}">
+                                                    {{ $faq->question }}
                                                 </button>
                                             </h2>
-                                            <div id="collapse-{{ $loop->index }}" class="accordion-collapse collapse {{ $loop->first ? 'show' : '' }}" aria-labelledby="heading-{{ $loop->index }}" data-bs-parent="#faqAccordion">
+                                            <div id="collapse-{{ $loop->index }}"
+                                                class="accordion-collapse collapse {{ $loop->first ? 'show' : '' }}"
+                                                aria-labelledby="heading-{{ $loop->index }}"
+                                                data-bs-parent="#faqAccordion">
                                                 <div class="accordion-body">
-                                                    {!! GoogleTranslate::trans($faq->answer, app()->getLocale()) !!}
+                                                    {!! $faq->answer !!}
                                                 </div>
                                             </div>
                                         </div>
                                     @empty
-                                        <p>{{ GoogleTranslate::trans('No data', app()->getLocale()) }}</p>
+                                        <p>{{ translate('No data', app()->getLocale()) }}</p>
                                     @endforelse
                                 </div>
                             </div><!-- .entry-content -->

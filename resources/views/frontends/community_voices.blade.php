@@ -1,6 +1,6 @@
 @extends('frontends.frontend')
 
-@section('title', GoogleTranslate::trans($sectionSetting?->title ?? __('app.Community Voices'), app()->getLocale()))
+@section('title', $sectionSetting?->title ?? __('app.Community Voices'))
 
 @section('content')
     <style scoped>
@@ -25,10 +25,10 @@
                 @foreach (\App\Models\Hero::select('id', 'title', 'description', 'image')->get() as $slider)
                     <div class="carousel-item {{ $loop->iteration == 1 ? 'active' : '' }}">
                         <img src="{{ asset($slider->image) }}"
-                            alt="{{ GoogleTranslate::trans($slider->title ?? '', app()->getLocale()) }}">
+                            alt="{{ translate($slider->title ?? '', app()->getLocale()) }}">
                         <div class="carousel-container">
-                            <h2>{{ GoogleTranslate::trans($slider->title ?? '', app()->getLocale()) }}</h2>
-                            {!! GoogleTranslate::trans($slider->description ?? '', app()->getLocale()) !!}
+                            <h2>{{ translate($slider->title ?? '', app()->getLocale()) }}</h2>
+                            {!! translate($slider->description ?? '', app()->getLocale()) !!}
                         </div>
                     </div>
                 @endforeach
@@ -49,7 +49,7 @@
 
         <div class="page-title dark-background" data-aos="fade" style="background-color: #2c4666">
             <div class="container position-relative">
-                <h1>{{ GoogleTranslate::trans($sectionSetting?->title ?? __('app.Community Voices'), app()->getLocale()) }}
+                <h1>{{ $sectionSetting?->title ?? __('app.Community Voices') }}
                 </h1>
                 <nav class="breadcrumbs">
                     <ol>
@@ -67,11 +67,11 @@
                         <div class="col-md-12">
                             <main id="main" class="site-main" role="main">
                                 <h1 class="entry-title mb-5">
-                                    {{ GoogleTranslate::trans($sectionSetting?->title ?? __('app.Community Voices'), app()->getLocale()) }}
+                                    {{ $sectionSetting?->title ?? __('app.Community Voices') }}
                                 </h1>
 
                                 @if ($communityVoices->isEmpty())
-                                    <p>{{ GoogleTranslate::trans('There is no published data', app()->getLocale()) }}</p>
+                                    <p>{{ translate('There is no published data', app()->getLocale()) }}</p>
                                 @else
                                     <div class="row"
                                         style="display: flex; flex-wrap: wrap; justify-content: space-between;">
@@ -84,15 +84,11 @@
                                                         'slug' => $communityVoice->slug,
                                                     ]) }}"
                                                         style="text-decoration: none;">
-                                                        {{ GoogleTranslate::trans($communityVoice->title, app()->getLocale()) }}
+                                                        {{ $communityVoice->title }}
                                                     </a>
                                                 </h4>
                                                 <div class="description">
-
-                                                    {!! GoogleTranslate::trans(
-                                                        strip_tags($communityVoice->description, '<p><br><span><strong><em>'),
-                                                        app()->getLocale(),
-                                                    ) !!}
+                                                    {!! strip_tags($communityVoice->description, '<p><br><span><strong><em>') !!}
                                                 </div>
                                                 <a class="btn btn-danger"
                                                     href="{{ route('media-notices.community-voice-detail', ['locale' => session('locale', 'en'), 'slug' => $communityVoice->slug]) }}"

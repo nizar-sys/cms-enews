@@ -1,6 +1,6 @@
 @extends('frontends.frontend')
 
-@section('title', GoogleTranslate::trans($sectionSetting?->title ?? __('app.Posts'), app()->getLocale()))
+@section('title', $sectionSetting?->title ?? __('app.Posts'))
 
 @push('style')
     <style>
@@ -22,10 +22,10 @@
                 @foreach (\App\Models\Hero::select('id', 'title', 'description', 'image')->get() as $slider)
                     <div class="carousel-item {{ $loop->iteration == 1 ? 'active' : '' }}">
                         <img src="{{ asset($slider->image) }}"
-                            alt="{{ GoogleTranslate::trans($slider->title ?? '', app()->getLocale()) }}">
+                            alt="{{ translate($slider->title ?? '', app()->getLocale()) }}">
                         <div class="carousel-container">
-                            <h2>{{ GoogleTranslate::trans($slider->title ?? '', app()->getLocale()) }}</h2>
-                            {!! GoogleTranslate::trans($slider->description ?? '', app()->getLocale()) !!}
+                            <h2>{{ translate($slider->title ?? '', app()->getLocale()) }}</h2>
+                            {!! translate($slider->description ?? '', app()->getLocale()) !!}
                         </div>
                     </div>
                 @endforeach
@@ -46,15 +46,15 @@
 
         <div class="page-title dark-background" data-aos="fade" style="background-color: #2c4666">
             <div class="container position-relative">
-                <h1>{{ GoogleTranslate::trans($sectionSetting?->title ?? __('app.Posts'), app()->getLocale()) }}</h1>
+                <h1>{{ $sectionSetting?->title ?? __('app.Posts') }}</h1>
                 <div style="word-wrap: break-word;">
-                    {!! GoogleTranslate::trans($sectionSetting?->description ?? 'No Data', app()->getLocale()) !!}
+                    {!! $sectionSetting?->description ?? __('app.No data') !!}
                 </div>
                 <nav class="breadcrumbs">
                     <ol>
                         <li><a href="{{ url('/', []) }}" class="text-primary">{{ __('app.home') }}</a></li>
                         <li class="current">
-                            {{ GoogleTranslate::trans($sectionSetting?->title ?? __('app.Posts'), app()->getLocale()) }}
+                            {{ $sectionSetting?->title ?? __('app.Posts') }}
                         </li>
                     </ol>
                 </nav>
@@ -74,14 +74,13 @@
                             <div class="post-item position-relative h-100" data-aos="fade-up" data-aos-delay="100">
 
                                 <div class="post-img position-relative overflow-hidden">
-                                    <img src="{{ asset($post->thumbnail) }}" class="img-fluid"
-                                        alt="{{ GoogleTranslate::trans($post->title, app()->getLocale()) }}">
+                                    <img src="{{ asset($post->thumbnail) }}" class="img-fluid" alt="{{ $post->title }}">
                                     <span class="post-date">@datetime($post->created_at)</span>
                                 </div>
 
                                 <div class="post-content d-flex flex-column">
 
-                                    <h3 class="post-title">{{ GoogleTranslate::trans($post->title, app()->getLocale()) }}
+                                    <h3 class="post-title">{{ $post->title }}
                                     </h3>
 
                                     <div class="meta d-flex align-items-center">
@@ -98,7 +97,7 @@
                                     <hr>
 
                                     <a href="{{ route('posts-detail', ['locale' => session('locale', 'en'), 'post' => $post->id]) }}"
-                                        class="readmore stretched-link"><span>{{ GoogleTranslate::trans('Read More', app()->getLocale()) }}</span><i
+                                        class="readmore stretched-link"><span>{{ translate('Read More', app()->getLocale()) }}</span><i
                                             class="bi bi-arrow-right"></i></a>
 
                                 </div>

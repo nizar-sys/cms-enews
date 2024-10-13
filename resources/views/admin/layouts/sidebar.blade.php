@@ -6,8 +6,11 @@
         </ul>
     </div>
     <ul class="navbar-nav navbar-right">
-        <li class="dropdown"><a href="#" data-toggle="dropdown"
-                class="nav-link dropdown-toggle nav-link-lg nav-link-user">
+        <li>
+            <button id="clearTranslationBtn" class="btn btn-warning">Clear Translation</button>
+        </li>
+        <li class="dropdown">
+            <a href="#" data-toggle="dropdown" class="nav-link dropdown-toggle nav-link-lg nav-link-user">
                 <img alt="image" src="{{ asset('/') }}/assets/img/avatar/avatar-1.png"
                     class="rounded-circle mr-1">
                 <div class="d-sm-none d-lg-inline-block">Hi, {{ Auth::user()->name }}</div>
@@ -435,7 +438,8 @@
                             class="nav-link"><span>Categories</span></a>
                     </li>
                     <li class="nav-item {{ setSidebarActive(['admin.gender-inclusion.*']) }}">
-                        <a href="{{ route('admin.gender-inclusion.index', []) }}" class="nav-link"><span>Gender Inclusion</span></a>
+                        <a href="{{ route('admin.gender-inclusion.index', []) }}" class="nav-link"><span>Gender
+                                Inclusion</span></a>
                     </li>
                 </ul>
             </li>
@@ -458,7 +462,8 @@
                             class="nav-link"><span>Categories</span></a>
                     </li>
                     <li class="nav-item {{ setSidebarActive(['admin.monitoring-evaluation.*']) }}">
-                        <a href="{{ route('admin.monitoring-evaluation.index', []) }}" class="nav-link"><span>Monitoring Evaluation</span></a>
+                        <a href="{{ route('admin.monitoring-evaluation.index', []) }}"
+                            class="nav-link"><span>Monitoring Evaluation</span></a>
                     </li>
                 </ul>
             </li>

@@ -1,22 +1,16 @@
 @extends('frontends.frontend')
 
-@section('title',
-    GoogleTranslate::trans(
-    $sectionSetting?->title ??
-    GoogleTranslate::trans('Gender & Social
-    inclusions'),
-    app()->getLocale(),
-    ))
+@section('title', $sectionSetting?->title ?? translate('Gender & Social inclusions'), app()->getLocale())
 
-    @push('style')
-        <style>
-            ._pagination.wpnw-numeric {
-                display: flex;
-                justify-content: center;
-                margin: 20px 0;
-            }
-        </style>
-    @endpush
+@push('style')
+    <style>
+        ._pagination.wpnw-numeric {
+            display: flex;
+            justify-content: center;
+            margin: 20px 0;
+        }
+    </style>
+@endpush
 @section('content')
     <main class="main">
 
@@ -28,10 +22,10 @@
                 @foreach (\App\Models\Hero::select('id', 'title', 'description', 'image')->get() as $slider)
                     <div class="carousel-item {{ $loop->iteration == 1 ? 'active' : '' }}">
                         <img src="{{ asset($slider->image) }}"
-                            alt="{{ GoogleTranslate::trans($slider->title ?? '', app()->getLocale()) }}">
+                            alt="{{ translate($slider->title ?? '', app()->getLocale()) }}">
                         <div class="carousel-container">
-                            <h2>{{ GoogleTranslate::trans($slider->title ?? '', app()->getLocale()) }}</h2>
-                            {!! GoogleTranslate::trans($slider->description ?? '', app()->getLocale()) !!}
+                            <h2>{{ translate($slider->title ?? '', app()->getLocale()) }}</h2>
+                            {!! translate($slider->description ?? '', app()->getLocale()) !!}
                         </div>
                     </div>
                 @endforeach
@@ -52,16 +46,16 @@
 
         <div class="page-title dark-background" data-aos="fade" style="background-color: #2c4666">
             <div class="container position-relative">
-                <h1>{{ GoogleTranslate::trans($sectionSetting?->title ?? GoogleTranslate::trans('Gender & Social inclusions'), app()->getLocale()) }}
+                <h1>{{ $sectionSetting?->title ?? translate('Gender & Social inclusions', app()->getLocale()) }}
                 </h1>
                 <div style="word-wrap: break-word;">
-                    {!! GoogleTranslate::trans($sectionSetting?->description ?? 'No Data', app()->getLocale()) !!}
+                    {!! $sectionSetting?->description ?? translate('No Data', app()->getLocale()) !!}
                 </div>
                 <nav class="breadcrumbs">
                     <ol>
                         <li><a href="{{ url('/', []) }}" class="text-primary">{{ __('app.home') }}</a></li>
                         <li class="current">
-                            {{ GoogleTranslate::trans($sectionSetting?->title ?? GoogleTranslate::trans('Gender & Social inclusions'), app()->getLocale()) }}
+                            {{ $sectionSetting?->title ?? translate('Gender & Social inclusions', app()->getLocale()) }}
                         </li>
                     </ol>
                 </nav>
@@ -71,7 +65,7 @@
 
             <!-- Section Title -->
             <div class="container section-title" data-aos="fade-up">
-                <h2>{{ GoogleTranslate::trans('Latest') }}</h2>
+                <h2>{{ translate('Latest', app()->getLocale()) }}</h2>
             </div><!-- End Section Title -->
 
             <div class="container">
@@ -82,14 +76,14 @@
 
                                 <div class="post-img position-relative overflow-hidden">
                                     <img src="{{ asset($behaviour->thumbnail) }}" class="img-fluid"
-                                        alt="{{ GoogleTranslate::trans($behaviour->title, app()->getLocale()) }}">
+                                        alt="{{ $behaviour->title }}">
                                     <span class="post-date">@datetime($behaviour->created_at)</span>
                                 </div>
 
                                 <div class="post-content d-flex flex-column">
 
                                     <h3 class="post-title">
-                                        {{ GoogleTranslate::trans($behaviour->title, app()->getLocale()) }}
+                                        {{ $behaviour->title }}
                                     </h3>
 
                                     <div class="meta d-flex align-items-center">
@@ -106,7 +100,7 @@
                                     <hr>
 
                                     <a href="{{ route('social-behaviour-changes-show', ['locale' => session('locale', 'en'), 'behaviour' => $behaviour->id]) }}"
-                                        class="readmore stretched-link"><span>{{ GoogleTranslate::trans('Read More', app()->getLocale()) }}</span><i
+                                        class="readmore stretched-link"><span>{{ translate('Read More', app()->getLocale()) }}</span><i
                                             class="bi bi-arrow-right"></i></a>
 
                                 </div>

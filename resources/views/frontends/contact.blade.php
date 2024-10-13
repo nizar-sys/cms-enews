@@ -39,10 +39,10 @@
                 @foreach (\App\Models\Hero::select('id', 'title', 'description', 'image')->get() as $slider)
                     <div class="carousel-item {{ $loop->iteration == 1 ? 'active' : '' }}">
                         <img src="{{ asset($slider->image) }}"
-                            alt="{{ GoogleTranslate::trans($slider->title ?? '', app()->getLocale()) }}">
+                            alt="{{ translate($slider->title ?? '', app()->getLocale()) }}">
                         <div class="carousel-container">
-                            <h2>{{ GoogleTranslate::trans($slider->title ?? '', app()->getLocale()) }}</h2>
-                            {!! GoogleTranslate::trans($slider->description ?? '', app()->getLocale()) !!}
+                            <h2>{{ translate($slider->title ?? '', app()->getLocale()) }}</h2>
+                            {!! translate($slider->description ?? '', app()->getLocale()) !!}
                         </div>
                     </div>
                 @endforeach
@@ -100,14 +100,14 @@
                                     style="background-color: #f7f9fc; padding: 20px; border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
                                     <h2
                                         style="text-align: center; color: #2c4666; margin-bottom: 20px; animation: fadeIn 1s ease-in-out;">
-                                        {{ GoogleTranslate::trans('Contact Us' ?? '', app()->getLocale()) }}</h2>
+                                        {{ translate('Contact Us' ?? '', app()->getLocale()) }}</h2>
 
                                     <form action="{{ route('contact.send', ['locale' => session('locale', 'en')]) }}"
                                         method="POST" style="animation: fadeInUp 1.2s ease-in-out;">
                                         @csrf
                                         <div class="form-group" style="margin-bottom: 15px;">
                                             <label for="name"
-                                                style="color: #2c4666;">{{ GoogleTranslate::trans('Name' ?? '', app()->getLocale()) }}</label>
+                                                style="color: #2c4666;">{{ translate('Name' ?? '', app()->getLocale()) }}</label>
                                             <input type="text" id="name" name="name" class="form-control"
                                                 required
                                                 style="padding: 10px; width: 100%; border: 1px solid #ddd; border-radius: 5px; transition: border-color 0.3s ease-in-out;"
@@ -117,7 +117,7 @@
 
                                         <div class="form-group" style="margin-bottom: 15px;">
                                             <label for="email"
-                                                style="color: #2c4666;">{{ GoogleTranslate::trans('Email' ?? '', app()->getLocale()) }}</label>
+                                                style="color: #2c4666;">{{ translate('Email' ?? '', app()->getLocale()) }}</label>
                                             <input type="email" id="email" name="email" class="form-control"
                                                 required
                                                 style="padding: 10px; width: 100%; border: 1px solid #ddd; border-radius: 5px; transition: border-color 0.3s ease-in-out;"
@@ -127,7 +127,7 @@
 
                                         <div class="form-group" style="margin-bottom: 20px;">
                                             <label for="message"
-                                                style="color: #2c4666;">{{ GoogleTranslate::trans('Message' ?? '', app()->getLocale()) }}</label>
+                                                style="color: #2c4666;">{{ translate('Message' ?? '', app()->getLocale()) }}</label>
                                             <textarea id="message" name="message" class="form-control" rows="4" required
                                                 style="padding: 10px; width: 100%; border: 1px solid #ddd; border-radius: 5px; transition: border-color 0.3s ease-in-out;"
                                                 onfocus="this.style.borderColor='#2c4666'" onblur="this.style.borderColor='#ddd'"></textarea>
@@ -138,7 +138,7 @@
                                                     cursor: pointer; transition: background-color 0.3s ease-in-out;"
                                             onmouseover="this.style.backgroundColor='#1f3550'"
                                             onmouseout="this.style.backgroundColor='#2c4666'">
-                                            {{ GoogleTranslate::trans('Submit' ?? '', app()->getLocale()) }}
+                                            {{ translate('Submit' ?? '', app()->getLocale()) }}
                                         </button>
                                     </form>
                                 </div><!-- .contact-form -->

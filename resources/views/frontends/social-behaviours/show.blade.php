@@ -1,160 +1,159 @@
 @extends('frontends.frontend')
 
-@section('title', GoogleTranslate::trans($sectionSetting?->title ?? GoogleTranslate::trans('Social Behaviour Changes'),
-    app()->getLocale()))
+@section('title', $sectionSetting?->title ?? translate('Social Behaviour Changes', app()->getLocale()))
 
-    @push('style')
-        <style>
+@push('style')
+    <style>
+        .post-navigation {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+
+        .nav-links {
+            display: flex;
+            width: 100%;
+        }
+
+        .nav-links div {
+            flex: 1;
+        }
+
+        .nav-links a {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #2c4666;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 5px;
+            text-align: center;
+            width: 25%;
+            box-sizing: border-box;
+            transition: background-color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            background-color: #0056b3;
+        }
+
+        .nav-prev {
+            order: 2;
+            text-align: right;
+        }
+
+        .nav-next {
+            order: 1;
+            text-align: left;
+        }
+
+        /* Comment section styles */
+        .comment-section {
+            margin-top: 30px;
+            padding: 20px;
+            border-radius: 10px;
+            background-color: #f9f9f9;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .comment-section:hover {
+            transform: scale(1.02);
+        }
+
+        .comment-section h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: #2c4666;
+            text-align: center;
+        }
+
+        .comment-section form textarea {
+            width: 100%;
+            padding: 15px;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+            margin-bottom: 10px;
+            font-size: 1rem;
+            box-sizing: border-box;
+        }
+
+        .comment-section form button {
+            padding: 10px 20px;
+            background-color: #2c4666;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .comment-section form button:hover {
+            background-color: #0056b3;
+        }
+
+        @media (max-width: 768px) {
             .post-navigation {
-                display: flex;
-                justify-content: space-between;
-                margin-top: 20px;
-            }
-
-            .nav-links {
-                display: flex;
-                width: 100%;
-            }
-
-            .nav-links div {
-                flex: 1;
+                flex-direction: column;
             }
 
             .nav-links a {
-                display: inline-block;
-                padding: 10px 20px;
+                width: 100%;
+                margin-bottom: 10px;
+            }
+
+            .page-title h1 {
+                font-size: 1.5rem;
+            }
+
+            .entry-header h1 {
+                font-size: 1.5rem;
+            }
+
+            .entry-content {
+                font-size: 0.9rem;
+            }
+
+            #social-buttons {
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 10px;
+                padding: 10px 0;
+            }
+
+            #social-buttons a {
+                flex: 0 0 auto;
+                display: inline-flex;
+                align-items: center;
+                justify-content: center;
+                width: 40px;
+                height: 40px;
                 background-color: #2c4666;
                 color: #fff;
-                text-decoration: none;
-                border-radius: 5px;
-                text-align: center;
-                width: 25%;
-                box-sizing: border-box;
+                border-radius: 50%;
+                font-size: 18px;
                 transition: background-color 0.3s ease;
+                text-align: center;
             }
 
-            .nav-links a:hover {
+            #social-buttons a:hover {
                 background-color: #0056b3;
-            }
-
-            .nav-prev {
-                order: 2;
-                text-align: right;
-            }
-
-            .nav-next {
-                order: 1;
-                text-align: left;
-            }
-
-            /* Comment section styles */
-            .comment-section {
-                margin-top: 30px;
-                padding: 20px;
-                border-radius: 10px;
-                background-color: #f9f9f9;
-                box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-                transition: transform 0.3s ease-in-out;
-            }
-
-            .comment-section:hover {
-                transform: scale(1.02);
             }
 
             .comment-section h3 {
-                font-size: 1.5rem;
-                margin-bottom: 15px;
-                color: #2c4666;
-                text-align: center;
+                font-size: 1.2rem;
             }
 
             .comment-section form textarea {
-                width: 100%;
-                padding: 15px;
-                border-radius: 5px;
-                border: 1px solid #ddd;
-                margin-bottom: 10px;
-                font-size: 1rem;
-                box-sizing: border-box;
+                font-size: 0.9rem;
             }
 
             .comment-section form button {
-                padding: 10px 20px;
-                background-color: #2c4666;
-                color: #fff;
-                border: none;
-                border-radius: 5px;
-                cursor: pointer;
-                transition: background-color 0.3s ease;
+                width: 100%;
             }
-
-            .comment-section form button:hover {
-                background-color: #0056b3;
-            }
-
-            @media (max-width: 768px) {
-                .post-navigation {
-                    flex-direction: column;
-                }
-
-                .nav-links a {
-                    width: 100%;
-                    margin-bottom: 10px;
-                }
-
-                .page-title h1 {
-                    font-size: 1.5rem;
-                }
-
-                .entry-header h1 {
-                    font-size: 1.5rem;
-                }
-
-                .entry-content {
-                    font-size: 0.9rem;
-                }
-
-                #social-buttons {
-                    display: flex;
-                    flex-wrap: wrap;
-                    justify-content: center;
-                    gap: 10px;
-                    padding: 10px 0;
-                }
-
-                #social-buttons a {
-                    flex: 0 0 auto;
-                    display: inline-flex;
-                    align-items: center;
-                    justify-content: center;
-                    width: 40px;
-                    height: 40px;
-                    background-color: #2c4666;
-                    color: #fff;
-                    border-radius: 50%;
-                    font-size: 18px;
-                    transition: background-color 0.3s ease;
-                    text-align: center;
-                }
-
-                #social-buttons a:hover {
-                    background-color: #0056b3;
-                }
-
-                .comment-section h3 {
-                    font-size: 1.2rem;
-                }
-
-                .comment-section form textarea {
-                    font-size: 0.9rem;
-                }
-
-                .comment-section form button {
-                    width: 100%;
-                }
-            }
-        </style>
-    @endpush
+        }
+    </style>
+@endpush
 
 @section('content')
 
@@ -167,10 +166,10 @@
                 @foreach (\App\Models\Hero::select('id', 'title', 'description', 'image')->get() as $slider)
                     <div class="carousel-item {{ $loop->iteration == 1 ? 'active' : '' }}">
                         <img src="{{ asset($slider->image) }}"
-                            alt="{{ GoogleTranslate::trans($slider->title ?? '', app()->getLocale()) }}">
+                            alt="{{ translate($slider->title ?? '', app()->getLocale()) }}">
                         <div class="carousel-container">
-                            <h2>{{ GoogleTranslate::trans($slider->title ?? '', app()->getLocale()) }}</h2>
-                            {!! GoogleTranslate::trans($slider->description ?? '', app()->getLocale()) !!}
+                            <h2>{{ translate($slider->title ?? '', app()->getLocale()) }}</h2>
+                            {!! translate($slider->description ?? '', app()->getLocale()) !!}
                         </div>
                     </div>
                 @endforeach
@@ -192,11 +191,11 @@
         <!-- Page Title -->
         <div class="page-title dark-background" data-aos="fade" style="background-color: #2c4666">
             <div class="container position-relative">
-                <h1>{{ GoogleTranslate::trans($socialBehaviour->title, app()->getLocale()) }}</h1>
+                <h1>{{ $socialBehaviour->title }}</h1>
                 <nav class="breadcrumbs">
                     <ol>
                         <li><a href="{{ url('/', []) }}" class="text-primary">{{ __('app.home') }}</a></li>
-                        <li class="current">{{ GoogleTranslate::trans('Social Behaviour Detail', app()->getLocale()) }}</li>
+                        <li class="current">{{ translate('Social Behaviour Detail', app()->getLocale()) }}</li>
                     </ol>
                 </nav>
             </div>
@@ -215,10 +214,10 @@
                             </div>
                             <header class="entry-header mt-2">
                                 <h1 class="entry-title">
-                                    {{ GoogleTranslate::trans($socialBehaviour->title, app()->getLocale()) }}</h1>
+                                    {{ $socialBehaviour->title }}</h1>
                             </header><!-- .entry-header -->
                             <div class="entry-content">
-                                {!! GoogleTranslate::trans($socialBehaviour->content, app()->getLocale()) !!}
+                                {!! $socialBehaviour->content !!}
                             </div><!-- .entry-content -->
                             <footer class="entry-footer">
                             </footer><!-- .entry-footer -->
@@ -264,7 +263,7 @@
                                 @foreach ($latestPost as $p)
                                     <li class="news_li">
                                         <a class="newspost-title"
-                                            href="{{ route('social-behaviour-changes-show', ['locale' => session('locale', 'en'), 'behaviour' => $p->id]) }}">{{ GoogleTranslate::trans($p->title, app()->getLocale()) }}</a>
+                                            href="{{ route('social-behaviour-changes-show', ['locale' => session('locale', 'en'), 'behaviour' => $p->id]) }}">{{ $p->title }}</a>
                                     </li>
                                 @endforeach
                             </ul>
@@ -272,34 +271,33 @@
                     </section>
 
                     <div id="social-buttons">
-                        <h3>{{ GoogleTranslate::trans('Share this post', app()->getLocale()) }}:</h3>
-                        <a href="https://www.facebook.com/sharer/sharer.php?u={{ urlencode(Request::fullUrl()) }}&quote={{ urlencode(GoogleTranslate::trans($socialBehaviour->title, app()->getLocale()) ?? '') }}"
-                            class="social-button facebook"
-                            title="{{ GoogleTranslate::trans('Share on Facebook', app()->getLocale()) }}"
+                        <h3>{{ translate('Share this post', app()->getLocale()) }}:</h3>
+                        <a href="https://www.facebook.com/sharer/sharer.php?u={{ urlencode(Request::fullUrl()) }}&quote={{ urlencode($socialBehaviour->title ?? '') }}"
+                            class="social-button facebook" title="{{ translate('Share on Facebook', app()->getLocale()) }}"
                             rel="nofollow noopener noreferrer" target="_blank">
                             <span class="fab fa-facebook-square"></span>
                         </a>
-                        <a href="https://www.linkedin.com/sharing/share-offsite?mini=true&url={{ urlencode(Request::fullUrl()) }}&title={{ urlencode(GoogleTranslate::trans($socialBehaviour->title, app()->getLocale()) ?? '') }}"
+                        <a href="https://www.linkedin.com/sharing/share-offsite?mini=true&url={{ urlencode(Request::fullUrl()) }}&title={{ urlencode($socialBehaviour->title ?? '') }}"
                             class="social-button linkedin" title="Share on LinkedIn" rel="nofollow noopener noreferrer"
                             target="_blank">
                             <span class="fab fa-linkedin"></span>
                         </a>
-                        <a href="https://twitter.com/intent/tweet?url={{ urlencode(Request::fullUrl()) }}&text={{ urlencode(GoogleTranslate::trans($socialBehaviour->title, app()->getLocale()) ?? '') }}"
+                        <a href="https://twitter.com/intent/tweet?url={{ urlencode(Request::fullUrl()) }}&text={{ urlencode($socialBehaviour->title ?? '') }}"
                             class="social-button twitter" title="Share on Twitter" rel="nofollow noopener noreferrer"
                             target="_blank">
                             <span class="fab fa-twitter"></span>
                         </a>
-                        <a href="https://api.whatsapp.com/send?text={{ urlencode(GoogleTranslate::trans($socialBehaviour->title, app()->getLocale()) ?? '') }}%20{{ urlencode(Request::fullUrl()) }}"
+                        <a href="https://api.whatsapp.com/send?text={{ urlencode($socialBehaviour->title ?? '') }}%20{{ urlencode(Request::fullUrl()) }}"
                             class="social-button whatsapp" title="Share on WhatsApp" rel="nofollow noopener noreferrer"
                             target="_blank">
                             <span class="fab fa-whatsapp"></span>
                         </a>
-                        <a href="https://t.me/share/url?url={{ urlencode(Request::fullUrl()) }}&text={{ urlencode(GoogleTranslate::trans($socialBehaviour->title, app()->getLocale()) ?? '') }}"
+                        <a href="https://t.me/share/url?url={{ urlencode(Request::fullUrl()) }}&text={{ urlencode($socialBehaviour->title ?? '') }}"
                             class="social-button telegram" title="Share on Telegram" rel="nofollow noopener noreferrer"
                             target="_blank">
                             <span class="fab fa-telegram-plane"></span>
                         </a>
-                        <a href="https://www.pinterest.com/pin/create/button/?url={{ urlencode(Request::fullUrl()) }}&description={{ urlencode(GoogleTranslate::trans($socialBehaviour->title, app()->getLocale()) ?? '') }}"
+                        <a href="https://www.pinterest.com/pin/create/button/?url={{ urlencode(Request::fullUrl()) }}&description={{ urlencode($socialBehaviour->title ?? '') }}"
                             class="social-button pinterest" title="Share on Pinterest" rel="nofollow noopener noreferrer"
                             target="_blank">
                             <span class="fab fa-pinterest"></span>

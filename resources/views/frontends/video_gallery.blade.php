@@ -1,6 +1,6 @@
 @extends('frontends.frontend')
 
-@section('title', GoogleTranslate::trans($sectionSetting?->title ?? __('app.Video Gallery'), app()->getLocale()))
+@section('title', $sectionSetting?->title ?? __('app.Video Gallery'))
 
 @section('content')
     <style>
@@ -46,10 +46,10 @@
                 @foreach (\App\Models\Hero::select('id', 'title', 'description', 'image')->get() as $slider)
                     <div class="carousel-item {{ $loop->iteration == 1 ? 'active' : '' }}">
                         <img src="{{ asset($slider->image) }}"
-                            alt="{{ GoogleTranslate::trans($slider->title ?? '', app()->getLocale()) }}">
+                            alt="{{ translate($slider->title ?? '', app()->getLocale()) }}">
                         <div class="carousel-container">
-                            <h2>{{ GoogleTranslate::trans($slider->title ?? '', app()->getLocale()) }}</h2>
-                            {!! GoogleTranslate::trans($slider->description ?? '', app()->getLocale()) !!}
+                            <h2>{{ translate($slider->title ?? '', app()->getLocale()) }}</h2>
+                            {!! translate($slider->description ?? '', app()->getLocale()) !!}
                         </div>
                     </div>
                 @endforeach
@@ -70,11 +70,14 @@
 
         <div class="page-title dark-background" data-aos="fade" style="background-color: #2c4666">
             <div class="container position-relative">
-                <h1>{{ GoogleTranslate::trans($sectionSetting?->title ?? __('app.Video Gallery'), app()->getLocale()) }}</h1>
+                <h1>{{ $sectionSetting?->title ?? __('app.Video Gallery') }}
+                </h1>
                 <nav class="breadcrumbs">
                     <ol>
                         <li><a href="{{ url('/', []) }}" class="text-primary">{{ __('app.home') }}</a></li>
-                        <li class="current">{{ GoogleTranslate::trans($sectionSetting?->title ?? __('app.Video Gallery') , app()->getLocale())}}</li>
+                        <li class="current">
+                            {{ $sectionSetting?->title ?? __('app.Video Gallery') }}
+                        </li>
                     </ol>
                 </nav>
             </div>
@@ -83,7 +86,9 @@
             <div class="row">
                 <section id="primary" class="w-full ">
                     <main id="main" class="site-main" role="main">
-                        <h2 class="mb-5">{{ GoogleTranslate::trans($sectionSetting?->title ?? __('app.Video Gallery'), app()->getLocale()) }}</h2>
+                        <h2 class="mb-5">
+                            {{ $sectionSetting?->title ?? __('app.Video Gallery') }}
+                        </h2>
                         @if ($videoGalleries->isEmpty())
                             <div class="no-galleries">
                                 <div>

@@ -165,6 +165,48 @@
                     }
                 })
             })
+
+            // sweet alert for clear translation cache
+            $('#clearTranslationBtn').on('click', function(e) {
+                e.preventDefault();
+                Swal.fire({
+                    title: 'Are you sure?',
+                    text: "Translation cache will be cleared!",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Yes, clear it!'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        $.ajax({
+                            type: 'GET',
+                            url: '{{ route('admin.clear.translation') }}',
+                            success: function(data) {
+                                if (data.status == 'error') {
+                                    Swal.fire(
+                                        'Failed to clear translation cache!',
+                                        'Something went wrong!',
+                                        'error'
+                                    )
+                                } else {
+                                    Swal.fire(
+                                        'Cleared!',
+                                        'Translation cache has been cleared.',
+                                        'success'
+                                    )
+                                    setTimeout(() => {
+                                        window.location.reload();
+                                    }, 1000);
+                                }
+                            },
+                            error: function(xhr, status, error) {
+                                console.log(error);
+                            }
+                        })
+                    }
+                })
+            })
         })
     </script>
 

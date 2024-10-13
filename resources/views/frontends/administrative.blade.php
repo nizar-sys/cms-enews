@@ -1,6 +1,6 @@
 @extends('frontends.frontend')
 
-@section('title', GoogleTranslate::trans($sectionSetting?->title ?? __('app.Administrative'), app()->getLocale()))
+@section('title', $sectionSetting?->title ?? __('app.Administrative'))
 
 @push('style')
     <style>
@@ -21,10 +21,10 @@
                 @foreach (\App\Models\Hero::select('id', 'title', 'description', 'image')->get() as $slider)
                     <div class="carousel-item {{ $loop->iteration == 1 ? 'active' : '' }}">
                         <img src="{{ asset($slider->image) }}"
-                            alt="{{ GoogleTranslate::trans($slider->title ?? '', app()->getLocale()) }}">
+                            alt="{{ translate($slider->title ?? '', app()->getLocale()) }}">
                         <div class="carousel-container">
-                            <h2>{{ GoogleTranslate::trans($slider->title ?? '', app()->getLocale()) }}</h2>
-                            {!! GoogleTranslate::trans($slider->description ?? '', app()->getLocale()) !!}
+                            <h2>{{ translate($slider->title ?? '', app()->getLocale()) }}</h2>
+                            {!! translate($slider->description ?? '', app()->getLocale()) !!}
                         </div>
                     </div>
                 @endforeach
@@ -45,7 +45,7 @@
 
         <div class="page-title dark-background" data-aos="fade" style="background-color: #2c4666">
             <div class="container position-relative">
-                <h1>{{ GoogleTranslate::trans($sectionSetting?->title ?? __('app.Administrative'), app()->getLocale()) }}
+                <h1>{{ $sectionSetting?->title ?? __('app.Administrative') }}
                 </h1>
                 <div style="word-wrap: break-word;">
                     {!! $sectionSetting?->description !!}
@@ -54,7 +54,7 @@
                     <ol>
                         <li><a href="{{ url('/', []) }}" class="text-primary">{{ __('app.home') }}</a></li>
                         <li class="current">
-                            {{ GoogleTranslate::trans($sectionSetting?->title ?? __('app.Administrative'), app()->getLocale()) }}
+                            {{ $sectionSetting?->title ?? __('app.Administrative') }}
                         </li>
                     </ol>
                 </nav>
@@ -67,7 +67,7 @@
                     <main id="main" class="site-main" role="main">
 
                         <h1 class="entry-title mb-5">
-                            {{ GoogleTranslate::trans($sectionSetting?->title ?? __('app.Administrative'), app()->getLocale()) }}
+                            {{ $sectionSetting?->title ?? __('app.Administrative') }}
                         </h1>
                         <div class="row gx-5">
                             @foreach ($news as $post)
@@ -75,19 +75,18 @@
                                     @if ($post->image)
                                         <div class="post-img position-relative overflow-hidden">
                                             <img src="{{ asset($post->image) }}" class="img-fluid"
-                                                alt="{{ GoogleTranslate::trans($post->title, app()->getLocale()) }}"
-                                                width="200">
+                                                alt="{{ $post->title }}" width="200">
                                         </div>
                                     @endif
                                     <h3><a
-                                            href="{{ route('what-we-do.administrative-detail', ['locale' => session('locale', 'en'), 'id' => $post->id]) }}">{{ GoogleTranslate::trans($post->title, app()->getLocale()) }}</a>
+                                            href="{{ route('what-we-do.administrative-detail', ['locale' => session('locale', 'en'), 'id' => $post->id]) }}">{{ $post->title }}</a>
                                     </h3>
                                     <p class="dates"><i class="far fa-calendar-alt"
                                             style="margin-right: 7px"></i>{{ $post->created_at->format('Y-m-d') }}
                                     </p>
                                     <p></p>
                                     <p>
-                                        {!! GoogleTranslate::trans(str($post->description)->limit(50), app()->getLocale()) !!}
+                                        {!! str($post->description)->limit(50) !!}
                                     </p>
                                     <p></p>
                                     <!-- <p></p> -->

@@ -47,10 +47,10 @@
                 @foreach (\App\Models\Hero::select('id', 'title', 'description', 'image')->get() as $slider)
                     <div class="carousel-item {{ $loop->iteration == 1 ? 'active' : '' }}">
                         <img src="{{ asset($slider->image) }}"
-                            alt="{{ GoogleTranslate::trans($slider->title ?? '', app()->getLocale()) }}">
+                            alt="{{ translate($slider->title ?? '', app()->getLocale()) }}">
                         <div class="carousel-container">
-                            <h2>{{ GoogleTranslate::trans($slider->title ?? '', app()->getLocale()) }}</h2>
-                            {!! GoogleTranslate::trans($slider->description ?? '', app()->getLocale()) !!}
+                            <h2>{{ translate($slider->title ?? '', app()->getLocale()) }}</h2>
+                            {!! translate($slider->description ?? '', app()->getLocale()) !!}
                         </div>
                     </div>
                 @endforeach
@@ -73,7 +73,7 @@
             <section style="background-color: red; padding: 20px;">
                 <div class="container">
                     <marquee style="color: white; font-size: 18px;" behavior="scroll" direction="left">
-                        {{ GoogleTranslate::trans($movingText->moving_text, app()->getLocale()) }}
+                        {{ $movingText->moving_text }}
                     </marquee>
                 </div>
             </section>
@@ -96,19 +96,16 @@
                         @if ($about)
                             <div class="mb-4">
                                 {!! str_word_count($about->description, 0) > 50
-                                    ? GoogleTranslate::trans(
-                                        implode(' ', array_slice(explode(' ', $about->description), 0, 50)) . '...',
-                                        app()->getLocale(),
-                                    )
-                                    : GoogleTranslate::trans($about->description, app()->getLocale()) !!}
+                                    ? implode(' ', array_slice(explode(' ', $about->description), 0, 50)) . '...'
+                                    : $about->description !!}
                             </div>
                         @else
                             <p class="mb-4">
-                                {{ GoogleTranslate::trans(
+                                {{ translate(
                                     'Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim
-                                                                                                                                necessitatibus placeat, atque qui voluptatem velit explicabo vitae
-                                                                                                                                repellendus architecto provident nisi ullam minus asperiores commodi!
-                                                                                                                                Tenetur, repellat aliquam nihil illo.',
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                necessitatibus placeat, atque qui voluptatem velit explicabo vitae
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                repellendus architecto provident nisi ullam minus asperiores commodi!
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                Tenetur, repellat aliquam nihil illo.',
                                     app()->getLocale(),
                                 ) }}
                             </p>
@@ -116,7 +113,7 @@
                             @if ($services)
                                 @foreach ($services as $service)
                                     <ul class="list-unstyled list-check">
-                                        <li>{{ GoogleTranslate::trans($service->name, app()->getLocale()) }}</li>
+                                        <li>{{ $service->name }}</li>
                                     </ul>
                                 @endforeach
                             @endif
@@ -150,12 +147,12 @@
         <section id="services" class="services section">
             <!-- Section Title -->
             <div class="container section-title" data-aos="fade-up">
-                <h2>{{ $serviceSection ? GoogleTranslate::trans($serviceSection->title, app()->getLocale()) : __('app.Our Services') }}
+                <h2>{{ $serviceSection ? $serviceSection->title : __('app.Our Services') }}
                 </h2>
                 @if ($serviceSection)
-                    {!! GoogleTranslate::trans($serviceSection->sub_title, app()->getLocale()) !!}
+                    {!! $serviceSection->sub_title !!}
                 @else
-                    <p>{{ GoogleTranslate::trans('We work with you to achieve your goals', app()->getLocale()) }}</p>
+                    <p>{{ translate('We work with you to achieve your goals', app()->getLocale()) }}</p>
                 @endif
             </div><!-- End Section Title -->
 
@@ -178,8 +175,7 @@
                                 onmouseover="this.style.transform='translateY(-10px)'; this.style.boxShadow='0 8px 16px rgba(0, 0, 0, 0.2)';"
                                 onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 8px rgba(0, 0, 0, 0.1)';">
                                 <div class="service-item-icon" style="margin-bottom: 15px;">
-                                    <img src="{{ asset($service->image) }}"
-                                        alt="{{ GoogleTranslate::trans($service->title ?? '', app()->getLocale()) }}"
+                                    <img src="{{ asset($service->image) }}" alt="{{ $service->title ?? '' }}"
                                         style="
                                             max-width: 200px;
                                             height: auto;
@@ -194,13 +190,10 @@
                                             margin-top: 0;
                                             margin-bottom: 10px;
                                         ">
-                                        {{ GoogleTranslate::trans($service->title ?? '', app()->getLocale()) }}
+                                        {{ $service->title ?? '' }}
                                     </h3>
                                     <p style="margin: 0;">
-                                        {!! GoogleTranslate::trans(
-                                            \Illuminate\Support\Str::words(strip_tags($service->description), 10, '...'),
-                                            app()->getLocale(),
-                                        ) !!}
+                                        {!! \Illuminate\Support\Str::words(strip_tags($service->description), 10, '...') !!}
                                     </p>
                                 </div>
                                 <div class="text-center mt-4">
@@ -224,7 +217,7 @@
                 <div class="modal-content">
                     <div class="modal-header">
                         <h5 class="modal-title" id="serviceModalLabel">
-                            {{ GoogleTranslate::trans('Service Title', app()->getLocale()) }}</h5>
+                            {{ translate('Service Title', app()->getLocale()) }}</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body text-center">
@@ -234,7 +227,7 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary"
-                            data-bs-dismiss="modal">{{ GoogleTranslate::trans('Close', app()->getLocale()) }}</button>
+                            data-bs-dismiss="modal">{{ translate('Close', app()->getLocale()) }}</button>
                     </div>
                 </div>
             </div>
@@ -274,11 +267,11 @@
             <!-- Section Title -->
             <div class="container section-title" data-aos="fade-up">
                 <h2 style="color: white;">
-                    {{ $directorSectionSetting ? GoogleTranslate::trans($directorSectionSetting->title, app()->getLocale()) : __('app.board_of_directors') }}
+                    {{ $directorSectionSetting ? $directorSectionSetting->title : __('app.board_of_directors') }}
                 </h2>
                 @if ($directorSectionSetting)
                     <div style="color: white;">
-                        {!! GoogleTranslate::trans($directorSectionSetting->sub_title, app()->getLocale()) !!}
+                        {!! $directorSectionSetting->sub_title !!}
                     </div>
                 @else
                     <p style="color: white;">
@@ -365,7 +358,7 @@
                                             font-size: 16px;
                                             color: #555;
                                         ">
-                                            <b>{{ GoogleTranslate::trans($director->designation->designation, app()->getLocale()) }}</b>
+                                            <b>{{ $director->designation->designation }}</b>
                                             <br>
                                             {{ $director->name }}
                                         </p>
@@ -385,11 +378,11 @@
             <!-- Section Title -->
             <div class="container section-title" data-aos="fade-up">
                 <h2 style="color: white;">
-                    {{ $teamSectionSetting ? GoogleTranslate::trans($teamSectionSetting->title, app()->getLocale()) : __('app.Our Team') }}
+                    {{ $teamSectionSetting ? $teamSectionSetting->title : __('app.Our Team') }}
                 </h2>
                 @if ($teamSectionSetting)
                     <div style="color: white;">
-                        {!! GoogleTranslate::trans($teamSectionSetting->sub_title, app()->getLocale()) !!}
+                        {!! $teamSectionSetting->sub_title !!}
                     </div>
                 @else
                     <p style="color: white;">{{ __('app.Meet Our Executive Teams') }}</p>
@@ -466,7 +459,7 @@
                                             font-size: 16px;
                                             color: #555;
                                         ">
-                                            <b>{{ GoogleTranslate::trans($team->designation->designation, app()->getLocale()) }}</b>
+                                            <b>{{ $team->designation->designation }}</b>
                                             <br>
                                             {{ $team->name }}
                                         </p>
@@ -544,8 +537,7 @@
                                     @foreach ($photoProjects as $photo)
                                         <div class="photo-item"
                                             style="width: 300px; overflow: hidden; border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); position: relative;">
-                                            <img src="{{ $photo->photo }}"
-                                                alt="{{ GoogleTranslate::trans($photo->title ?? '', app()->getLocale()) }}"
+                                            <img src="{{ $photo->photo }}" alt="{{ $photo->title ?? '' }}"
                                                 style="width: 100%; height: auto; transition: transform 0.3s ease;">
                                             <div class="photo-caption"
                                                 style="position: absolute; bottom: 0; background: rgba(0,0,0,0.5); width: 100%; text-align: center; padding: 10px; color: #fff; font-size: 18px; transition: background 0.3s ease;">
@@ -580,16 +572,13 @@
 
                                 <div class="post-img position-relative overflow-hidden">
                                     <img src="{{ asset($post->thumbnail) }}" class="img-fluid"
-                                        alt="{{ GoogleTranslate::trans($post->title, app()->getLocale()) }}">
+                                        alt="{{ $post->title }}">
                                     <span class="post-date">@datetime($post->created_at)</span>
                                 </div>
 
                                 <div class="post-content d-flex flex-column">
 
-                                    <h3 class="post-title"> {!! GoogleTranslate::trans(
-                                        \Illuminate\Support\Str::words(strip_tags($post->title), 10, '...'),
-                                        app()->getLocale(),
-                                    ) !!}</h3>
+                                    <h3 class="post-title"> {!! \Illuminate\Support\Str::words(strip_tags($post->title), 10, '...') !!}</h3>
 
                                     <div class="meta d-flex align-items-center">
                                         <div class="d-flex align-items-center">

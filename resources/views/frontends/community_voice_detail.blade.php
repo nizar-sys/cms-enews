@@ -1,6 +1,6 @@
 @extends('frontends.frontend')
 
-@section('title', GoogleTranslate::trans($communityVoice?->title ?? __('app.Community Voice'), app()->getLocale()))
+@section('title', $communityVoice?->title ?? __('app.Community Voice'))
 
 @section('content')
     <main class="main">
@@ -13,10 +13,10 @@
                 @foreach (\App\Models\Hero::select('id', 'title', 'description', 'image')->get() as $slider)
                     <div class="carousel-item {{ $loop->iteration == 1 ? 'active' : '' }}">
                         <img src="{{ asset($slider->image) }}"
-                            alt="{{ GoogleTranslate::trans($slider->title ?? '', app()->getLocale()) }}">
+                            alt="{{ translate($slider->title ?? '', app()->getLocale()) }}">
                         <div class="carousel-container">
-                            <h2>{{ GoogleTranslate::trans($slider->title ?? '', app()->getLocale()) }}</h2>
-                            {!! GoogleTranslate::trans($slider->description ?? '', app()->getLocale()) !!}
+                            <h2>{{ translate($slider->title ?? '', app()->getLocale()) }}</h2>
+                            {!! translate($slider->description ?? '', app()->getLocale()) !!}
                         </div>
                     </div>
                 @endforeach
@@ -37,12 +37,12 @@
 
         <div class="page-title dark-background" data-aos="fade" style="background-color: #2c4666">
             <div class="container position-relative">
-                <h1>{{ GoogleTranslate::trans('Community Voice', app()->getLocale()) }}</h1>
+                <h1>{{ translate('Community Voice', app()->getLocale()) }}</h1>
 
                 <nav class="breadcrumbs">
                     <ol>
                         <li><a href="{{ url('/', []) }}" class="text-primary">{{ __('app.home') }}</a></li>
-                        <li class="current">{{ GoogleTranslate::trans('Community Voice', app()->getLocale()) }}</li>
+                        <li class="current">{{ translate('Community Voice', app()->getLocale()) }}</li>
                     </ol>
                 </nav>
             </div>
@@ -60,9 +60,10 @@
                                             style="border: 1px solid #ccc; border-radius: 5px; padding: 20px; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">
                                             <h3
                                                 style="font-weight: bold; margin-bottom: 20px; padding-bottom:10px; border-bottom: 1px solid #888">
-                                                {{ GoogleTranslate::trans($communityVoice->title, app()->getLocale()) }}</h3>
+                                                {{ $communityVoice->title }}
+                                            </h3>
                                             <div class="description">
-                                                {!! GoogleTranslate::trans($communityVoice->description, app()->getLocale()) !!}
+                                                {!! $communityVoice->description !!}
                                             </div>
                                         </div>
                                     </div>
