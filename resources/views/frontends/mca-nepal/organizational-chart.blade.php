@@ -1,7 +1,6 @@
 @extends('frontends.frontend')
 
-@section('title', $sectionSetting ? GoogleTranslate::trans($sectionSetting->title, app()->getLocale()) : '' ??
-    __('app.organizational_chart'))
+@section('title', $sectionSetting ? $sectionSetting->title : '' ?? __('app.organizational_chart'))
 
 @section('content')
     <main class="main">
@@ -13,10 +12,10 @@
                 @foreach (\App\Models\Hero::select('id', 'title', 'description', 'image')->get() as $slider)
                     <div class="carousel-item {{ $loop->iteration == 1 ? 'active' : '' }}">
                         <img src="{{ asset($slider->image) }}"
-                            alt="{{ GoogleTranslate::trans($slider->title ?? '', app()->getLocale()) }}">
+                            alt="{{ translate($slider->title ?? '', app()->getLocale()) }}">
                         <div class="carousel-container">
-                            <h2>{{ GoogleTranslate::trans($slider->title ?? '', app()->getLocale()) }}</h2>
-                            {!! GoogleTranslate::trans($slider->description ?? '', app()->getLocale()) !!}
+                            <h2>{{ translate($slider->title ?? '', app()->getLocale()) }}</h2>
+                            {!! translate($slider->description ?? '', app()->getLocale()) !!}
                         </div>
                     </div>
                 @endforeach
@@ -38,9 +37,9 @@
         <!-- Page Title -->
         <div class="page-title dark-background" data-aos="fade" style="background-color: #2c4666">
             <div class="container position-relative">
-                <h1>{{ $sectionSetting ? GoogleTranslate::trans($sectionSetting->title, app()->getLocale()) : '' }}</h1>
+                <h1>{{ $sectionSetting ? $sectionSetting->title : '' }}</h1>
                 <div style="word-wrap: break-word;">
-                    {!! $sectionSetting ? GoogleTranslate::trans($sectionSetting->sub_title, app()->getLocale()) : '' !!}
+                    {!! $sectionSetting ? $sectionSetting->sub_title : '' !!}
                 </div>
                 <nav class="breadcrumbs">
                     <ol>
@@ -61,12 +60,12 @@
                         <article id="post-245" class="post-245 page type-page status-publish hentry">
                             <header class="entry-header">
                                 <h1 class="entry-title">
-                                    {{ $sectionSetting ? GoogleTranslate::trans($sectionSetting->title, app()->getLocale()) : '' ?? __('app.organizational_chart') }}
+                                    {{ $sectionSetting ? $sectionSetting->title : '' ?? __('app.organizational_chart') }}
                                 </h1>
                             </header><!-- .entry-header -->
 
                             <div class="entry-content">
-                                <p>{!! GoogleTranslate::trans($sectionSetting?->sub_title ?? 'No Data', app()->getLocale()) !!}</p>
+                                <p>{!! $sectionSetting?->sub_title ?? __('app.No data') !!}</p>
 
 
                                 <div>
@@ -74,7 +73,7 @@
                                             src="{{ $sectionSetting?->image }}" alt="" class="wp-image-1114"
                                             width="100%" height="auto" />
                                         <figcaption>{{ __('app.update_program') }} :
-                                            {{ GoogleTranslate::trans($sectionSetting?->updated_at->format('Y-m-d H:i') ?? 'No Data', app()->getLocale()) }}
+                                            {{ $sectionSetting?->updated_at->format('Y-m-d H:i') ?? __('app.No data') }}
                                         </figcaption>
 
                                     </figure>

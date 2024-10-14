@@ -1,6 +1,6 @@
 @extends('frontends.frontend')
 
-@section('title', GoogleTranslate::trans($sectionSetting?->title ?? __('app.Posts'), app()->getLocale()))
+@section('title', $sectionSetting?->title ?? __('app.Posts'))
 
 @push('style')
     <style>
@@ -166,10 +166,10 @@
                 @foreach (\App\Models\Hero::select('id', 'title', 'description', 'image')->get() as $slider)
                     <div class="carousel-item {{ $loop->iteration == 1 ? 'active' : '' }}">
                         <img src="{{ asset($slider->image) }}"
-                            alt="{{ GoogleTranslate::trans($slider->title ?? '', app()->getLocale()) }}">
+                            alt="{{ translate($slider->title ?? '', app()->getLocale()) }}">
                         <div class="carousel-container">
-                            <h2>{{ GoogleTranslate::trans($slider->title ?? '', app()->getLocale()) }}</h2>
-                            {!! GoogleTranslate::trans($slider->description ?? '', app()->getLocale()) !!}
+                            <h2>{{ translate($slider->title ?? '', app()->getLocale()) }}</h2>
+                            {!! translate($slider->description ?? '', app()->getLocale()) !!}
                         </div>
                     </div>
                 @endforeach
@@ -191,11 +191,11 @@
         <!-- Page Title -->
         <div class="page-title dark-background" data-aos="fade" style="background-color: #2c4666">
             <div class="container position-relative">
-                <h1>{{ GoogleTranslate::trans($post->title, app()->getLocale()) }}</h1>
+                <h1>{{ $post->title }}</h1>
                 <nav class="breadcrumbs">
                     <ol>
                         <li><a href="{{ url('/', []) }}" class="text-primary">{{ __('app.home') }}</a></li>
-                        <li class="current">{{ GoogleTranslate::trans('Post Detail', app()->getLocale()) }}</li>
+                        <li class="current">{{ translate('Post Detail', app()->getLocale()) }}</li>
                     </ol>
                 </nav>
             </div>
@@ -213,10 +213,10 @@
                                     sizes="(max-width: 960px) 100vw, 960px">
                             </div>
                             <header class="entry-header mt-2">
-                                <h1 class="entry-title">{{ GoogleTranslate::trans($post->title, app()->getLocale()) }}</h1>
+                                <h1 class="entry-title">{{ $post->title }}</h1>
                             </header><!-- .entry-header -->
                             <div class="entry-content">
-                                {!! GoogleTranslate::trans($post->content, app()->getLocale()) !!}
+                                {!! $post->content !!}
                             </div><!-- .entry-content -->
                             <footer class="entry-footer">
                             </footer><!-- .entry-footer -->
@@ -262,7 +262,7 @@
                                 @foreach ($latestPost as $p)
                                     <li class="news_li">
                                         <a class="newspost-title"
-                                            href="{{ route('posts-detail', ['locale' => session('locale', 'en'), 'post' => $p->id]) }}">{{ GoogleTranslate::trans($p->title, app()->getLocale()) }}</a>
+                                            href="{{ route('posts-detail', ['locale' => session('locale', 'en'), 'post' => $p->id]) }}">{{ $p->title }}</a>
                                     </li>
                                 @endforeach
                             </ul>
@@ -270,34 +270,33 @@
                     </section>
 
                     <div id="social-buttons">
-                        <h3>{{ GoogleTranslate::trans('Share this post', app()->getLocale()) }}:</h3>
-                        <a href="https://www.facebook.com/sharer/sharer.php?u={{ urlencode(Request::fullUrl()) }}&quote={{ urlencode(GoogleTranslate::trans($post->title, app()->getLocale()) ?? '') }}"
-                            class="social-button facebook"
-                            title="{{ GoogleTranslate::trans('Share on Facebook', app()->getLocale()) }}"
+                        <h3>{{ translate('Share this post', app()->getLocale()) }}:</h3>
+                        <a href="https://www.facebook.com/sharer/sharer.php?u={{ urlencode(Request::fullUrl()) }}&quote={{ urlencode($post->title ?? '') }}"
+                            class="social-button facebook" title="{{ translate('Share on Facebook', app()->getLocale()) }}"
                             rel="nofollow noopener noreferrer" target="_blank">
                             <span class="fab fa-facebook-square"></span>
                         </a>
-                        <a href="https://www.linkedin.com/sharing/share-offsite?mini=true&url={{ urlencode(Request::fullUrl()) }}&title={{ urlencode(GoogleTranslate::trans($post->title, app()->getLocale()) ?? '') }}"
+                        <a href="https://www.linkedin.com/sharing/share-offsite?mini=true&url={{ urlencode(Request::fullUrl()) }}&title={{ urlencode($post->title ?? '') }}"
                             class="social-button linkedin" title="Share on LinkedIn" rel="nofollow noopener noreferrer"
                             target="_blank">
                             <span class="fab fa-linkedin"></span>
                         </a>
-                        <a href="https://twitter.com/intent/tweet?url={{ urlencode(Request::fullUrl()) }}&text={{ urlencode(GoogleTranslate::trans($post->title, app()->getLocale()) ?? '') }}"
+                        <a href="https://twitter.com/intent/tweet?url={{ urlencode(Request::fullUrl()) }}&text={{ urlencode($post->title ?? '') }}"
                             class="social-button twitter" title="Share on Twitter" rel="nofollow noopener noreferrer"
                             target="_blank">
                             <span class="fab fa-twitter"></span>
                         </a>
-                        <a href="https://api.whatsapp.com/send?text={{ urlencode(GoogleTranslate::trans($post->title, app()->getLocale()) ?? '') }}%20{{ urlencode(Request::fullUrl()) }}"
+                        <a href="https://api.whatsapp.com/send?text={{ urlencode($post->title ?? '') }}%20{{ urlencode(Request::fullUrl()) }}"
                             class="social-button whatsapp" title="Share on WhatsApp" rel="nofollow noopener noreferrer"
                             target="_blank">
                             <span class="fab fa-whatsapp"></span>
                         </a>
-                        <a href="https://t.me/share/url?url={{ urlencode(Request::fullUrl()) }}&text={{ urlencode(GoogleTranslate::trans($post->title, app()->getLocale()) ?? '') }}"
+                        <a href="https://t.me/share/url?url={{ urlencode(Request::fullUrl()) }}&text={{ urlencode($post->title ?? '') }}"
                             class="social-button telegram" title="Share on Telegram" rel="nofollow noopener noreferrer"
                             target="_blank">
                             <span class="fab fa-telegram-plane"></span>
                         </a>
-                        <a href="https://www.pinterest.com/pin/create/button/?url={{ urlencode(Request::fullUrl()) }}&description={{ urlencode(GoogleTranslate::trans($post->title, app()->getLocale()) ?? '') }}"
+                        <a href="https://www.pinterest.com/pin/create/button/?url={{ urlencode(Request::fullUrl()) }}&description={{ urlencode($post->title ?? '') }}"
                             class="social-button pinterest" title="Share on Pinterest" rel="nofollow noopener noreferrer"
                             target="_blank">
                             <span class="fab fa-pinterest"></span>
@@ -310,7 +309,7 @@
                     style="margin: auto; padding: 20px; background-color: #f9f9f9; border-radius: 8px;">
                     <h3
                         style="font-family: Arial, sans-serif; font-weight: bold; border-bottom: 2px solid #007bff; padding-bottom: 10px;">
-                        {{ GoogleTranslate::trans('Comments', app()->getLocale()) }}</h3>
+                        {{ translate('Comments', app()->getLocale()) }}</h3>
 
                     @foreach ($comments->where('parent_id', null)->where('post_id', $post->id) as $comment)
                         <div class="comment-item"
@@ -318,13 +317,13 @@
                             <div style="display: flex; align-items: center; margin-bottom: 5px;">
                                 <p style="font-weight: bold; margin: 0;">{{ $comment->user->name }}</p>
                             </div>
-                            <p style="margin: 5px 0;">{{ GoogleTranslate::trans($comment->comment, app()->getLocale()) }}
+                            <p style="margin: 5px 0;">{{ $comment->comment }}
                             </p>
                             <p style="font-size: 12px; color: #777;">{{ $comment->created_at->format('F j, Y, g:i a') }}
                             </p>
                             @auth
                                 <a style="font-size: 12px; color: #007bff; cursor: pointer;"
-                                    onclick="toggleReplyForm({{ $comment->id }})">{{ GoogleTranslate::trans('Reply', app()->getLocale()) }}</a>
+                                    onclick="toggleReplyForm({{ $comment->id }})">{{ translate('Reply', app()->getLocale()) }}</a>
                             @endauth
 
                             <!-- Reply Form -->
@@ -336,10 +335,10 @@
                                     <input type="hidden" name="post_id" value="{{ $comment->post_id }}">
                                     <input type="hidden" name="parent_id" value="{{ $comment->id }}">
                                     <textarea name="comment" style="width: 100%; padding: 10px; border-radius: 4px; border: 1px solid #ccc; resize: none;"
-                                        rows="3" placeholder="{{ GoogleTranslate::trans('Write your reply...', app()->getLocale()) }}"></textarea>
+                                        rows="3" placeholder="{{ translate('Write your reply...', app()->getLocale()) }}"></textarea>
                                     <button
-                                        style="background-color: #007bff; color: #fff; padding: 8px 12px; border: none; border-radius: 4px; margin-top: 5px; cursor: pointer;">{{ GoogleTranslate::trans('Post', app()->getLocale()) }}
-                                        {{ GoogleTranslate::trans('Reply', app()->getLocale()) }}</button>
+                                        style="background-color: #007bff; color: #fff; padding: 8px 12px; border: none; border-radius: 4px; margin-top: 5px; cursor: pointer;">{{ translate('Post', app()->getLocale()) }}
+                                        {{ translate('Reply', app()->getLocale()) }}</button>
                                 </form>
                             </div>
 
@@ -351,7 +350,7 @@
                                         <p style="font-weight: bold; margin: 0;">{{ $reply->user->name }}</p>
                                     </div>
                                     <p style="margin: 5px 0;">
-                                        {{ GoogleTranslate::trans($reply->comment, app()->getLocale()) }}</p>
+                                        {{ $reply->comment }}</p>
                                     <p style="font-size: 12px; color: #777;">
                                         {{ $reply->created_at->format('F j, Y, g:i a') }}</p>
                                 </div>
@@ -363,7 +362,7 @@
 
                     @if ($comments->where('parent_id', null)->where('post_id', $post->id)->isEmpty())
                         <p style="text-align: center; color: #555;">
-                            {{ GoogleTranslate::trans('No comments yet. Be the first to comment!', app()->getLocale()) }}
+                            {{ translate('No comments yet. Be the first to comment!', app()->getLocale()) }}
                         </p>
                     @endif
                 </div>
@@ -372,7 +371,7 @@
                 <!-- Comment Section -->
                 <div class="comment-section"
                     style="margin: auto; padding: 20px; background-color: #f9f9f9; border-radius: 8px;">
-                    <h3>{{ GoogleTranslate::trans('Leave a Comment', app()->getLocale()) }}</h3>
+                    <h3>{{ translate('Leave a Comment', app()->getLocale()) }}</h3>
 
                     @auth
                         <form method="POST"
@@ -380,21 +379,16 @@
                             @csrf
                             <input type="hidden" name="post_id" value="{{ $post->id }}">
                             <textarea name="comment" rows="5"
-                                placeholder="{{ GoogleTranslate::trans('Write your comment here...', app()->getLocale()) }}" required
+                                placeholder="{{ translate('Write your comment here...', app()->getLocale()) }}" required
                                 style="width: 100%; padding: 10px; border-radius: 4px; border: 1px solid #ccc; resize: none;"></textarea>
                             <button type="submit"
-                                style="background-color: #007bff; color: #fff; padding: 8px 12px; border: none; border-radius: 4px; cursor: pointer;">{{ GoogleTranslate::trans(
-                                    'Submit
-                                                                                                                                Comment',
-                                    app()->getLocale(),
-                                ) }}</button>
+                                style="background-color: #007bff; color: #fff; padding: 8px 12px; border: none; border-radius: 4px; cursor: pointer;">{{ translate('Submit Comment', app()->getLocale()) }}</button>
                         </form>
                     @else
-                        <p style="color: #777;">{{ GoogleTranslate::trans('Please', app()->getLocale()) }} <a
-                                href="{{ route('login') }}"
-                                style="color: #007bff;">{{ GoogleTranslate::trans('log in', app()->getLocale()) }}</a>
-                            {{ GoogleTranslate::trans('to', app()->getLocale()) }}
-                            {{ GoogleTranslate::trans('Leave a Comment', app()->getLocale()) }}.</p>
+                        <p style="color: #777;">{{ translate('Please', app()->getLocale()) }} <a href="{{ route('login') }}"
+                                style="color: #007bff;">{{ translate('log in', app()->getLocale()) }}</a>
+                            {{ translate('to', app()->getLocale()) }}
+                            {{ translate('Leave a Comment', app()->getLocale()) }}.</p>
                     @endauth
                 </div>
 

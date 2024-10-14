@@ -1,138 +1,154 @@
 <?php
 
 // Use File;
+use Illuminate\Support\Facades\Cache;
+use Stichoza\GoogleTranslate\GoogleTranslate;
+
 /**Handle file upload */
 
 function handleUpload($inputName, $model = null)
 {
-  try {
-    if (request()->hasFile($inputName)) {
-      if ($model && \File::exists(public_path($model->{$inputName}))) {
-        \File::delete(public_path($model->{$inputName}));
-      }
+    try {
+        if (request()->hasFile($inputName)) {
+            if ($model && \File::exists(public_path($model->{$inputName}))) {
+                \File::delete(public_path($model->{$inputName}));
+            }
 
-      $file = request()->file($inputName);
-      $fileName = rand() . $file->getClientOriginalName();
-      $file->move(public_path('/uploads'), $fileName);
+            $file = request()->file($inputName);
+            $fileName = rand() . $file->getClientOriginalName();
+            $file->move(public_path('/uploads'), $fileName);
 
-      $filePath = "/uploads/" . $fileName;
+            $filePath = "/uploads/" . $fileName;
 
-      return $filePath;
+            return $filePath;
+        }
+    } catch (\Exception $e) {
+        throw $e;
     }
-  } catch (\Exception $e) {
-    throw $e;
-  }
 }
 
 
 /**Delete File */
 function deleteFileIfExist($filePath)
 {
-  try {
-    if (\File::exists(public_path($filePath))) {
-      \File::delete(public_path($filePath));
+    try {
+        if (\File::exists(public_path($filePath))) {
+            \File::delete(public_path($filePath));
+        }
+    } catch (\Exception $e) {
+        throw $e;
     }
-  } catch (\Exception $e) {
-    throw $e;
-  }
 }
 
 /**Function get Color Skill Item */
 function getColor($index)
 {
-  $colors = ['#558bff', '#fecc90', '#ff885e', '#282828', '#190844', '#9dd3ff'];
+    $colors = ['#558bff', '#fecc90', '#ff885e', '#282828', '#190844', '#9dd3ff'];
 
-  return $colors[$index % count($colors)];
+    return $colors[$index % count($colors)];
 }
 
 /* Set sidebar item active */
 function setSidebarActive($route)
 {
-  if (is_array($route)) {
-    foreach ($route as $r) {
-      if (request()->routeIs($r)) {
-        return 'active';
-      }
+    if (is_array($route)) {
+        foreach ($route as $r) {
+            if (request()->routeIs($r)) {
+                return 'active';
+            }
+        }
     }
-  }
 }
 
 function setNavbarActive($route)
 {
-  if (is_array($route)) {
-    foreach ($route as $r) {
-      if (request()->routeIs($r)) {
-        return 'current-menu-ancestor';
-      }
+    if (is_array($route)) {
+        foreach ($route as $r) {
+            if (request()->routeIs($r)) {
+                return 'current-menu-ancestor';
+            }
+        }
     }
-  }
 }
 
 function setSubNavbarActive($route, ...$slug)
 {
-  if (is_array($route)) {
-    foreach ($route as $r) {
-      if (request()->routeIs($r)) {
-        return 'current-menu-item active';
-      }
+    if (is_array($route)) {
+        foreach ($route as $r) {
+            if (request()->routeIs($r)) {
+                return 'current-menu-item active';
+            }
+        }
     }
-  }
 }
 
 function setSubSlugNavbarActive($route, $slug)
 {
-  $segment = request()->segment(3);
-  if (is_array($route)) {
-    foreach ($route as $r) {
-      if (request()->routeIs($r) && $segment == $slug) {
-        return 'current-menu-item active';
-      }
+    $segment = request()->segment(3);
+    if (is_array($route)) {
+        foreach ($route as $r) {
+            if (request()->routeIs($r) && $segment == $slug) {
+                return 'current-menu-item active';
+            }
+        }
     }
-  }
 }
 
 function abbreviate($string)
 {
-  if (!$string || empty($string)) {
-    return '';
-  }
+    if (!$string || empty($string)) {
+        return '';
+    }
 
-  $words = explode(' ', $string);
-  $abbreviation = '';
-  foreach ($words as $word) {
-    $abbreviation .= $word[0];
-  }
-  return strtoupper($abbreviation);
+    $words = explode(' ', $string);
+    $abbreviation = '';
+    foreach ($words as $word) {
+        $abbreviation .= $word[0];
+    }
+    return strtoupper($abbreviation);
 }
 
 // app/Helpers/Helper.php
 
 if (!function_exists('setNavbarActiveNew')) {
-  function setNavbarActiveNew($routes)
-  {
-    if (is_array($routes)) {
-      foreach ($routes as $route) {
-        if (request()->routeIs($route)) {
-          return 'active';
+    function setNavbarActiveNew($routes)
+    {
+        if (is_array($routes)) {
+            foreach ($routes as $route) {
+                if (request()->routeIs($route)) {
+                    return 'active';
+                }
+            }
+        } elseif (request()->routeIs($routes)) {
+            return 'active';
         }
-      }
-    } elseif (request()->routeIs($routes)) {
-      return 'active';
+        return '';
     }
-    return '';
-  }
 }
 
 if (!function_exists('setSubNavbarActiveNew')) {
-  function setSubNavbarActiveNew($parentRoute, $subItemUrl)
-  {
-    $currentUrl = url()->current();
-    $subItemFullUrl = url($subItemUrl);
+    function setSubNavbarActiveNew($parentRoute, $subItemUrl)
+    {
+        $currentUrl = url()->current();
+        $subItemFullUrl = url($subItemUrl);
 
-    if ($currentUrl === $subItemFullUrl) {
-      return 'active';
+        if ($currentUrl === $subItemFullUrl) {
+            return 'active';
+        }
+
+        return '';
     }
+}
 
-    return '';
-  }
+if (!function_exists('translate')) {
+    function translate($text, $locale)
+    {
+        // Define a cache key based on the text and locale
+        $cacheKey = "translation_{$locale}_" . md5($text);
+
+        // Attempt to retrieve the translation from cache
+        return Cache::rememberForever($cacheKey, function () use ($text, $locale) {
+            return GoogleTranslate::trans($text, $locale);
+        });
+    }
 }

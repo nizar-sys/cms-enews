@@ -13,10 +13,10 @@
                 @foreach (\App\Models\Hero::select('id', 'title', 'description', 'image')->get() as $slider)
                     <div class="carousel-item {{ $loop->iteration == 1 ? 'active' : '' }}">
                         <img src="{{ asset($slider->image) }}"
-                            alt="{{ GoogleTranslate::trans($slider->title ?? '', app()->getLocale()) }}">
+                            alt="{{ translate($slider->title ?? '', app()->getLocale()) }}">
                         <div class="carousel-container">
-                            <h2>{{ GoogleTranslate::trans($slider->title ?? '', app()->getLocale()) }}</h2>
-                            {!! GoogleTranslate::trans($slider->description ?? '', app()->getLocale()) !!}
+                            <h2>{{ translate($slider->title ?? '', app()->getLocale()) }}</h2>
+                            {!! translate($slider->description ?? '', app()->getLocale()) !!}
                         </div>
                     </div>
                 @endforeach
@@ -42,7 +42,8 @@
                 <nav class="breadcrumbs">
                     <ol>
                         <li><a href="{{ url('/', []) }}" class="text-primary">{{ __('app.home') }}</a></li>
-                        <li class="current">{{ GoogleTranslate::trans($documentsReportsCategory->name, app()->getLocale()) }}</li>
+                        <li class="current">
+                            {{ GoogleTranslate::trans($documentsReportsCategory->name, app()->getLocale()) }}</li>
                     </ol>
                 </nav>
             </div>
@@ -54,7 +55,8 @@
                     <div class="row">
                         <div class="col-md-12">
                             <main id="main" class="site-main" role="main">
-                                <h1 class="entry-title">{{ GoogleTranslate::trans($documentsReportsCategory->name, app()->getLocale()) }}</h1>
+                                <h1 class="entry-title">
+                                    {{ GoogleTranslate::trans($documentsReportsCategory->name, app()->getLocale()) }}</h1>
                                 <div class="table-responsive">
                                     <form id="downloadForm" method="POST" action="{{ route('download.multiple') }}">
                                         @csrf
@@ -73,7 +75,9 @@
                                                     <tr>
                                                         <td width="5%"><input type="checkbox" name="files[]"
                                                                 value="{{ $file->file_path }}"></td>
-                                                        <td width="75%">{{ GoogleTranslate::trans($file->filename, app()->getLocale()) }}</td>
+                                                        <td width="75%">
+                                                            {{ GoogleTranslate::trans($file->filename, app()->getLocale()) }}
+                                                        </td>
                                                         <td class="text-center">
                                                             <a class="btn btn-danger"
                                                                 href="{{ route('download.uploads', ['file' => $file->file_path]) }}"

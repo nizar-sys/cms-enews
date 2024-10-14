@@ -13,10 +13,10 @@
                 @foreach (\App\Models\Hero::select('id', 'title', 'description', 'image')->get() as $slider)
                     <div class="carousel-item {{ $loop->iteration == 1 ? 'active' : '' }}">
                         <img src="{{ asset($slider->image) }}"
-                            alt="{{ GoogleTranslate::trans($slider->title ?? '', app()->getLocale()) }}">
+                            alt="{{ translate($slider->title ?? '', app()->getLocale()) }}">
                         <div class="carousel-container">
-                            <h2>{{ GoogleTranslate::trans($slider->title ?? '', app()->getLocale()) }}</h2>
-                            {!! GoogleTranslate::trans($slider->description ?? '', app()->getLocale()) !!}
+                            <h2>{{ translate($slider->title ?? '', app()->getLocale()) }}</h2>
+                            {!! translate($slider->description ?? '', app()->getLocale()) !!}
                         </div>
                     </div>
                 @endforeach
@@ -69,7 +69,9 @@
                                                     <tr>
                                                         <td width="5%"><input type="checkbox" name="files[]"
                                                                 value="{{ $file->file_path }}"></td>
-                                                        <td width="75%">{{ GoogleTranslate::trans($file->file_name, app()->getLocale()) }}</td>
+                                                        <td width="75%">
+                                                            {{ GoogleTranslate::trans($file->file_name, app()->getLocale()) }}
+                                                        </td>
                                                         <td class="text-center">
                                                             <a class="btn btn-danger"
                                                                 href="{{ route('download.uploads', ['file' => $file->file_path]) }}"

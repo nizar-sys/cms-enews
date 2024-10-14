@@ -138,6 +138,11 @@ Route::get('dashboard', [DashboardController::class, 'index'])->middleware(['aut
 /** Admin Route**/
 Route::group(['middleware' => ['auth', 'admin'], 'prefix' => 'console', 'as' => 'admin.'], function () {
 
+    Route::get('/clear-translation', function () {
+        Artisan::call('cache:clear');
+        return 'Translation cache cleared';
+    })->name('clear.translation');
+
     Route::prefix('board-of-directors')->name('bod.')->group(function () {
         // Director Section Setting
         Route::get('/director-section-setting', [DirectorSectionSettingController::class, 'index'])->name('director-section-setting');

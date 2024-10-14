@@ -1,6 +1,6 @@
 @extends('frontends.frontend')
 
-@section('title', GoogleTranslate::trans($sectionSetting?->title ?? __('app.procurement_notices'), app()->getLocale()))
+@section('title', $sectionSetting?->title ?? __('app.procurement_notices'))
 
 @section('content')
     <main class="main">
@@ -13,10 +13,10 @@
                 @foreach (\App\Models\Hero::select('id', 'title', 'description', 'image')->get() as $slider)
                     <div class="carousel-item {{ $loop->iteration == 1 ? 'active' : '' }}">
                         <img src="{{ asset($slider->image) }}"
-                            alt="{{ GoogleTranslate::trans($slider->title ?? '', app()->getLocale()) }}">
+                            alt="{{ translate($slider->title ?? '', app()->getLocale()) }}">
                         <div class="carousel-container">
-                            <h2>{{ GoogleTranslate::trans($slider->title ?? '', app()->getLocale()) }}</h2>
-                            {!! GoogleTranslate::trans($slider->description ?? '', app()->getLocale()) !!}
+                            <h2>{{ translate($slider->title ?? '', app()->getLocale()) }}</h2>
+                            {!! translate($slider->description ?? '', app()->getLocale()) !!}
                         </div>
                     </div>
                 @endforeach
@@ -37,13 +37,13 @@
 
         <div class="page-title dark-background" data-aos="fade" style="background-color: #2c4666">
             <div class="container position-relative">
-                <h1>{{ GoogleTranslate::trans($sectionSetting?->title ?? __('app.procurement_notices'), app()->getLocale()) }}
+                <h1>{{ $sectionSetting?->title ?? __('app.procurement_notices') }}
                 </h1>
                 <nav class="breadcrumbs">
                     <ol>
                         <li><a href="{{ url('/', []) }}" class="text-primary">{{ __('app.home') }}</a></li>
                         <li class="current">
-                            {{ GoogleTranslate::trans($sectionSetting?->title ?? __('app.procurement_notices'), app()->getLocale()) }}
+                            {{ $sectionSetting?->title ?? __('app.procurement_notices') }}
                         </li>
                     </ol>
                 </nav>
@@ -55,7 +55,7 @@
                 <section id="primary" class="content-area col-sm-12 col-lg-12">
                     <header class="entry-header">
                         <h1 class="entry-title">
-                            {{ GoogleTranslate::trans($sectionSetting?->title ?? __('app.procurement_notices'), app()->getLocale()) }}
+                            {{ $sectionSetting?->title ?? __('app.procurement_notices') }}
                         </h1>
                     </header>
 
@@ -96,13 +96,13 @@
                                                     <td width="8%">{{ $loop->iteration }}</td>
 
                                                     <td width="35%">
-                                                        {!! GoogleTranslate::trans($spesificItem->title, app()->getLocale()) !!}
+                                                        {!! $spesificItem->title !!}
                                                     </td>
                                                     <td width="30%">
                                                         <ol>
                                                             @foreach ($spesificItem->files as $file)
                                                                 <li>
-                                                                    {{ GoogleTranslate::trans($file['file_name'], app()->getLocale()) }}
+                                                                    {{ $file['file_name'] }}
                                                                 </li>
                                                             @endforeach
                                                         </ol>
@@ -150,8 +150,8 @@
                                         <div class="content-area col-sm-12 col-lg-12" style="margin:15px 0;">
                                             @if ($latestProcurementDate)
                                                 <div class="alert alert-info alert-dismissible fade show" role="alert">
-                                                    <strong>{{ GoogleTranslate::trans('Info', app()->getLocale()) }}!</strong>
-                                                    {{ GoogleTranslate::trans('Latest updated general procurement at:', app()->getLocale()) }}
+                                                    <strong>{{ translate('Info', app()->getLocale()) }}!</strong>
+                                                    {{ translate('Latest updated general procurement at:', app()->getLocale()) }}
                                                     <strong>{{ \Carbon\Carbon::parse($latestProcurementDate)->format('d/m/Y') }}
                                                         <small>({{ \Carbon\Carbon::parse($latestProcurementDate)->diffForHumans() }})</small></strong>
                                                     <button type="button" class="close btn btn-transparent"
@@ -178,7 +178,7 @@
                                                     <tr>
                                                         <td width="5%"><input type="checkbox" name="files[]"
                                                                 value="{{ $generalProcurement->file_path }}"></td>
-                                                        <td width="35%">{!! GoogleTranslate::trans($generalProcurement->title, app()->getLocale()) !!}</td>
+                                                        <td width="35%">{!! $generalProcurement->title !!}</td>
                                                         <td width="20%">
                                                             <a class="btn btn-danger btn-sm"
                                                                 href="{{ route('download.uploads', ['file' => $generalProcurement->file_path, 'model' => get_class($generalProcurement), 'id' => $generalProcurement->id]) }}"
@@ -190,7 +190,7 @@
                                                             {{ \Carbon\Carbon::parse($generalProcurement->published_date)->format('d/m/Y') }}
                                                         </td>
                                                         <td width="20%">
-                                                            {{ GoogleTranslate::trans($generalProcurement->duration, app()->getLocale()) }}
+                                                            {{ $generalProcurement->duration }}
                                                         </td>
                                                     </tr>
                                                 @empty

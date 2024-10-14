@@ -1,6 +1,6 @@
 @extends('frontends.frontend')
 
-@section('title', GoogleTranslate::trans($sectionSetting?->title ?? __('app.Publications'), app()->getLocale()))
+@section('title', $sectionSetting?->title ?? __('app.Publications'))
 
 @section('content')
     <main class="main">
@@ -13,10 +13,10 @@
                 @foreach (\App\Models\Hero::select('id', 'title', 'description', 'image')->get() as $slider)
                     <div class="carousel-item {{ $loop->iteration == 1 ? 'active' : '' }}">
                         <img src="{{ asset($slider->image) }}"
-                            alt="{{ GoogleTranslate::trans($slider->title ?? '', app()->getLocale()) }}">
+                            alt="{{ translate($slider->title ?? '', app()->getLocale()) }}">
                         <div class="carousel-container">
-                            <h2>{{ GoogleTranslate::trans($slider->title ?? '', app()->getLocale()) }}</h2>
-                            {!! GoogleTranslate::trans($slider->description ?? '', app()->getLocale()) !!}
+                            <h2>{{ translate($slider->title ?? '', app()->getLocale()) }}</h2>
+                            {!! translate($slider->description ?? '', app()->getLocale()) !!}
                         </div>
                     </div>
                 @endforeach
@@ -37,7 +37,7 @@
 
         <div class="page-title dark-background" data-aos="fade" style="background-color: #2c4666">
             <div class="container position-relative">
-                <h1>{{ GoogleTranslate::trans($sectionSetting?->title ?? __('app.Publications'), app()->getLocale()) }}</h1>
+                <h1>{{ $sectionSetting?->title ?? __('app.Publications') }}</h1>
                 <div style="word-wrap: break-word;">
                     {!! $sectionSetting?->description !!}
                 </div>
@@ -45,7 +45,7 @@
                     <ol>
                         <li><a href="{{ url('/', []) }}" class="text-primary">{{ __('app.home') }}</a></li>
                         <li class="current">
-                            {{ GoogleTranslate::trans($sectionSetting?->title ?? __('app.Publications'), app()->getLocale()) }}
+                            {{ $sectionSetting?->title ?? __('app.Publications') }}
                         </li>
                     </ol>
                 </nav>
@@ -58,11 +58,11 @@
                         <div class="col-md-12">
                             <main id="main" class="site-main" role="main">
                                 <h1 class="entry-title">
-                                    {{ GoogleTranslate::trans($sectionSetting?->title ?? __('app.Publications'), app()->getLocale()) }}
+                                    {{ $sectionSetting?->title ?? __('app.Publications') }}
                                 </h1>
 
                                 @if ($articlesInterviews->isEmpty())
-                                    <p>{{ GoogleTranslate::trans('There is no published data', app()->getLocale()) }}</p>
+                                    <p>{{ translate('There is no published data', app()->getLocale()) }}</p>
                                 @else
                                     <div class="row"
                                         style="display: flex; flex-wrap: wrap; justify-content: space-between;">
@@ -71,16 +71,16 @@
                                                 style="flex: 1 1 calc(28.28% - 20px); margin: 10px; border: 1px solid #ccc; border-radius: 5px; padding: 10px; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">
                                                 <p
                                                     style="margin-bottom: 10px; font-weight: bold; border-bottom: 1px solid #888; padding-bottom: 5px">
-                                                    {{ GoogleTranslate::trans($articles[0]->category->category_name, app()->getLocale()) }}
+                                                    {{ $articles[0]->category->category_name }}
                                                 </p>
                                                 <div class="articles">
                                                     @foreach ($articles as $index => $article)
                                                         <div class="article"
                                                             style="margin-bottom: {{ $index === count($articles) - 1 ? '0' : '3rem' }};">
                                                             <h6 style="font-weight: bold">
-                                                                {{ GoogleTranslate::trans($article->title, app()->getLocale()) }}
+                                                                {{ $article->title }}
                                                             </h6>
-                                                            <p>{!! GoogleTranslate::trans($article->description, app()->getLocale()) !!}</p>
+                                                            <p>{!! $article->description !!}</p>
                                                             <p>
                                                                 <a class="text-primary" href="{{ $article->article_url }}">
                                                                     {{ $article->article_url }}

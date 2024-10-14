@@ -1,7 +1,6 @@
 @extends('frontends.frontend')
 
-@section('title', $sectionSetting ? GoogleTranslate::trans($sectionSetting->title, app()->getLocale()) :
-    __('app.board_of_directors'))
+@section('title', $sectionSetting ? $sectionSetting->title : __('app.board_of_directors'))
 
 @section('content')
 
@@ -15,10 +14,10 @@
                 @foreach (\App\Models\Hero::select('id', 'title', 'description', 'image')->get() as $slider)
                     <div class="carousel-item {{ $loop->iteration == 1 ? 'active' : '' }}">
                         <img src="{{ asset($slider->image) }}"
-                            alt="{{ GoogleTranslate::trans($slider->title ?? '', app()->getLocale()) }}">
+                            alt="{{ translate($slider->title ?? '', app()->getLocale()) }}">
                         <div class="carousel-container">
-                            <h2>{{ GoogleTranslate::trans($slider->title ?? '', app()->getLocale()) }}</h2>
-                            {!! GoogleTranslate::trans($slider->description ?? '', app()->getLocale()) !!}
+                            <h2>{{ translate($slider->title ?? '', app()->getLocale()) }}</h2>
+                            {!! translate($slider->description ?? '', app()->getLocale()) !!}
                         </div>
                     </div>
                 @endforeach
@@ -40,9 +39,9 @@
         <!-- Page Title -->
         <div class="page-title dark-background" data-aos="fade" style="background-color: #2c4666">
             <div class="container position-relative">
-                <h1>{{ $sectionSetting ? GoogleTranslate::trans($sectionSetting->title, app()->getLocale()) : '' }}</h1>
+                <h1>{{ $sectionSetting ? $sectionSetting->title : '' }}</h1>
                 <div style="word-wrap: break-word;">
-                    {!! $sectionSetting ? GoogleTranslate::trans($sectionSetting->sub_title, app()->getLocale()) : '' !!}
+                    {!! $sectionSetting ? $sectionSetting->sub_title : '' !!}
                 </div>
                 <nav class="breadcrumbs">
                     <ol>
@@ -60,11 +59,11 @@
                         <div class="container">
                             <article id="post-22" class="post-22 page type-page status-publish hentry">
                                 <div class="entry-content">
-                                    <h2>{{ $sectionSetting ? GoogleTranslate::trans($sectionSetting->title, app()->getLocale()) : '' }}
+                                    <h2>{{ $sectionSetting ? $sectionSetting->title : '' }}
                                     </h2>
                                     <div class="row">
                                         <div class="col-lg-12 col-md-12">
-                                            <p>{!! $sectionSetting ? GoogleTranslate::trans($sectionSetting->sub_title, app()->getLocale()) : '' !!}</p>
+                                            <p>{!! $sectionSetting ? $sectionSetting->sub_title : '' !!}</p>
                                         </div>
                                     </div>
 
@@ -86,7 +85,9 @@
                                                                 : 'col-lg-4 col-md-4');
                                                 @endphp
                                                 <div class="{{ $colSize }}">
-                                                    <h4 class="text-center">{{ GoogleTranslate::trans($director->designation?->designation ?? 'No Data', app()->getLocale()) }}</h4>
+                                                    <h4 class="text-center">
+                                                        {{ $director->designation?->designation ?? __('app.No data') }}
+                                                    </h4>
                                                     <h5 class="text-center">{{ $director->name }}</h5>
                                                     <div class="wp-block-image text-center">
                                                         <figure>
@@ -117,7 +118,7 @@
                     <div class="row gy-4 justify-content-between align-items-center">
                         <div class="col-lg-12 order-lg-2 position-relative" data-aos="zoom-out">
 
-                            <h4>{{ GoogleTranslate::trans($documentCategory->name ?? 'No Data', app()->getLocale()) }}</h4>
+                            <h4>{{ $documentCategory->name ?? __('app.No data') }}</h4>
                             <div class="minutes_lists table-responsive">
                                 <form id="downloadForm" method="POST" action="{{ route('download.multiple') }}">
                                     @csrf
@@ -134,11 +135,14 @@
                                                 <tr>
                                                     <td width="5%"><input type="checkbox" name="files[]"
                                                             value="{{ $file->file_path }}"></td>
-                                                    <td width="75%">{{ GoogleTranslate::trans($file->filename ?? 'No Data', app()->getLocale()) }}</td>
+                                                    <td width="75%">
+                                                        {{ $file->filename ?? __('app.No data') }}
+                                                    </td>
                                                     <td class="text-center">
                                                         <a class="btn btn-danger"
                                                             href="{{ route('download.uploads', ['file' => $file->file_path, 'model' => get_class($file), 'id' => $file->id]) }}"
-                                                            title="{{ GoogleTranslate::trans($file->filename ?? 'No Data', app()->getLocale()) }}" target="_blank">
+                                                            title="{{ $file->filename ?? __('app.No data') }}"
+                                                            target="_blank">
                                                             <i class="far fa-file-pdf"></i> {{ __('app.Download') }}
                                                         </a>
                                                     </td>

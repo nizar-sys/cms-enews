@@ -2,32 +2,32 @@
     $locale = session('locale', config('app.locale'));
     $menuItems = [
         [
-            'label' => GoogleTranslate::trans('Home', app()->getLocale()),
+            'label' => translate('Home', app()->getLocale()),
             'url' => url('/'),
             'route' => 'home',
         ],
         [
-            'label' => GoogleTranslate::trans('About', app()->getLocale()),
+            'label' => translate('About', app()->getLocale()),
             'url' => '#',
             'route' => ['mca_tl', 'mca-tl.board-of-director', 'mca-tl.executive-team', 'mca-tl.organizational-chart'],
             'subItems' => [
                 [
-                    'label' => GoogleTranslate::trans('Board Of Directors', app()->getLocale()),
+                    'label' => translate('Board Of Directors', app()->getLocale()),
                     'url' => route('mca-tl.board-of-director', ['locale' => $locale]),
                 ],
                 [
-                    'label' => GoogleTranslate::trans('Executive Team', app()->getLocale()),
+                    'label' => translate('Executive Team', app()->getLocale()),
                     'url' => route('mca-tl.executive-team', ['locale' => $locale]),
                 ],
                 [
-                    'label' => GoogleTranslate::trans('Organizational Chart', app()->getLocale()),
+                    'label' => translate('Organizational Chart', app()->getLocale()),
                     'url' => route('mca-tl.organizational-chart', ['locale' => $locale]),
                 ],
             ],
         ],
 
         [
-            'label' => GoogleTranslate::trans('What do we do', app()->getLocale()),
+            'label' => translate('What do we do', app()->getLocale()),
             'url' => '#',
             'route' => [
                 'what-we-do.water-sanitations',
@@ -40,26 +40,26 @@
             ],
             'subItems' => [
                 [
-                    'label' => GoogleTranslate::trans('Water & Sanitation', app()->getLocale()),
+                    'label' => translate('Water & Sanitation', app()->getLocale()),
                     'url' => route('what-we-do.water-sanitations', ['locale' => $locale]),
                 ],
                 [
-                    'label' => GoogleTranslate::trans('Teaching & Leading', app()->getLocale()),
+                    'label' => translate('Teaching & Leading', app()->getLocale()),
                     'url' => route('what-we-do.teaching-leadings', ['locale' => $locale]),
                 ],
                 [
-                    'label' => GoogleTranslate::trans('Administrative', app()->getLocale()),
+                    'label' => translate('Administrative', app()->getLocale()),
                     'url' => route('what-we-do.administrative', ['locale' => $locale]),
                 ],
                 [
-                    'label' => GoogleTranslate::trans('Documents', app()->getLocale()),
+                    'label' => translate('Documents', app()->getLocale()),
                     'url' => route('what-we-do.documents', ['locale' => $locale]),
                 ],
             ],
         ],
 
         [
-            'label' => GoogleTranslate::trans('Projects', app()->getLocale()),
+            'label' => translate('Projects', app()->getLocale()),
             'url' => '#',
             'route' => [
                 'projects.posts',
@@ -70,25 +70,25 @@
             ],
             'subItems' => [
                 [
-                    'label' => GoogleTranslate::trans('Posts', app()->getLocale()),
+                    'label' => translate('Posts', app()->getLocale()),
                     'url' => route('projects.posts', ['locale' => $locale]),
                 ],
                 [
-                    'label' => GoogleTranslate::trans('Publications', app()->getLocale()),
+                    'label' => translate('Publications', app()->getLocale()),
                     'url' => route('projects.articles-interviews', ['locale' => $locale]),
                 ],
                 [
-                    'label' => GoogleTranslate::trans('Video Project', app()->getLocale()),
+                    'label' => translate('Video Project', app()->getLocale()),
                     'url' => route('projects.video-projects', ['locale' => $locale]),
                 ],
                 [
-                    'label' => GoogleTranslate::trans('Photo Project', app()->getLocale()),
+                    'label' => translate('Photo Project', app()->getLocale()),
                     'url' => route('projects.photo-projects', ['locale' => $locale]),
                 ],
             ],
         ],
         [
-            'label' => GoogleTranslate::trans('Public Outreach', app()->getLocale()),
+            'label' => translate('Public Outreach', app()->getLocale()),
             'url' => '#',
             'route' => [
                 'media_notices',
@@ -107,74 +107,74 @@
             ],
             'subItems' => [
                 [
-                    'label' => GoogleTranslate::trans('Press Releases', app()->getLocale()),
+                    'label' => translate('Press Releases', app()->getLocale()),
                     'url' => route('media-notices.press-releases', ['locale' => $locale]),
                 ],
                 [
-                    'label' => GoogleTranslate::trans('News', app()->getLocale()),
+                    'label' => translate('News', app()->getLocale()),
                     'url' => route('media-notices.news', ['locale' => $locale]),
                 ],
                 [
-                    'label' => GoogleTranslate::trans('Events Announcements', app()->getLocale()),
+                    'label' => translate('Events Announcements', app()->getLocale()),
                     'url' => route('media-notices.community-voices', ['locale' => $locale]),
                 ],
                 [
-                    'label' => GoogleTranslate::trans('Photo Events', app()->getLocale()),
+                    'label' => translate('Photo Events', app()->getLocale()),
                     'url' => route('media-notices.photo-gallery', ['locale' => $locale]),
                 ],
                 [
-                    'label' => GoogleTranslate::trans('Video Events', app()->getLocale()),
+                    'label' => translate('Video Events', app()->getLocale()),
                     'url' => route('media-notices.video-gallery', ['locale' => $locale]),
                 ],
                 [
-                    'label' => GoogleTranslate::trans('Social Behaviour Changes', app()->getLocale()),
+                    'label' => translate('Social Behaviour Changes', app()->getLocale()),
                     'url' => route('social-behaviour-changes', ['locale' => $locale]),
                 ],
                 [
-                    'label' => GoogleTranslate::trans('Gender & Social Inclusion', app()->getLocale()),
+                    'label' => translate('Gender & Social Inclusion', app()->getLocale()),
                     'url' => route('gender-social-inclusion', ['locale' => $locale]),
                 ],
                 [
-                    'label' => GoogleTranslate::trans('Monitoring Evaluation', app()->getLocale()),
+                    'label' => translate('Monitoring Evaluation', app()->getLocale()),
                     'url' => route('monitoring-evaluation', ['locale' => $locale]),
                 ],
             ],
         ],
         [
-            'label' => GoogleTranslate::trans('Procurement', app()->getLocale()),
+            'label' => translate('Procurement', app()->getLocale()),
             'url' => '#',
             'route' => ['procurement', 'procurement-notice', 'guidelines', 'jobs.index', 'procurement-notice-files'],
             'subItems' => [
                 [
-                    'label' => GoogleTranslate::trans('Procurement Notices', app()->getLocale()),
+                    'label' => translate('Procurement Notices', app()->getLocale()),
                     'url' => route('procurement-notice', ['locale' => $locale]),
                 ],
                 [
-                    'label' => GoogleTranslate::trans('Procurement Guidelines', app()->getLocale()),
+                    'label' => translate('Procurement Guidelines', app()->getLocale()),
                     'url' => route('guidelines', ['locale' => $locale]),
                 ],
                 [
-                    'label' => GoogleTranslate::trans('Bid Challenge System', app()->getLocale()),
+                    'label' => translate('Bid Challenge System', app()->getLocale()),
                     'url' => route('procurement-bid-challenge-systems', ['locale' => $locale]),
                 ],
                 [
-                    'label' => GoogleTranslate::trans('Contract Award Notice', app()->getLocale()),
+                    'label' => translate('Contract Award Notice', app()->getLocale()),
                     'url' => route('procurement-contract-award-notices', ['locale' => $locale]),
                 ],
             ],
         ],
         [
-            'label' => GoogleTranslate::trans('HR Vacancies', app()->getLocale()),
+            'label' => translate('HR Vacancies', app()->getLocale()),
             'url' => route('jobs.index', ['locale' => $locale]),
             'route' => 'jobs.index',
         ],
         [
-            'label' => GoogleTranslate::trans('Faqs', app()->getLocale()),
+            'label' => translate('Faqs', app()->getLocale()),
             'url' => route('faq.index', ['locale' => $locale]),
             'route' => 'faq.index',
         ],
         [
-            'label' => GoogleTranslate::trans('Contact', app()->getLocale()),
+            'label' => translate('Contact', app()->getLocale()),
             'url' => route('contact.index', ['locale' => $locale]),
             'route' => 'contact.index',
         ],
@@ -275,28 +275,28 @@
                         <div id="clockdiv" class="d-flex">
                             <div class="clockrow">
                                 <span class="year" id="year">4</span>
-                                <div class="smalltext">{{ GoogleTranslate::trans('Year', app()->getLocale()) }}</div>
+                                <div class="smalltext">{{ translate('Year', app()->getLocale()) }}</div>
                             </div>
                             <div class="clockrow">
                                 <span class="month" id="month">0</span>
-                                <div class="smalltext">{{ GoogleTranslate::trans('Month', app()->getLocale()) }}</div>
+                                <div class="smalltext">{{ translate('Month', app()->getLocale()) }}</div>
                             </div>
                             <div class="clockrow">
                                 <span class="days" id="days">24</span>
-                                <div class="smalltext">{{ GoogleTranslate::trans('Days', app()->getLocale()) }}</div>
+                                <div class="smalltext">{{ translate('Days', app()->getLocale()) }}</div>
                             </div>
                             <div class="clockrow">
                                 <span class="hours" id="hour">14</span>
-                                <div class="smalltext">{{ GoogleTranslate::trans('Hours', app()->getLocale()) }}</div>
+                                <div class="smalltext">{{ translate('Hours', app()->getLocale()) }}</div>
                             </div>
                             <div class="clockrow">
                                 <span class="minutes" id="minute">38</span>
-                                <div class="smalltext">{{ GoogleTranslate::trans('Minutes', app()->getLocale()) }}
+                                <div class="smalltext">{{ translate('Minutes', app()->getLocale()) }}
                                 </div>
                             </div>
                             <div class="clockrow">
                                 <span class="seconds" id="second">6</span>
-                                <div class="smalltext">{{ GoogleTranslate::trans('Seconds', app()->getLocale()) }}
+                                <div class="smalltext">{{ translate('Seconds', app()->getLocale()) }}
                                 </div>
                             </div>
                         </div>
@@ -333,7 +333,7 @@
                                        transition: background-color 0.3s ease, transform 0.3s ease;"
                                 onmouseover="this.style.backgroundColor='#345c88'; this.style.transform='scale(1.05)';"
                                 onmouseout="this.style.backgroundColor='#2c4666'; this.style.transform='scale(1)';">
-                                {{ GoogleTranslate::trans('Login', app()->getLocale()) }}
+                                {{ translate('Login', app()->getLocale()) }}
                             </a>
                         @else
                             <div class="dropdown">
@@ -348,11 +348,11 @@
                                 <ul class="dropdown-menu" aria-labelledby="userDropdown">
                                     @if (Auth::user()->role == 'admin')
                                         <li><a class="dropdown-item"
-                                                href="{{ route('dashboard') }}">{{ GoogleTranslate::trans('Dashboard', app()->getLocale()) }}</a>
+                                                href="{{ route('dashboard') }}">{{ translate('Dashboard', app()->getLocale()) }}</a>
                                         </li>
                                     @endif
                                     <li><a class="dropdown-item" href="#" data-bs-toggle="modal"
-                                            data-bs-target="#logoutModal">{{ GoogleTranslate::trans('Logout', app()->getLocale()) }}</a>
+                                            data-bs-target="#logoutModal">{{ translate('Logout', app()->getLocale()) }}</a>
                                     </li>
                                 </ul>
                             </div>
@@ -369,20 +369,20 @@
                         <div class="modal-content">
                             <div class="modal-header">
                                 <h5 class="modal-title" id="logoutModalLabel">
-                                    {{ GoogleTranslate::trans('Logout', app()->getLocale()) }}</h5>
+                                    {{ translate('Logout', app()->getLocale()) }}</h5>
                                 <button type="button" class="btn-close" data-bs-dismiss="modal"
                                     aria-label="Close"></button>
                             </div>
                             <div class="modal-body">
-                                {{ GoogleTranslate::trans('Are you sure you want to logout?', app()->getLocale()) }}
+                                {{ translate('Are you sure you want to logout?', app()->getLocale()) }}
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary"
-                                    data-bs-dismiss="modal">{{ GoogleTranslate::trans('Cancel', app()->getLocale()) }}</button>
+                                    data-bs-dismiss="modal">{{ translate('Cancel', app()->getLocale()) }}</button>
                                 <form method="POST" action="{{ route('logout') }}">
                                     @csrf
                                     <button type="submit"
-                                        class="btn btn-danger">{{ GoogleTranslate::trans('Logout', app()->getLocale()) }}</button>
+                                        class="btn btn-danger">{{ translate('Logout', app()->getLocale()) }}</button>
                                 </form>
                             </div>
                         </div>
@@ -395,7 +395,7 @@
                         <div class="modal-content">
                             <div class="modal-header">
                                 <h5 class="modal-title" id="searchModalLabel">
-                                    {{ GoogleTranslate::trans('Search', app()->getLocale()) }}</h5>
+                                    {{ translate('Search', app()->getLocale()) }}</h5>
                                 <button type="button" class="btn-close" data-bs-dismiss="modal"
                                     aria-label="Close"></button>
                             </div>
@@ -403,7 +403,7 @@
                                 <!-- Search Form -->
                                 <form method="get" action="#" class="mb-4">
                                     <input type="text" name="search" id="searchInput" class="form-control"
-                                        placeholder="{{ GoogleTranslate::trans('Enter search term', app()->getLocale()) }}"
+                                        placeholder="{{ translate('Enter search term', app()->getLocale()) }}"
                                         style="border: 1px solid #2c4666;" autocomplete="off" autofocus>
                                 </form>
 
@@ -433,16 +433,16 @@
                 <a href="{{ url('/') }}" class="d-flex align-items-center logo-link">
                     <img width="100"
                         src="{{ $generalSetting ? asset($generalSetting->left_icon) : 'https://mcanp.org/en/wp-content/uploads/sites/2/2021/08/mca-nepal-logo@2x-e1630344272397.png' }}"
-                        alt="{{ GoogleTranslate::trans('Millennium Challenge Account TL', app()->getLocale()) }}">
+                        alt="{{ translate('Millennium Challenge Account TL', app()->getLocale()) }}">
                 </a>
                 <a href="{{ url('/') }}" class="d-flex align-items-center logo-link">
                     <img width="100"
                         src="{{ $generalSetting ? asset($generalSetting->center_icon) : 'https://mcanp.org/en/wp-content/uploads/sites/2/2021/08/mca-nepal-logo@2x-e1630344272397.png' }}"
-                        alt="{{ GoogleTranslate::trans('Millennium Challenge Account TL', app()->getLocale()) }}">
+                        alt="{{ translate('Millennium Challenge Account TL', app()->getLocale()) }}">
                 </a>
                 <a href="{{ url('/') }}" class="d-flex align-items-center logo-link">
                     <img src="{{ $generalSetting ? asset($generalSetting->right_icon) : 'http://mcanp.org/wp-content/uploads/2020/06/Nepal-Government-logo.png' }}"
-                        alt="{{ GoogleTranslate::trans('TL Government', app()->getLocale()) }}" width="100">
+                        alt="{{ translate('TL Government', app()->getLocale()) }}" width="100">
                 </a>
             </div>
         </nav>
